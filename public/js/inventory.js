@@ -6,7 +6,7 @@ window.onload = async () => {
             case "ap": {
                 switch (item2) {
                     case "bp": return "bn"
-                    case "rcp": return "rn"
+                    case "rp": return "rn"
                     default: return "none"
                 }
             }
@@ -73,7 +73,7 @@ window.onload = async () => {
                     default: return "none"
                 }
             }
-            case "rcp": {
+            case "rp": {
                 switch (item2) {
                     case "ap": return "rn"
                     default: return "none"
@@ -181,7 +181,7 @@ window.onload = async () => {
                     image: "../images/golden_pieces_icon.png",
                     name: "Golden Pieces"
                 }
-            case "rcp":
+            case "rp":
                 return {
                     image: "../images/red_cube_pieces_icon.png",
                     name: "Red Note Pieces"
@@ -214,7 +214,7 @@ window.onload = async () => {
             case "sp":
                 return {
                     image: "../images/silver_pieces_icon.png",
-                    name: "Silver Pieces"
+                    name: "Silver Note Pieces"
                 }
             case "w":
                 return {
