@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/profiles.js"></script>
+    <link rel="stylesheet" href="../css/profile.css">
+    <title>SaberQuest • Profile</title>
+</head>
+
+<body>
+    <div id="navbar">
+        <ul>
+            <li><a href="/leaderboards">Leaderboards</a></li>
+            <li><a href="/inventory">Inventory</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+    </div>
+
+    <div id="register" style="display: none;">
+        <button id="steam">Steam Login</button>
+        <p>If you use oculus you can register using the <a href="#" id="questsaber">QuestSaber Mod</a> and get a unique identifier there.</p>
+        <button id="oculus">I am an Oculus user</button>
+
+        <div id="oculusLogin" style="display: none;">
+            <p>Enter your QuestSaber unique identifier.</p>
+            <input type="text" id="identifier" placeholder="Identifier">
+            <button id="login">Submit</button>
+        </div>
+
+        <div id="error" style="display: none;">
+            <p id="errorText">
+                Error: Invalid identifier.
+            </p>
+        </div>
+    </div>
+
+    <div id="playerInfo" style="display: none;">
+        <img id="avatar" src="" alt="Player Avatar">
+        <p id="name"></p>
+        <p id="rank"></p>
+        <p id="challenges"></p>
+        <p id="qp"></p>
+
+        <div id="inventory">
+            <h1>Inventory</h1>
+        </div>
+    </div>
+</body>
+</html>
