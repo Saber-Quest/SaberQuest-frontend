@@ -1,4 +1,6 @@
 window.onload = async () => {
+    // Crafting Checks
+
     function Craft(item1, item2) {
         switch (item1) {
             case "ap": {
@@ -114,6 +116,8 @@ window.onload = async () => {
             }
         }
     }
+
+    // Converting IDs to images and adding names
 
     function convertId(id) {
         switch (id) {
