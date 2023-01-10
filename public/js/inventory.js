@@ -1,3 +1,19 @@
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 window.onload = async () => {
     // Crafting Checks
 
@@ -7,6 +23,7 @@ window.onload = async () => {
                 switch (item2) {
                     case "bp": return "bn"
                     case "rcp": return "rn"
+                    case "bst": return "bsl"
                     default: return "none"
                 }
             }
@@ -28,8 +45,18 @@ window.onload = async () => {
             }
             case "bn": {
                 switch (item2) {
+                    case "b": return "br"
+                    case "rn": return "dn"
+                    case "bn": return "bst"
                     case "bs": return "bd"
                     case "rs": return "bcn"
+                    default: return "none"
+                }
+            }
+            case "bst": {
+                switch (item2) {
+                    case "bn": return "bto"
+                    case "ap": return "bsl"
                     default: return "none"
                 }
             }
@@ -81,9 +108,18 @@ window.onload = async () => {
             }
             case "rn": {
                 switch (item2) {
-                    case "bs": return "br"
+                    case "bn": return "dn"
+                    case "rn": return "rst"
+                    case "b": return "br"
                     case "rs": return "rd"
                     case "bs": return "bcn"
+                }
+            }
+            case "rst": {
+                switch (item2) {
+                    case "rn": return "rto"
+                    case "ap": return "rsl"
+                    default: return "none"
                 }
             }
             case "st": {
@@ -111,6 +147,68 @@ window.onload = async () => {
                 switch (item2) {
                     case "rn": return "rd"
                     case "bn": return "bcn"
+                    default: return "none"
+                }
+            }
+            case "115": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "bpp": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "rpp": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "bsl": {
+                switch (item2) {
+                    case "bsl": return "bpp"
+                    default: return "none"
+                }
+            }
+            case "rsl": {
+                switch (item2) {
+                    case "rsl": return "rpp"
+                    default: return "none"
+                }
+            }
+            case "bto": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "rto": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "bst": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "rst": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "bre": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "br": {
+                switch (item2) {
+                    default: return "none"
+                }
+            }
+            case "dn": {
+                switch (item2) {
                     default: return "none"
                 }
             }
@@ -161,6 +259,11 @@ window.onload = async () => {
                     image: "../images/bsmg_token.png",
                     name: "BSMG Token"
                 }
+            case "ht":
+                return {
+                    image: "../images/hitbloq_token.png",
+                    name: "Hitbloq Token"
+                }
             case "cw":
                 return {
                     image: "../images/crouch_wall_icon.png",
@@ -169,7 +272,7 @@ window.onload = async () => {
             case "ct":
                 return {
                     image: "../images/cube_community_token.png",
-                    name: "Cube Community Token"
+                    name: "CC Token"
                 }
             case "gn":
                 return {
@@ -221,19 +324,94 @@ window.onload = async () => {
                     image: "../images/wall_icon.png",
                     name: "Wall"
                 }
+            case "115":
+                return {
+                    image: "../images/115.png",
+                    name: "115"
+                }
+            case "bpp":
+                return {
+                    image: "../images/blue_poodle_icon.png",
+                    name: "Blue Poodle"
+                }
+            case "bsl":
+                return {
+                    image: "../images/blue_slider_icon.png",
+                    name: "Blue Slider"
+                }
+            case "bst":
+                return {
+                    image: "../images/blue_stack.png",
+                    name: "Blue Stack"
+                }
+            case "bto":
+                return {
+                    image: "../images/blue_tower.png",
+                    name: "Blue Tower"
+                }
+            case "br":
+                return {
+                    image: "../images/bomb_reset_icon.png",
+                    name: "Bomb Reset"
+                }
+            case "dn":
+                return {
+                    image: "../images/double_notes_icon.png",
+                    name: "Double Notes"
+                }
+            case "rpp":
+                return {
+                    image: "../images/red_poodle_icon.png",
+                    name: "Red Poodle"
+                }
+            case "rsl":
+                return {
+                    image: "../images/red_slider_icon.png",
+                    name: "Red Slider"
+                }
+            case "rst":
+                return {
+                    image: "../images/red_stack.png",
+                    name: "Red Stack"
+                }
+            case "rto":
+                return {
+                    image: "../images/red_tower.png",
+                    name: "Red Tower"
+                }
         }
     }
 
     async function MakeInventory() {
-        const user = localStorage.getItem("user")
+        const user = getCookie("token");
 
-        const has = await fetch(`/api/user?userId=${user}`, {
-            method: "GET"
+        if (!user) return window.location.replace("/profile");
+
+        const has = await fetch(`/api/user`, {
+            method: "GET",
+            headers: {
+                "type": "auth",
+                "user": user
+            }
         }).then(res => res.json())
 
         const inventory = document.getElementById('inventory');
 
         inventory.innerHTML = ""
+
+        const map = has.collectibles.map(item => {
+            if (item.amount == 0) return;
+            return item;
+        })
+
+        if (map.every(item => item == undefined)) {
+            const text = document.createElement('h1');
+            text.className = 'noItems';
+            text.innerHTML = 'No items found.';
+
+            inventory.appendChild(text);
+            return;
+        }
 
         for (i = 0; i < has.collectibles.length; i++) {
             const name = has.collectibles[i].name;
@@ -258,7 +436,7 @@ window.onload = async () => {
 
             const itemName = document.createElement('span');
             itemName.className = 'itemName';
-            itemName.id = `itemName${i}`;
+            itemName.id = `itemName${item.name}`;
             itemName.innerHTML = `${item.name}`;
             itemName.style.textAlign = 'center';
             itemName.style.display = 'block';
@@ -294,6 +472,11 @@ window.onload = async () => {
             const amount = collectible.className.split(' ')[2];
 
             if (name && amount) {
+                if (amount == 1) {
+                    const block = document.getElementsByClassName(`block ${name} ${amount}`)[0];
+                    block.remove();
+                }
+
                 const crafting = document.getElementById('crafting');
 
                 const image = document.createElement("img");
@@ -319,6 +502,48 @@ window.onload = async () => {
                 const firstCrafted = document.getElementById(`firstSelected`);
                 firstCrafted.onclick = async (e) => {
                     const target = e.target;
+                    if (amount == 1) {
+                        const item = convertId(target.className.split(' ')[1]);
+
+                        const name = target.className.split(' ')[1];
+                        const amount = 1;
+
+                        const block = document.createElement('div');
+                        block.className = `block ${name} ${amount}`;
+                        block.id = `block${i}`;
+            
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'tooltip';
+                        tooltip.id = `tooltip${amount}`;
+                        tooltip.style.position = 'absolute';
+            
+                        const tooltipText = document.createElement('span');
+                        tooltipText.className = 'tooltiptext';
+                        tooltipText.id = `tooltipText${i}`;
+                        tooltipText.innerHTML = `${amount}`;
+            
+                        const itemName = document.createElement('span');
+                        itemName.className = 'itemName';
+                        itemName.id = `itemName${item.name}`;
+                        itemName.innerHTML = `${item.name}`;
+                        itemName.style.textAlign = 'center';
+                        itemName.style.display = 'block';
+            
+                        tooltip.appendChild(tooltipText);
+                        block.appendChild(tooltip);
+            
+                        const image = document.createElement("img");
+            
+                        image.src = item.image
+                        image.width = 150;
+                        image.height = 150;
+                        image.className = `collectible ${name} ${amount}`;
+            
+                        block.appendChild(image);
+                        block.appendChild(itemName);
+            
+                        inventory.appendChild(block);
+                    }
                     const plus = document.getElementById('plus');
                     plus.remove();
                     target.remove();
@@ -326,6 +551,50 @@ window.onload = async () => {
                     if (secondSelected == true) {
                         const crafted = document.getElementById('crafted');
                         const secondCrafted = document.getElementById(`secondSelected`);
+
+                        if (Number(secondCrafted.className.split(' ')[2]) == 1) {
+                            const item = convertId(secondCrafted.className.split(' ')[1]);
+
+                            const name = secondCrafted.className.split(' ')[1];
+                            const amount = 1;
+    
+                            const block = document.createElement('div');
+                            block.className = `block ${name} ${amount}`;
+                            block.id = `block${i}`;
+                
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'tooltip';
+                            tooltip.id = `tooltip${amount}`;
+                            tooltip.style.position = 'absolute';
+                
+                            const tooltipText = document.createElement('span');
+                            tooltipText.className = 'tooltiptext';
+                            tooltipText.id = `tooltipText${i}`;
+                            tooltipText.innerHTML = `${amount}`;
+                
+                            const itemName = document.createElement('span');
+                            itemName.className = 'itemName';
+                            itemName.id = `itemName${item.name}`;
+                            itemName.innerHTML = `${item.name}`;
+                            itemName.style.textAlign = 'center';
+                            itemName.style.display = 'block';
+                
+                            tooltip.appendChild(tooltipText);
+                            block.appendChild(tooltip);
+                
+                            const image = document.createElement("img");
+                
+                            image.src = item.image
+                            image.width = 150;
+                            image.height = 150;
+                            image.className = `collectible ${name} ${amount}`;
+                
+                            block.appendChild(image);
+                            block.appendChild(itemName);
+                
+                            inventory.appendChild(block);
+                        }
+
                         const equals = document.getElementById('equals');
                         equals.remove();
                         secondCrafted.remove();
@@ -349,6 +618,11 @@ window.onload = async () => {
             const amount = collectible.className.split(' ')[2];
 
             if (name && amount) {
+                if (amount == 1) {
+                    const block = document.getElementsByClassName(`block ${name} ${amount}`)[0];
+                    block.remove();
+                }
+
                 const crafting = document.getElementById('crafting');
                 const firstCrafted = document.getElementById(`firstSelected`);
                 const firstName = firstCrafted.className.split(' ')[1];
@@ -396,9 +670,13 @@ window.onload = async () => {
                         const waiting = document.getElementById('waiting');
                         waiting.style.display = 'block';
 
-                        const user = localStorage.getItem("user")
-                        const has = await fetch(`/api/user?userId=${user}`, {
-                            method: "GET"
+                        const user = getCookie('token');
+                        const has = await fetch(`/api/user`, {
+                            method: "GET",
+                            headers: {
+                                "user": user,
+                                "type": "auth"
+                            }
                         }).then(res => res.json())
 
                         const firstCrafted = document.getElementById(`firstSelected`);
@@ -413,25 +691,74 @@ window.onload = async () => {
 
                         const nameCrafted = crafted.className.split(' ')[1];
 
-                        await fetch(`/api/update?userId=${user}&item1=${nameFirst}&item2=${nameSecond}&type=remove`, {
+                        let got115 = false;
+
+                        if (nameCrafted == "rd" || nameCrafted == "bd" || nameCrafted == "gd") {
+                            const roll = Math.floor(Math.random() * 10) + 1;
+
+                            if (roll == 7) got115 = true;
+                        }
+
+                        await fetch(`/api/update?item1=${nameFirst}&item2=${nameSecond}&type=remove`, {
                             method: 'PATCH',
+                            headers: {
+                                "user": user,
+                                "type": "auth"
+                            }
                         });
 
                         let submitted = false;
                         for (let i = 0; i < has.collectibles.length; i++) {
                             if (has.collectibles[i].name == nameCrafted) {
-                                await fetch(`/api/update?userId=${user}&item1=${nameCrafted}&item2=null&type=add`, {
+                                await fetch(`/api/update?item1=${nameCrafted}&item2=null&type=add`, {
                                     method: 'PATCH',
+                                    headers: {
+                                        "user": user,
+                                        "type": "auth"
+                                    }
                                 });
                                 submitted = true;
                             }
                         }
 
                         if (submitted == false) {
-                            await fetch(`/api/addCollectible?userId=${user}&item=${nameCrafted}`, {
+                            await fetch(`/api/addCollectible?item=${nameCrafted}`, {
                                 method: 'PUT',
+                                headers: {
+                                    "user": user,
+                                    "type": "auth"
+                                }
                             });
                         }
+
+                        submitted = false;
+
+                        if (got115 == true) {
+
+                            for (let i = 0; i < has.collectibles.length; i++) {
+                                if (has.collectibles[i].name == "115") {
+                                    await fetch(`/api/update?item1=115&item2=null&type=add`, {
+                                        method: 'PATCH',
+                                        headers: {
+                                            "user": user,
+                                            "type": "auth"
+                                        }
+                                    });
+                                    submitted = true;
+                                }
+                            }
+
+                            if (submitted == false) {
+                                await fetch(`/api/addCollectible?item=115`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        "user": user,
+                                        "type": "auth"
+                                    }
+                                });
+                            }
+                        }
+
 
                         firstSelected = false;
                         secondSelected = false;
@@ -453,8 +780,53 @@ window.onload = async () => {
                 }
 
                 image.onclick = async (e) => {
-                    const crafted = document.getElementById('crafted');
                     const target = e.target;
+
+                    if (amount == 1) {
+                        const item = convertId(target.className.split(' ')[1]);
+
+                        const name = target.className.split(' ')[1];
+                        const amount = 1;
+
+                        const block = document.createElement('div');
+                        block.className = `block ${name} ${amount}`;
+                        block.id = `block${i}`;
+            
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'tooltip';
+                        tooltip.id = `tooltip${amount}`;
+                        tooltip.style.position = 'absolute';
+            
+                        const tooltipText = document.createElement('span');
+                        tooltipText.className = 'tooltiptext';
+                        tooltipText.id = `tooltipText${i}`;
+                        tooltipText.innerHTML = `${amount}`;
+            
+                        const itemName = document.createElement('span');
+                        itemName.className = 'itemName';
+                        itemName.id = `itemName${item.name}`;
+                        itemName.innerHTML = `${item.name}`;
+                        itemName.style.textAlign = 'center';
+                        itemName.style.display = 'block';
+            
+                        tooltip.appendChild(tooltipText);
+                        block.appendChild(tooltip);
+            
+                        const image = document.createElement("img");
+            
+                        image.src = item.image
+                        image.width = 150;
+                        image.height = 150;
+                        image.className = `collectible ${name} ${amount}`;
+            
+                        block.appendChild(image);
+                        block.appendChild(itemName);
+            
+                        inventory.appendChild(block);
+                    }
+
+
+                    const crafted = document.getElementById('crafted');
                     const equals = document.getElementById('equals');
                     equals.remove();
                     target.remove();

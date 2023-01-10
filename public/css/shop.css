@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+body {
+    background-color: #000;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+h2 {
+    font-size: 300%;
+    color: #fff;
+    text-align: center;
+}
+
+.background {
+    background-image: url("../images/background_dark.png");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(7px);
+}
+
+#navbar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 5%;
+}
+
+#navbar>ul {
+    margin-right: 2%;
+    text-align: center;
+}
+
+#navbar>ul>li>a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 200%;
+    font-family: 'Fredoka One', cursive;
+}
+
+#navbar>ul>li>a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#navbar>ul>li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+}
+
+p {
+    font-size: 200%;
+    color: #fff;
+    text-align: center;
+}
+
+h1 {
+    font-size: 300%;
+    color: #fff;
+    text-align: center;
+}
+
+#shop {
+    margin: 0 auto;
+}
+
+#items {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.item {
+    background-color: #000;
+    margin: 0.5%;
+    display: inline-block;
+    text-align: center;
+    width: 18%;
+}
+
+.item-image {
+    width: 55%;
+}
+
+.legendary {
+    border: 3px solid #ffcc00;
+    transition: 1s ease-in-out;
+}
+
+.legendary:hover {
+    border: 3px solid #ffcc00;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #ffcc00, 0 0 40px #ffcc00, 0 0 80px #ffcc00;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+.epic {
+    border: 3px solid #cc00ff;
+    transition: 1s ease-in-out;
+}
+
+.epic:hover {
+    border: 3px solid #cc00ff;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #cc00ff, 0 0 40px #cc00ff, 0 0 80px #cc00ff;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+.rare {
+    border: 3px solid #00ccff;
+    transition: 1s ease-in-out;
+}
+
+.rare:hover {
+    border: 3px solid #00ccff;
+    box-shadow: 0 0 10px #00ccff, 0 0 40px #00ccff, 0 0 80px #00ccff;
+    transform: scale(1.2);
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+.uncommon {
+    border: 3px solid #00ff00;
+    transition: 1s ease-in-out;
+}
+
+.uncommon:hover {
+    border: 3px solid #00ff00;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #00ff00, 0 0 40px #00ff00, 0 0 80px #00ff00;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+.common {
+    border: 3px solid #cccccc;
+    transition: 1s ease-in-out;
+}
+
+.common:hover {
+    border: 3px solid #cccccc;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #cccccc, 0 0 40px #cccccc, 0 0 80px #cccccc;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+#special {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 2%;
+    text-align: center;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.back {
+    background-color: #000;
+}
+
+#special:before,
+#special:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094,
+            #0000ff, #00ff00, #ffff00, #ff0000);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: zoomies 20s linear infinite;
+}
+
+@keyframes zoomies {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+#special:after {
+    filter: blur(50px);
+}
+
+.slot {
+    position: relative;
+    margin: 0.5%;
+    width: 500px;
+    height: 500px;
+}
+
+.slotL {
+    background-color: #ffcc00;
+}
+
+.slotE {
+    background-color: #cc00ff;
+}
+
+.slotR {
+    background-color: #00ccff;
+}
+
+.slotU {
+    background-color: #00ff00;
+}
+
+.slotC {
+    background-color: #cccccc;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.anim {
+    animation: scaleUp 1s ease-in-out;
+}
+
+.animBack {
+    animation: scaleUp 1s ease-in-out reverse;
+}
+
+.animSpin {
+    animation: spin 1s ease-in-out;
+}
+
+.animSpinBack {
+    animation: spin 1s ease-in-out reverse;
+}
+
+.gotSlot:before,
+.gotSlot:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094,
+            #0000ff, #00ff00, #ffff00, #ff0000);
+    background-size: 10000%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 20s linear infinite;
+}

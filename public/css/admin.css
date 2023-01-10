@@ -1,0 +1,67 @@
+body {
+    background-color: #000;
+}
+
+.background {
+    background-image: url("../images/background_dark.png");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(7px);
+}
+
+span {
+    color: #f2f2f2;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+#chooseChallenge>h1 {
+    font-size: 40px;
+    color: #f2f2f2;
+    cursor: pointer;
+}
+
+#chooseChallenge>h1:hover {
+    color: greenyellow;
+}
+
+h1 {
+    font-size: 70px;
+    color: #f2f2f2;
+}
+
+input {
+    width: 50%;
+    height: 50px;
+    font-size: 30px;
+    text-align: center;
+    border: 2px solid #f2f2f2;
+    border-radius: 10px;
+    background-color: #141414;
+    color: #f2f2f2;
+    margin-bottom: 30px;
+}
+
+button {
+    margin-top: 30px;
+    width: 50%;
+    height: 50px;
+    font-size: 30px;
+    text-align: center;
+    border: 2px solid #f2f2f2;
+    border-radius: 10px;
+    background-color: #007501;
+    color: #f2f2f2;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00a500;
+}

@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+@keyframes Spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(1440deg);
+    }
+}
+
+body {
+    background-color: #000;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.background {
+    background-image: url("../images/background_dark.png");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(7px);
+}
+
+.area {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.spin {
+    background-image: linear-gradient(to right, greenyellow, yellow, greenyellow);
+    padding: 14px 20px;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    margin-left: 10%;
+    font-size: 200%;
+}
+
+.spin:hover {
+    box-shadow: 0 0 10px #00ff00, 0 0 40px #00ff00, 0 0 80px #00ff00;
+    color: black;
+}
+
+.back {
+    background-image: linear-gradient(to right, red, white, red);
+    padding: 14px 20px;
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    margin-left: 10%;
+    font-size: 200%;
+}
+
+.back:hover {
+    box-shadow: 0 0 10px #ff0000, 0 0 40px #ff0000, 0 0 80px #ff0000;
+    color: black;
+}
+
+p {
+    font-size: 200%;
+    color: #fff;
+    text-align: center;
+}
+
+.gotBack {
+    background-color: #000;
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 99vw;
+    height: 200vh;
+    z-index: 1;
+    content: '';
+}
+
+.got {
+    font-size: 30px;
+    color: #f2f2f2;
+    z-index: 2;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    padding-top: 5%;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+}
+
+.got>button {
+    font-size: 20px;
+    color: #f2f2f2;
+    background-color: #4c63af;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.diceHolder {
+    position: absolute;
+    text-align: center;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+.dice {
+    margin: 0 auto;
+    animation: Spin 2s ease-in-out;
+}

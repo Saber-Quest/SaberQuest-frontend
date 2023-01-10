@@ -36,7 +36,6 @@ window.onload = async () => {
             extremeChallenge.innerText = `Today's Challenge:\n\n${challenges.dailyChallenges.extreme.challenge}`;
         }
     }
-    //}
 
     await getDailyChallenge();
 

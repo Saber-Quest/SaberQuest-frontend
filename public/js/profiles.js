@@ -1,4 +1,27 @@
-window.onload = () => {
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+window.onload = async () => {
     function convertId(id) {
         switch (id) {
             case "ap":
@@ -41,6 +64,11 @@ window.onload = () => {
                     image: "../images/bsmg_token.png",
                     name: "BSMG Token"
                 }
+            case "ht":
+                return {
+                    image: "../images/hitbloq_token.png",
+                    name: "Hitbloq Token"
+                }
             case "cw":
                 return {
                     image: "../images/crouch_wall_icon.png",
@@ -49,7 +77,7 @@ window.onload = () => {
             case "ct":
                 return {
                     image: "../images/cube_community_token.png",
-                    name: "Cube Community Token"
+                    name: "CC Token"
                 }
             case "gn":
                 return {
@@ -101,18 +129,95 @@ window.onload = () => {
                     image: "../images/wall_icon.png",
                     name: "Wall"
                 }
+            case "115":
+                return {
+                    image: "../images/115.png",
+                    name: "115"
+                }
+            case "bpp":
+                return {
+                    image: "../images/blue_poodle_icon.png",
+                    name: "Blue Poodle"
+                }
+            case "bsl":
+                return {
+                    image: "../images/blue_slider_icon.png",
+                    name: "Blue Slider"
+                }
+            case "bst":
+                return {
+                    image: "../images/blue_stack.png",
+                    name: "Blue Stack"
+                }
+            case "bto":
+                return {
+                    image: "../images/blue_tower.png",
+                    name: "Blue Tower"
+                }
+            case "br":
+                return {
+                    image: "../images/bomb_reset_icon.png",
+                    name: "Bomb Reset"
+                }
+            case "dn":
+                return {
+                    image: "../images/double_notes_icon.png",
+                    name: "Double Notes"
+                }
+            case "rpp":
+                return {
+                    image: "../images/red_poodle_icon.png",
+                    name: "Red Poodle"
+                }
+            case "rsl":
+                return {
+                    image: "../images/red_slider_icon.png",
+                    name: "Red Slider"
+                }
+            case "rst":
+                return {
+                    image: "../images/red_stack.png",
+                    name: "Red Stack"
+                }
+            case "rto":
+                return {
+                    image: "../images/red_tower.png",
+                    name: "Red Tower"
+                }
         }
     }
 
-    if (window.location.href === 'http://localhost:3000/profile') {
-        const profile = localStorage.getItem('user');
+    if (window.location.href == 'http://localhost:3000/profile' || window.location.href.startsWith('http://localhost:3000/profile#')) {
+        const token = getCookie('token');
 
-        if (profile == undefined) {
+        if (token == "") {
+            if (window.location.href.split('#')[1] != undefined) {
+                const hash = window.location.href.split('#')[1];
+                setCookie('token', hash, 1);
+
+                const data = await fetch(`http://localhost:3000/api/decrypt/userLogin`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            "user": hash
+                        }
+                    }
+                ).then(res => res.json());
+                window.location.hash = '';
+                window.location.href = `http://localhost:3000/profile/${data.decryptedToken}`;
+            }
+
             const input = document.getElementById('register');
 
             input.style.display = 'block';
 
             const button = document.getElementById('oculus');
+
+            const steam = document.getElementById('steam');
+
+            steam.onclick = async () => {
+                return window.location.href = 'https://steamcommunity.com/openid/login?openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.realm=http%3A%2F%2Flocalhost:3000&openid.return_to=http%3A%2F%2Flocalhost:3000%2Fapi/steam-login%3Fstate%3DCfDJ8A1aOS-muHpBtm6xwT__RdlUNzhSi-Fa8yyW1JButxYzjlr0LXyISmHCBrPdp8Rn3BanRwPJQUU--GcYox0HIsA6GdparZGTtZHHIjrJsB9T1LLU5E0cQXEgHKROYAw4z87cJGVGERFzWUTjJmy592ZFxZTjNWzUnfErBEcgLw-e_DtnY61ggemoHY7bsHeYFJapIsQ3Cy4x0XURFYPZbvaPL7aq0fEO2O2ydVUP6DqDZc7Ni_dtYFGmzjpF4TT7H6UjpcG818PaPQzNUFnqDY9eX-sKitlOTIXRruc5P-ej1TGQ7KfR_guqzhzreCTGjbxSMo40ReOOd_5bN0dH2I8__BnrUNqvWpmxpwNhr2o08GdnZOJyJGal12lhiebfCQ&openid.ns.ax=http%3A%2F%2Fopenid.net%2Fsrv%2Fax%2F1.0&openid.ax.mode=fetch_request&openid.ax.type.email=http%3A%2F%2Faxschema.org%2Fcontact%2Femail&openid.ax.type.name=http%3A%2F%2Faxschema.org%2FnamePerson&openid.ax.type.first=http%3A%2F%2Faxschema.org%2FnamePerson%2Ffirst&openid.ax.type.last=http%3A%2F%2Faxschema.org%2FnamePerson%2Flast&openid.ax.type.email2=http%3A%2F%2Fschema.openid.net%2Fcontact%2Femail&openid.ax.type.name2=http%3A%2F%2Fschema.openid.net%2FnamePerson&openid.ax.type.first2=http%3A%2F%2Fschema.openid.net%2FnamePerson%2Ffirst&openid.ax.type.last2=http%3A%2F%2Fschema.openid.net%2FnamePerson%2Flast&openid.ax.required=email,name,first,last,email2,name2,first2,last2'
+            }
 
             button.onclick = async () => {
                 const oculus = document.getElementById('oculusLogin');
@@ -127,7 +232,13 @@ window.onload = () => {
         }
 
         else {
-            return window.location.href = `/profile/${profile}`;
+            const data = await fetch(`http://localhost:3000/api/decrypt/userLogin`, {
+                method: 'POST',
+                headers: {
+                    "user": token
+                }
+            }).then(res => res.json());
+            window.location.href = `http://localhost:3000/profile/${data.decryptedToken}`;
         }
     }
 
@@ -135,7 +246,12 @@ window.onload = () => {
         async function DisplayPlayer() {
             const userId = window.location.href.split('/')[4];
 
-            const data = await fetch(`/api/user?userId=${userId}`).then(res => res.json());
+            const data = await fetch(`/api/user?userId=${userId}`, {
+                method: 'GET',
+                headers: {
+                    "type": "no-auth"
+                }
+            }).then(res => res.json());
 
             if (data.message == "User fetched successfully!") {
                 const user = data.user;
@@ -154,7 +270,11 @@ window.onload = () => {
                 const rank = document.getElementById('rank');
                 const avatar = document.getElementById('avatar');
                 const challenges = document.getElementById('challenges');
-                const collectibleDiv = document.getElementById('collectibles');
+                const completeButton = document.getElementById('update');
+                const inventory = document.getElementById('inventory');
+
+                inventory.innerHTML = "<h1>Inventory</h1>"
+
                 const qp = document.getElementById('qp');
 
                 name.innerText = userDetails.name + " " + makeFlagEmoji(userDetails.country);
@@ -162,6 +282,78 @@ window.onload = () => {
                 rank.innerText = `Rank: #${data.rank}`;
                 qp.innerText = `QP: ${data.qp} qp`;
                 challenges.innerText = `Challenges Completed: ${data.challengesCompleted}`;
+
+                completeButton.onclick = async () => {
+                    const token = getCookie('token');
+
+                    const data = await fetch(`/api/validate?pageId=${userId}`, {
+                        method: 'POST',
+                        headers: {
+                            "user": token,
+                            "no-auth": true
+                        }
+                    }).then(res => res.json());
+
+                    if (data.success == false && data.message == "You are not allowed to do this.") {
+                        return alert("You can only update your own profile!")
+                    }
+
+                    else if (data.success == false && data.message == "This profile has already been updated within an hour.") {
+                        return alert("You have already updated your profile within an hour.")
+                    }
+
+                    if (data.success) {
+                        const gotBack = document.createElement('div');
+                        gotBack.className = 'gotBack';
+
+                        const got = document.createElement('div');
+                        got.className = 'got';
+                        
+                        const gotText = document.createElement('span');
+                        gotText.className = 'gotText';
+                        gotText.innerText = `Challenge Completed, you got:\n\n${data.rewards.points} qp and the following collectibles:`;
+                        got.appendChild(gotText);
+
+                        const collectibleDiv = document.createElement('div');
+                        collectibleDiv.className = 'collectibles';
+
+                        for (const collectible of data.rewards.collectibles) {
+                            const name = collectible;
+        
+                            const item = convertId(name);
+        
+                            const block = document.createElement('div');
+                            block.className = `block ${name}`;
+                            block.id = `block${i}`;
+        
+                            const image = document.createElement("img");
+        
+                            image.src = item.image
+                            image.width = 150;
+                            image.height = 150;
+                            image.className = `collectible ${name}`;
+        
+                            block.appendChild(image);
+        
+                            collectibleDiv.appendChild(block);
+                        }
+
+                        const closeButton = document.createElement('button');
+                        closeButton.className = 'closeButton';
+                        closeButton.innerText = 'Close';
+                        closeButton.onclick = () => {
+                            got.style.display = 'none';
+                            gotBack.style.display = 'none';
+                            return DisplayPlayer();
+                        }
+
+                        got.appendChild(collectibleDiv);
+                        got.appendChild(closeButton);
+
+                        document.body.appendChild(gotBack);
+                        document.body.appendChild(got);
+                    }
+                }
 
                 for (i = 0; i < collectibles.length; i++) {
                     const name = collectibles[i].name;

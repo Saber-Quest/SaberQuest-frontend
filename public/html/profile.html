@@ -7,13 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/profiles.js"></script>
     <link rel="stylesheet" href="../css/profile.css">
-    <title>SaberQuest • Profile</title>
+    <title>SaberQuest • {{user}}</title>
+    <meta name="Embed Title" content="{{user}}'s Profile">
+    <meta name="Embed Description" content="{{description}}">
+    <meta content="{{avatar}}" property="og:image">
 </head>
 
 <body>
+    <div class="background"></div>
     <div id="navbar">
         <ul>
-            <li><a href="/leaderboards">Leaderboards</a></li>
+            <li><a href="/leaderboards/1">Leaderboards</a></li>
             <li><a href="/inventory">Inventory</a></li>
             <li><a href="/shop">Shop</a></li>
             <li><a href="/profile">Profile</a></li>
@@ -44,6 +48,7 @@
         <p id="rank"></p>
         <p id="challenges"></p>
         <p id="qp"></p>
+        <button id="update">Complete challenge</button>
 
         <div id="inventory">
             <h1>Inventory</h1>

@@ -1,12 +1,29 @@
-* {
-    background-color: #141414;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+body {
+    background-color: #000;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.background {
+    background-image: url("../images/background_dark.png");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(7px);
 }
 
 #navbar {
-    width: 95%;
+    width: 98%;
+    display: block;
     position: absolute;
-    top: 0;
-    right: 20;
+    margin: 0 auto;
 }
 
 #navbar>ul {
@@ -14,22 +31,18 @@
 }
 
 a {
-    float: left;
     display: block;
+    padding: 14px 20px;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
     font-size: 200%;
+    font-family: 'Fredoka One', cursive;
 }
 
 a:hover {
     background-color: #ddd;
     color: black;
-}
-
-p {
-    color: #f2f2f2;
 }
 
 #navbar>ul>li {
@@ -40,9 +53,14 @@ p {
     text-align: center;
 }
 
+p {
+    color: #f2f2f2;
+}
+
 #inventory {
     padding-top: 5%;
     padding-left: 5%;
+    padding-right: 5%;
     width: 80%;
     margin: 0 auto;
 }
@@ -88,7 +106,8 @@ p {
 
 #crafting {
     border-bottom: 3px solid #f2f2f2;
-    width: 40%;
+    text-align: center;
+    width: 52%;
     margin: 0 auto;
     padding-top: 10%;
 }
@@ -112,4 +131,10 @@ p {
     background-color: #141414;
     opacity: 0.3;
     z-index: 100;
+}
+
+.noItems {
+    color: #f2f2f2;
+    text-align: center;
+    font-size: 400%;
 }
