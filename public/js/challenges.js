@@ -1,98 +1,171 @@
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 window.onload = async () => {
-    const dailyChallenge = localStorage.getItem('dailyChallenge');
-    const currentDay = new Date().getUTCDate();
-    console.log(currentDay)
+    const token = getCookie("token");
+    let user;
+    let challenge = null;
 
-    async function getDailyChallenge() {
-        const easyChallenge = document.getElementById('easyTask');
-        const mediumChallenge = document.getElementById('mediumTask');
-        const hardChallenge = document.getElementById('hardTask');
-        const extremeChallenge = document.getElementById('exTask');
+    if (token !== "") {
 
-        if (dailyChallenge) {
-            if (dailyChallenge == currentDay) {
-                return window.location.href = '/inventory';
+        user = await fetch('/api/user', {
+            method: 'GET',
+            headers: {
+                "user": token,
+                "type": "auth"
             }
+        }).then(res => res.json())
 
-            localStorage.removeItem('dailyChallenge');
+        if (user.message == "User not found!") return window.location.href = "/profile";
+    }
 
-            const challenges = await fetch(`/api/dailyChallenges?day=${currentDay}`, {
-                method: 'GET'
-            }).then(res => res.json());
+    else {
+        user = undefined
+    }
 
-            easyChallenge.innerHTML = `Today's Challenge:\n\n${challenges.dailyChallenges.easy.challenge}`;
-            mediumChallenge.innerHTML = `Today's Challenge:\n\n${challenges.dailyChallenges.medium.challenge}`;
-            hardChallenge.innerHTML = `Today's Challenge:\n\n${challenges.dailyChallenges.hard.challenge}`;
-            extremeChallenge.innerHTML = `Today's Challenge:\n\n${challenges.dailyChallenges.extreme.challenge}`;
-        }
-        else {
-            const challenges = await fetch(`/api/dailyChallenges?day=${currentDay}`, {
-                method: 'GET'
-            }).then(res => res.json());
-
-            easyChallenge.innerText = `Today's Challenge:\n\n${challenges.dailyChallenges.easy.challenge}`;
-            mediumChallenge.innerText = `Today's Challenge:\n\n${challenges.dailyChallenges.medium.challenge}`;
-            hardChallenge.innerText = `Today's Challenge:\n\n${challenges.dailyChallenges.hard.challenge}`;
-            extremeChallenge.innerText = `Today's Challenge:\n\n${challenges.dailyChallenges.extreme.challenge}`;
+    if (user !== undefined) {
+        if (user.diff !== 4) {
+            const challengeDiv = document.getElementById('card');
+            challenge = challengeDiv.children[user.diff];
+            challenge.classList.add('active');
         }
     }
 
-    await getDailyChallenge();
+    const challenges = await fetch('/api/daily-challenges', {
+        method: 'GET'
+    }).then(res => res.json());
 
-    const easy = document.getElementById('easy');
-    const medium = document.getElementById('medium');
-    const hard = document.getElementById('hard');
-    const extreme = document.getElementById('extreme');
+    const easyTask = document.getElementById('EasyTask');
+    const normalTask = document.getElementById('NormalTask');
+    const hardTask = document.getElementById('HardTask');
+    const extremeTask = document.getElementById('ExtremeTask');
 
-    easy.onclick = () => {
-        localStorage.setItem('dailyChallenge', currentDay);
-        easy.className = "picked";
-        easy.classList += " noHover";
-        medium.className = "notPicked";
-        hard.className = "notPicked";
-        extreme.className = "notPicked";
-
-        setTimeout(() => {
-            window.location.href = "/inventory";
-        }, 2000);
+    switch (challenges.type) {
+        case "pp": {
+            easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[0].ppBL}</b> pp`;
+            normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[1].ppBL}</b> pp`;
+            hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[2].ppBL}</b> pp`;
+            extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[3].ppBL}</b> pp`;
+            break;
+        }
+        case "FCStars": {
+            easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[0].starsBL}</b> stars`;
+            normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[1].starsBL}</b> stars`;
+            hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[2].starsBL}</b> stars`;
+            extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[3].starsBL}</b> stars`;
+            break;
+        }
+        case "xAccuracyStars": {
+            easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[0].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[0].starsBL}</b> stars`;
+            normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[1].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[1].starsBL}</b> stars`;
+            hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[2].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[2].starsBL}</b> stars`;
+            extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[3].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[3].starsBL}</b> stars`;
+            break;
+        }
+        case "xAccuracyPP": {
+            easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[0].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[0].ppBL}</b> pp`;
+            normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[1].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[1].ppBL}</b> pp`;
+            hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[2].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[2].ppBL}</b> pp`;
+            extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[3].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[3].ppBL}</b> pp`;
+            break;
+        }
+        case "playXMaps": {
+            easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].maps}</b>`;
+            normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].maps}</b>`;
+            hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].maps}</b>`;
+            extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].maps}</b>`;
+            break;
+        }
+        case "FCNotes": {
+            easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].notes}</b> notes`;
+            normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].notes}</b> notes`;
+            hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].notes}</b> notes`;
+            extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].notes}</b> notes`;
+            break;
+        }
+        case "passNotes": {
+            easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].notes}</b> notes`;
+            normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].notes}</b> notes`;
+            hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].notes}</b> notes`;
+            extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].notes}</b> notes`;
+            break;
+        }
+        case "passLength": {
+            easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].length}</b> seconds`;
+            normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].length}</b> seconds`;
+            hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].length}</b> seconds`;
+            extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].length}</b> seconds`;
+            break;
+        }
     }
 
-    medium.onclick = () => {
-        localStorage.setItem('dailyChallenge', currentDay);
-        easy.className = "notPicked";
-        medium.className = "picked";
-        medium.classList += " noHover";
-        hard.className = "notPicked";
-        extreme.className = "notPicked";
+    const easy = document.getElementById("easy");
+    const normal = document.getElementById("medium");
+    const hard = document.getElementById("hard");
+    const extreme = document.getElementById("extreme");
 
-        setTimeout(() => {
-            window.location.href = "/inventory";
-        }, 2000);
+    easy.onclick = async () => {
+        if (user == undefined) return window.location.href = "/profile";
+        await fetch(`/api/accept-challenge?challenge=Easy`, {
+            method: "POST",
+            headers: {
+                "user": getCookie("token")
+            }
+        })
+        if (challenge !== null) challenge.classList.remove("active");
+        easy.classList.add("active");
+        challenge = easy;
     }
 
-    hard.onclick = () => {
-        localStorage.setItem('dailyChallenge', currentDay);
-        easy.className = "notPicked";
-        medium.className = "notPicked";
-        hard.className = "picked";
-        hard.classList += " noHover";
-        extreme.className = "notPicked";
-
-        setTimeout(() => {
-            window.location.href = "/inventory";
-        }, 2000);
+    normal.onclick = async () => {
+        if (user == undefined) return window.location.href = "/profile";
+        await fetch(`/api/accept-challenge?challenge=Normal`, {
+            method: "POST",
+            headers: {
+                "user": getCookie("token")
+            }
+        })
+        if (challenge !== null) challenge.classList.remove("active");
+        normal.classList.add("active");
+        challenge = normal;
     }
 
-    extreme.onclick = () => {
-        localStorage.setItem('dailyChallenge', currentDay);
-        easy.className = "notPicked";
-        medium.className = "notPicked";
-        hard.className = "notPickedHardLeft";
-        extreme.className = "picked";
-        extreme.classList += " noHover";
+    hard.onclick = async () => {
+        if (user == undefined) return window.location.href = "/profile";
+        await fetch(`/api/accept-challenge?challenge=Hard`, {
+            method: "POST",
+            headers: {
+                "user": getCookie("token")
+            }
+        })
+        if (challenge !== null) challenge.classList.remove("active");
+        hard.classList.add("active");
+        challenge = hard;
+    }
 
-        setTimeout(() => {
-            window.location.href = "/inventory";
-        }, 2000);
+    extreme.onclick = async () => {
+        if (user == undefined) return window.location.href = "/profile";
+        await fetch(`/api/accept-challenge?challenge=Extreme`, {
+            method: "POST",
+            headers: {
+                "user": getCookie("token")
+            }
+        })
+        if (challenge !== null) challenge.classList.remove("active");
+        extreme.classList.add("active");
+        challenge = extreme;
     }
 }

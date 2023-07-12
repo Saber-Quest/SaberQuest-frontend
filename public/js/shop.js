@@ -1,4 +1,160 @@
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 window.onload = async () => {
+    const token = getCookie("token");
+
+    if (token == "") return window.location.href = "/profile";
+
+    const user = await fetch('/api/user', {
+        method: 'GET',
+        headers: {
+            "user": token,
+            "type": "auth"
+        }
+    }).then(res => res.json())
+
+    if (user.message == "User not found!") return window.location.href = "/profile";
+
+    const qp = document.getElementById('qp');
+    qp.innerText = `Current QuestPoints: ${user.qp}`;
+
+    if (user.diff == 4) {
+        const challenges = await fetch('/api/daily-challenges', {
+            method: 'GET'
+        }).then(res => res.json())
+
+        const div = document.getElementById('challenges');
+        div.style.display = 'block';
+
+        const easyTask = document.getElementById('EasyTask');
+        const normalTask = document.getElementById('NormalTask');
+        const hardTask = document.getElementById('HardTask');
+        const extremeTask = document.getElementById('ExtremeTask');
+
+        switch (challenges.type) {
+            case "pp": {
+                easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[0].ppBL}</b> pp`;
+                normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[1].ppBL}</b> pp`;
+                hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[2].ppBL}</b> pp`;
+                extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[3].ppBL}</b> pp`;
+                break;
+            }
+            case "FCStars": {
+                easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[0].starsBL}</b> stars`;
+                normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[1].starsBL}</b> stars`;
+                hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[2].starsBL}</b> stars`;
+                extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[3].starsBL}</b> stars`;
+                break;
+            }
+            case "xAccuracyStars": {
+                easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[0].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[0].starsBL}</b> stars`;
+                normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[1].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[1].starsBL}</b> stars`;
+                hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[2].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[2].starsBL}</b> stars`;
+                extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[3].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[3].starsBL}</b> stars`;
+                break;
+            }
+            case "xAccuracyPP": {
+                easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[0].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[0].ppBL}</b> pp`;
+                normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[1].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[1].ppBL}</b> pp`;
+                hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[2].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[2].ppBL}</b> pp`;
+                extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[3].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[3].ppBL}</b> pp`;
+                break;
+            }
+            case "playXMaps": {
+                easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].maps}</b>`;
+                normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].maps}</b>`;
+                hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].maps}</b>`;
+                extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].maps}</b>`;
+                break;
+            }
+            case "FCNotes": {
+                easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].notes}</b> notes`;
+                normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].notes}</b> notes`;
+                hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].notes}</b> notes`;
+                extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].notes}</b> notes`;
+                break;
+            }
+            case "passNotes": {
+                easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].notes}</b> notes`;
+                normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].notes}</b> notes`;
+                hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].notes}</b> notes`;
+                extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].notes}</b> notes`;
+                break;
+            }
+            case "passLength": {
+                easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].length}</b> seconds`;
+                normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].length}</b> seconds`;
+                hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].length}</b> seconds`;
+                extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].length}</b> seconds`;
+                break;
+            }
+        }
+
+        const easy = document.getElementById("easy");
+        const normal = document.getElementById("medium");
+        const hard = document.getElementById("hard");
+        const extreme = document.getElementById("extreme");
+
+        easy.onclick = async () => {
+            await fetch(`/api/accept-challenge?challenge=Easy`, {
+                method: "POST",
+                headers: {
+                    "user": getCookie("token")
+                }
+            })
+
+            div.style.display = "none";
+        }
+
+        normal.onclick = async () => {
+            await fetch(`/api/accept-challenge?challenge=Normal`, {
+                method: "POST",
+                headers: {
+                    "user": getCookie("token")
+                }
+            })
+
+            div.style.display = "none";
+        }
+
+        hard.onclick = async () => {
+            await fetch(`/api/accept-challenge?challenge=Hard`, {
+                method: "POST",
+                headers: {
+                    "user": getCookie("token")
+                }
+            })
+
+            div.style.display = "none";
+        }
+
+        extreme.onclick = async () => {
+            await fetch(`/api/accept-challenge?challenge=Extreme`, {
+                method: "POST",
+                headers: {
+                    "user": getCookie("token")
+                }
+            })
+
+            div.style.display = "none";
+        }
+    }
+
+
     function convertId(id) {
         switch (id) {
             case "ap":
@@ -215,7 +371,109 @@ window.onload = async () => {
         const gamble = document.getElementById('banner');
 
         gamble.onclick = async () => {
-            window.location.href = '/shop/gamble';
+            scroll(0, 0);
+            const gambleResult = await fetch('/api/gamble', {
+                method: 'POST',
+                headers: {
+                    'user': getCookie('token')
+                }
+            }).then(res => res.json());
+    
+            if (gambleResult.success) {
+                qp.innerText = `Current QuestPoints: ${gambleResult.success}`;
+                const dice = document.createElement('img');
+                dice.src = "../images/gamble.png";
+                dice.className = "dice";
+    
+                const holder = document.getElementById('holder');
+                holder.style.display = 'block';
+
+                const diceHolder = document.createElement('div');
+                diceHolder.className = 'diceHolder';
+
+                const item = convertId(gambleResult.itemWon)
+    
+                diceHolder.appendChild(dice);
+                holder.appendChild(diceHolder);
+    
+                setTimeout(() => {
+                    holder.removeChild(diceHolder);
+
+                    const gotText = document.createElement('p');
+                    gotText.innerText = `You got ${item.name}!`;
+    
+                    const got = document.createElement('div');
+                    got.className = 'got';
+    
+                    const collectibleDiv = document.createElement('div');
+                    collectibleDiv.className = 'collectibles';
+    
+                    const block = document.createElement('div');
+                    block.className = `block ${item.name}`;
+                    block.id = `block`;
+    
+                    const image = document.createElement("img");
+    
+                    image.src = item.image
+                    image.width = 150;
+                    image.height = 150;
+                    image.className = `collectible ${item.name}`;
+    
+                    block.appendChild(gotText);
+                    block.appendChild(image);
+    
+                    collectibleDiv.appendChild(block);
+    
+                    const closeButton = document.createElement('button');
+                    closeButton.className = 'closeButton';
+                    closeButton.innerText = 'Close';
+                    closeButton.onclick = () => {
+                        got.style.display = 'none';
+                        holder.style.display = 'none';
+                    }
+    
+                    got.appendChild(collectibleDiv);
+                    got.appendChild(closeButton);
+                    document.body.appendChild(got);
+                }, 2000);
+            } else {
+                alert("You don't have enough points to gamble.")
+            }
+        }
+
+        itemElement.onclick = async () => {
+            const user = getCookie('token')
+            const res = await fetch('/api/buy-item', {
+                method: 'POST',
+                headers: {
+                    'user': user,
+                    'item': item.id
+                }
+            }).then(res => res.json());
+
+            if (res.success) {
+                const qp = document.getElementById('qp');
+                qp.innerText = `Current QuestPoints: ${res.qp}`;
+                alert('Item bought successfully!');
+            } else {
+                alert('You do not have enough qp to buy this item!');
+            }
         }
     }
 }
+
+const items = document.querySelectorAll('.item');
+const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+}
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+            observer.unobserve(entry.target);
+        }
+    })
+}, options);

@@ -8,51 +8,129 @@
     <script src="../js/profiles.js"></script>
     <link rel="stylesheet" href="../css/profile.css">
     <title>SaberQuest • {{user}}</title>
-    <meta name="Embed Title" content="{{user}}'s Profile">
-    <meta name="Embed Description" content="{{description}}">
+    <meta content="{{user}}'s Profile" property="og:title">
+    <meta content="{{description}}" property="og:description">
     <meta content="{{avatar}}" property="og:image">
+    <meta content="{{color}}" data-react-helmet="true" name="theme-color">
 </head>
 
 <body>
-    <div class="background"></div>
-    <div id="navbar">
-        <ul>
-            <li><a href="/leaderboards/1">Leaderboards</a></li>
-            <li><a href="/inventory">Inventory</a></li>
-            <li><a href="/shop">Shop</a></li>
-            <li><a href="/profile">Profile</a></li>
-        </ul>
+    <div class="challengeDiv" id="challenges" style="display: none;">
+        <div class="challengeBackground"></div>
+        <div class="challenges">
+            <div class="challengeTitle">
+                <h1>Challenges</h1>
+                <p>Choose today's challenge that you want to complete!</p>
+            </div>
+            <div id="card">
+                <div id="easy">
+                    <div id="easyTitle">
+                        <h1 id="EasyTitle">Easy</h1>
+                    </div>
+                    <div id="easyLine"></div>
+                    <div id="easyDesc">
+                        <p id="EasyDescription">This is the easy challenge. It's easier to complete and gives you a
+                            smaller amount of quest
+                            points.<br><br><br></p>
+                    </div>
+                    <div id="easyTask">
+                        <p id="EasyTask"></p>
+                    </div>
+                </div>
+                <div id="medium">
+                    <div id="mediumTitle">
+                        <h1 id="NormalTitle">Normal</h1>
+                    </div>
+                    <div id="mediumLine"></div>
+                    <div id="mediumDesc">
+                        <p id="NormalDescription">This is the normal challenge. It's a bit harder to complete and gives
+                            you a decent amount of
+                            quest
+                            points.<br><br><br></p>
+                    </div>
+                    <div id="mediumTask">
+                        <p id="NormalTask"></p>
+                    </div>
+                </div>
+                <div id="hard">
+                    <div id="hardTitle">
+                        <h1 id="HardTitle">Hard</h1>
+                    </div>
+                    <div id="hardLine"></div>
+                    <div id="hardDesc">
+                        <p id="HardDescription">This is the hard challenge. It's quite a hard challenge to complete and
+                            gives you a
+                            large amount of quest
+                            points.<br><br><br></p>
+                    </div>
+                    <div id="hardTask">
+                        <p id="HardTask"></p>
+                    </div>
+                </div>
+                <div id="extreme">
+                    <div id="exTitle">
+                        <h1 id="ExtremeTitle">Extreme</h1>
+                    </div>
+                    <div id="exLine"></div>
+                    <div id="exDexc">
+                        <p id="ExtremeDescription">This is the extreme challenge. It's the hardest to complete and gives
+                            you the largest amount of quest
+                            points.<br><br><br></p>
+                    </div>
+                    <div id="exTask">
+                        <p id="ExtremeTask"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="container">
+        <div class="logo">
+            <img src="../images/saberquest.png" alt="SaberQuest Logo" onclick="window.location.href = '/'">
+        </div>
+        <div id="navbar">
+            <ul>
+                <li><a href="/leaderboards/1">Leaderboards</a></li>
+                <li><a href="/challenges">Challenges</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </div>
+        <div class="background"></div>
+        <div id="register" style="display: none;">
+            <button id="steam">Login with Steam</button>
+            <button id="bl">Login with BeatLeader</button>
 
-    <div id="register" style="display: none;">
-        <button id="steam">Steam Login</button>
-        <p>If you use oculus you can register using the <a href="#" id="questsaber">QuestSaber Mod</a> and get a unique identifier there.</p>
-        <button id="oculus">I am an Oculus user</button>
-
-        <div id="oculusLogin" style="display: none;">
-            <p>Enter your QuestSaber unique identifier.</p>
-            <input type="text" id="identifier" placeholder="Identifier">
-            <button id="login">Submit</button>
+            <div id="error" style="display: none;">
+                <p id="errorText">
+                    Error: Invalid identifier.
+                </p>
+            </div>
         </div>
 
-        <div id="error" style="display: none;">
-            <p id="errorText">
-                Error: Invalid identifier.
+        <div id="playerInfo" style="display: none;">
+            <img id="avatar" src="" alt="Player Avatar">
+            <p id="name"></p>
+            <p id="rank"></p>
+            <p id="challengesC"></p>
+            <p id="qp"></p>
+            <p id="value"></p>
+            <p id="preference"></p>
+            <button id="update">Complete challenge</button>
+
+            <div id="inventory">
+                <h1>Inventory</h1>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Created by the SaberQuest team | <a
+                    href="https://github.com/Saber-Quest/SaberQuest-Backend#api-endpoints">API</a> | <a
+                    href="https://github.com/Saber-Quest">Source</a> | <a
+                    href="https://discord.gg/ZRvXXqd9jM">Discord</a>
             </p>
         </div>
     </div>
-
-    <div id="playerInfo" style="display: none;">
-        <img id="avatar" src="" alt="Player Avatar">
-        <p id="name"></p>
-        <p id="rank"></p>
-        <p id="challenges"></p>
-        <p id="qp"></p>
-        <button id="update">Complete challenge</button>
-
-        <div id="inventory">
-            <h1>Inventory</h1>
-        </div>
-    </div>
 </body>
+
 </html>

@@ -15,6 +15,171 @@ function getCookie(cname) {
 }
 
 window.onload = async () => {
+    const token = getCookie("token");
+
+    if (token == "") return window.location.href = "/profile";
+
+    const user = await fetch('/api/user', {
+        method: 'GET',
+        headers: {
+            "user": token,
+            "type": "auth"
+        }
+    }).then(res => res.json())
+
+    if (user.message == "User not found!") return window.location.href = "/profile";
+
+    const book = document.getElementById('book');
+    const recipe = document.getElementById('recipe');
+    const openDiv = document.getElementById('open');
+    let open = false;
+    book.onclick = () => {
+        if (open == false) {
+            recipe.style.display = 'block';
+            openDiv.style.display = 'block';
+            open = true;
+        }
+
+        else {
+            recipe.style.display = 'none';
+            openDiv.style.display = 'none';
+            open = false;
+        }
+    }
+
+    window.onkeydown = (e) => {
+        if (e.key == "Escape") {
+            recipe.style.display = 'none';
+            openDiv.style.display = 'none';
+            open = false;
+        }
+    }
+
+    if (user.diff == 4) {
+        const challenges = await fetch('/api/daily-challenges', {
+            method: 'GET'
+        }).then(res => res.json())
+
+        if (challenges.message !== "Fetching daily challenges failed!") {
+
+            const div = document.getElementById('challenges');
+            div.style.display = 'block';
+
+            const easyTask = document.getElementById('EasyTask');
+            const normalTask = document.getElementById('NormalTask');
+            const hardTask = document.getElementById('HardTask');
+            const extremeTask = document.getElementById('ExtremeTask');
+
+            switch (challenges.type) {
+                case "pp": {
+                    easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[0].ppBL}</b> pp`;
+                    normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[1].ppBL}</b> pp`;
+                    hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[2].ppBL}</b> pp`;
+                    extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[3].ppBL}</b> pp`;
+                    break;
+                }
+                case "FCStars": {
+                    easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[0].starsBL}</b> stars`;
+                    normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[1].starsBL}</b> stars`;
+                    hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[2].starsBL}</b> stars`;
+                    extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[3].starsBL}</b> stars`;
+                    break;
+                }
+                case "xAccuracyStars": {
+                    easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[0].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[0].starsBL}</b> stars`;
+                    normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[1].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[1].starsBL}</b> stars`;
+                    hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[2].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[2].starsBL}</b> stars`;
+                    extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[3].starsSS}</b> stars<br>BeatLeader: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map with <b>${challenges.dailyChallenges[3].starsBL}</b> stars`;
+                    break;
+                }
+                case "xAccuracyPP": {
+                    easyTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[0].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[0].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[0].ppBL}</b> pp`;
+                    normalTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[1].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[1].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[1].ppBL}</b> pp`;
+                    hardTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[2].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[2].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[2].ppBL}</b> pp`;
+                    extremeTask.innerHTML = `${challenges.task}<br><br>ScoreSaber: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[3].ppSS}</b> pp<br>BeatLeader: <b>${challenges.dailyChallenges[3].accuracy}%</b> on a map worth <b>${challenges.dailyChallenges[3].ppBL}</b> pp`;
+                    break;
+                }
+                case "playXMaps": {
+                    easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].maps}</b>`;
+                    normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].maps}</b>`;
+                    hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].maps}</b>`;
+                    extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].maps}</b>`;
+                    break;
+                }
+                case "FCNotes": {
+                    easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].notes}</b> notes`;
+                    normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].notes}</b> notes`;
+                    hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].notes}</b> notes`;
+                    extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].notes}</b> notes`;
+                    break;
+                }
+                case "passNotes": {
+                    easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].notes}</b> notes`;
+                    normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].notes}</b> notes`;
+                    hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].notes}</b> notes`;
+                    extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].notes}</b> notes`;
+                    break;
+                }
+                case "passLength": {
+                    easyTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[0].length}</b> seconds`;
+                    normalTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[1].length}</b> seconds`;
+                    hardTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[2].length}</b> seconds`;
+                    extremeTask.innerHTML = `${challenges.task}<br><br><b>${challenges.dailyChallenges[3].length}</b> seconds`;
+                    break;
+                }
+            }
+
+            const easy = document.getElementById("easy");
+            const normal = document.getElementById("medium");
+            const hard = document.getElementById("hard");
+            const extreme = document.getElementById("extreme");
+
+            easy.onclick = async () => {
+                await fetch(`/api/accept-challenge?challenge=Easy`, {
+                    method: "POST",
+                    headers: {
+                        "user": getCookie("token")
+                    }
+                })
+
+                div.style.display = "none";
+            }
+
+            normal.onclick = async () => {
+                await fetch(`/api/accept-challenge?challenge=Normal`, {
+                    method: "POST",
+                    headers: {
+                        "user": getCookie("token")
+                    }
+                })
+
+                div.style.display = "none";
+            }
+
+            hard.onclick = async () => {
+                await fetch(`/api/accept-challenge?challenge=Hard`, {
+                    method: "POST",
+                    headers: {
+                        "user": getCookie("token")
+                    }
+                })
+
+                div.style.display = "none";
+            }
+
+            extreme.onclick = async () => {
+                await fetch(`/api/accept-challenge?challenge=Extreme`, {
+                    method: "POST",
+                    headers: {
+                        "user": getCookie("token")
+                    }
+                })
+
+                div.style.display = "none";
+            }
+        }
+    }
+
     // Crafting Checks
 
     function Craft(item1, item2) {
@@ -45,18 +210,17 @@ window.onload = async () => {
             }
             case "bn": {
                 switch (item2) {
-                    case "b": return "br"
                     case "rn": return "dn"
                     case "bn": return "bst"
                     case "bs": return "bd"
                     case "rs": return "bcn"
+                    case "sp": return "sn"
                     default: return "none"
                 }
             }
             case "bst": {
                 switch (item2) {
                     case "bn": return "bto"
-                    case "ap": return "bsl"
                     default: return "none"
                 }
             }
@@ -96,7 +260,7 @@ window.onload = async () => {
             }
             case "gp": {
                 switch (item2) {
-                    case "ap": return "gn"
+                    case "sn": return "gn"
                     default: return "none"
                 }
             }
@@ -110,15 +274,15 @@ window.onload = async () => {
                 switch (item2) {
                     case "bn": return "dn"
                     case "rn": return "rst"
-                    case "b": return "br"
                     case "rs": return "rd"
                     case "bs": return "bcn"
+                    case "sp": return "sn"
+                    default: return "none"
                 }
             }
             case "rst": {
                 switch (item2) {
                     case "rn": return "rto"
-                    case "ap": return "rsl"
                     default: return "none"
                 }
             }
@@ -129,12 +293,14 @@ window.onload = async () => {
             }
             case "sn": {
                 switch (item2) {
+                    case "gp": return "gn"
                     default: return "none"
                 }
             }
             case "sp": {
                 switch (item2) {
-                    case "ap": return "sn"
+                    case "bn": return "sn"
+                    case "rn": return "sn"
                     default: return "none"
                 }
             }
@@ -179,11 +345,13 @@ window.onload = async () => {
             }
             case "bto": {
                 switch (item2) {
+                    case "ap": return "bsl"
                     default: return "none"
                 }
             }
             case "rto": {
                 switch (item2) {
+                    case "ap": return "rsl"
                     default: return "none"
                 }
             }
@@ -209,6 +377,7 @@ window.onload = async () => {
             }
             case "dn": {
                 switch (item2) {
+                    case "b": return "br"
                     default: return "none"
                 }
             }
@@ -511,37 +680,37 @@ window.onload = async () => {
                         const block = document.createElement('div');
                         block.className = `block ${name} ${amount}`;
                         block.id = `block${i}`;
-            
+
                         const tooltip = document.createElement('div');
                         tooltip.className = 'tooltip';
                         tooltip.id = `tooltip${amount}`;
                         tooltip.style.position = 'absolute';
-            
+
                         const tooltipText = document.createElement('span');
                         tooltipText.className = 'tooltiptext';
                         tooltipText.id = `tooltipText${i}`;
                         tooltipText.innerHTML = `${amount}`;
-            
+
                         const itemName = document.createElement('span');
                         itemName.className = 'itemName';
                         itemName.id = `itemName${item.name}`;
                         itemName.innerHTML = `${item.name}`;
                         itemName.style.textAlign = 'center';
                         itemName.style.display = 'block';
-            
+
                         tooltip.appendChild(tooltipText);
                         block.appendChild(tooltip);
-            
+
                         const image = document.createElement("img");
-            
+
                         image.src = item.image
                         image.width = 150;
                         image.height = 150;
                         image.className = `collectible ${name} ${amount}`;
-            
+
                         block.appendChild(image);
                         block.appendChild(itemName);
-            
+
                         inventory.appendChild(block);
                     }
                     const plus = document.getElementById('plus');
@@ -557,41 +726,41 @@ window.onload = async () => {
 
                             const name = secondCrafted.className.split(' ')[1];
                             const amount = 1;
-    
+
                             const block = document.createElement('div');
                             block.className = `block ${name} ${amount}`;
                             block.id = `block${i}`;
-                
+
                             const tooltip = document.createElement('div');
                             tooltip.className = 'tooltip';
                             tooltip.id = `tooltip${amount}`;
                             tooltip.style.position = 'absolute';
-                
+
                             const tooltipText = document.createElement('span');
                             tooltipText.className = 'tooltiptext';
                             tooltipText.id = `tooltipText${i}`;
                             tooltipText.innerHTML = `${amount}`;
-                
+
                             const itemName = document.createElement('span');
                             itemName.className = 'itemName';
                             itemName.id = `itemName${item.name}`;
                             itemName.innerHTML = `${item.name}`;
                             itemName.style.textAlign = 'center';
                             itemName.style.display = 'block';
-                
+
                             tooltip.appendChild(tooltipText);
                             block.appendChild(tooltip);
-                
+
                             const image = document.createElement("img");
-                
+
                             image.src = item.image
                             image.width = 150;
                             image.height = 150;
                             image.className = `collectible ${name} ${amount}`;
-                
+
                             block.appendChild(image);
                             block.appendChild(itemName);
-                
+
                             inventory.appendChild(block);
                         }
 
@@ -722,7 +891,7 @@ window.onload = async () => {
                         }
 
                         if (submitted == false) {
-                            await fetch(`/api/addCollectible?item=${nameCrafted}`, {
+                            await fetch(`/api/add-collectible?item=${nameCrafted}`, {
                                 method: 'PUT',
                                 headers: {
                                     "user": user,
@@ -749,7 +918,7 @@ window.onload = async () => {
                             }
 
                             if (submitted == false) {
-                                await fetch(`/api/addCollectible?item=115`, {
+                                await fetch(`/api/add-collectible?item=115`, {
                                     method: 'PUT',
                                     headers: {
                                         "user": user,
@@ -791,37 +960,37 @@ window.onload = async () => {
                         const block = document.createElement('div');
                         block.className = `block ${name} ${amount}`;
                         block.id = `block${i}`;
-            
+
                         const tooltip = document.createElement('div');
                         tooltip.className = 'tooltip';
                         tooltip.id = `tooltip${amount}`;
                         tooltip.style.position = 'absolute';
-            
+
                         const tooltipText = document.createElement('span');
                         tooltipText.className = 'tooltiptext';
                         tooltipText.id = `tooltipText${i}`;
                         tooltipText.innerHTML = `${amount}`;
-            
+
                         const itemName = document.createElement('span');
                         itemName.className = 'itemName';
                         itemName.id = `itemName${item.name}`;
                         itemName.innerHTML = `${item.name}`;
                         itemName.style.textAlign = 'center';
                         itemName.style.display = 'block';
-            
+
                         tooltip.appendChild(tooltipText);
                         block.appendChild(tooltip);
-            
+
                         const image = document.createElement("img");
-            
+
                         image.src = item.image
                         image.width = 150;
                         image.height = 150;
                         image.className = `collectible ${name} ${amount}`;
-            
+
                         block.appendChild(image);
                         block.appendChild(itemName);
-            
+
                         inventory.appendChild(block);
                     }
 

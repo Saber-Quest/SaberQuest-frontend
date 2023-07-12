@@ -1,21 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
     <title>SaberQuest</title>
+    <meta content="SaberQuest" property="og:title">
+    <meta
+        content="SaberQuest is a service that provides daily Beat Saber challenges that you can participate in. Craft and buy items with your points and compete on the leaderboards."
+        property="og:description">
+    <meta content="https://cdn.discordapp.com/attachments/830384076703793162/1071811817027944530/icon.png"
+        property="og:image">
 </head>
+
 <body>
-    <div class="background"></div>
-    <div id="navbar">
-        <ul>
-            <li><a href="/leaderboards/1">Leaderboards</a></li>
-            <li><a href="/inventory">Inventory</a></li>
-            <li><a href="/shop">Shop</a></li>
-            <li><a href="/profile">Profile</a></li>
-        </ul>
+    <div class="container">
+        <div class="logo">
+            <img src="../images/saberquest.png" alt="SaberQuest Logo" onclick="window.location.href = '/'">
+        </div>
+        <div id="navbar">
+            <ul>
+                <li><a href="/leaderboards/1">Leaderboards</a></li>
+                <li><a href="/challenges">Challenges</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </div>
+        <div class="background"></div>
+        <div class="intro">
+            <h1>Welcome to SaberQuest!</h1>
+            <p><span>SaberQuest</span> is a website focused on making your <span>Beat Saber</span> experience more
+                enjoyable by giving you fun and
+                interactive <span>challenges</span> every day.<br><br>When you complete these challenges you get
+                <span>items</span> in your inventory
+                that you can <span>craft</span> to create new items and get higher on the <span>leaderboards</span>.
+            </p>
+        </div>
+        <div class="challenges">
+            <h1>Challenges</h1>
+            <p>Here's an example of the challenges that you might see on this site.</p>
+            <div id="card">
+                <div id="easy">
+                    <div id="easyTitle">
+                        <h1>Easy</h1>
+                    </div>
+                    <div id="easyLine"></div>
+                    <div id="easyDesc">
+                        <p>This is the easy challenge. It's easier to complete and gives you a smaller amount of quest
+                            points.<br><br><br></p>
+                    </div>
+                    <div id="easyTask">
+                        <p>Today's Challenge: <br><br>Get 75% or above on any map with over 600 notes</p>
+                    </div>
+                </div>
+                <div id="medium">
+                    <div id="mediumTitle">
+                        <h1>Medium</h1>
+                    </div>
+                    <div id="mediumLine"></div>
+                    <div id="mediumDesc">
+                        <p>This is the medium challenge. It's a bit harder to complete and gives you a decent amount of
+                            quest
+                            points.<br><br><br></p>
+                    </div>
+                    <div id="mediumTask">
+                        <p>Today's Challenge: <br><br>Get 85% or above on any map with over 1000 notes</p>
+                    </div>
+                </div>
+                <div id="hard">
+                    <div id="hardTitle">
+                        <h1>Hard</h1>
+                    </div>
+                    <div id="hardLine"></div>
+                    <div id="hardDesc">
+                        <p>This is the hard challenge. It's the hardest to complete and gives you a large amount of
+                            quest
+                            points.<br><br><br></p>
+                    </div>
+                    <div id="hardTask">
+                        <p>Today's Challenge: <br><br>Get 92% or above on any map with over 1500 notes</p>
+                    </div>
+                </div>
+                <div id="extreme">
+                    <div id="exTitle">
+                        <h1>Extreme</h1>
+                    </div>
+                    <div id="exLine"></div>
+                    <div id="exDexc">
+                        <p>This is the extreme challenge. It's the hardest to complete and gives you a large amount of
+                            quest
+                            points.<br><br><br></p>
+                    </div>
+                    <div id="exTask">
+                        <p>Today's Challenge: <br><br>Get 95% or above on any map with over 2000 notes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="submitting">
+            <div class="text">
+                <h1>Submitting Challenges</h1>
+                <p>When you pick a challenge, you have <span>2 ways</span> of finishing them.</p>
+            </div>
+            <div class="ways">
+                <div class="mods">
+                    <h2>Beat Saber Mods</h2>
+                    <p>Coming soon!</p>
+                </div>
+                <div class="manual">
+                    <h2>Manual Submission</h2>
+                    <p>As to not over-request ScoreSaber and BeatLeader, when you complete a challenge, you need to
+                        go
+                        to
+                        your
+                        profile and click on the <span>Complete Challenge</span> button.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Created by the SaberQuest team | <a
+                    href="https://github.com/Saber-Quest/SaberQuest-Backend#api-endpoints">API</a> | <a
+                    href="https://github.com/Saber-Quest">Source</a> | <a
+                    href="https://discord.gg/ZRvXXqd9jM">Discord</a>
+            </p>
+        </div>
     </div>
 </body>
+
 </html>
