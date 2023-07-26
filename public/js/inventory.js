@@ -29,6 +29,13 @@ window.onload = async () => {
 
     if (user.message == "User not found!") return window.location.href = "/profile";
 
+    const logout = document.getElementById('logout');
+    logout.style.display = 'block';
+    logout.onclick = () => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "/profile";
+    }
+
     const book = document.getElementById('book');
     const recipe = document.getElementById('recipe');
     const openDiv = document.getElementById('open');
@@ -188,7 +195,8 @@ window.onload = async () => {
                 switch (item2) {
                     case "bp": return "bn"
                     case "rcp": return "rn"
-                    case "bst": return "bsl"
+                    case "bto": return "bsl"
+                    case "rto": return "rsl"
                     default: return "none"
                 }
             }
@@ -212,6 +220,7 @@ window.onload = async () => {
                 switch (item2) {
                     case "rn": return "dn"
                     case "bn": return "bst"
+                    case "bst": return "bto"
                     case "bs": return "bd"
                     case "rs": return "bcn"
                     case "sp": return "sn"
@@ -233,8 +242,7 @@ window.onload = async () => {
             }
             case "b": {
                 switch (item2) {
-                    case "rn": return "br"
-                    case "bn": return "br"
+                    case "dn": return "br"
                     default: return "none"
                 }
             }
@@ -274,6 +282,7 @@ window.onload = async () => {
                 switch (item2) {
                     case "bn": return "dn"
                     case "rn": return "rst"
+                    case "rst": return "rto"
                     case "rs": return "rd"
                     case "bs": return "bcn"
                     case "sp": return "sn"
@@ -819,13 +828,11 @@ window.onload = async () => {
                 const newItem = Craft(firstName, name);
 
                 if (newItem !== "none") {
-                    const item = convertId(newItem);
                     const newImage = document.createElement("img");
-                    newImage.src = item.image
+                    newImage.src = `../images/question.png`;
                     newImage.id = "crafted";
                     newImage.width = 150;
                     newImage.height = 150;
-                    newImage.className = `collectible ${newItem}`;
 
                     const craftButton = document.createElement('img');
                     craftButton.className = 'craftButton';
@@ -858,7 +865,7 @@ window.onload = async () => {
 
                         const nameSecond = secondCrafted.className.split(' ')[1];
 
-                        const nameCrafted = crafted.className.split(' ')[1];
+                        const nameCrafted = newItem;
 
                         let got115 = false;
 

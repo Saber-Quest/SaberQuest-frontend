@@ -95,6 +95,7 @@
                 <li><a href="/inventory">Inventory</a></li>
                 <li><a href="/shop">Shop</a></li>
                 <li><a href="/profile">Profile</a></li>
+                <li><a href="#" id="logout" style="display: none;">Logout</a></li>
             </ul>
         </div>
         <div class="background"></div>
@@ -110,7 +111,11 @@
         </div>
 
         <div id="playerInfo" style="display: none;">
-            <img id="avatar" src="" alt="Player Avatar">
+            <div class="avatarDiv">
+                <img id="avatar" src="" alt="Player Avatar">
+                <img id="border"
+                    src="../images/animated.apng">
+            </div>
             <p id="name"></p>
             <p id="rank"></p>
             <p id="challengesC"></p>

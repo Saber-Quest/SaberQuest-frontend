@@ -253,6 +253,13 @@ window.onload = async () => {
 
             if (user.message == "User not found!") return window.location.href = "/profile";
 
+            const logout = document.getElementById('logout');
+            logout.style.display = 'block';
+            logout.onclick = () => {
+                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.location.href = "/profile";
+            }
+
             if (user.diff == 4) {
                 const challenges = await fetch('/api/daily-challenges', {
                     method: 'GET'
@@ -395,13 +402,9 @@ window.onload = async () => {
             }).then(res => res.json());
 
             if (data.message == "User fetched successfully!") {
-                const user = data.user;
-
                 const collectibles = data.collectibles;
 
                 const pref = data.preference;
-
-                let userDetails;
 
                 const profile = document.getElementById('playerInfo');
                 const name = document.getElementById('name');
@@ -414,34 +417,11 @@ window.onload = async () => {
                 const value = document.getElementById('value');
                 const qp = document.getElementById('qp');
 
-                function makeFlagEmoji(country) {
-                    const codePoints = country.toUpperCase().split('').map(char => 127397 + char.charCodeAt());
-                    return String.fromCodePoint(...codePoints);
-                }
-
-                if (pref == "ss") {
-                     userDetails = await fetch(`/api/pass-cors?url=https://scoresaber.com/api/player/${user}/basic`, {
-                        method: 'GET'
-                    }).then(res => res.json());
-
-                    name.innerText = userDetails.name //+ " " + makeFlagEmoji(userDetails.country);
-                    avatar.src = `${userDetails.profilePicture}`;
-                    rank.innerText = `Rank: #${data.rank}`;
-                    qp.innerText = `QP: ${data.qp} qp`;
-                    challengesC.innerText = `Challenges Completed: ${data.challengesCompleted}`;
-                }
-
-                else {
-                    userDetails = await fetch(`/api/pass-cors?url=https://api.beatleader.xyz/player/${user}`, {
-                        method: 'GET'
-                    }).then(res => res.json());
-
-                    name.innerText = userDetails.name //+ " " + makeFlagEmoji(userDetails.country);
-                    avatar.src = `${userDetails.avatar}`;
-                    rank.innerText = `Rank: #${data.rank}`;
-                    qp.innerText = `QP: ${data.qp} qp`;
-                    challengesC.innerText = `Challenges Completed: ${data.challengesCompleted}`;
-                }
+                name.innerText = data.username
+                avatar.src = `${data.avatar}`;
+                rank.innerText = `Rank: #${data.rank}`;
+                qp.innerText = `QP: ${data.qp} qp`;
+                challengesC.innerText = `Challenges Completed: ${data.challengesCompleted}`;
 
                 inventory.innerHTML = "<h1>Inventory</h1>"
 
@@ -493,20 +473,8 @@ window.onload = async () => {
                         },
                     }).then(res => res.json());
 
-                    if (data.success == false && data.message == "This profile has already been updated within an hour.") {
-                        return alert("You have already updated your profile within an hour.")
-                    }
-
-                    if (data.success == false && data.message == "You didn't complete any challenges.") {
-                        return alert("You didn't complete any challenges.")
-                    }
-
-                    if (data.success == false && data.message == "This profile has not accepted a challenge yet.") {
-                        return alert("You need to accept a challenge before trying to complete it.")
-                    }
-
-                    if (data.success == false && data.message == "This profile already completed the daily challenge.") {
-                        return alert("You've already completed the daily challenge.")
+                    if (data.success == false) {
+                        return alert(data.message)
                     }
 
                     if (data.success) {

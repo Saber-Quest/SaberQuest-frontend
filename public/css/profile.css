@@ -252,12 +252,19 @@ input[type=text] {
     margin-top: 10%;
 }
 
-#playerInfo>img {
+#avatar {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 15%;
     border-radius: 50%;
+}
+
+/* Make a border with an image around the avatar */
+#border {
+    position: absolute;
+    width: 10%;
+    transform: translateY(-100%) translateX(250%);
 }
 
 #inventory {

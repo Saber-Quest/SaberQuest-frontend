@@ -31,6 +31,13 @@ window.onload = async () => {
 
         if (user.message == "User not found!") return window.location.href = "/profile";
 
+        const logout = document.getElementById('logout');
+        logout.style.display = 'block';
+        logout.onclick = () => {
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = "/profile";
+        }
+
         if (user.diff == 4) {
             const challenges = await fetch('/api/daily-challenges', {
                 method: 'GET'
@@ -154,12 +161,7 @@ window.onload = async () => {
         }
     }
 
-    function makeFlagEmoji(country) {
-        const codePoints = country.toUpperCase().split('').map(char => 127397 + char.charCodeAt());
-        return String.fromCodePoint(...codePoints);
-    }
-
-    async function addPlayer(player, rank, image, username, country) {
+    async function addPlayer(player, rank, image, username) {
         new Promise(async (resolve, reject) => {
             const row = document.createElement('div');
             row.classList.add('row');
@@ -240,29 +242,9 @@ window.onload = async () => {
     let done = false;
     async function MakeLeaderboard() {
         const map = new Map();
-        for (let i = 0; i < topPlayers.length; i++) {
-            if (topPlayers[i].pref == "ss") {
-                const ssUser = await fetch(`/api/pass-cors?url=https://scoresaber.com/api/player/${topPlayers[i].userId}/basic`).then(res => res.json());
-
-                const profile = ssUser.profilePicture
-                const name = ssUser.name
-                //const country = ssUser.country
-
-                map.set(topPlayers[i].userId, [profile, name/*, country*/]);
-                continue;
-            }
-
-            const blUser = await fetch(`/api/pass-cors?url=https://api.beatleader.xyz/player/${topPlayers[i].userId}`).then(res => res.json());
-
-            const profile = blUser.avatar
-            const name = blUser.name
-            //const country = blUser.country
-
-            map.set(topPlayers[i].userId, [profile, name/*, country*/]);
-        }
 
         for (let i = 0; i < topPlayers.length; i++) {
-            await addPlayer(topPlayers[i], topPlayers[i].r, map.get(topPlayers[i].userId)[0], map.get(topPlayers[i].userId)[1], map.get(topPlayers[i].userId)[2]);
+            await addPlayer(topPlayers[i], topPlayers[i].r, topPlayers[i].avatar, topPlayers[i].username);
             await new Promise(resolve => setTimeout(resolve, 50));
         }
 
