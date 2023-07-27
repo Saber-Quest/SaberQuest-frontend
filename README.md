@@ -1,17 +1,21 @@
 # SaberQuest-frontend
+
 This is the frontend code for SaberQuest
 
-# New Features
+## New Features
+
 New features will be tracked using Github Issues.
 
 When you accept an issue make a new Branch named: `[Username]/[Feature]`.
 
-# Contributing
+## Contributing
+
 When you want to contribute the new feature, make a pull request from your branch to the main branch.
 
-# Code specifics
+## Code specifics
 
-## Collectible IDs
+### Collectible IDs
+
 Each collectible has it's own ID.
 
 - ap - Arrow Pieces
