@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-a:hover {
-  color: rgb(57, 57, 57) 
+@layer base {
+  html {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
 }
