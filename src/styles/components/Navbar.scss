@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .topNav {
+        @apply select-none flex items-center h-[100px] w-[100vw] bg-[#2626264d] drop-shadow-navBarShadow;
+    }
+
+    .leftNav {
+        @apply mr-[70px] min-w-fit;
+    }
+
+    .navLogoContainer {
+        @apply ml-[70px] h-[100px] flex items-center;
+    }
+
+    .navLogo {
+        @apply mr-[20px] h-[60px] w-[60px] transition-all duration-300 hover:drop-shadow-logoShadow;
+    }
+
+    .Saber {
+        @apply font-poppins text-white font-normal text-[32px];
+    }
+
+    .Quest {
+        @apply font-poppins text-sqyellow font-medium text-[32px];
+    }
+
+    .combNav {
+        @apply w-full flex flex-row items-center justify-between;
+    }
+
+    .centerNav {
+        @apply flex w-fit;
+    }
+
+    .navButton {
+        @apply font-poppins text-[22px] text-white flex items-center justify-center min-w-[210px] h-[100px] border-b-4 border-[#ffd07300] hover:border-[#FFD073] hover:bg-navHover transition-all duration-300;
+    }
+    .rightNav {
+        @apply mr-[25px];
+    }
+
+    .loginButtons {
+        @apply flex items-center gap-[25px];
+    }
+
+    .loginLinkSteam {
+        @apply max-h-[36px];
+    }
+
+    .loginLinkBL {
+        @apply max-h-[50px];
+    }
+
+    .steamNav {
+        @apply h-[36px] w-[36px] invert;
+    }
+
+    .beatLeaderNav {
+        @apply h-[50px] w-[50px];
+    }
+}

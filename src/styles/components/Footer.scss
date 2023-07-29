@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .footer {
+        @apply select-none fixed flex items-center justify-between bottom-0 h-[100px] w-[100vw];
+    }
+    
+    .leftFooter {
+        @apply pl-[32px];
+    }
+
+    //Right part of navbar (user info / login)
+    .rightNav {
+        @apply mr-[25px];
+    }
+
+    .footerText {
+        @apply font-light text-white text-[32px];
+    }
+
+    .footerQuest {
+        @apply text-sqyellow font-medium;
+    }
+
+    .footerLinks {
+        @apply text-sqyellow text-[32px] font-semibold hover:drop-shadow-logoShadow;
+    }
+
+    .navLinkDivider {
+        @apply pl-[10px] pr-[10px] text-white font-light text-[32px];
+    }
+
+}

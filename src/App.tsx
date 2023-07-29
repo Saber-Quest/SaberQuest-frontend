@@ -1,11 +1,8 @@
-import Navbar from "./components/navbar"
-
 export default function App() {
   return (
   <>
     <div>
-      <Navbar />
-      <div>this is the app.</div>
+      <h1 className="text-white">Hello, world!</h1>
     </div>
   </>
   );
