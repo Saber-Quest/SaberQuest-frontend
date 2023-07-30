@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
@@ -16,9 +19,19 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
-      "@comps/*": ["./src/components/*"]
+      "@/*": ["./src/*"],
+      /* Style Imports */
+      "@styles/*": ["./src/styles/*"],
+      "@compStyles/*": ["./src/styles/components/*"],
+      /* Components Imports */
+      "@Navbar": ["./src/components/Navbar"],
+      "@Footer": ["./src/components/Footer"],
+      "@Header": ["./src/components/Meta/Header"],
+      "@comps/*": ["./src/components/*"],
     }
   },
-  "include": ["./src"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

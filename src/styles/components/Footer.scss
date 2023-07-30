@@ -4,20 +4,21 @@
 
 @layer base {
     .footer {
-        @apply select-none fixed flex items-center justify-between bottom-0 h-[100px] w-[100vw];
+        @apply select-none;
+        @apply fixed flex items-center justify-between bottom-0;
+        @apply h-16 w-screen;
     }
     
     .leftFooter {
-        @apply pl-[32px];
+        @apply pl-8;
     }
 
-    //Right part of navbar (user info / login)
     .rightNav {
-        @apply mr-[25px];
+        @apply mr-6;
     }
 
     .footerText {
-        @apply font-light text-white text-[32px];
+        @apply font-light text-white text-lg;
     }
 
     .footerQuest {
@@ -25,11 +26,14 @@
     }
 
     .footerLinks {
-        @apply text-sqyellow text-[32px] font-semibold hover:drop-shadow-logoShadow;
+        @apply text-sqyellow text-2xl font-medium;
+        @apply hover:drop-shadow-logoShadow;
+        @apply transition-all duration-150;
     }
 
     .navLinkDivider {
-        @apply pl-[10px] pr-[10px] text-white font-light text-[32px];
+        @apply px-3;
+        @apply text-white font-light text-2xl;
     }
 
 }

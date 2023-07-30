@@ -1,4 +1,6 @@
-import '../styles/components/Footer.scss'
+
+import { Fragment } from 'react'
+import '@compStyles/Footer.scss'
 
 const NavigationLinks = [
     {
@@ -27,12 +29,12 @@ function Footer() {
                 <div className="rightNav">
                     {NavigationLinks.map((link, index) => {
                         return (
-                            <>
+                            <Fragment key={index}>
                                 <a href={link.link} target="_blank" rel="noopener" className="footerLinks">
                                     {link.name}
                                 </a>
                                 {index !== NavigationLinks.length - 1 && (<span className="navLinkDivider">|</span>)}
-                            </>
+                            </Fragment>
                         )
                     })}
                 </div>

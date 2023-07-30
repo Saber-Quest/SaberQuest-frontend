@@ -4,31 +4,39 @@
 
 @layer base {
     .topNav {
-        @apply select-none flex items-center h-[100px] w-[100vw] bg-[#2626264d] drop-shadow-navBarShadow;
+        @apply select-none;
+        @apply flex items-center;
+        @apply h-24 w-screen;
+        @apply bg-[#2626264d] drop-shadow-navBarShadow;
+        @apply transition-all duration-150;
     }
 
     .leftNav {
-        @apply mr-[70px] min-w-fit;
+        @apply mr-10 min-w-fit;
     }
 
     .navLogoContainer {
-        @apply ml-[70px] h-[100px] flex items-center;
+        @apply flex items-center;
+        @apply ml-8 h-24;
     }
 
     .navLogo {
-        @apply mr-[20px] h-[60px] w-[60px] transition-all duration-300 hover:drop-shadow-logoShadow;
+        @apply mr-5 h-12 w-12 ;
+        @apply hover:drop-shadow-logoShadow;
+        @apply transition-all duration-300 ;
     }
 
     .Saber {
-        @apply font-poppins text-white font-normal text-[32px];
+        @apply text-white font-normal text-[32px];
     }
 
     .Quest {
-        @apply font-poppins text-sqyellow font-medium text-[32px];
+        @apply text-sqyellow font-medium text-[32px];
     }
 
     .combNav {
-        @apply w-full flex flex-row items-center justify-between;
+        @apply w-full;
+        @apply flex flex-row items-center justify-between;
     }
 
     .centerNav {
@@ -36,7 +44,12 @@
     }
 
     .navButton {
-        @apply font-poppins text-[22px] text-white flex items-center justify-center min-w-[210px] h-[100px] border-b-4 border-[#ffd07300] hover:border-[#FFD073] hover:bg-navHover transition-all duration-300;
+        @apply text-lg text-white font-light pt-1;
+        @apply flex items-center justify-center;
+        @apply min-w-[210px] h-[100px];
+        @apply border-b-4 border-[#ffd07300];
+        @apply hover:border-[#FFD073] hover:bg-navHover hover:shadow-navHoverShadow;
+        @apply transition-all duration-300;
     }
     .rightNav {
         @apply mr-[25px];

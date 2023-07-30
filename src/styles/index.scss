@@ -11,7 +11,7 @@
   body {
     @apply font-poppins text-white;
     @apply bg-cover;
-    @apply bg-[url('/public/assets/images/BackgroundImage.png')];
+    @apply bg-[url('/assets/images/BackgroundImage.png')];
   }
   .easyFade {
     @apply bg-gradient-to-l from-easyreq to-[#ffffff];

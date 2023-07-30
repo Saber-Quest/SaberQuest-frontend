@@ -1,4 +1,5 @@
-import '../styles/components/Navbar.scss'
+import '@compStyles/Navbar.scss'
+import ProfileMenu from './ProfileMenu';
 
 const loggedIn = true;
 
@@ -49,7 +50,7 @@ function Navbar() {
                         ) ||
                         (
                             <>
-                            Hi, I'm logged in here!
+                           <ProfileMenu />
                             </>
                         )
                         }
