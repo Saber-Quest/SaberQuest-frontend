@@ -3,37 +3,36 @@
 @tailwind utilities;
 
 @layer base {
-    .footer {
-        @apply select-none;
-        @apply fixed flex items-center justify-between bottom-0;
-        @apply h-16 w-screen;
-    }
-    
-    .leftFooter {
-        @apply pl-8;
-    }
+  .footer {
+    @apply select-none;
+    @apply fixed flex items-center justify-between bottom-0;
+    @apply h-16 w-screen;
+  }
 
-    .rightNav {
-        @apply mr-6;
-    }
+  .leftFooter {
+    @apply pl-8;
+  }
 
-    .footerText {
-        @apply font-light text-white text-lg;
-    }
+  .rightNav {
+    @apply mr-6;
+  }
 
-    .footerQuest {
-        @apply text-sqyellow font-medium;
-    }
+  .footerText {
+    @apply font-light text-white text-lg;
+  }
 
-    .footerLinks {
-        @apply text-sqyellow text-2xl font-medium;
-        @apply hover:drop-shadow-logoShadow;
-        @apply transition-all duration-150;
-    }
+  .footerQuest {
+    @apply text-sqyellow font-medium;
+  }
 
-    .navLinkDivider {
-        @apply px-3;
-        @apply text-white font-light text-2xl;
-    }
+  .footerLinks {
+    @apply text-sqyellow text-2xl font-medium;
+    @apply hover:drop-shadow-logoShadow;
+    @apply transition-all duration-150;
+  }
 
+  .navLinkDivider {
+    @apply px-3;
+    @apply text-white font-light text-2xl;
+  }
 }

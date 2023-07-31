@@ -3,75 +3,75 @@
 @tailwind utilities;
 
 @layer base {
-    .topNav {
-        @apply select-none;
-        @apply flex items-center;
-        @apply h-24 w-screen;
-        @apply bg-[#2626264d] drop-shadow-navBarShadow;
-        @apply transition-all duration-150;
-    }
+  .topNav {
+    @apply select-none;
+    @apply flex items-center;
+    @apply h-24 w-screen;
+    @apply bg-[#2626264d] drop-shadow-navBarShadow;
+    @apply transition-all duration-150;
+  }
 
-    .leftNav {
-        @apply mr-10 min-w-fit;
-    }
+  .leftNav {
+    @apply mr-10 min-w-fit;
+  }
 
-    .navLogoContainer {
-        @apply flex items-center;
-        @apply ml-8 h-24;
-    }
+  .navLogoContainer {
+    @apply flex items-center;
+    @apply ml-8 h-24;
+  }
 
-    .navLogo {
-        @apply mr-5 h-12 w-12 ;
-        @apply hover:drop-shadow-logoShadow;
-        @apply transition-all duration-300 ;
-    }
+  .navLogo {
+    @apply mr-5 h-12 w-12;
+    @apply hover:drop-shadow-logoShadow;
+    @apply transition-all duration-300;
+  }
 
-    .Saber {
-        @apply text-white font-normal text-[32px];
-    }
+  .Saber {
+    @apply text-white font-normal text-[32px];
+  }
 
-    .Quest {
-        @apply text-sqyellow font-medium text-[32px];
-    }
+  .Quest {
+    @apply text-sqyellow font-medium text-[32px];
+  }
 
-    .combNav {
-        @apply w-full;
-        @apply flex flex-row items-center justify-between;
-    }
+  .combNav {
+    @apply w-full;
+    @apply flex flex-row items-center justify-between;
+  }
 
-    .centerNav {
-        @apply flex w-fit;
-    }
+  .centerNav {
+    @apply flex w-fit;
+  }
 
-    .navButton {
-        @apply text-lg text-white font-light pt-1;
-        @apply flex items-center justify-center;
-        @apply min-w-[210px] h-[100px];
-        @apply border-b-4 border-[#ffd07300];
-        @apply hover:border-[#FFD073] hover:bg-navHover hover:shadow-navHoverShadow;
-        @apply transition-all duration-300;
-    }
-    .rightNav {
-        @apply mr-[25px];
-    }
+  .navButton {
+    @apply text-lg text-white font-light pt-1;
+    @apply flex items-center justify-center;
+    @apply min-w-[210px] h-[100px];
+    @apply border-b-4 border-[#ffd07300];
+    @apply hover:border-[#FFD073] hover:bg-navHover hover:shadow-navHoverShadow;
+    @apply transition-all duration-300;
+  }
+  .rightNav {
+    @apply mr-[25px];
+  }
 
-    .loginButtons {
-        @apply flex items-center gap-[25px];
-    }
+  .loginButtons {
+    @apply flex items-center gap-[25px];
+  }
 
-    .loginLinkSteam {
-        @apply max-h-[36px];
-    }
+  .loginLinkSteam {
+    @apply max-h-[36px];
+  }
 
-    .loginLinkBL {
-        @apply max-h-[50px];
-    }
+  .loginLinkBL {
+    @apply max-h-[50px];
+  }
 
-    .steamNav {
-        @apply h-[36px] w-[36px] invert;
-    }
+  .steamNav {
+    @apply h-[36px] w-[36px] invert;
+  }
 
-    .beatLeaderNav {
-        @apply h-[50px] w-[50px];
-    }
+  .beatLeaderNav {
+    @apply h-[50px] w-[50px];
+  }
 }
