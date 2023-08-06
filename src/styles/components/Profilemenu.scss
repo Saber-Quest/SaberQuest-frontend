@@ -12,10 +12,12 @@ Looking into moving it all to DaisyUI instead of HeadlessUI.
 */
 
 @layer base {
+  .profileMenu {
+    @apply relative inline-block text-left;
+  }
   .profilePic {
     @apply h-[66px] w-[66px] rounded-full;
   }
-
   .navProfile {
     @apply relative flex items-center justify-center z-10 w-fit gap-4;
     @apply mb-1 pl-5;

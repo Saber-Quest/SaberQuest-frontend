@@ -7,9 +7,11 @@ import Footer from "@Footer";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navbar />
-    <App />
-    <Footer />
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <App />
+      <Footer />
+    </div>
   </React.StrictMode>,
   document.getElementById("root")
 );

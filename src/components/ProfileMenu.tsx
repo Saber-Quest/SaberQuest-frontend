@@ -29,9 +29,9 @@ export default function ProfileMenu() {
   };
 
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="profileMenu">
       <Menu.Button
-        className={`group navProfile z-10 w-full group/menu bg-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-0`}
+        className={`navProfile z-10 w-full bg-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-0`}
         onMouseEnter={handleButtonMouseEnter}
         onMouseLeave={handleMenuMouseLeave}
       >
