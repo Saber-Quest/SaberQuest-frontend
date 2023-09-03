@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    min-height: 100%;
+  }
+  body {
+    @apply font-poppins text-white;
+    @apply bg-cover;
+    @apply bg-[url('/assets/images/BackgroundImage.png')];
+  }
+  .easyFade {
+    @apply bg-gradient-to-l from-easyreq to-[#ffffff];
+  }
+  .mediumFade {
+    @apply bg-gradient-to-l from-mediumreq to-[#ffffff];
+  }
+  .hardFade {
+    @apply bg-gradient-to-l from-hardreq to-[#ffffff];
+  }
+  .extremeFade {
+    @apply bg-gradient-to-l from-extremereq to-[#ffffff];
+  }
+}

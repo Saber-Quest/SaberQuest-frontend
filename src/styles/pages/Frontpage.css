@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Overall tags */
+  .fpBody {
+    @apply flex gap-[10px] justify-center flex-row mt-[30px] xl:mt-[70px] transition-all duration-100 ease-in;
+  }
+  .fpTextHeader {
+    @apply font-semibold;
+    @apply text-[40px] text-white;
+  }
+  .fpTextSubheader {
+    @apply mt-5;
+    @apply font-light;
+    @apply text-[28px];
+  }
+  .fpHeaderHighlight {
+    @apply text-sqyellow;
+    @apply font-bold;
+  }
+  .fpBodyHighlight {
+    @apply text-sqyellow;
+    @apply font-semibold;
+  }
+  /* Left Body */
+  .fpBodyLeft {
+    @apply w-[45%];
+  }
+  .fpBodyText {
+    @apply mt-10;
+    @apply font-normal;
+    @apply text-[30px] text-white;
+  }
+  .fpCompletionText {
+    @apply mt-20;
+  }
+  .fpCompletionMethods {
+    @apply divide-x-2 divide-sqyellow flex justify-center;
+    @apply mt-5;
+  }
+  .fpMods {
+    @apply flex items-end flex-col pr-4;
+    @apply w-auto max-w-[450px];
+  }
+  .fpModsHeader {
+    @apply text-[32px];
+  }
+  .fpModsText {
+    @apply text-[20px];
+  }
+  .fpManual {
+    @apply flex pl-4 flex-col;
+    @apply w-auto max-w-[450px];
+  }
+  .fpManualHeader {
+    @apply text-[32px];
+  }
+  .fpManualText {
+    @apply text-[18px];
+  }
+
+  /* Right Body */
+  .fpBodyRight {
+    @apply w-[30%];
+  }
+
+  .fpChallengeText {
+    @apply mt-10;
+    @apply flex flex-col items-center;
+  }
+
+  .fpChallengeHighlight {
+    @apply text-sqyellow;
+    @apply font-semibold;
+  }
+
+  .fpExampleChallenges {
+    @apply flex flex-col gap-5;
+    @apply px-[17%] py-8;
+  }
+
+  .fpReqHeader {
+    @apply text-[28px];
+  }
+
+  .fpReqs {
+    @apply flex flex-col items-center;
+    @apply text-[24px];
+  }
+
+  .fpDivider {
+    @apply my-3;
+  }
+
+  .fpEasyDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-easyreq;
+  }
+  .fpMediumDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-mediumreq;
+  }
+  .fpHardDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-hardreq;
+  }
+  .fpExtremeDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-extremereq;
+  }
+}
