@@ -98,16 +98,16 @@
     @apply h-[5px] rounded-full;
     @apply bg-gradient-to-r from-easyreq;
   }
-  .fpMediumDivider {
+  .fpNormalDivider {
     @apply h-[5px] rounded-full;
-    @apply bg-gradient-to-r from-mediumreq;
+    @apply bg-gradient-to-r from-normalreq;
   }
   .fpHardDivider {
     @apply h-[5px] rounded-full;
     @apply bg-gradient-to-r from-hardreq;
   }
-  .fpExtremeDivider {
+  .fpExpertDivider {
     @apply h-[5px] rounded-full;
-    @apply bg-gradient-to-r from-extremereq;
+    @apply bg-gradient-to-r from-expertreq;
   }
 }

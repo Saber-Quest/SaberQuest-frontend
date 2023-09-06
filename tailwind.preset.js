@@ -23,9 +23,9 @@ module.exports = {
       colors: {
         sqyellow: "#FFD073",
         easyreq: "#03F46B",
-        mediumreq: "#FFD941",
+        normalreq: "#FFD941",
         hardreq: "#E93B3B",
-        extremereq: "#B74BF5",
+        expertreq: "#B74BF5",
         navHover: "#3A3A3A",
         navBG: "#2626264d",
         navButtonBG: "#313131",

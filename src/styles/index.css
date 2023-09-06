@@ -17,13 +17,13 @@
   .easyFade {
     @apply bg-gradient-to-l from-easyreq to-[#ffffff];
   }
-  .mediumFade {
-    @apply bg-gradient-to-l from-mediumreq to-[#ffffff];
+  .normalFade {
+    @apply bg-gradient-to-l from-normalreq to-[#ffffff];
   }
   .hardFade {
     @apply bg-gradient-to-l from-hardreq to-[#ffffff];
   }
-  .extremeFade {
-    @apply bg-gradient-to-l from-extremereq to-[#ffffff];
+  .expertFade {
+    @apply bg-gradient-to-l from-expertreq to-[#ffffff];
   }
 }

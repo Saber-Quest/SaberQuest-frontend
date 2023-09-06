@@ -75,9 +75,9 @@ export default function Home({ session }: { session: boolean | String }) {
             <h2 className="fpTextSubheader">Get a play worth, minimum:</h2>
           </div>
           <div className="fpExampleChallenges">
-            <div className="fpExampleMedium">
+            <div className="fpExampleNormal">
               <p className="fpReqHeader">Normal</p>
-              <div className="fpMediumDivider fpDivider" />
+              <div className="fpNormalDivider fpDivider" />
               <div className="fpReqs">
                 <p className="fpReq">
                   <span className="fpChallengeHighlight">180</span>pp on
@@ -103,9 +103,9 @@ export default function Home({ session }: { session: boolean | String }) {
                 </p>
               </div>
             </div>
-            <div className="fpExampleExtreme">
+            <div className="fpExampleExpert">
               <p className="fpReqHeader">Expert</p>
-              <div className="fpExtremeDivider fpDivider" />
+              <div className="fpExpertDivider fpDivider" />
               <div className="fpReqs">
                 <p className="fpReq">
                   <span className="fpChallengeHighlight">430</span>pp on
