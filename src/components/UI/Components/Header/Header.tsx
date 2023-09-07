@@ -7,15 +7,18 @@ const NavigationLinks = [
   {
     name: "Leaderboard",
     link: "#",
-  },
-  {
-    name: "Shop",
-    link: "#",
+    needLogin: false,
   },
   {
     name: "Challenges",
     link: "#",
+    needLogin: false,
   },
+  {
+    name: "Shop",
+    link: "#",
+    needLogin: true,
+  }
 ];
 
 export default function NavBar({
@@ -59,11 +62,14 @@ export default function NavBar({
         <div className="combNav">
           <div className="centerNav">
             {NavigationLinks.map((link, index) => {
-              return (
-                <Link href={link.link} key={index} className="navButton">
-                  {link.name}
-                </Link>
-              );
+              if (!link.needLogin || loggedIn) {
+                return (
+                  <Link href={link.link} key={index} className="navButton">
+                    {link.name}
+                  </Link>
+                );
+              }
+              return null;
             })}
           </div>
           {(!loading && (
