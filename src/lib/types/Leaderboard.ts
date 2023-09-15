@@ -2,7 +2,7 @@ interface UserInfo {
   id: string;
   username: string;
   images: {
-    avatar: string;
+    avatar: string | null;
     banner: string | null;
     border: string | null;
   };

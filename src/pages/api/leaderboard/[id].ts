@@ -45,7 +45,7 @@ export default async function getFullUserdata(
                 id: "76561198343533017",
                 username: "StormPacer",
                 images: {
-                  avatar: "https://cdn.discordapp.com/avatars/813176414692966432/0ce8808ab0435a25610ae7d045e9a03f.webp?size=1024",
+                  avatar: null,
                   banner: null,
                   border: null,
                 },
@@ -113,7 +113,7 @@ export default async function getFullUserdata(
                 id: "76561198343533017",
                 username: "StormPacer",
                 images: {
-                  avatar: "https://cdn.discordapp.com/avatars/813176414692966432/0ce8808ab0435a25610ae7d045e9a03f.webp?size=1024",
+                  avatar: null,
                   banner: null,
                   border: null,
                 },
@@ -181,7 +181,7 @@ export default async function getFullUserdata(
                 id: "76561198343533017",
                 username: "StormPacer",
                 images: {
-                  avatar: "https://cdn.discordapp.com/avatars/813176414692966432/0ce8808ab0435a25610ae7d045e9a03f.webp?size=1024",
+                  avatar: null,
                   banner: null,
                   border: null,
                 },
@@ -249,7 +249,7 @@ export default async function getFullUserdata(
                 id: "76561198343533017",
                 username: "StormPacer",
                 images: {
-                  avatar: "https://cdn.discordapp.com/avatars/813176414692966432/0ce8808ab0435a25610ae7d045e9a03f.webp?size=1024",
+                  avatar: null,
                   banner: null,
                   border: null,
                 },
@@ -276,7 +276,7 @@ export default async function getFullUserdata(
                   id: "76561198343533017",
                   username: "StormPacer",
                   images: {
-                    avatar: "https://cdn.discordapp.com/avatars/813176414692966432/0ce8808ab0435a25610ae7d045e9a03f.webp?size=1024",
+                    avatar: null,
                     banner: null,
                     border: null,
                   },

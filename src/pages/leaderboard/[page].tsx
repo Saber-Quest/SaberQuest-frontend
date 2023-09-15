@@ -85,7 +85,8 @@ export default function Profile() {
                                                 </div>
                                                 <div className="LBEntryText LBU">
                                                     <Image
-                                                        src={user.userInfo.images.avatar}
+                                                        //If the avatar is actually null, use the Logo
+                                                        src={user.userInfo.images.avatar === null ? "/Logo.svg" : user.userInfo.images.avatar}
                                                         alt="User Avatar"
                                                         width={32}
                                                         height={32}
