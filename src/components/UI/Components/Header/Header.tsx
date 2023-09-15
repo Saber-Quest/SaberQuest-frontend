@@ -18,7 +18,7 @@ const NavigationLinks = [
     name: "Shop",
     link: "#",
     needLogin: true,
-  },
+  }
 ];
 
 export default function NavBar({
