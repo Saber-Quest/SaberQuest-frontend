@@ -72,14 +72,14 @@ export default function Profile() {
                                             <div className="LeaderboardEntry" key={index}>
                                                 <div className="LBEntryText LBR">
                                                     {
-                                                        index + 1 === 1 ? (
-                                                            <span className="text-sqyellow drop-shadow-rank1Shadow">#{index + 1}</span>
-                                                        ) : index + 1 === 2 ? (
-                                                            <span className="text-sqsilver drop-shadow-rank2Shadow">#{index + 1}</span>
-                                                        ) : index + 1 === 3 ? (
-                                                            <span className="text-sqbronze drop-shadow-rank3Shadow">#{index + 1}</span>
+                                                        user.stats.rank === 1 ? (
+                                                            <span className="text-sqyellow drop-shadow-rank1Shadow">#{user.stats.rank}</span>
+                                                        ) : user.stats.rank === 2 ? (
+                                                            <span className="text-sqsilver drop-shadow-rank2Shadow">#{user.stats.rank}</span>
+                                                        ) : user.stats.rank === 3 ? (
+                                                            <span className="text-sqbronze drop-shadow-rank3Shadow">#{user.stats.rank}</span>
                                                         ) : (
-                                                            `#${index + 1}`
+                                                            `#${user.stats.rank}`
                                                         )
                                                     }
                                                 </div>

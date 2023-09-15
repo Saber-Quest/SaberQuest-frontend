@@ -121,7 +121,7 @@ export default async function getFullUserdata(
               },
               stats: {
                 challengesCompleted: 4,
-                rank: 1,
+                rank: 4,
                 qp: 0,
                 value: 10,
               },
@@ -144,7 +144,7 @@ export default async function getFullUserdata(
               },
               stats: {
                 challengesCompleted: 2,
-                rank: 2,
+                rank: 5,
                 qp: 0,
                 value: 3,
               },
@@ -167,7 +167,7 @@ export default async function getFullUserdata(
               },
               stats: {
                 challengesCompleted: 2,
-                rank: 3,
+                rank: 6,
                 qp: 0,
                 value: 3,
               },
@@ -189,7 +189,7 @@ export default async function getFullUserdata(
               },
               stats: {
                 challengesCompleted: 4,
-                rank: 1,
+                rank: 7,
                 qp: 0,
                 value: 10,
               },
@@ -212,7 +212,7 @@ export default async function getFullUserdata(
               },
               stats: {
                 challengesCompleted: 2,
-                rank: 2,
+                rank: 8,
                 qp: 0,
                 value: 3,
               },
@@ -235,7 +235,7 @@ export default async function getFullUserdata(
               },
               stats: {
                 challengesCompleted: 2,
-                rank: 3,
+                rank: 9,
                 qp: 0,
                 value: 3,
               },
@@ -257,7 +257,7 @@ export default async function getFullUserdata(
               },
               stats: {
                 challengesCompleted: 4,
-                rank: 1,
+                rank: 10,
                 qp: 0,
                 value: 10,
               },
@@ -284,7 +284,7 @@ export default async function getFullUserdata(
                 },
                 stats: {
                   challengesCompleted: 4,
-                  rank: 1,
+                  rank: 11,
                   qp: 0,
                   value: 10,
                 },
@@ -307,7 +307,7 @@ export default async function getFullUserdata(
                 },
                 stats: {
                   challengesCompleted: 2,
-                  rank: 2,
+                  rank: 12,
                   qp: 0,
                   value: 3,
                 },
@@ -330,7 +330,7 @@ export default async function getFullUserdata(
                 },
                 stats: {
                   challengesCompleted: 2,
-                  rank: 3,
+                  rank: 13,
                   qp: 0,
                   value: 3,
                 },
