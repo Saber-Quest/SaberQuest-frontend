@@ -42,7 +42,7 @@
   }
   .fpMods {
     @apply flex items-end flex-col pr-4;
-    @apply w-auto max-w-[450px];
+    @apply w-auto max-w-[50%];
   }
   .fpModsHeader {
     @apply text-[32px];
@@ -52,7 +52,7 @@
   }
   .fpManual {
     @apply flex pl-4 flex-col;
-    @apply w-auto max-w-[450px];
+    @apply w-auto max-w-[50%];
   }
   .fpManualHeader {
     @apply text-[32px];

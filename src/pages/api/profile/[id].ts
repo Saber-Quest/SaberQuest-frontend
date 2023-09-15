@@ -3,7 +3,7 @@ import rateLimit from "@lib/api/ratelimit";
 import { User } from "@lib/types/User";
 import axios from "axios";
 
-const ratelimit: any = process.env.USER_RATELIMIT || 10;
+const ratelimit: number = 100;
 const limiter = rateLimit({
   interval: 60 * 1000, // 60 seconds
   uniqueTokenPerInterval: 500, // Max 500 users per second

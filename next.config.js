@@ -15,7 +15,6 @@ module.exports = {
     config.experiments = { ...config.experiments, topLevelAwait: true };
     return config;
   },
-
   env: {
     PUBLIC_URL: process.env.PUBLIC_URL,
     PUBLIC_NAME: process.env.PUBLIC_NAME,
@@ -23,5 +22,6 @@ module.exports = {
     PUBLIC_REPO: process.env.PUBLIC_REPO,
     PUBLIC_API: process.env.PUBLIC_API,
     PUBLIC_DISCORDLINK: process.env.PUBLIC_DISCORDLINK,
+    API_URL: process.env.API_URL,
   },
 };

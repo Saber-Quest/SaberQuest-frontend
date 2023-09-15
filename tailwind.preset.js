@@ -13,6 +13,9 @@ module.exports = {
       },
       dropShadow: {
         navBarShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        rank1Shadow: "0 0 0.5em #FFD073aa",
+        rank2Shadow: "0 0 0.5em #DEDEDEaa",
+        rank3Shadow: "0 0 0.5em #C97C3Daa",
         logoShadow: "0 0 0.5em #FFD073aa",
         textShadow: "0 2px 2px #00000070",
         PFPShadow: "2px 2px 1px #00000070",
@@ -22,6 +25,8 @@ module.exports = {
       },
       colors: {
         sqyellow: "#FFD073",
+        sqsilver: "#DEDEDE",
+        sqbronze: "#C97C3D",
         easyreq: "#03F46B",
         normalreq: "#FFD941",
         hardreq: "#E93B3B",

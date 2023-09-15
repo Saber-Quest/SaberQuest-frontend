@@ -6,15 +6,18 @@ import { User } from "@lib/types/User";
 const NavigationLinks = [
   {
     name: "Leaderboard",
-    link: "#",
-  },
-  {
-    name: "Shop",
-    link: "#",
+    link: "/leaderboard",
+    needLogin: false,
   },
   {
     name: "Challenges",
     link: "#",
+    needLogin: false,
+  },
+  {
+    name: "Shop",
+    link: "#",
+    needLogin: true,
   },
 ];
 
@@ -46,7 +49,7 @@ export default function NavBar({
     <>
       <nav className="topNav z-10 relative">
         <div className="leftNav">
-          <a href="./" className="navLogoContainer">
+          <Link href="/" key="NavLink" className="navLogoContainer">
             <img
               src="/assets/images/Logo.svg"
               className="navLogo"
@@ -54,16 +57,19 @@ export default function NavBar({
             />
             <p className="Saber">Saber</p>
             <span className="Quest">Quest</span>
-          </a>
+          </Link>
         </div>
         <div className="combNav">
           <div className="centerNav">
             {NavigationLinks.map((link, index) => {
-              return (
-                <Link href={link.link} key={index} className="navButton">
-                  {link.name}
-                </Link>
-              );
+              if (!link.needLogin || loggedIn) {
+                return (
+                  <Link href={link.link} key={index} className="navButton">
+                    {link.name}
+                  </Link>
+                );
+              }
+              return null;
             })}
           </div>
           {(!loading && (

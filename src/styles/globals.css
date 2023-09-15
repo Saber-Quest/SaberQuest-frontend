@@ -23,6 +23,7 @@
 
 @layer components {
   #__next {
+    @apply flex flex-col items-center justify-start;
     @apply min-h-[100vh];
     @apply pb-56;
     @apply transition-colors duration-75;

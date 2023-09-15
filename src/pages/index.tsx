@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import Header from "@comp/Meta/Title";
+import Logo from "public/Logo.svg";
 
 export default function Home({ session }: { session: boolean | String }) {
   const [url, setUrl] = useState<string>("");
@@ -14,7 +15,7 @@ export default function Home({ session }: { session: boolean | String }) {
         title={`Frontpage`}
         link={url}
         contents={`Frontpage | The Frontpage of ${process.env.PUBLIC_NAME}.`}
-        image={`${process.env.PUBLIC_URL}/Logo.svg`}
+        image={Logo}
       />
       <div className="fpBody">
         <div className="fpBodyLeft">

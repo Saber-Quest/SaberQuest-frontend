@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
     if (params && params.id) {
       const id = params.id;
-      const apiUrl = `${process.env.PUBLIC_URL}/api/${id}`;
+      const apiUrl = `${process.env.API_URL}/profile/${id}`;
 
       try {
         const response = await axios.get<User>(apiUrl);
@@ -58,7 +58,6 @@ export default function Profile({
   const router = useRouter();
 
   if (router.isFallback) {
-    // This is shown during the loading/fallback phase
     return (
       <>
         <div className="flex flex-col pt-[5rem] flex-wrap justify-center items-center">
@@ -68,7 +67,6 @@ export default function Profile({
     );
   }
   if (notFound && !user) {
-    // Handle the case where user data is not found
     return (
       <>
         <Header
@@ -91,7 +89,7 @@ export default function Profile({
           contents={`${user.userInfo.username}'s Profile | User-profile on ${process.env.PUBLIC_NAME}.`}
           image={user.userInfo.images.avatar}
         />
-        <div className="max-w-[75%] 1920:max-w-[60%] mx-auto pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="max-w-[100vw] 1920:max-w-[75vw] px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>
             <div className="userDiv overflow-visible rounded-lg transition-all opacity-1 duration-500 flex gap-5">
               <div className="userInfo">
@@ -189,7 +187,7 @@ export default function Profile({
                             } py-2 px-4 min-w-[250px] hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
-                          ??????
+                          Crafting
                         </Tab>
                       </Tab.List>
                       <Tab.Panels className="mt-10">
@@ -215,7 +213,6 @@ export default function Profile({
                                         {item.name}
                                       </p>
                                       <p>x{item.amount}</p>{" "}
-                                      {/* Display item count */}
                                     </div>
                                   );
                                 })
@@ -230,7 +227,7 @@ export default function Profile({
                           Completed Challenges here
                         </Tab.Panel>
                         {/* ?????? */}
-                        <Tab.Panel className="mt-10">??????? here</Tab.Panel>
+                        <Tab.Panel className="mt-10">Crafting here</Tab.Panel>
                       </Tab.Panels>
                     </div>
                   </Tab.Group>

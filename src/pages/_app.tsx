@@ -2,8 +2,10 @@
 import "@style/globals.css";
 import "@style/components/Navbar.css";
 import "@style/components/Footer.css";
+import "@style/components/Pagination.css";
 import "@style/components/Profilemenu.css";
 import "@style/pages/Frontpage.css";
+import "@style/pages/Leaderboard.css";
 import "@style/pages/Profilepage.css";
 
 import { useEffect, useState } from "react";
@@ -18,11 +20,11 @@ function StasisApp({ Component, pageProps: { ...pageProps } }: AppProps) {
   const [session, setSession] = useState<User | null>(null);
   const [sessionChecked, setSessionChecked] = useState(false);
 
-  //For now, we're using a fake API to check if the user is logged in.
+  //For now, we're using a fake API to fake that the user is authed and logged in.
   useEffect(() => {
     if (!session) {
       axios
-        .get(`${process.env.PUBLIC_URL}/api/76561198410971373`)
+        .get(`${process.env.PUBLIC_URL}/api/profile/76561198410971373`)
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
             setSession(response.data);
