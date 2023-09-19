@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { User } from "@lib/types/User";
+import { UserData } from "@lib/types/AdvancedUser";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Header from "@comp/Meta/Title";
@@ -10,10 +10,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
     if (params && params.id) {
       const id = params.id;
-      const apiUrl = `${process.env.API_URL}/profile/${id}`;
+      const apiUrl = `${process.env.API_URL}/profile/${id}/advanced`;
 
       try {
-        const response = await axios.get<User>(apiUrl);
+        const response = await axios.get<UserData>(apiUrl);
 
         if (response.status === 302 || response.status === 200) {
           const user = response.data;
@@ -52,7 +52,7 @@ export default function Profile({
   user,
   notFound,
 }: {
-  user: User | null;
+  user: UserData | null;
   notFound: boolean;
 }) {
   const router = useRouter();
@@ -87,7 +87,12 @@ export default function Profile({
           title={`${user.userInfo.username}'s Profile`}
           link={`${process.env.PUBLIC_URL}/profile/${user.userInfo.id}`}
           contents={`${user.userInfo.username}'s Profile | User-profile on ${process.env.PUBLIC_NAME}.`}
-          image={user.userInfo.images.avatar}
+          image={
+            !user.userInfo.images.avatar ||
+            user.userInfo.images.avatar.startsWith("http://localhost")
+              ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
+              : user.userInfo.images.avatar
+          }
         />
         <div className="max-w-[100vw] 1920:max-w-[75vw] px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>
@@ -101,7 +106,12 @@ export default function Profile({
                   }}
                 />
                 <Image
-                  src={user.userInfo.images.avatar}
+                  src={
+                    !user.userInfo.images.avatar ||
+                    user.userInfo.images.avatar.startsWith("http://localhost")
+                      ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
+                      : user.userInfo.images.avatar
+                  }
                   alt="Profile Picture"
                   width={150}
                   height={150}
@@ -195,8 +205,8 @@ export default function Profile({
                         <Tab.Panel className="mt-10">
                           <div className="flex flex-col items-center">
                             <div className="flex flex-wrap justify-center gap-5">
-                              {user.items.length > 0 ? (
-                                user.items.map((item, index) => {
+                              {user.inventory.length > 0 ? (
+                                user.inventory.map((item, index) => {
                                   return (
                                     <div
                                       key={index}

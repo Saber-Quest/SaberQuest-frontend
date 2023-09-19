@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Overall tags */
+  .chBody {
+    @apply flex gap-[10px] justify-center flex-row mt-[30px] xl:mt-[70px] transition-all duration-100 ease-in;
+  }
+  .chTextHeader {
+    @apply font-semibold;
+    @apply text-[40px] text-white;
+  }
+  .chTextSubheader {
+    @apply mt-5;
+    @apply font-light;
+    @apply text-[28px];
+  }
+  .chHeaderHighlight {
+    @apply text-sqyellow;
+    @apply font-bold;
+  }
+  .chBodyHighlight {
+    @apply text-sqyellow;
+    @apply font-semibold;
+  }
+  /* Right Body */
+
+  .chChallengeText {
+    @apply mt-10;
+    @apply flex flex-col items-center;
+  }
+
+  .chChallengeHighlight {
+    @apply text-sqyellow;
+    @apply font-semibold;
+  }
+
+  .chExampleChallenges {
+    @apply flex flex-col gap-5;
+    @apply px-[17%] py-8;
+  }
+
+  .chReqHeader {
+    @apply text-[28px];
+  }
+
+  .chReqs {
+    @apply flex flex-col items-center;
+    @apply text-[24px];
+  }
+
+  .chDivider {
+    @apply my-3;
+  }
+  .chNormalDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-normalreq;
+  }
+  .chHardDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-hardreq;
+  }
+  .chExpertDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-expertreq;
+  }
+}

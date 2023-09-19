@@ -7,6 +7,7 @@ import "@style/components/Profilemenu.css";
 import "@style/pages/Frontpage.css";
 import "@style/pages/Leaderboard.css";
 import "@style/pages/Profilepage.css";
+import "@style/pages/Challenges.css";
 
 import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
@@ -24,7 +25,7 @@ function StasisApp({ Component, pageProps: { ...pageProps } }: AppProps) {
   useEffect(() => {
     if (!session) {
       axios
-        .get(`${process.env.PUBLIC_URL}/api/profile/76561198410971373`)
+        .get(`${process.env.API_URL}/profile/76561198343533017`)
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
             setSession(response.data);

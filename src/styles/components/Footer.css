@@ -5,21 +5,17 @@
 @layer base {
   .footer {
     @apply fixed bottom-0;
-    @apply bg-black bg-opacity-70 sm:bg-opacity-70 xl:bg-opacity-0;
-    @apply select-none flex items-center justify-between;
+    @apply bg-black bg-opacity-70 xl:bg-opacity-0 transition-all duration-300 ease-in-out;
+    @apply select-none pb-2 pt-2 xl:pb-0 xl:pt-0 flex flex-col xl:flex-row items-center justify-between;
     @apply h-16 w-full;
   }
 
-  .leftFooter {
-    @apply pl-8;
-  }
-
   .rightNav {
-    @apply mr-6;
+    @apply xl:mr-6;
   }
 
   .footerText {
-    @apply font-light text-white text-lg;
+    @apply xl:pl-8 font-light text-white text-lg;
   }
 
   .footerQuest {
@@ -27,13 +23,13 @@
   }
 
   .footerLinks {
-    @apply text-sqyellow text-2xl font-medium;
+    @apply text-sqyellow text-[16px] xl:text-2xl font-medium transition-all duration-300 ease-in-out;
     @apply hover:drop-shadow-logoShadow;
     @apply transition-all duration-150;
   }
 
   .navLinkDivider {
     @apply px-3;
-    @apply text-white font-light text-2xl;
+    @apply text-white font-light text-[16px] xl:text-2xl transition-all duration-300 ease-in-out;
   }
 }

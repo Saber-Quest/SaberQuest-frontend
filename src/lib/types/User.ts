@@ -1,29 +1,30 @@
+interface UserInfo {
+  id: string;
+  username: string;
+  images: {
+    avatar: string;
+    banner: string | null;
+    border: string | null;
+  };
+  preference: string;
+  patreon: string | null;
+  autoComplete: string | null;
+}
+
+interface Stats {
+  challengesCompleted: number;
+  rank: number;
+  qp: number;
+  value: number;
+}
+
+interface Today {
+  diff: number;
+  completed: boolean;
+}
+
 export interface User {
-  userInfo: {
-    id: string;
-    username: string;
-    images: {
-      avatar: string;
-      banner: string;
-      border: string;
-    };
-    preference: string;
-  };
-  chistory: number[];
-  items: {
-    id: string;
-    image: string;
-    name: string;
-    amount: number;
-  }[];
-  stats: {
-    challengesCompleted: number;
-    rank: number;
-    qp: number;
-    value: number;
-  };
-  today: {
-    diff: number;
-    completed: boolean;
-  };
+  userInfo: UserInfo;
+  stats: Stats;
+  today: Today;
 }

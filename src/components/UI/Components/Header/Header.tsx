@@ -11,7 +11,7 @@ const NavigationLinks = [
   },
   {
     name: "Challenges",
-    link: "#",
+    link: "/challenges",
     needLogin: false,
   },
   {
