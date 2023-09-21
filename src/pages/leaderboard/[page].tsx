@@ -1,8 +1,9 @@
 import { LeaderboardData } from "@lib/types/Leaderboard";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import Header from "@comp/Meta/Title";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Image from "next/image";
+import Header from "@comp/Meta/Title";
 import Link from "next/link";
 import Logo from "public/Logo.svg";
 
@@ -19,18 +20,22 @@ export default function Profile() {
       const { page } = router.query;
       const navPage = parseInt(page as string);
       setCurrentPage(navPage);
-      fetch(`${process.env.API_URL}/leaderboard?page=${navPage}&limit=10`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.error || data.leaderboard.length === 0) {
-            setError(true);
-            setLeaderboard(data);
-          } else {
+      axios
+        .get(`${process.env.API_URL}/leaderboard?page=${navPage}&limit=10`)
+        .then((response) => {
+          if (response.status === 302 || response.status === 200) {
             setError(false);
-            setLeaderboard(data.leaderboard);
-            setUserCount(data.leaderboard.length);
+            setLeaderboard(response.data.leaderboard);
+            setUserCount(response.data.leaderboard.length);
+          } else {
+            setError(true);
           }
           setLoading(false);
+        })
+        .catch((error) => {
+          console.error("An error occurred, contact a developer!");
+          console.error(error);
+          setError(false);
         });
     }
   }, [router]);

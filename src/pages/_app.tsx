@@ -17,11 +17,10 @@ import Header from "@ui/Header/Header";
 import Footer from "@ui/Footer/Footer";
 import { User } from "@lib/types/User";
 
-function StasisApp({ Component, pageProps: { ...pageProps } }: AppProps) {
+function StasisApp({ Component, pageProps }: AppProps) {
   const [session, setSession] = useState<User | null>(null);
   const [sessionChecked, setSessionChecked] = useState(false);
 
-  //For now, we're using a fake API to fake that the user is authed and logged in.
   useEffect(() => {
     if (!session) {
       axios
@@ -35,7 +34,7 @@ function StasisApp({ Component, pageProps: { ...pageProps } }: AppProps) {
           setSessionChecked(true);
         })
         .catch((error) => {
-          console.error("An error occured, contact a developer!");
+          console.error("An error occurred, contact a developer!");
           console.error(error);
           setSessionChecked(true);
         });
