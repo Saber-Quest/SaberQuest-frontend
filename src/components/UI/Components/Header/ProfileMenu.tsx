@@ -52,7 +52,12 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
           <Image
             width={66}
             height={66}
-            src={userinfo.userInfo.images.avatar}
+            src={
+              !userinfo.userInfo.images.avatar ||
+                userinfo.userInfo.images.avatar.startsWith("http://localhost")
+                ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
+                : userinfo.userInfo.images.avatar
+            }
             className="profilePic"
             alt="ProfilePicture"
             unoptimized={false}
@@ -84,9 +89,8 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
                   {({ active }: { active: any }) => (
                     <Link
                       href={item.href}
-                      className={`${
-                        active ? "bg-navButtonActive" : "bg-navButtonBG"
-                      } menuButton bg-opacity-25`}
+                      className={`${active ? "bg-navButtonActive" : "bg-navButtonBG"
+                        } menuButton bg-opacity-25`}
                     >
                       <div className="flex items-center">
                         {item.name == "Log out" && (
