@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@comp/Meta/Title";
-import Link from "next/link";
 
 export default function FourOFour() {
   return (

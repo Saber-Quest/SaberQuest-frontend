@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import ProfileMenu from "./ProfileMenu";
 import { User } from "@lib/types/User";
@@ -18,7 +19,7 @@ const NavigationLinks = [
     name: "Shop",
     link: "#",
     needLogin: true,
-  }
+  },
 ];
 
 export default function NavBar({
@@ -50,10 +51,12 @@ export default function NavBar({
       <nav className="topNav z-10 relative">
         <div className="leftNav">
           <Link href="/" key="NavLink" className="navLogoContainer">
-            <img
+            <Image
               src="/assets/images/Logo.svg"
               className="navLogo"
               alt="SaberQuest logo"
+              width={96}
+              height={96}
             />
             <p className="Saber">Saber</p>
             <span className="Quest">Quest</span>
@@ -78,17 +81,21 @@ export default function NavBar({
                 <>
                   <div className="loginButtons">
                     <a href="#" rel="noopener" className="loginLinkSteam">
-                      <img
+                      <Image
                         src="/assets/images/SteamLogo.svg"
                         className="steamNav"
                         alt="SteamLoginButton"
+                        width={36}
+                        height={36}
                       />
                     </a>
                     <a href="#" rel="noopener" className="loginLinkBL">
-                      <img
+                      <Image
                         src="/assets/images/BeatLeaderLogo.png"
                         className="beatLeaderNav"
                         alt="BeatleaderLoginButton"
+                        width={50}
+                        height={50}
                       />
                     </a>
                   </div>

@@ -24,8 +24,8 @@ function StasisApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (!session) {
       axios
-        .get(`${process.env.API_URL}/profile/76561198343533017`)
-        .then((response) => {
+        .get(`${process.env.API_URL}/profile/76561198343533017/advanced`)
+        .then((response: any) => {
           if (response.status === 302 || response.status === 200) {
             setSession(response.data);
           } else {
@@ -33,7 +33,7 @@ function StasisApp({ Component, pageProps }: AppProps) {
           }
           setSessionChecked(true);
         })
-        .catch((error) => {
+        .catch((error: any) => {
           console.error("An error occurred, contact a developer!");
           console.error(error);
           setSessionChecked(true);
