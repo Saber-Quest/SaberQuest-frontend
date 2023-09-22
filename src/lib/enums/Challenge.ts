@@ -19,6 +19,21 @@ export enum ChallengeDiff {
 }
 
 /**
+ * Enum representing the different platforms that a challenge can be played on.
+ */
+export enum ChallengePlatforms {
+  /**
+   * PC platform.
+   */
+  SS = "ss",
+
+  /**
+   * Quest platform.
+   */
+  BL = "bl",
+}
+
+/**
  * Enum representing different challenge types or categories.
  */
 export enum ChallengeType {

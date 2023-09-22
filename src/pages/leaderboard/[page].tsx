@@ -90,20 +90,31 @@ export default function Profile() {
                           )}
                         </div>
                         <div className="LBEntryText LBU">
-                          <Image
-                            src={
-                              !user.userInfo.images.avatar ||
-                              user.userInfo.images.avatar.startsWith(
-                                "http://localhost"
-                              )
-                                ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
-                                : user.userInfo.images.avatar
-                            }
-                            alt="User Avatar"
-                            width={32}
-                            height={32}
-                            className="rounded-full mr-5"
-                          />
+                          <div className="image-wrapper relative">
+                            <Image
+                              src={
+                                !user.userInfo.images.avatar ||
+                                user.userInfo.images.avatar.startsWith(
+                                  "http://localhost"
+                                )
+                                  ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
+                                  : user.userInfo.images.avatar
+                              }
+                              alt="User Avatar"
+                              width={32}
+                              height={32}
+                              className="rounded-full mr-5"
+                            />
+                            {user.userInfo.images.border === null ? null : (
+                              <Image
+                                src={user.userInfo.images.border}
+                                alt="Border Image"
+                                className="absolute inset-0 object-cover w-11 h-11 top-[-6px] left-[-6px]"
+                                width={44}
+                                height={44}
+                              />
+                            )}
+                          </div>
                           {user.userInfo.username}
                         </div>
                         <div className="LBEntryText LBC">

@@ -25,9 +25,8 @@ export function dateConvert({
 
   const day = date.getUTCDate().toString().padStart(2, "0");
   const ordinalSuffix = getOrdinalSuffix(Number(day));
-  const weekday = date.toLocaleString("default", { weekday: "long" });
   const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
-  const monthLong = date.toLocaleString("default", { month: "long" });
+  const monthShort = date.toLocaleString("default", { month: "short" });
   const year = date.getUTCFullYear().toString();
   const hours = date.getUTCHours();
   const minutes = date.getUTCMinutes().toString().padStart(2, "0");
@@ -36,7 +35,7 @@ export function dateConvert({
   const formattedHours = (hours % 12 || 12).toString();
 
   if (type === 1) {
-    const formattedDate = `${monthLong} ${day}${ordinalSuffix}, ${year}, ${formattedHours}:${minutes}:${seconds} ${ampm}`;
+    const formattedDate = `${monthShort}. ${day}${ordinalSuffix}, ${year}, ${formattedHours}:${minutes}:${seconds} ${ampm}`;
     return formattedDate;
   }
   if (type === 2) {

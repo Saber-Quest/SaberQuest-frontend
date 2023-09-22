@@ -103,22 +103,37 @@ export default function Profile({
                 <div
                   className={`userBannerVert opacity-30 px-4 py-5 sm:px-6 rounded-lg absolute z-[-1] h-[600px] 1920:h-[700px] w-[425px] bg-cover bg-center bg-no-repeat`}
                   style={{
-                    backgroundImage: `url(/assets/images/users/banners/ver/${user.userInfo.id}.png)`,
+                    backgroundImage:
+                      user.userInfo.images.banner === null ||
+                      user.userInfo.images.banner.startsWith("http://localhost")
+                        ? `url(/assets/images/users/banners/ver/default.png)`
+                        : `url(${user.userInfo.images.banner})`,
                     WebkitMaskImage: `-webkit-gradient(linear, 0% 40%, 0% 100%, from(rgb(255 255 255 / 95%)), to(rgb(0 0 0 / 37%)))`,
                   }}
                 />
-                <Image
-                  src={
-                    !user.userInfo.images.avatar ||
-                    user.userInfo.images.avatar.startsWith("http://localhost")
-                      ? "/assets/images/PFPPlaceholder.png"
-                      : user.userInfo.images.avatar
-                  }
-                  alt="Profile Picture"
-                  width={150}
-                  height={150}
-                  className="rounded-full relative mt-[-16%] ml-[33%] drop-shadow-PFPShadow"
-                />
+                <div className="relative">
+                  <Image
+                    src={
+                      !user.userInfo.images.avatar ||
+                      user.userInfo.images.avatar.startsWith("http://localhost")
+                        ? "/assets/images/PFPPlaceholder.png"
+                        : user.userInfo.images.avatar
+                    }
+                    alt="Profile Picture"
+                    width={150}
+                    height={150}
+                    className="rounded-full relative mt-[-16%] ml-[33%] drop-shadow-PFPShadow"
+                  />
+                  {user.userInfo.images.border === null ? null : (
+                    <Image
+                      src={user.userInfo.images.border}
+                      alt="Border Image"
+                      className="absolute inset-0 object-cover w-[220px] h-[220px] top-[-35px] left-[100px]"
+                      width={220}
+                      height={220}
+                    />
+                  )}
+                </div>
                 <div
                   className={`px-4 py-5 sm:px-6 rounded-lg w-[425px] flex flex-col items-center font-medium`}
                 >
@@ -159,12 +174,18 @@ export default function Profile({
                   <div
                     className="absolute opacity-30 top-0 left-0 w-full h-full rounded-lg z-[-1]"
                     style={{
-                      backgroundImage: `url(/assets/images/users/banners/hor/${user.userInfo.id}.png)`,
+                      backgroundImage:
+                        user.userInfo.images.banner === null ||
+                        user.userInfo.images.banner.startsWith(
+                          "http://localhost"
+                        )
+                          ? `url(/assets/images/users/banners/hor/default.png)`
+                          : `url(${user.userInfo.images.banner})`,
                       WebkitMaskImage: `-webkit-gradient(linear, 0% 40%, 0% 100%, from(rgb(255 255 255 / 95%)), to(rgb(0 0 0 / 37%)))`,
                     }}
                   />
                 </div>
-                <div className="px-4 py-5 sm:px-6 rounded-lg bg-[#161616]">
+                <div className="mt-[17px] px-4 py-5 sm:px-6 rounded-lg bg-[#161616]">
                   <Tab.Group>
                     <div className="divide-y-[2px] divide-sqyellow">
                       <Tab.List className="flex min-w-full justify-center">

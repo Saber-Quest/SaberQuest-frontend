@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { ChallengeHistoryItem } from "@lib/types/AdvancedUser";
-import { ChallengeDiff as cD } from "@lib/enums/Challenge";
+import {
+  ChallengeDiff as cD,
+  ChallengePlatforms as cP,
+} from "@lib/enums/Challenge";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
 import Image from "next/image";
 import {
@@ -10,6 +13,7 @@ import {
 } from "@heroicons/react/20/solid";
 import ExtendedChallengeInfo from "./ExtendedChallengeInfo";
 import { dateConvert } from "@lib/utils/dateConvert";
+import TimeAgo from "react-timeago";
 
 export default function ChallengesPanel({
   challenges,
@@ -55,6 +59,30 @@ export default function ChallengesPanel({
                                 {item.challenge.difficulty.name}
                               </span>
                             ))}
+                          {(item.challenge.preference === cP.SS && (
+                            <span className="ccSSColor">
+                              <Image
+                                src="/assets/images/ScoreSaberLogo.svg"
+                                alt="BeatLeader"
+                                className="mr-[4px]"
+                                width={16}
+                                height={16}
+                              />{" "}
+                              ScoreSaber
+                            </span>
+                          )) ||
+                            (item.challenge.preference === cP.BL && (
+                              <span className="ccBLColor">
+                                <Image
+                                  src="/assets/images/BeatLeaderLogo.png"
+                                  alt="BeatLeader"
+                                  className="mr-[4px]"
+                                  width={16}
+                                  height={16}
+                                />{" "}
+                                BeatLeader
+                              </span>
+                            ))}
                         </div>
                         <div className="ccMiniCalDiv">
                           <div className="ccMiniCalInfo">
@@ -62,9 +90,11 @@ export default function ChallengesPanel({
                               className="ccCalIcon"
                               aria-hidden="true"
                             />
-                            {expandedIndex === index
-                              ? dateConvert({ isoDate: item.date, type: 1 })
-                              : dateConvert({ isoDate: item.date, type: 2 })}
+                            {expandedIndex === index ? (
+                              dateConvert({ isoDate: item.date, type: 1 })
+                            ) : (
+                              <TimeAgo date={item.date} />
+                            )}
                           </div>
                         </div>
                       </div>
@@ -114,7 +144,7 @@ export default function ChallengesPanel({
               </li>
             ))
           ) : (
-            <p>No completed challenges</p>
+            <p className="text-center">No completed challenges</p>
           )}
         </ul>
       </div>

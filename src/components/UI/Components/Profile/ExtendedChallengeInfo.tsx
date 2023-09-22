@@ -1,16 +1,17 @@
 import { ChallengeType as cT } from "@lib/enums/Challenge";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
+import { ChallengeHistoryItem } from "@lib/types/AdvancedUser";
 import Image from "next/image";
 
-export default function ExtendedChallengeInfo({ item }: { item: any }) {
+export default function ExtendedChallengeInfo({
+  item,
+}: {
+  item: ChallengeHistoryItem;
+}) {
   return (
     <>
       <div className="ccExInfoDev">
         <p>Description: {item.challenge.description}</p>
-        <p>
-          Platform:{" "}
-          {item.challenge.preference === "ss" ? "ScoreSaber" : "BeatLeader"}
-        </p>
         Requirement:{" "}
         {(item.challenge.type === cT.Map && (
           <>
@@ -99,7 +100,10 @@ export default function ExtendedChallengeInfo({ item }: { item: any }) {
             </>
           ))}
       </div>
-      <div className="ccExInfoDev">
+      <div className="ccExInfoDev Items">
+        <p>
+          QP awarded: <b className="text-sqyellow">{item.qp}</b> QP
+        </p>
         <p>Items received:</p>
         <div className="ccExItemDiv">
           {item.items.map((cItems: any, cIndex: number) => (

@@ -48,6 +48,10 @@ module.exports = {
         rareItemfaint: "rgba(37, 148, 250, 0.1)",
         epicItemfaint: "rgba(173, 0, 255, 0.1)",
         legendaryItemfaint: "rgba(255, 214, 0, 0.1)",
+        blColor: "#e50477",
+        blColorfaint: "rgba(230, 20, 116, 0.1)",
+        ssColor: "#ffde18",
+        ssColorfaint: "rgba(255, 220, 63, 0.1)",
       },
       screens: {
         1920: "1921px",

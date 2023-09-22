@@ -4,7 +4,7 @@
 
 @layer base {
   .ccMainDiv {
-    @apply overflow-hidden shadow rounded-md bg-[#1e1e1e];
+    @apply overflow-hidden rounded-md;
   }
   .ccListDivider {
     @apply divide-y divide-sqyellowfaint;
@@ -28,6 +28,20 @@
   }
   .ccMiniChalName {
     @apply truncate font-medium text-sqyellow;
+  }
+  .ccBLColor {
+    @apply bg-blColorfaint;
+    @apply ml-2 px-2;
+    @apply outline outline-1 outline-blColor;
+    @apply rounded-full;
+    @apply flex flex-row items-center;
+  }
+  .ccSSColor {
+    @apply bg-ssColorfaint;
+    @apply ml-2 px-2;
+    @apply outline outline-1 outline-ssColor;
+    @apply rounded-full;
+    @apply flex flex-row items-center;
   }
   .ccNChalDiff {
     @apply text-normalreq font-semibold;
