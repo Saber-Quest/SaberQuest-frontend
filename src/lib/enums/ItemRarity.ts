@@ -1,29 +1,29 @@
 /**
- * Enum representing different challenge difficulty levels.
+ * Enum representing different item rarities.
  */
 export enum ItemRarity {
   /**
-   * Normal difficulty level.
+   * Common item rarity.
    */
   C = "Common",
 
   /**
-   * Hard difficulty level.
+   * Uncommon item rarity.
    */
   U = "Uncommon",
 
   /**
-   * Expert difficulty level.
+   * Rare item rarity.
    */
   R = "Rare",
 
   /**
-   * Epic difficulty level.
+   * Epic item rarity.
    */
   E = "Epic",
 
   /**
-   * Legendary difficulty level.
+   * Legendary item rarity.
    */
   L = "Legendary",
 }
