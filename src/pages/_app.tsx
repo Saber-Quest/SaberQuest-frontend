@@ -4,6 +4,8 @@ import "@style/components/Navbar.css";
 import "@style/components/Footer.css";
 import "@style/components/Pagination.css";
 import "@style/components/Profilemenu.css";
+import "@style/components/ProfileComps/CompletedChallenges.css";
+import "@style/components/ProfileComps/ExtendedChallengeInfo.css";
 import "@style/pages/Frontpage.css";
 import "@style/pages/Leaderboard.css";
 import "@style/pages/Profilepage.css";

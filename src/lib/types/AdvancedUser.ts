@@ -1,3 +1,4 @@
+import { ChallengeType, ChallengeDiff } from "@enums/Challenge";
 interface UserInfo {
   id: string;
   username: string;
@@ -18,14 +19,14 @@ interface Stats {
   value: number;
 }
 
-interface InventoryItem {
+export interface InventoryItem {
   id: string;
   image: string;
   name: string;
   amount: number;
 }
 
-interface ChallengeItem {
+export interface ChallengeItem {
   name: string;
   image: string;
   rarity: string;
@@ -34,14 +35,15 @@ interface ChallengeItem {
 interface Challenge {
   name: string;
   description: string;
-  type: string;
+  type: ChallengeType;
   difficulty: {
-    name: string;
+    name: ChallengeDiff;
     challenge: number[];
   };
+  preference: string;
 }
 
-interface ChallengeHistoryItem {
+export interface ChallengeHistoryItem {
   date: string;
   items: ChallengeItem[];
   qp: number;

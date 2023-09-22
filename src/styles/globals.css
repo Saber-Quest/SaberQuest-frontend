@@ -14,7 +14,7 @@
 @layer base {
   body {
     @apply font-poppins text-white;
-    @apply bg-cover;
+    @apply bg-auto;
     @apply bg-[url('/assets/images/BackgroundImage.png')];
     @apply backdrop-filter backdrop-blur-[5px];
     @apply transition-all duration-500;
@@ -25,7 +25,7 @@
   #__next {
     @apply flex flex-col items-center justify-start;
     @apply min-h-[100vh];
-    @apply pb-56;
+    @apply pb-[7%];
     @apply transition-colors duration-75;
   }
 }

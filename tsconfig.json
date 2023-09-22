@@ -18,6 +18,8 @@
       "@comp/*": ["./src/components/*"],
       "@ui/*": ["./src/components/UI/Components/*"],
       "@lib/*": ["./src/lib/*"],
+      "@types/*": ["./src/lib/types/*"],
+      "@enums/*": ["./src/lib/enums/*"],
       "@style/*": ["./src/styles/*"],
       "@public": ["./public/*"]
     }

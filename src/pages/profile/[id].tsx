@@ -1,10 +1,12 @@
 import { GetServerSideProps } from "next";
 import { UserData } from "@lib/types/AdvancedUser";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import Header from "@comp/Meta/Title";
 import { Tab } from "@headlessui/react";
+import Image from "next/image";
+import Header from "@comp/Meta/Title";
 import axios from "axios";
+import InventoryPanel from "@comp/UI/Components/Profile/InventoryPanel";
+import ChallengesPanel from "@comp/UI/Components/Profile/CompletedChallenges";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
@@ -90,7 +92,7 @@ export default function Profile({
           image={
             !user.userInfo.images.avatar ||
             user.userInfo.images.avatar.startsWith("http://localhost")
-              ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
+              ? "/assets/images/PFPPlaceholder.png"
               : user.userInfo.images.avatar
           }
         />
@@ -109,7 +111,7 @@ export default function Profile({
                   src={
                     !user.userInfo.images.avatar ||
                     user.userInfo.images.avatar.startsWith("http://localhost")
-                      ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
+                      ? "/assets/images/PFPPlaceholder.png"
                       : user.userInfo.images.avatar
                   }
                   alt="Profile Picture"
@@ -143,7 +145,7 @@ export default function Profile({
               </div>
               <div className="profileRightContainer w-full">
                 <div className="relative">
-                  <div className="userInfo mb-5 h-[150px] px-4 py-5 sm:px-6 rounded-lg w-full">
+                  <div className="userInfo h-[150px] px-4 py-5 sm:px-6 rounded-lg w-full">
                     <div className="flex flex-col items-center">
                       <p className="text-[24px] font-medium text-center drop-shadow-textShadow">
                         About
@@ -202,39 +204,10 @@ export default function Profile({
                       </Tab.List>
                       <Tab.Panels className="mt-10">
                         {/* Inventory */}
-                        <Tab.Panel className="mt-10">
-                          <div className="flex flex-col items-center">
-                            <div className="flex flex-wrap justify-center gap-5">
-                              {user.inventory.length > 0 ? (
-                                user.inventory.map((item, index) => {
-                                  return (
-                                    <div
-                                      key={index}
-                                      className="flex flex-col items-center rounded-3xl p-2 border-2 border-sqyellow border-opacity-0 drop-shadow-PFPShadow hover:border-opacity-30 transition-all duration-150 ease-in-out"
-                                    >
-                                      <Image
-                                        src={item.image}
-                                        alt={item.name}
-                                        width={150}
-                                        height={150}
-                                        className="rounded-full relative"
-                                      />
-                                      <p className="text-center drop-shadow-textShadow">
-                                        {item.name}
-                                      </p>
-                                      <p>x{item.amount}</p>{" "}
-                                    </div>
-                                  );
-                                })
-                              ) : (
-                                <p>Inventory Empty</p>
-                              )}
-                            </div>
-                          </div>
-                        </Tab.Panel>
+                        <InventoryPanel inventory={user.inventory} />
                         {/* Completed Challenges */}
                         <Tab.Panel className="mt-10">
-                          Completed Challenges here
+                          <ChallengesPanel challenges={user.challengeHistory} />
                         </Tab.Panel>
                         {/* ?????? */}
                         <Tab.Panel className="mt-10">Crafting here</Tab.Panel>
