@@ -98,8 +98,7 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
               alt="Profile Picture"
               width={66}
               height={66}
-              unoptimized={false}
-              quality={5}
+              unoptimized={true}
               className="profilePic rounded-full relative drop-shadow-PFPShadow"
             />
             {!userinfo.userInfo.images.border === null ? null : (

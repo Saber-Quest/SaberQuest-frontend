@@ -157,6 +157,7 @@ export default function Profile({
                     alt="Profile Picture"
                     width={150}
                     height={150}
+                    unoptimized={true}
                     className="rounded-full relative drop-shadow-PFPShadow"
                   />
                   {!user.userInfo.images.border === null ? null : (

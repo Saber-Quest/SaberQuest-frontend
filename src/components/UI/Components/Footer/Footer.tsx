@@ -37,7 +37,7 @@ function Footer() {
                 <a
                   href={link.link}
                   target="_blank"
-                  rel="noopener"
+                  rel="noreferrer"
                   className="footerLinks"
                 >
                   {link.name}

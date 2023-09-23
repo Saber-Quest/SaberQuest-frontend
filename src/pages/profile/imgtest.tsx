@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useGlitch } from "react-powerglitch";
 
 export default function ImgTest() {
-
   const glitch = useGlitch({
     playMode: "always",
     createContainers: true,
@@ -40,6 +39,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
@@ -57,6 +57,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
@@ -75,6 +76,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
@@ -94,6 +96,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
@@ -111,6 +114,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
@@ -128,6 +132,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
@@ -145,6 +150,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
@@ -164,6 +170,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
@@ -181,6 +188,7 @@ export default function ImgTest() {
               alt="Profile Picture"
               width={150}
               height={150}
+              unoptimized={true}
               className="rounded-full relative drop-shadow-PFPShadow"
             />
             <Image
