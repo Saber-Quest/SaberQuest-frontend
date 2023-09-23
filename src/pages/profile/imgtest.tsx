@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useGlitch } from "react-powerglitch";
 
-export default function imgtest() {
-  // eslint-disable-next-line
+export default function ImgTest() {
+
   const glitch = useGlitch({
     playMode: "always",
     createContainers: true,
@@ -29,6 +29,7 @@ export default function imgtest() {
     },
     pulse: false,
   });
+
   return (
     <>
       <div className="mt-20 px-10 flex flex-col gap-20 items-center">
