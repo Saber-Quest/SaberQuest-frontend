@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChallengeHistoryItem } from "@lib/types/AdvancedUser";
 import {
   ChallengeDiff as cD,
@@ -20,7 +20,18 @@ export default function ChallengesPanel({
 }: {
   challenges: ChallengeHistoryItem[];
 }) {
+  const challengesPerPage = 3;
   const [expandedIndex, setExpandedIndex] = useState(-1);
+  const [numberOfPages] = useState<number>(
+    Math.ceil(challenges.length / challengesPerPage)
+  );
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const startChallengeIndex = (currentPage - 1) * challengesPerPage;
+  const endChallengeIndex = startChallengeIndex + challengesPerPage;
+  const challengesToShow = challenges.slice(
+    startChallengeIndex,
+    endChallengeIndex
+  );
 
   const toggleAccordion = (index: number) => {
     if (expandedIndex === index) {
@@ -33,8 +44,8 @@ export default function ChallengesPanel({
     <>
       <div className="ccMainDiv">
         <ul role="list" className="ccListDivider">
-          {challenges.length > 0 ? (
-            challenges.map((item, index) => (
+          {challengesToShow.length > 0 ? (
+            challengesToShow.map((item, index) => (
               <li key={index} onClick={() => toggleAccordion(index)}>
                 <div className="ccChallengeFullInfo">
                   <div className="ccChallengeMiniInfo">
@@ -102,7 +113,7 @@ export default function ChallengesPanel({
                         <div className="ccMiniItemsRow">
                           {item.items.map((cItems, cIndex) => (
                             <Image
-                              key={cIndex}
+                              key={index - cIndex}
                               className={`ccMiniItemsRing ${
                                 cItems.rarity === iR.C
                                   ? "ring-commonItem"
@@ -147,6 +158,37 @@ export default function ChallengesPanel({
             <p className="text-center">No completed challenges</p>
           )}
         </ul>
+        <div className="ccNavigation">
+          <button
+            className={`Backward ${
+              currentPage > 1 ? "" : "cursor-not-allowed"
+            }`}
+            onClick={() => {
+              if (currentPage > 1) {
+                const previousPage = currentPage - 1;
+                setCurrentPage(previousPage);
+              }
+            }}
+          >
+            Back
+          </button>
+
+          <div className="PageNumber">{currentPage}</div>
+
+          <button
+            className={`Forward ${
+              currentPage < numberOfPages ? "" : "cursor-not-allowed"
+            }`}
+            onClick={() => {
+              if (currentPage < numberOfPages) {
+                const nextPage = currentPage + 1;
+                setCurrentPage(nextPage);
+              }
+            }}
+          >
+            Forward
+          </button>
+        </div>
       </div>
     </>
   );

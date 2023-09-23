@@ -107,32 +107,31 @@ export default function ExtendedChallengeInfo({
         <p>Items received:</p>
         <div className="ccExItemDiv">
           {item.items.map((cItems: any, cIndex: number) => (
-            <>
-              <div
-                className={`ccExItem ${
-                  cItems.rarity === iR.C
-                    ? "ring-commonItem bg-commonItemfaint"
-                    : cItems.rarity === iR.U
-                    ? "ring-uncommonItem bg-uncommonItemfaint"
-                    : cItems.rarity === iR.R
-                    ? "ring-rareItem bg-rareItemfaint"
-                    : cItems.rarity === iR.E
-                    ? "ring-epicItem bg-epicItemfaint"
-                    : cItems.rarity === iR.L
-                    ? "ring-legendaryItem bg-legendaryItemfaint"
-                    : "ring-sqyellow bg-sqyellowfaint"
-                }`}
-              >
-                <Image
-                  key={cIndex}
-                  src={cItems.image}
-                  alt={cItems.name}
-                  width={32}
-                  height={32}
-                />
-                {cItems.name}
-              </div>
-            </>
+            <div
+              key={`IndexDiv-${cIndex}`} // Add a unique key to the outer div
+              className={`ccExItem ${
+                cItems.rarity === iR.C
+                  ? "ring-commonItem bg-commonItemfaint"
+                  : cItems.rarity === iR.U
+                  ? "ring-uncommonItem bg-uncommonItemfaint"
+                  : cItems.rarity === iR.R
+                  ? "ring-rareItem bg-rareItemfaint"
+                  : cItems.rarity === iR.E
+                  ? "ring-epicItem bg-epicItemfaint"
+                  : cItems.rarity === iR.L
+                  ? "ring-legendaryItem bg-legendaryItemfaint"
+                  : "ring-sqyellow bg-sqyellowfaint"
+              }`}
+            >
+              <Image
+                key={`Index-${cIndex}`} // Add a unique key to the Image component
+                src={cItems.image}
+                alt={cItems.name}
+                width={32}
+                height={32}
+              />
+              {cItems.name}
+            </div>
           ))}
         </div>
       </div>

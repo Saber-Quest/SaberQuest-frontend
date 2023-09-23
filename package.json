@@ -27,8 +27,10 @@
     "prettier": "^2.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-powerglitch": "^1.0.0",
     "react-timeago": "^7.2.0",
-    "react-tooltip": "^5.21.4"
+    "react-tooltip": "^5.21.4",
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",

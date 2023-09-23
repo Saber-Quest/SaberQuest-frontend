@@ -6,6 +6,7 @@ import Image from "next/image";
 import Header from "@comp/Meta/Title";
 import Link from "next/link";
 import Logo from "public/Logo.svg";
+import { useGlitch } from "react-powerglitch";
 
 export default function Profile() {
   const router = useRouter();
@@ -14,6 +15,33 @@ export default function Profile() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardData>();
   const [userCount, setUserCount] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(0);
+
+  const glitch = useGlitch({
+    playMode: "always",
+    createContainers: true,
+    hideOverflow: false,
+    timing: {
+      duration: 4000,
+      easing: "ease-in-out",
+    },
+    glitchTimeSpan: {
+      start: 0.5,
+      end: 0.7,
+    },
+    shake: {
+      velocity: 15,
+      amplitudeX: 0.05,
+      amplitudeY: 0.05,
+    },
+    slice: {
+      count: 6,
+      velocity: 15,
+      minHeight: 0.02,
+      maxHeight: 0.15,
+      hueRotate: true,
+    },
+    pulse: false,
+  });
 
   useEffect(() => {
     if (router.isReady) {
@@ -35,7 +63,7 @@ export default function Profile() {
         .catch((error) => {
           console.error("An error occurred, contact a developer!");
           console.error(error);
-          setError(false);
+          setError(true);
         });
     }
   }, [router]);
@@ -90,28 +118,37 @@ export default function Profile() {
                           )}
                         </div>
                         <div className="LBEntryText LBU">
-                          <div className="image-wrapper relative">
+                          <div className="relative overflow-visible mr-5">
                             <Image
+                              priority={true}
+                              ref={glitch.ref}
+                              // ref={
+                              //   user.userInfo.images.border === null
+                              //     ? null
+                              //     : user.userInfo.images.border.includes(
+                              //       "glitch_border.gif"
+                              //     )
+                              //       ? glitch.ref
+                              //       : glitch.ref
+                              // }
                               src={
-                                !user.userInfo.images.avatar ||
-                                user.userInfo.images.avatar.startsWith(
-                                  "http://localhost"
-                                )
+                                !user.userInfo.images.avatar
                                   ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
                                   : user.userInfo.images.avatar
                               }
-                              alt="User Avatar"
+                              alt="Profile Picture"
                               width={32}
                               height={32}
-                              className="rounded-full mr-5"
+                              className="rounded-full relative drop-shadow-PFPShadow"
                             />
-                            {user.userInfo.images.border === null ? null : (
+                            {!user.userInfo.images.border === null ? null : (
                               <Image
-                                src={user.userInfo.images.border}
+                                src="/assets/images/users/borders/gif/glitch_border.gif"
                                 alt="Border Image"
-                                className="absolute inset-0 object-cover w-11 h-11 top-[-6px] left-[-6px]"
-                                width={44}
-                                height={44}
+                                className="absolute inset-0 object-cover scale-[145%] z-10"
+                                width={220}
+                                height={220}
+                                unoptimized={true}
                               />
                             )}
                           </div>

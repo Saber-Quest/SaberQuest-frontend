@@ -7,6 +7,7 @@ import Header from "@comp/Meta/Title";
 import axios from "axios";
 import InventoryPanel from "@comp/UI/Components/Profile/InventoryPanel";
 import ChallengesPanel from "@comp/UI/Components/Profile/CompletedChallenges";
+import { useGlitch } from "react-powerglitch";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
@@ -59,6 +60,33 @@ export default function Profile({
 }) {
   const router = useRouter();
 
+  const glitch = useGlitch({
+    playMode: "always",
+    createContainers: true,
+    hideOverflow: false,
+    timing: {
+      duration: 4000,
+      easing: "ease-in-out",
+    },
+    glitchTimeSpan: {
+      start: 0.5,
+      end: 0.7,
+    },
+    shake: {
+      velocity: 15,
+      amplitudeX: 0.05,
+      amplitudeY: 0.05,
+    },
+    slice: {
+      count: 6,
+      velocity: 15,
+      minHeight: 0.02,
+      maxHeight: 0.15,
+      hueRotate: true,
+    },
+    pulse: false,
+  });
+
   if (router.isFallback) {
     return (
       <>
@@ -96,48 +124,56 @@ export default function Profile({
               : user.userInfo.images.avatar
           }
         />
-        <div className="max-w-[100vw] 1920:max-w-[75vw] px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="max-w-[100vw] 1920:max-w-[75vw] px-16 mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>
-            <div className="userDiv overflow-visible rounded-lg transition-all opacity-1 duration-500 flex gap-5">
-              <div className="userInfo">
-                <div
-                  className={`userBannerVert opacity-30 px-4 py-5 sm:px-6 rounded-lg absolute z-[-1] h-[600px] 1920:h-[700px] w-[425px] bg-cover bg-center bg-no-repeat`}
-                  style={{
-                    backgroundImage:
-                      user.userInfo.images.banner === null ||
-                      user.userInfo.images.banner.startsWith("http://localhost")
-                        ? `url(/assets/images/users/banners/ver/default.png)`
-                        : `url(${user.userInfo.images.banner})`,
-                    WebkitMaskImage: `-webkit-gradient(linear, 0% 40%, 0% 100%, from(rgb(255 255 255 / 95%)), to(rgb(0 0 0 / 37%)))`,
-                  }}
-                />
-                <div className="relative">
+            <div className="userDiv transition-all opacity-1 duration-500 flex flex-col lg:flex-row gap-5">
+              <div
+                className={`userInfoVer h-[820px] rounded-lg`}
+                style={{
+                  backgroundImage: !user.userInfo.images.banner
+                    ? `url(/assets/images/users/banners/ver/default.png)`
+                    : `url(/api/${user.userInfo.id}/ver)`, //THIS NEEDS TO BE CHANGED BEFORE DEPLOYMENT!!
+                  backgroundSize: "cover",
+                }}
+              >
+                <div className="infoDiv relative overflow-visible flex justify-center w-full mt-[-70px]">
                   <Image
+                    priority={true}
+                    ref={glitch.ref}
+                    //   ref={
+                    //     user.userInfo.images.border === null
+                    //       ? null
+                    //       : user.userInfo.images.border.includes(
+                    //         "glitch_border.gif"
+                    //       )
+                    //         ? glitch.ref
+                    //         : glitch.ref
+                    // }
                     src={
-                      !user.userInfo.images.avatar ||
-                      user.userInfo.images.avatar.startsWith("http://localhost")
+                      !user.userInfo.images.avatar
                         ? "/assets/images/PFPPlaceholder.png"
                         : user.userInfo.images.avatar
                     }
                     alt="Profile Picture"
                     width={150}
                     height={150}
-                    className="rounded-full relative mt-[-16%] ml-[33%] drop-shadow-PFPShadow"
+                    className="rounded-full relative drop-shadow-PFPShadow"
                   />
-                  {user.userInfo.images.border === null ? null : (
+                  {!user.userInfo.images.border === null ? null : (
                     <Image
-                      src={user.userInfo.images.border}
+                      src="/assets/images/users/borders/gif/glitch_border.gif"
                       alt="Border Image"
-                      className="absolute inset-0 object-cover w-[220px] h-[220px] top-[-35px] left-[100px]"
+                      className="absolute top-[-35px] z-10"
                       width={220}
                       height={220}
+                      unoptimized={true}
                     />
                   )}
                 </div>
                 <div
-                  className={`px-4 py-5 sm:px-6 rounded-lg w-[425px] flex flex-col items-center font-medium`}
+                  className={`rounded-lg w-[425px] flex flex-col items-center font-medium`}
                 >
-                  <p className="profileNameHeader w-[inherit] max-w-[inherit] p-5 text-center drop-shadow-textShadow">{`${user.userInfo.username}`}</p>
+                  <p className="profileNameHeader max-w-[inherit] mt-8 p-5 text-center drop-shadow-textShadow">{`${user.userInfo.username}`}</p>
                   <div className="h-[5px] w-[305px] rounded-full bg-gradient-to-r from-sqyellow mb-5" />
                   <div className="flex flex-col items-center gap-[16px] drop-shadow-textShadow text-[24px]">
                     <p>
@@ -159,31 +195,24 @@ export default function Profile({
                 </div>
               </div>
               <div className="profileRightContainer w-full">
-                <div className="relative">
-                  <div className="userInfo h-[150px] px-4 py-5 sm:px-6 rounded-lg w-full">
-                    <div className="flex flex-col items-center">
-                      <p className="text-[24px] font-medium text-center drop-shadow-textShadow">
-                        About
-                      </p>
-                      <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow mb-5" />
-                      <p className="text-center drop-shadow-textShadow">
-                        Haha Funny
-                      </p>
-                    </div>
+                <div
+                  className="userInfoHor h-[150px] px-4 py-5 sm:px-6 rounded-lg w-full"
+                  style={{
+                    backgroundImage: !user.userInfo.images.banner
+                      ? `url(/assets/images/users/banners/hor/default.png)`
+                      : `url(/api/${user.userInfo.id}/hor)`, //THIS NEEDS TO BE CHANGED BEFORE DEPLOYMENT!!
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <div className="flex flex-col items-center">
+                    <p className="text-[24px] font-medium text-center drop-shadow-textShadow">
+                      About
+                    </p>
+                    <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow mb-5" />
+                    <p className="text-center drop-shadow-textShadow">
+                      Haha Funny
+                    </p>
                   </div>
-                  <div
-                    className="absolute opacity-30 top-0 left-0 w-full h-full rounded-lg z-[-1]"
-                    style={{
-                      backgroundImage:
-                        user.userInfo.images.banner === null ||
-                        user.userInfo.images.banner.startsWith(
-                          "http://localhost"
-                        )
-                          ? `url(/assets/images/users/banners/hor/default.png)`
-                          : `url(${user.userInfo.images.banner})`,
-                      WebkitMaskImage: `-webkit-gradient(linear, 0% 40%, 0% 100%, from(rgb(255 255 255 / 95%)), to(rgb(0 0 0 / 37%)))`,
-                    }}
-                  />
                 </div>
                 <div className="mt-[17px] px-4 py-5 sm:px-6 rounded-lg bg-[#161616]">
                   <Tab.Group>

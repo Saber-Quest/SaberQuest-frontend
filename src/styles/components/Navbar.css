@@ -51,20 +51,17 @@
     @apply hover:border-[#FFD073] hover:bg-navHover hover:shadow-navHoverShadow;
     @apply transition-all duration-300;
   }
+  .navButtonDark {
+    @apply dark:text-white dark:hover:bg-gray-700 mr-4;
+  }
+
   .rightNav {
     @apply mr-[25px];
+    @apply min-w-[90px];
   }
 
   .loginButtons {
-    @apply flex items-center gap-[25px];
-  }
-
-  .loginLinkSteam {
-    @apply max-h-[36px];
-  }
-
-  .loginLinkBL {
-    @apply max-h-[50px];
+    @apply flex items-center gap-[25px] max-h-[50px];
   }
 
   .steamNav {
@@ -72,6 +69,6 @@
   }
 
   .beatLeaderNav {
-    @apply h-[50px] w-[50px];
+    @apply min-h-[50px] max-h-[50px] w-[50px];
   }
 }

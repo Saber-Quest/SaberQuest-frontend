@@ -3,12 +3,11 @@ import { Fragment, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { User } from "@lib/types/User";
-import { useGlitch } from "react-powerglitch";
 
 const profileMenu = [
   {
     name: "Profile",
-    href: "/profile",
+    href: "#",
   },
   {
     name: "Settings",
@@ -20,7 +19,7 @@ const profileMenu = [
   },
 ];
 
-export default function ProfileMenu({ userinfo }: { userinfo: User }) {
+export default function ProfileMenuSlim({ userinfo }: { userinfo: User }) {
   const usernameLength = userinfo.userInfo.username.length;
   const calculatedWidth = `${usernameLength * 8 + 190}px`; // Adjust the multiplication factor and base width as needed
 
@@ -38,33 +37,6 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
     profileMenu[0].href = `/profile/${userinfo.userInfo.id}`;
   }
 
-  const glitch = useGlitch({
-    playMode: "always",
-    createContainers: true,
-    hideOverflow: false,
-    timing: {
-      duration: 4000,
-      easing: "ease-in-out",
-    },
-    glitchTimeSpan: {
-      start: 0.5,
-      end: 0.7,
-    },
-    shake: {
-      velocity: 15,
-      amplitudeX: 0.05,
-      amplitudeY: 0.05,
-    },
-    slice: {
-      count: 6,
-      velocity: 15,
-      minHeight: 0.02,
-      maxHeight: 0.15,
-      hueRotate: true,
-    },
-    pulse: false,
-  });
-
   return (
     <>
       <Menu as="div" className="profileMenu">
@@ -77,42 +49,20 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
           }}
         >
           <p className="ml-4 mr-2 rtl">{userinfo.userInfo.username}</p>
-          <div className="relative overflow-visible">
-            <Image
-              priority={true}
-              ref={glitch.ref}
-              // ref={
-              //   user.userInfo.images.border === null
-              //     ? null
-              //     : user.userInfo.images.border.includes(
-              //       "glitch_border.gif"
-              //     )
-              //       ? glitch.ref
-              //       : glitch.ref
-              // }
-              src={
-                !userinfo.userInfo.images.avatar
-                  ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
-                  : userinfo.userInfo.images.avatar
-              }
-              alt="Profile Picture"
-              width={66}
-              height={66}
-              unoptimized={false}
-              quality={5}
-              className="profilePic rounded-full relative drop-shadow-PFPShadow"
-            />
-            {!userinfo.userInfo.images.border === null ? null : (
-              <Image
-                src="/assets/images/users/borders/gif/glitch_border.gif"
-                alt="Border Image"
-                className="absolute inset-0 object-cover scale-[145%] z-10"
-                width={220}
-                height={220}
-                unoptimized={true}
-              />
-            )}
-          </div>
+          <Image
+            width={66}
+            height={66}
+            src={
+              !userinfo.userInfo.images.avatar ||
+              userinfo.userInfo.images.avatar.startsWith("http://localhost")
+                ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
+                : userinfo.userInfo.images.avatar
+            }
+            className="profilePic"
+            alt="ProfilePicture"
+            unoptimized={false}
+            quality={5}
+          />
         </Menu.Button>
         <Transition
           show={isMenuOpen}
