@@ -1,13 +1,13 @@
 import { GetServerSideProps } from "next";
-import { UserData } from "@lib/types/AdvancedUser";
 import { useRouter } from "next/router";
 import { Tab } from "@headlessui/react";
+import { useGlitch } from "react-powerglitch";
+import axios from "axios";
 import Image from "next/image";
 import Header from "@comp/Meta/Title";
-import axios from "axios";
+import { AdvancedUser, SessionUser } from "@lib/types";
 import InventoryPanel from "@comp/UI/Components/Profile/InventoryPanel";
 import ChallengesPanel from "@comp/UI/Components/Profile/CompletedChallenges";
-import { useGlitch } from "react-powerglitch";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       const apiUrl = `${process.env.API_URL}/profile/${id}/advanced`;
 
       try {
-        const response = await axios.get<UserData>(apiUrl);
+        const response = await axios.get<AdvancedUser>(apiUrl);
 
         if (response.status === 302 || response.status === 200) {
           const user = response.data;
@@ -52,10 +52,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 };
 
 export default function Profile({
+  session,
   user,
   notFound,
 }: {
-  user: UserData | null;
+  session: SessionUser | null;
+  user: AdvancedUser | null;
   notFound: boolean;
 }) {
   const router = useRouter();
@@ -119,7 +121,7 @@ export default function Profile({
           contents={`${user.userInfo.username}'s Profile | User-profile on ${process.env.PUBLIC_NAME}.`}
           image={
             !user.userInfo.images.avatar ||
-            user.userInfo.images.avatar.startsWith("http://localhost")
+              user.userInfo.images.avatar.startsWith("http://localhost")
               ? "/assets/images/PFPPlaceholder.png"
               : user.userInfo.images.avatar
           }
@@ -180,9 +182,8 @@ export default function Profile({
                     <p>
                       Rank:{" "}
                       <span
-                        className={`${
-                          user.stats.rank === 1 ? "text-sqyellow" : ""
-                        }`}
+                        className={`${user.stats.rank === 1 ? "text-sqyellow" : ""
+                          }`}
                       >
                         #{user.stats.rank}
                       </span>
@@ -201,7 +202,7 @@ export default function Profile({
                   style={{
                     backgroundImage: !user.userInfo.images.banner
                       ? `url(/assets/images/users/banners/hor/default.png)`
-                      : `url(/api/${user.userInfo.id}/hor)`, //THIS NEEDS TO BE CHANGED BEFORE DEPLOYMENT!!
+                      : `url(/api/${user.userInfo.id}/hor)`,
                     backgroundSize: "cover",
                   }}
                 >
@@ -209,49 +210,48 @@ export default function Profile({
                     <p className="text-[24px] font-medium text-center drop-shadow-textShadow">
                       About
                     </p>
-                    <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow mb-5" />
+                    <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow my-5" />
                     <p className="text-center drop-shadow-textShadow">
-                      Haha Funny
+                      {user.userInfo.about ? user.userInfo.about : "This user have yet to write something!"}
                     </p>
                   </div>
                 </div>
                 <div className="mt-[17px] px-4 py-5 sm:px-6 rounded-lg bg-[#161616]">
                   <Tab.Group>
-                    <div className="divide-y-[2px] divide-sqyellow">
+                    <div className="divide-y-[2px] divide-sqyellow min-w-[750px] max-w-[750px]">
                       <Tab.List className="flex min-w-full justify-center">
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${
-                              selected
-                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                : "border-transparent"
-                            } py-2 px-4 min-w-[250px] hover:text-sqyellow border-b focus:outline-none`
+                            `${selected
+                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                              : "border-transparent"
+                            } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
                           Inventory
                         </Tab>
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${
-                              selected
-                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                : "border-transparent"
-                            } py-2 px-4 min-w-[250px] hover:text-sqyellow border-b focus:outline-none`
+                            `${selected
+                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                              : "border-transparent"
+                            } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
                           Completed Challenges
                         </Tab>
-                        <Tab
-                          className={({ selected }: { selected: boolean }) =>
-                            `${
-                              selected
+                        {session?.id === user.userInfo.id ? (
+                          <Tab
+                            className={({ selected }: { selected: boolean }) =>
+                              `${selected
                                 ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
                                 : "border-transparent"
-                            } py-2 px-4 min-w-[250px] hover:text-sqyellow border-b focus:outline-none`
-                          }
-                        >
-                          Crafting
-                        </Tab>
+                              } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
+                            }
+                          >
+                            Crafting
+                          </Tab>
+                        ): null}
                       </Tab.List>
                       <Tab.Panels className="mt-10">
                         {/* Inventory */}

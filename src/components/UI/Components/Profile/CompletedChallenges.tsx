@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { ChallengeHistoryItem } from "@lib/types/AdvancedUser";
+import { useState } from "react";
+import { ChallengeHistoryItem } from "@lib/types";
 import {
   ChallengeDiff as cD,
   ChallengePlatforms as cP,

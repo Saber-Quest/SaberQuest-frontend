@@ -1,23 +1,5 @@
 import { ChallengeType, ChallengeDiff } from "@enums/Challenge";
-interface UserInfo {
-  id: string;
-  username: string;
-  images: {
-    avatar: string;
-    banner: string;
-    border: string | null;
-  };
-  preference: string;
-  patreon: boolean;
-  autoComplete: boolean;
-}
-
-interface Stats {
-  challengesCompleted: number;
-  rank: number;
-  qp: number;
-  value: number;
-}
+import { UserInfo, Stats, Today } from "./";
 
 export interface InventoryItem {
   id: string;
@@ -50,13 +32,10 @@ export interface ChallengeHistoryItem {
   challenge: Challenge;
 }
 
-export interface UserData {
+export interface AdvancedUser {
   userInfo: UserInfo;
   stats: Stats;
-  today: {
-    diff: number;
-    completed: boolean;
-  };
+  today: Today;
   inventory: InventoryItem[];
   challengeHistory: ChallengeHistoryItem[];
 }

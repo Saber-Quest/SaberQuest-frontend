@@ -1,14 +1,8 @@
+import { SessionUser } from "@lib/types";
 import CryptoJS from "crypto-js";
-import * as https from "https";
 
 const secret = process.env.AUTHSECRET || "devsecret";
 const salt = process.env.SALT || "devsalt";
-
-interface User {
-  id: string;
-  jwt: string;
-  created_at: string;
-}
 
 export function encrypt(text: string) {
   return CryptoJS.AES.encrypt(text, secret + salt).toString();
@@ -20,7 +14,14 @@ export function decrypt(text: string) {
 }
 
 export function createSession(id: string, jwt: string) {
-  const data: User = { id, jwt, created_at: new Date().toISOString() };
-  const encryptedUser = encrypt(JSON.stringify(data));
+  jwt = encrypt(jwt);
+  const data: SessionUser = { id, jwt, created_at: new Date().toISOString() };
+  const encryptedUser: string = encrypt(JSON.stringify(data));
   return [data, encryptedUser];
+}
+
+export function readSession(token: string) {
+  const decryptedUser = decrypt(token);
+  const data: SessionUser = JSON.parse(decryptedUser);
+  return data;
 }

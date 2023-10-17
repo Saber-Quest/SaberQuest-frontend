@@ -5,7 +5,7 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import ProfileMenu from "./ProfileMenu";
 import ProfileMenuSlim from "./ProfileMenuSlim";
-import { User } from "@lib/types/User";
+import { SessionUser } from "@lib/types";
 
 let NavigationLinks = [
   {
@@ -29,7 +29,7 @@ export default function NavBar({
   session,
   sessionCheck,
 }: {
-  session: User | null;
+  session: SessionUser | null;
   sessionCheck: boolean;
 }) {
   const [loading, setLoading] = useState<boolean>(true);
@@ -86,7 +86,11 @@ export default function NavBar({
                     {(!loggedIn && (
                       <>
                         <div className="loginButtons">
-                          <a href="#" rel="noopener" className="loginLinkSteam">
+                          <a
+                            href={`/api/auth/steam`}
+                            rel="noopener"
+                            className="loginLinkSteam"
+                          >
                             <Image
                               src="/assets/images/SteamLogo.svg"
                               className="steamNav"
@@ -95,7 +99,11 @@ export default function NavBar({
                               height={36}
                             />
                           </a>
-                          <a href="#" rel="noopener" className="loginLinkBL">
+                          <a
+                            href={`/api/auth/beatleader`}
+                            rel="noopener"
+                            className="loginLinkBL"
+                          >
                             <Image
                               src="/assets/images/BeatLeaderLogo.png"
                               className="h-[40px] w-[50px]"
@@ -140,7 +148,7 @@ export default function NavBar({
                           <>
                             <div className="loginButtons">
                               <a
-                                href="#"
+                                href={`/api/auth/steam`}
                                 rel="noopener"
                                 className="loginLinkSteam"
                               >
@@ -153,7 +161,7 @@ export default function NavBar({
                                 />
                               </a>
                               <a
-                                href="#"
+                                href={`/api/auth/beatleader`}
                                 rel="noopener"
                                 className="loginLinkBL"
                               >

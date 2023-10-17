@@ -1,24 +1,25 @@
-interface UserInfo {
+export interface UserInfo {
   id: string;
   username: string;
+  about: string;
   images: {
     avatar: string;
-    banner: string | null;
+    banner: string;
     border: string | null;
   };
   preference: string;
-  patreon: string | null;
-  autoComplete: string | null;
+  patreon: boolean;
+  autoComplete: boolean;
 }
 
-interface Stats {
+export interface Stats {
   challengesCompleted: number;
   rank: number;
   qp: number;
   value: number;
 }
 
-interface Today {
+export interface Today {
   diff: number;
   completed: boolean;
 }

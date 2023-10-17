@@ -1,6 +1,6 @@
 import { ChallengeType as cT } from "@lib/enums/Challenge";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
-import { ChallengeHistoryItem } from "@lib/types/AdvancedUser";
+import { ChallengeHistoryItem } from "@lib/types";
 import Image from "next/image";
 
 export default function ExtendedChallengeInfo({

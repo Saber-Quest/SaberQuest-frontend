@@ -2,7 +2,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { User } from "@lib/types/User";
+import { SessionUser } from "@lib/types";
 import { useGlitch } from "react-powerglitch";
 
 const profileMenu = [
@@ -14,14 +14,10 @@ const profileMenu = [
     name: "Settings",
     href: "#",
   },
-  {
-    name: "Log out",
-    href: "#",
-  },
 ];
 
-export default function ProfileMenu({ userinfo }: { userinfo: User }) {
-  const usernameLength = userinfo.userInfo.username.length;
+export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
+  const usernameLength = userinfo.user?.userInfo.username.length || 0;
   const calculatedWidth = `${usernameLength * 8 + 190}px`; // Adjust the multiplication factor and base width as needed
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,10 +29,6 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
   const handleMenuMouseLeave = () => {
     setIsMenuOpen(false);
   };
-
-  if (userinfo.userInfo !== undefined) {
-    profileMenu[0].href = `/profile/${userinfo.userInfo.id}`;
-  }
 
   const glitch = useGlitch({
     playMode: "always",
@@ -76,7 +68,7 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
             width: calculatedWidth,
           }}
         >
-          <p className="ml-4 mr-2 rtl">{userinfo.userInfo.username}</p>
+          <p className="ml-4 mr-2 rtl">{userinfo.user?.userInfo.username}</p>
           <div className="relative overflow-visible">
             <Image
               priority={true}
@@ -91,9 +83,9 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
               //       : glitch.ref
               // }
               src={
-                !userinfo.userInfo.images.avatar
+                !userinfo.user?.userInfo.images.avatar
                   ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
-                  : userinfo.userInfo.images.avatar
+                  : userinfo.user.userInfo.images.avatar
               }
               alt="Profile Picture"
               width={66}
@@ -101,7 +93,7 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
               unoptimized={true}
               className="profilePic rounded-full relative drop-shadow-PFPShadow"
             />
-            {!userinfo.userInfo.images.border === null ? null : (
+            {!userinfo.user?.userInfo.images.border === null ? null : (
               <Image
                 src="/assets/images/users/borders/gif/glitch_border.gif"
                 alt="Border Image"
@@ -143,22 +135,34 @@ export default function ProfileMenu({ userinfo }: { userinfo: User }) {
                       } menuButton bg-opacity-25`}
                     >
                       <div className="flex items-center">
-                        {item.name == "Log out" && (
-                          <Image
-                            src="/assets/images/Logout.svg"
-                            className="mr-1"
-                            aria-hidden="true"
-                            alt="icon"
-                            height={20}
-                            width={20}
-                          />
-                        )}
                         <span>{item.name}</span>
                       </div>
                     </Link>
                   )}
                 </Menu.Item>
               ))}
+              <Menu.Item>
+                {({ active }: { active: any }) => (
+                  <a
+                    href={`/api/auth/logout`}
+                    className={`${
+                      active ? "bg-navButtonActive" : "bg-navButtonBG"
+                    } menuButton bg-opacity-25`}
+                  >
+                    <div className="flex items-center">
+                      <Image
+                        src="/assets/images/Logout.svg"
+                        className="mr-1"
+                        aria-hidden="true"
+                        alt="icon"
+                        height={20}
+                        width={20}
+                      />
+                      <span>Log out</span>
+                    </div>
+                  </a>
+                )}
+              </Menu.Item>
             </div>
           </Menu.Items>
         </Transition>

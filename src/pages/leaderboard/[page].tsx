@@ -1,4 +1,4 @@
-import { LeaderboardData } from "@lib/types/Leaderboard";
+import { LeaderboardData } from "@lib/types";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";

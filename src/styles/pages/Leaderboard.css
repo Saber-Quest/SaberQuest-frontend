@@ -6,12 +6,12 @@
   .LeaderboardContainer {
     @apply mx-auto max-w-[1280px];
     @apply bg-gradient-to-t from-[#26262600] via-[#2626263a] to-[#2626267e];
-    @apply rounded-2xl;
+    @apply rounded-2xl p-4;
   }
   .LeaderboardHeader {
     @apply flex items-center justify-between;
     @apply bg-[#0000003b] rounded-2xl;
-    @apply m-4 py-4;
+    @apply mb-4 py-4;
   }
   .LeaderboardList {
     @apply mt-2;
@@ -19,7 +19,7 @@
   .LeaderboardEntry {
     @apply flex items-center justify-between;
     @apply bg-[#0000003b] rounded-2xl;
-    @apply mx-4 mb-1 py-2;
+    @apply mb-1 py-2;
   }
   .LBHeaderText {
     @apply text-white;

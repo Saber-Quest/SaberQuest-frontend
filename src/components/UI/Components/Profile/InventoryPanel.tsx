@@ -1,4 +1,4 @@
-import { InventoryItem } from "@lib/types/AdvancedUser";
+import { InventoryItem } from "@lib/types";
 import { Tab } from "@headlessui/react";
 import Image from "next/image";
 
