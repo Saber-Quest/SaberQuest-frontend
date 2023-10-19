@@ -152,7 +152,7 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
                     <div className="flex items-center">
                       <Image
                         src="/assets/images/Logout.svg"
-                        className="mr-1"
+                        className="mr-1 h-[20px] w-[20px]"
                         aria-hidden="true"
                         alt="icon"
                         height={20}

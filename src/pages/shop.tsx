@@ -2,15 +2,42 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
 import Header from "@comp/Meta/Title";
-import { ItemList } from "@lib/types";
-import Logo from "public/Logo.svg";
+import { ItemList, Item, SessionUser } from "@lib/types";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
+import Rarities from "@comp/UI/Components/Shop/Rarities";
+import Logo from "public/Logo.svg";
+import { Session } from "inspector";
 
-export default function StorePage() {
+export default function StorePage({
+  session,
+  sessionCheck,
+  setSession,
+  setMessage,
+  setType,
+  setShow,
+}: {
+  session: SessionUser;
+  sessionCheck: boolean;
+  setSession: (session: SessionUser) => void;
+  setMessage: (message: string) => void;
+  setType: (type: string) => void;
+  setShow: (show: boolean) => void;
+}) {
   const [shopItems, setShopItems] = useState<ItemList | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [countdownTime, setCountdownTime] = useState(0);
+  const [userQP, setUserQP] = useState<number>(0);
+
+  //Set userQP once
+
+  useEffect(() => {
+    if (!session) return;
+    if (!session.user) return;
+    if (sessionCheck) {
+      setUserQP(session.user.stats.qp);
+    }
+  }, [session, sessionCheck]);
 
   useEffect(() => {
     if (countdownTime === 0) {
@@ -73,96 +100,173 @@ export default function StorePage() {
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  const onClickHandler = async (item: Item) => {
+    console.log(item)
+    if (userQP < item.price) {
+      setMessage(`You cannot afford "${item.name}".\n\n You're missing ${item.price - userQP} QP.`);
+      setType("error");
+      setShow(true);
+    } else {
+      if (!session) return console.log("No JWT token found for the user!");
+      await axios
+        .post(`${process.env.PUBLIC_URL}/api/shop/buy`, {
+          token: session.jwt,
+          itemId: item,
+        })
+        .then((response) => {
+          if (response.status === 302 || response.status === 200) {
+            setMessage(`You have successfully bought "${item.name}".`);
+            setType("success");
+            setShow(true);
+            setUserQP(userQP - item.price);
+            if (!session.user) return;
+            const updatedSession: SessionUser = {
+              ...session,
+              user: {
+                ...session.user,
+                stats: {
+                  ...session?.user?.stats,
+                  qp: userQP - item.price,
+                },
+              },
+            };
+            setSession(updatedSession);
+          }
+        })
+        .catch((error) => {
+          setMessage(error.response.data.error);
+          setType("error");
+          setShow(true);
+        });
+    }
+  };
+
   return (
     <>
       <Header
-        title={`The Item-shop | ${process.env.PUBLIC_NAME}`}
+        title={`Leaderboard | ${process.env.PUBLIC_NAME}`}
         link={`${process.env.PUBLIC_URL}/shop`}
-        contents={`Item-shop | Current items in the shop on ${process.env.PUBLIC_NAME}.`}
+        contents={`Leaderboard | Leaderboard on ${process.env.PUBLIC_NAME}.`}
         image={Logo}
       />
-      {loading ? (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-          <div className="w-16 h-16 mb-2">Loading....</div>
-        </div>
-      ) : error ? (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-          <div className="w-[120px] h-16 mb-2">No data found.</div>
-        </div>
-      ) : (
-        shopItems !== null &&
-        !loading && (
-          <>
-            <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
-              <h1 className="md:chTextHeader text-[28px] transition-all duration-75 mb-14">
-                Current <span className="text-sqyellow">Shop</span>
-              </h1>
-
-              <h1 className="md:chTextHeader text-[28px] transition-all duration-75 mb-14">
-                {formatCountdownTime(countdownTime)}
-              </h1>
-              <div className="flex flex-row gap-5">
-                {shopItems.items.map((item, index) => (
-                  <>
-                    <div
-                      key={index}
-                      className={`flex flex-col duration-300 transition-all ease-in-out border-opacity-0 hover:border-opacity-100 hover:scale-110 hover:bg-blColorfaint rounded-2xl p-2 w-[150px] max-w-[150px] items-center ${
-                        item.rarity === iR.C
-                          ? "hover:shadow-[0px_0px_3px_1px_#7A7A7A]"
-                          : item.rarity === iR.U
-                          ? "hover:shadow-[0px_0px_3px_1px_#5CD722]"
-                          : item.rarity === iR.R
-                          ? "hover:shadow-[0px_0px_3px_1px_#2594FA]"
-                          : item.rarity === iR.E
-                          ? "hover:shadow-[0px_0px_3px_1px_#AD00FF]"
-                          : item.rarity === iR.L
-                          ? "hover:shadow-[0px_0px_3px_1px_#FFD600]"
-                          : "hover:shadow-[0px_0px_3px_1px_#7A7A7A]"
-                      }`}
-                    >
-                      <div className="flex flex-col gap-5 items-center">
-                        <h1 className="text-[16px] font-medium transition-all duration-75">
-                          {item.name}
-                        </h1>
-                        <h2
-                          className={`font-semibold ${
-                            item.rarity === iR.C
-                              ? "text-commonItem"
-                              : item.rarity === iR.U
-                              ? "text-uncommonItem"
-                              : item.rarity === iR.R
-                              ? "text-rareItem"
-                              : item.rarity === iR.E
-                              ? "text-epicItem"
-                              : item.rarity === iR.L
-                              ? "text-legendaryItem"
-                              : "text-commonItem"
-                          }`}
-                        >
-                          {item.rarity}
-                        </h2>
-                        <h3>
-                          {item.price}{" "}
-                          <span className="text-sqyellow font-semibold">
-                            QP
-                          </span>
-                        </h3>
-                        <Image
-                          className={`w-[78px] h-[78px] transition-all duration-75`}
-                          src={item.image}
-                          alt={item.name}
-                          width={78}
-                          height={78}
-                        />
+      <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="LeaderboardContainer min-w-[1000px]">
+          <div className="LeaderboardList">
+            {loading ? (
+              <div className="flex flex-col items-center justify-center w-full h-full">
+                <div className="w-16 h-16 mb-2">Loading....</div>
+              </div>
+            ) : error ? (
+              <div className="flex flex-col items-center justify-center w-full h-full">
+                <div className="w-[120px] h-16 mb-2">No data found.</div>
+              </div>
+            ) : (
+              shopItems !== null &&
+              !loading && (
+                <>
+                  <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] transition-all duration-75 mb-5 flex justify-between">
+                    <span>
+                      Current <span className="text-sqyellow">Shop</span>
+                    </span>{" "}
+                    {formatCountdownTime(countdownTime)}
+                  </h1>
+                  <div className="px-4 sm:px-6 lg:px-8">
+                    <div className="mt-8 flex flex-col">
+                      <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                          <div className="overflow-hidden shadow md:rounded-lg">
+                            <table className="min-w-full divide-y divide-sqyellow">
+                              <thead className="bg-[#0000003b]">
+                                <tr>
+                                  <th
+                                    scope="col"
+                                    className="py-3.5 pl-1 pr-3 text-left text-sm font-semibold sm:pl-6"
+                                  >
+                                    Item
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className="px-3 py-3.5 text-center text-sm font-semibold"
+                                  >
+                                    Rarity
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className="px-3 py-3.5 text-center text-sm font-semibold"
+                                  >
+                                    Price
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                                  >{userQP} QP
+                                    <span className="sr-only">Edit</span>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {shopItems.items.map((item, index) => (
+                                  <tr
+                                    key={index}
+                                    className={
+                                      (index + 1) % 2 === 0
+                                        ? undefined
+                                        : "bg-[#0000003d]"
+                                    }
+                                  >
+                                    <td className="flex items-center gap-[15px] whitespace-nowrap py-4 pl-1 pr-3 text-sm font-medium text-white sm:pl-6">
+                                      <Image
+                                        className="w-auto h-auto"
+                                        src={item.image}
+                                        alt={item.name}
+                                        width={32}
+                                        height={32}
+                                      />
+                                      {item.name}
+                                    </td>
+                                    <td className="w-[15%] whitespace-nowrap px-3 py-4 text-sm text-center text-white">
+                                      <Rarities
+                                        rarity={
+                                          item.rarity === iR.C
+                                            ? iR.C
+                                            : item.rarity === iR.U
+                                              ? iR.U
+                                              : item.rarity === iR.R
+                                                ? iR.R
+                                                : item.rarity === iR.E
+                                                  ? iR.E
+                                                  : item.rarity === iR.L
+                                                    ? iR.L
+                                                    : iR.C
+                                        }
+                                      />
+                                    </td>
+                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-center font-bold text-sqyellow">
+                                      {item.price} QP
+                                    </td>
+                                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
+                                      <div
+                                        onClick={() => onClickHandler(item)}
+                                        className="text-[#ffd15269] hover:text-sqyellow transition-colors duration-200 hover:cursor-pointer"
+                                      >
+                                        Buy
+                                      </div>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </>
-                ))}
-              </div>
-            </div>
-          </>
-        )
-      )}
+                  </div>
+                </>
+              )
+            )}
+          </div>
+        </div>
+      </div>
     </>
   );
 }

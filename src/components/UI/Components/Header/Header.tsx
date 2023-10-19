@@ -20,7 +20,7 @@ let NavigationLinks = [
   },
   {
     name: "Shop",
-    link: "#",
+    link: "/shop",
     needLogin: true,
   },
 ];

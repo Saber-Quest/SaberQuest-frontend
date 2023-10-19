@@ -9,7 +9,6 @@ export default function Challenges() {
   const [challenges, setChallenges] = useState<ChallengeData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [url, setUrl] = useState<string>("");
   const [countdownTime, setCountdownTime] = useState(0);
 
   useEffect(() => {
@@ -33,7 +32,6 @@ export default function Challenges() {
           console.error(error);
           setError(true);
         });
-      setUrl(window.location.href);
     }
   }, [countdownTime]);
 

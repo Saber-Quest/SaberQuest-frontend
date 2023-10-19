@@ -1,12 +1,12 @@
 import { LeaderboardData } from "@lib/types";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useGlitch } from "react-powerglitch";
 import axios from "axios";
 import Image from "next/image";
 import Header from "@comp/Meta/Title";
 import Link from "next/link";
 import Logo from "public/Logo.svg";
-import { useGlitch } from "react-powerglitch";
 
 export default function Profile() {
   const router = useRouter();

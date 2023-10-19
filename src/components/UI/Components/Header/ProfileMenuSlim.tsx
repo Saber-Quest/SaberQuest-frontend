@@ -142,7 +142,7 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
                         {item.name == "Log out" && (
                           <Image
                             src="/assets/images/Logout.svg"
-                            className="mr-1"
+                            className="mr-1 w-[20px] h-[20px]"
                             aria-hidden="true"
                             alt="icon"
                             height={20}

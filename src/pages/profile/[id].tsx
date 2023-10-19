@@ -121,7 +121,7 @@ export default function Profile({
           contents={`${user.userInfo.username}'s Profile | User-profile on ${process.env.PUBLIC_NAME}.`}
           image={
             !user.userInfo.images.avatar ||
-              user.userInfo.images.avatar.startsWith("http://localhost")
+            user.userInfo.images.avatar.startsWith("http://localhost")
               ? "/assets/images/PFPPlaceholder.png"
               : user.userInfo.images.avatar
           }
@@ -182,8 +182,9 @@ export default function Profile({
                     <p>
                       Rank:{" "}
                       <span
-                        className={`${user.stats.rank === 1 ? "text-sqyellow" : ""
-                          }`}
+                        className={`${
+                          user.stats.rank === 1 ? "text-sqyellow" : ""
+                        }`}
                       >
                         #{user.stats.rank}
                       </span>
@@ -212,7 +213,9 @@ export default function Profile({
                     </p>
                     <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow my-5" />
                     <p className="text-center drop-shadow-textShadow">
-                      {user.userInfo.about ? user.userInfo.about : "This user have yet to write something!"}
+                      {user.userInfo.about
+                        ? user.userInfo.about
+                        : "This user have yet to write something!"}
                     </p>
                   </div>
                 </div>
@@ -222,9 +225,10 @@ export default function Profile({
                       <Tab.List className="flex min-w-full justify-center">
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${selected
-                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                              : "border-transparent"
+                            `${
+                              selected
+                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                                : "border-transparent"
                             } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
@@ -232,9 +236,10 @@ export default function Profile({
                         </Tab>
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${selected
-                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                              : "border-transparent"
+                            `${
+                              selected
+                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                                : "border-transparent"
                             } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
@@ -243,15 +248,16 @@ export default function Profile({
                         {session?.id === user.userInfo.id ? (
                           <Tab
                             className={({ selected }: { selected: boolean }) =>
-                              `${selected
-                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                : "border-transparent"
+                              `${
+                                selected
+                                  ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                                  : "border-transparent"
                               } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                             }
                           >
                             Crafting
                           </Tab>
-                        ): null}
+                        ) : null}
                       </Tab.List>
                       <Tab.Panels className="mt-10">
                         {/* Inventory */}

@@ -1,19 +1,14 @@
-import { useState, useEffect } from "react";
 import React from "react";
 import Header from "@comp/Meta/Title";
 import Logo from "public/Logo.svg";
+import { SessionUser } from "@lib/types";
 
-export default function Home({ session }: { session: boolean | String }) {
-  const [url, setUrl] = useState<string>("");
-  useEffect(() => {
-    setUrl(window.location.href);
-  }, []);
-
+export default function Home({ session }: { session: SessionUser | null }) {
   return (
     <>
       <Header
         title={`Frontpage`}
-        link={url}
+        link={`${process.env.PUBLIC_URL}/`}
         contents={`Frontpage | The Frontpage of ${process.env.PUBLIC_NAME}.`}
         image={Logo}
       />

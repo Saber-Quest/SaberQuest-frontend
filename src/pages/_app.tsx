@@ -14,12 +14,17 @@ import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import axios from "axios";
 import Header from "@ui/Header/Header";
+import { Notification } from "@comp/UI/Notifications";
 import Footer from "@ui/Footer/Footer";
 import { SessionUser } from "@lib/types";
 
 export default function StasisApp({ Component, pageProps }: AppProps) {
   const [session, setSession] = useState<SessionUser | null>(null);
-  const [sessionChecked, setSessionChecked] = useState(false);
+  const [sessionChecked, setSessionChecked] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  const [timer, setTimer] = useState<number>(5000);
 
   useEffect(() => {
     if (!session) {
@@ -42,7 +47,22 @@ export default function StasisApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Header session={session} sessionCheck={sessionChecked} />
-      <Component {...pageProps} session={session} sessionCheck={sessionChecked} />
+      <Component
+        {...pageProps}
+        session={session}
+        sessionCheck={sessionChecked}
+        setSession={setSession}
+        setMessage={setMessage}
+        setType={setType}
+        setShow={setShow}
+      />
+      <Notification
+        dataArray={{ show, message, type, timer }}
+        setMessage={setMessage}
+        setType={setType}
+        setShow={setShow}
+        setTimer={setTimer}
+      />
       <Footer />
     </>
   );
