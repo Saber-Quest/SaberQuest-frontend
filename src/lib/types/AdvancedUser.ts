@@ -6,6 +6,7 @@ export interface InventoryItem {
   image: string;
   name: string;
   amount: number;
+  rarity: string;
 }
 
 export interface ChallengeItem {

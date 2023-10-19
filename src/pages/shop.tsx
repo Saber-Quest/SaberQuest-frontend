@@ -6,7 +6,6 @@ import { ItemList, Item, SessionUser } from "@lib/types";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
 import Rarities from "@comp/UI/Components/Shop/Rarities";
 import Logo from "public/Logo.svg";
-import { Session } from "inspector";
 
 export default function StorePage({
   session,
