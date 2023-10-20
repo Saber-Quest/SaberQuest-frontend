@@ -10,15 +10,15 @@ The new frontend for [SaberQuest](https://saberquest.xyz).
 > [!NOTE]
 > Contributions are always appreciated!
 > 
-> If you want to contribute, fork the repository and make a pull request.
+> If you want to contribute, fork the repository and make a pull request.  
 > The name of the pull request should be `[Username]/[Feature]`/``.
 > If you want to contribute to the backend, go to the [Backend Repository](https://github.com/Saber-Quest/SaberQuest-backend)
 >
-> Every pull request will be reviewed by a maintainer, and if it is accepted, it will be merged into the next-branch for testing.
+> Every pull request will be reviewed by a maintainer, and if it is accepted, it will be merged into the next-branch for testing.  
 > If it passes tests and is stable, it will be merged into the main branch, otherwise a maintainer will contact you to fix the issues.
 >
 > This can take 3-4 days, so please be patient, as We're all working on this in our free time. Thank you!
-
+#
 ## Getting Started
 
 First, install the dependencies:
@@ -31,9 +31,11 @@ yarn
 
 Setup the environment variables: [`.env.example`](.env.example)
 
-> [!CAUTION]
+> [!WARNING]
 > If you do **not** change the secret and salt, the application will use default values. (`devsecret` and `devsalt`)
 > Please change those, to avoid cookies being stolen and reversed.
+>
+> Secrets and salts not changed, is a security risk, and SaberQuest is not responsible for any damage caused by this.
 
 Then, run the development server:
 
