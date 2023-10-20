@@ -60,7 +60,7 @@ export default function NavBar({
                   <Image
                     src="/assets/images/Logo.svg"
                     className="navLogo"
-                    alt="SaberQuest logo"
+                    alt={`${process.env.PUBLIC_NAME} Logo`}
                     width={96}
                     height={96}
                   />
