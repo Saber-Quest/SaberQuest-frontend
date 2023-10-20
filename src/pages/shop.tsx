@@ -100,9 +100,13 @@ export default function StorePage({
   };
 
   const onClickHandler = async (item: Item) => {
-    console.log(item)
+    console.log(item);
     if (userQP < item.price) {
-      setMessage(`You cannot afford "${item.name}".\n\n You're missing ${item.price - userQP} QP.`);
+      setMessage(
+        `You cannot afford "${item.name}".\n\n You're missing ${
+          item.price - userQP
+        } QP.`
+      );
       setType("error");
       setShow(true);
     } else {
@@ -198,7 +202,8 @@ export default function StorePage({
                                   <th
                                     scope="col"
                                     className="relative py-3.5 pl-3 pr-4 sm:pr-6"
-                                  >{userQP} QP
+                                  >
+                                    {userQP} QP
                                     <span className="sr-only">Edit</span>
                                   </th>
                                 </tr>
@@ -229,14 +234,14 @@ export default function StorePage({
                                           item.rarity === iR.C
                                             ? iR.C
                                             : item.rarity === iR.U
-                                              ? iR.U
-                                              : item.rarity === iR.R
-                                                ? iR.R
-                                                : item.rarity === iR.E
-                                                  ? iR.E
-                                                  : item.rarity === iR.L
-                                                    ? iR.L
-                                                    : iR.C
+                                            ? iR.U
+                                            : item.rarity === iR.R
+                                            ? iR.R
+                                            : item.rarity === iR.E
+                                            ? iR.E
+                                            : item.rarity === iR.L
+                                            ? iR.L
+                                            : iR.C
                                         }
                                       />
                                     </td>

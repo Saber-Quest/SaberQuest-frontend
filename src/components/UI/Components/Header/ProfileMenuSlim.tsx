@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SessionUser } from "@lib/types";
@@ -12,7 +12,7 @@ const profileMenu = [
   },
   {
     name: "Settings",
-    href: "#",
+    href: "/profile/settings",
   },
   {
     name: "Log out",
@@ -25,6 +25,14 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
   const calculatedWidth = `${usernameLength * 8 + 190}px`; // Adjust the multiplication factor and base width as needed
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (userinfo.user?.userInfo.images.border === "gif/glitch_border.gif") {
+      glitch.startGlitch();
+    } else {
+      glitch.stopGlitch();
+    }
+  });
 
   const handleButtonMouseEnter = () => {
     setIsMenuOpen(true);
@@ -77,15 +85,6 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
             <Image
               priority={true}
               ref={glitch.ref}
-              // ref={
-              //   user.userInfo.images.border === null
-              //     ? null
-              //     : user.userInfo.images.border.includes(
-              //       "glitch_border.gif"
-              //     )
-              //       ? glitch.ref
-              //       : glitch.ref
-              // }
               src={
                 !userinfo.user?.userInfo.images.avatar
                   ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
@@ -97,9 +96,9 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
               unoptimized={true}
               className="profilePic rounded-full relative drop-shadow-PFPShadow"
             />
-            {!userinfo.user?.userInfo.images.border === null ? null : (
+            {userinfo.user?.userInfo.images.border && (
               <Image
-                src="/assets/images/users/borders/gif/glitch_border.gif"
+                src={`/assets/images/users/borders/${userinfo.user?.userInfo.images.border}`}
                 alt="Border Image"
                 className="absolute inset-0 object-cover scale-[145%] z-10"
                 width={220}

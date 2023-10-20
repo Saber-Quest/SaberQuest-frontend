@@ -2,6 +2,19 @@
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
+  headers: async () => {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store",
+          },
+        ],
+      },
+    ];
+  },
   images: {
     minimumCacheTTL: 300,
     remotePatterns: [

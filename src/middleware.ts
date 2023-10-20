@@ -14,12 +14,11 @@ export async function middleware(request: NextRequest) {
 
   // Authed Section
   if (authData == null) {
-    if (request.nextUrl.pathname === "/profile") {
-      const url = request.nextUrl.clone();
-      url.pathname = "/";
-      return NextResponse.redirect(url);
-    }
-    if (request.nextUrl.pathname === "/shop") {
+    if (
+      request.nextUrl.pathname === "/profile" ||
+      request.nextUrl.pathname === "/profile/settings" ||
+      request.nextUrl.pathname === "/shop"
+    ) {
       const url = request.nextUrl.clone();
       url.pathname = "/";
       return NextResponse.redirect(url);

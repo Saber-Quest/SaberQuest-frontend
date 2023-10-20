@@ -121,16 +121,13 @@ export default function Profile() {
                           <div className="relative overflow-visible mr-5">
                             <Image
                               priority={true}
-                              ref={glitch.ref}
-                              // ref={
-                              //   user.userInfo.images.border === null
-                              //     ? null
-                              //     : user.userInfo.images.border.includes(
-                              //       "glitch_border.gif"
-                              //     )
-                              //       ? glitch.ref
-                              //       : glitch.ref
-                              // }
+                              ref={
+                                user.userInfo.images.border?.includes(
+                                  "glitch_border.gif"
+                                )
+                                  ? glitch.ref
+                                  : null
+                              }
                               src={
                                 !user.userInfo.images.avatar
                                   ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
@@ -143,9 +140,9 @@ export default function Profile() {
                               key={index}
                               className="rounded-full relative drop-shadow-PFPShadow"
                             />
-                            {!user.userInfo.images.border === null ? null : (
+                            {user.userInfo.images.border && (
                               <Image
-                                src="/assets/images/users/borders/gif/glitch_border.gif"
+                                src={`/assets/images/users/borders/${user.userInfo.images.border}`}
                                 alt="Border Image"
                                 className="absolute inset-0 object-cover scale-[145%] z-10"
                                 width={220}

@@ -141,16 +141,11 @@ export default function Profile({
                 <div className="infoDiv relative overflow-visible flex justify-center w-full mt-[-70px]">
                   <Image
                     priority={true}
-                    ref={glitch.ref}
-                    //   ref={
-                    //     user.userInfo.images.border === null
-                    //       ? null
-                    //       : user.userInfo.images.border.includes(
-                    //         "glitch_border.gif"
-                    //       )
-                    //         ? glitch.ref
-                    //         : glitch.ref
-                    // }
+                    ref={
+                      user.userInfo.images.border?.includes("glitch_border.gif")
+                        ? glitch.ref
+                        : null
+                    }
                     src={
                       !user.userInfo.images.avatar
                         ? "/assets/images/PFPPlaceholder.png"
@@ -162,9 +157,9 @@ export default function Profile({
                     unoptimized={true}
                     className="rounded-full relative drop-shadow-PFPShadow"
                   />
-                  {!user.userInfo.images.border === null ? null : (
+                  {user.userInfo.images.border && (
                     <Image
-                      src="/assets/images/users/borders/gif/glitch_border.gif"
+                      src={`/assets/images/users/borders/${user.userInfo.images.border}`}
                       alt="Border Image"
                       className="absolute top-[-35px] z-10"
                       width={220}
