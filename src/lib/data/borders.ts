@@ -66,6 +66,7 @@ export const borders: Border[] = [
     type: "gif",
     hasGlitchEffect: false,
   },
+  //PNGs
   {
     id: 8,
     name: "Gentleman",
