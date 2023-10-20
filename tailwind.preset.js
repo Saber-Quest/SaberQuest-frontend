@@ -19,9 +19,17 @@ module.exports = {
         logoShadow: "0 0 0.5em #FFD073aa",
         textShadow: "0 2px 2px #00000070",
         PFPShadow: "2px 2px 1px #00000070",
+        normalShadow: "0 0 0.5em #FFD941aa",
+        hardShadow: "0 0 0.5em #E93B3Baa",
+        expertShadow: "0 0 0.5em #B74BF5aa",
       },
       boxShadow: {
         navHoverShadow: "0 18px 15px -15px #FFD073aa",
+      },
+      boxShadowColor: {
+        normalreq: "#FFD941",
+        hardreq: "#E93B3B",
+        expertreq: "#B74BF5",
       },
       colors: {
         sqyellow: "#FFD073",
