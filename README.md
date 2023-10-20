@@ -31,7 +31,7 @@ yarn
 
 Setup the environment variables: [`.env.example`](.env.example)
 
-> [!CAUTION]
+> [!WARNING]
 > If you do **not** change the secret and salt, the application will use default values. (`devsecret` and `devsalt`)
 > Please change those, to avoid cookies being stolen and reversed.
 >
