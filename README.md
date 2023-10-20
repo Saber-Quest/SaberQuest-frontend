@@ -1,36 +1,76 @@
-# SaberQuest-frontend
-This is the frontend code for SaberQuest
+# SaberQuest - Frontend 🖥️
 
-# New Features
-New features will be tracked using Github Issues.
+The new frontend for [SaberQuest](https://saberquest.xyz).
 
-When you accept an issue make a new Branch named: `[Username]/[Feature]`.
+## Database/Backend 🗄️
+- [Backend Service](https://github.com/Saber-Quest/SaberQuest-backend)
 
-# Contributing
-When you want to contribute the new feature, make a pull request from your branch to the main branch.
+# Want to help?
 
-# Code specifics
+> [!NOTE]
+> Contributions are always appreciated!
+> 
+> If you want to contribute, fork the repository and make a pull request.
+> The name of the pull request should be `[Username]/[Feature]`/``.
+> If you want to contribute to the backend, go to the [Backend Repository](https://github.com/Saber-Quest/SaberQuest-backend)
+>
+> Every pull request will be reviewed by a maintainer, and if it is accepted, it will be merged into the next-branch for testing.
+> If it passes tests and is stable, it will be merged into the main branch, otherwise a maintainer will contact you to fix the issues.
+>
+> This can take 3-4 days, so please be patient, as We're all working on this in our free time. Thank you!
 
-## Collectible IDs
-Each collectible has it's own ID.
+## Getting Started
 
-- ap - Arrow Pieces
-- bcn - Bad Cut Notes
-- bp - Blue Note Pieces
-- bd - Blue Debris
-- bn - Blue Notes
-- bs - Blue Saber
-- b - Bombs
-- bt - BSMG Token
-- cw - Crouch Wall
-- ct - Cube Community Token
-- gn - Golden Note
-- gp - Golden Pieces
-- rp - Red Note Pieces
-- rd - Red Debris
-- rn - Red Notes
-- rs - Red Saber
-- st - ScoreSaber Token
-- sn - Silver Note
-- sp - Silver Note Pieces
-- w - Wall
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn
+```
+
+Setup the environment variables: [`.env.example`](.env.example)
+
+> [!CAUTION]
+> If you do **not** change the secret and salt, the application will use default values. (`devsecret` and `devsalt`)
+> Please change those, to avoid cookies being stolen and reversed.
+
+Then, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
+
+## Scripts
+
+- `dev` - Runs 'Prettier' and starts the development server on port 3001.
+- `build` - Builds the application for deployment.
+- `start` - Runs the built application in production mode.
+- `prod` - Runs 'Prettier', builds the application, and runs it in production mode.
+- `lint` - Runs ESLint on the project.
+- `format` - Runs Prettier on the project.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+To learn more about Tailwind CSS, take a look at the following resources:
+
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs) - learn about Tailwind CSS features and API.
+- [Tailwind CSS Cheat Sheet](https://nerdcave.com/tailwind-cheat-sheet) - a cheat sheet for Tailwind CSS classes.
+
+To learn more about Flowbite, take a look at the following resources:
+
+- [Flowbite Documentation](https://flowbite.com/docs) - learn about Flowbite features and API.
+- [Flowbite Community](https://community.flowbite.com) - a community for Flowbite users.
+
+## License 📜
+
+This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details
