@@ -49,7 +49,7 @@ export default function Profile() {
       const navPage = parseInt(page as string);
       setCurrentPage(navPage);
       axios
-        .get(`${process.env.API_URL}/leaderboard?page=${navPage}&limit=10`)
+        .get(`${process.env.API_URL}/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`)
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
             setError(false);

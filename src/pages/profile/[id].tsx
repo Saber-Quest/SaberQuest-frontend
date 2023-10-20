@@ -119,12 +119,7 @@ export default function Profile({
           title={`${user.userInfo.username}'s Profile`}
           link={`${process.env.PUBLIC_URL}/profile/${user.userInfo.id}`}
           contents={`${user.userInfo.username}'s Profile | User-profile on ${process.env.PUBLIC_NAME}.`}
-          image={
-            !user.userInfo.images.avatar ||
-            user.userInfo.images.avatar.startsWith("http://localhost")
-              ? "/assets/images/PFPPlaceholder.png"
-              : user.userInfo.images.avatar
-          }
+          image={user.userInfo.images.avatar}
         />
         <div className="max-w-[100vw] 1920:max-w-[75vw] px-16 mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>

@@ -91,7 +91,7 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
               unoptimized={true}
               className="profilePic rounded-full relative drop-shadow-PFPShadow"
             />
-            {!userinfo.user?.userInfo.images.border === null ? null : (
+            {userinfo.user?.userInfo.images.border && (
               <Image
                 src={`/assets/images/users/borders/${userinfo.user?.userInfo.images.border}`}
                 alt="Border Image"
