@@ -1,4 +1,4 @@
-import { LeaderboardData } from "@lib/types";
+import { LeaderboardData, User } from "@lib/types";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useGlitch } from "react-powerglitch";
@@ -92,7 +92,7 @@ export default function Profile() {
           <div className="LeaderboardList">
             {loading ? (
               <div className="flex flex-col items-center justify-center w-full h-full">
-                <div className="w-16 h-16 mb-2">Loading....</div>
+                <div className="w-16 h-16 mb-2">Loading...</div>
               </div>
             ) : error ? (
               <div className="flex flex-col items-center justify-center w-full h-full">
@@ -101,9 +101,9 @@ export default function Profile() {
             ) : (
               <>
                 {Array.isArray(leaderboard) &&
-                  leaderboard.map((user, index) => (
+                  leaderboard.map((user: User, index) => (
                     <Link href={`/profile/${user.userInfo.id}`} key={index}>
-                      <div className="LeaderboardEntry" key={index}>
+                      <div className="LeaderboardEntry" key={index} style={{backgroundImage: !user.userInfo.images.banner ? `` : `url(/api/${user.userInfo.id}/hor)`,backgroundSize: "cover",}}>
                         <div className="LBEntryText LBR">
                           {user.stats.rank === 1 ? (
                             <span className="text-sqyellow drop-shadow-rank1Shadow">

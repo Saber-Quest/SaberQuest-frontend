@@ -205,7 +205,7 @@ export default function Profile({
                     <p className="text-center drop-shadow-textShadow">
                       {user.userInfo.about
                         ? user.userInfo.about
-                        : "This user have yet to write something!"}
+                        : "This user has yet to write something!"}
                     </p>
                   </div>
                 </div>

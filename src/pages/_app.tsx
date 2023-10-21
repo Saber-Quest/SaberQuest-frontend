@@ -19,6 +19,7 @@ import Footer from "@ui/Footer/Footer";
 import { SessionUser } from "@lib/types";
 
 export default function StasisApp({ Component, pageProps }: AppProps) {
+  const [maintenance, setMaintenance] = useState<boolean>(false);
   const [session, setSession] = useState<SessionUser | null>(null);
   const [sessionChecked, setSessionChecked] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
@@ -27,7 +28,7 @@ export default function StasisApp({ Component, pageProps }: AppProps) {
   const [timer, setTimer] = useState<number>(5000);
 
   useEffect(() => {
-    if (!session) {
+    if (!session && !maintenance) {
       axios
         .get(`${process.env.PUBLIC_URL}/api/auth/cookie`)
         .then((response) => {
@@ -42,28 +43,34 @@ export default function StasisApp({ Component, pageProps }: AppProps) {
           setSessionChecked(true);
         });
     }
-  }, [session]);
+  }, [session, maintenance]);
 
   return (
     <>
-      <Header session={session} sessionCheck={sessionChecked} />
-      <Component
-        {...pageProps}
-        session={session}
-        sessionCheck={sessionChecked}
-        setSession={setSession}
-        setMessage={setMessage}
-        setType={setType}
-        setShow={setShow}
-      />
-      <Notification
-        dataArray={{ show, message, type, timer }}
-        setMessage={setMessage}
-        setType={setType}
-        setShow={setShow}
-        setTimer={setTimer}
-      />
-      <Footer />
+      {maintenance ? (
+        "Maintenance mode is on!"
+        ) : (
+          <>
+          <Header session={session} sessionCheck={sessionChecked} />
+          <Component
+            {...pageProps}
+            session={session}
+            sessionCheck={sessionChecked}
+            setSession={setSession}
+            setMessage={setMessage}
+            setType={setType}
+            setShow={setShow}
+          />
+          <Notification
+            dataArray={{ show, message, type, timer }}
+            setMessage={setMessage}
+            setType={setType}
+            setShow={setShow}
+            setTimer={setTimer}
+          />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
