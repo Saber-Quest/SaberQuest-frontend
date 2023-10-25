@@ -21,7 +21,7 @@
       "@types/*": ["./src/lib/types/*"],
       "@enums/*": ["./src/lib/enums/*"],
       "@style/*": ["./src/styles/*"],
-      "@public/*": ["./public/*"],
+      "@public": ["./public/*"],
       "@borders/*": ["./src/lib/borders*"]
     }
   },

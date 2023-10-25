@@ -21,7 +21,11 @@ export function createSession(id: string, jwt: string) {
 }
 
 export function readSession(token: string) {
-  const decryptedUser = decrypt(token);
-  const data: SessionUser = JSON.parse(decryptedUser);
-  return data;
+  try {
+    const decryptedUser = decrypt(token);
+    const data: SessionUser = JSON.parse(decryptedUser);
+    return data;
+  } catch (error) {
+    return null;
+  }
 }

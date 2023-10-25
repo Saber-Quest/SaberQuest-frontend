@@ -147,7 +147,7 @@ export default function StorePage({
   return (
     <>
       <Header
-        title={`Leaderboard | ${process.env.PUBLIC_NAME}`}
+        title={`Leaderboard`}
         link={`${process.env.PUBLIC_URL}/shop`}
         contents={`Leaderboard | Leaderboard on ${process.env.PUBLIC_NAME}.`}
         image={Logo}

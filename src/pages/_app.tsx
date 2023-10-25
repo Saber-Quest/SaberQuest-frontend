@@ -17,6 +17,7 @@ import Header from "@ui/Header/Header";
 import { Notification } from "@comp/UI/Notifications";
 import Footer from "@ui/Footer/Footer";
 import { SessionUser } from "@lib/types";
+import Maintenance from "@comp/UI/Components/Maintenance";
 
 export default function StasisApp({ Component, pageProps }: AppProps) {
   const [maintenance, setMaintenance] = useState<boolean>(false);
@@ -28,7 +29,7 @@ export default function StasisApp({ Component, pageProps }: AppProps) {
   const [timer, setTimer] = useState<number>(5000);
 
   useEffect(() => {
-    if (!session && !maintenance) {
+    if (!session) {
       axios
         .get(`${process.env.PUBLIC_URL}/api/auth/cookie`)
         .then((response) => {
@@ -48,9 +49,10 @@ export default function StasisApp({ Component, pageProps }: AppProps) {
   return (
     <>
       {maintenance ? (
-        "Maintenance mode is on!"
-        ) : (
-          <>
+        /* Need to make it so if the user is admin, they don't see this page, but instead the header-component adds a "MAINTENANCE MODE"-banner */
+        <Maintenance />
+      ) : (
+        <>
           <Header session={session} sessionCheck={sessionChecked} />
           <Component
             {...pageProps}

@@ -74,7 +74,7 @@ export default function Profile() {
   return (
     <>
       <Header
-        title={`Leaderboard | ${process.env.PUBLIC_NAME}`}
+        title={`Leaderboard`}
         link={`${process.env.PUBLIC_URL}/leaderboard/${currentPage}`}
         contents={`Leaderboard | Leaderboard on ${process.env.PUBLIC_NAME}.`}
         image={Logo}
@@ -103,7 +103,16 @@ export default function Profile() {
                 {Array.isArray(leaderboard) &&
                   leaderboard.map((user: User, index) => (
                     <Link href={`/profile/${user.userInfo.id}`} key={index}>
-                      <div className="LeaderboardEntry" key={index} style={{backgroundImage: !user.userInfo.images.banner ? `` : `url(/api/${user.userInfo.id}/hor)`,backgroundSize: "cover",}}>
+                      <div
+                        className="LeaderboardEntry"
+                        key={index}
+                        style={{
+                          backgroundImage: !user.userInfo.images.banner
+                            ? ``
+                            : `url(/api/${user.userInfo.id}/hor)`,
+                          backgroundSize: "cover",
+                        }}
+                      >
                         <div className="LBEntryText LBR">
                           {user.stats.rank === 1 ? (
                             <span className="text-sqyellow drop-shadow-rank1Shadow">

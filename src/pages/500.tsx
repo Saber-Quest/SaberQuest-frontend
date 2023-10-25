@@ -22,7 +22,9 @@ export default function FourOFour() {
                 Internal server error!
               </p>
 
-              <p className="mt-4 text-white">We&apos;re working on a fix, don&apos;t worry!</p>
+              <p className="mt-4 text-white">
+                We&apos;re working on a fix, don&apos;t worry!
+              </p>
             </div>
           </main>
         </div>

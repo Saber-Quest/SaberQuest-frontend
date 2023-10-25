@@ -75,7 +75,7 @@ export default function Challenges() {
   return (
     <>
       <Header
-        title={`Daily challenges | ${process.env.PUBLIC_NAME}`}
+        title={`Daily challenges`}
         link={`${process.env.PUBLIC_URL}/challenges`}
         contents={`Daily Challenges | Current challenges on ${process.env.PUBLIC_NAME}.`}
         image={Logo}

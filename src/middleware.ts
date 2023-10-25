@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { readSession } from "@lib/api/createSession";
 import { SessionUser } from "@lib/types";
 
@@ -14,6 +13,7 @@ export async function middleware(request: NextRequest) {
 
   // Authed Section
   if (authData == null) {
+    response.cookies.set("auth", "", { expires: new Date(0) });
     if (
       request.nextUrl.pathname === "/profile" ||
       request.nextUrl.pathname === "/profile/settings" ||
