@@ -41,6 +41,5 @@ next-env.d.ts
 
 
 public/assets/images/users/*
-src/pages/api/*
 .env
 .env.development

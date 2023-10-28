@@ -28,8 +28,6 @@ export default function StorePage({
   const [countdownTime, setCountdownTime] = useState(0);
   const [userQP, setUserQP] = useState<number>(0);
 
-  //Set userQP once
-
   useEffect(() => {
     if (!session) return;
     if (!session.user) return;

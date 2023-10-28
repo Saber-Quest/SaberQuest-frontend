@@ -30,7 +30,7 @@ export default function InventoryPanel({
                         : item.rarity === iR.L
                         ? "border-legendaryItem hover:bg-legendaryItemfaint"
                         : "border-sqyellow hover:bg-sqyellowfaint"
-                    } flex flex-col items-center rounded-3xl p-2 border-2 border-opacity-5 drop-shadow-PFPShadow hover:border-opacity-70 transition-all duration-150 ease-in-out`}
+                    } flex flex-col items-center rounded-3xl p-2 border-2 border-opacity-30 drop-shadow-PFPShadow hover:border-opacity-70 transition-all duration-150 ease-in-out`}
                   >
                     <Image
                       src={item.image}

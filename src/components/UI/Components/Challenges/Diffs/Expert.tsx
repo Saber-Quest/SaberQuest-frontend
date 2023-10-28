@@ -5,19 +5,28 @@ export default function ExpertDiff({
   challengeDatas,
   desc,
   type,
+  selDiff,
+  showSel,
+  finished,
+  onSelectDiff,
 }: {
   challengeDatas: ChallengeData["difficulties"]["expert"];
   desc: ChallengeData["description"];
   type: ChallengeData["type"];
+  selDiff: number;
+  showSel: boolean;
+  finished: boolean;
+  onSelectDiff: (diff: number) => void;
 }) {
   return (
     <div className="chChallenges flex flex-col md:flex-row gap-12">
       <div
-        className={`flex flex-col items-center rounded-xl p-5 hover:shadow-[0px_0px_3px_1px_#B74BF5] transition-all duration-300 ease-in-out`}
+        className={`${showSel ? 'hover:cursor-pointer' : ''} flex flex-col items-center rounded-xl p-5 hover:shadow-[0px_0px_3px_1px_#B74BF5] transition-all duration-300 ease-in-out`}
+        onClick={() => onSelectDiff(3)}
       >
         <h1 className={`chTextHeader text-expertreq`}>Expert</h1>
         <div className={`chExpertDivider chDivider w-full`} />
-        <div>{desc}:</div>
+        <div className="max-w-[300px] text-center">{desc}</div>
         <div className="pt-5 text-[24px] justify-center flex">
           {(type === cT.Map && (
             <>
@@ -171,6 +180,11 @@ export default function ExpertDiff({
               </>
             ))}
         </div>
+        {selDiff == 3 && showSel && (
+          <div className="uppercase font-bold text-[24px] text-sqyellow drop-shadow-logoShadow flex flex-col items-center justify-center w-full mt-5">
+            {finished ? 'Finished' : 'Selected'}
+          </div>
+        )}
       </div>
     </div>
   );
