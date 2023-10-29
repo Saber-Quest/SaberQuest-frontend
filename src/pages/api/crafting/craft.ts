@@ -5,7 +5,7 @@ import { decrypt } from "@lib/api/createSession";
 
 const ratelimit: any = 5;
 const limiter = rateLimit({
-  interval: 10 * 1000,
+  interval: 5 * 1000,
   uniqueTokenPerInterval: 200,
 });
 

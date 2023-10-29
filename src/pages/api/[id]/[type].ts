@@ -21,7 +21,7 @@ export default async function getPlayerBanner(
     }
 
     const response = await axios.get(
-      `${process.env.API_URL}/profile/${id}/banner?style=${type}`, //THIS NEEDS TO GET CHANGED BEFORE DEPLOYMENT!!
+      `${process.env.API_URL}/profile/${id}/banner?style=${type}`,
       { responseType: "arraybuffer" }
     );
 
