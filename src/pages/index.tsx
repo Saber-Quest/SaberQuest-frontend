@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@comp/Meta/Title";
-import Logo from "public/Logo.svg";
 import { SessionUser } from "@lib/types";
 
 export default function Home({ session }: { session: SessionUser | null }) {
@@ -10,7 +9,7 @@ export default function Home({ session }: { session: SessionUser | null }) {
         title={`Frontpage`}
         link={`${process.env.PUBLIC_URL}/`}
         contents={`Frontpage | The Frontpage of ${process.env.PUBLIC_NAME}.`}
-        image={Logo}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
       <div className="fpBody">
         <div className="fpBodyLeft">

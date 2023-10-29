@@ -77,7 +77,7 @@ export const borders: Border[] = [
   },
   {
     id: 9,
-    name: "The Sun, The Moon, The Stars",
+    name: "The Sun, The Moon, The Star",
     imageUrl: "png/sun_moon_star.png",
     patreon: true,
     type: "png",

@@ -1,4 +1,3 @@
-
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { decrypt } from "@lib/api/createSession";
@@ -30,7 +29,9 @@ export default async function handler(
           return res.status(400).json({ error: "Missing valid token" });
         }
         if (!id) {
-          return res.status(400).json({ error: "Missing a valid challenge ID" });
+          return res
+            .status(400)
+            .json({ error: "Missing a valid challenge ID" });
         }
         const deToken = decrypt(t);
 

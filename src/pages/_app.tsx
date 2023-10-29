@@ -17,7 +17,7 @@ import Header from "@ui/Header/Header";
 import { Notification } from "@comp/UI/Notifications";
 import Footer from "@ui/Footer/Footer";
 import { SessionUser } from "@lib/types";
-import Maintenance from "@comp/UI/Components/Maintenance";
+import Maintenance from "@ui/Maintenance";
 
 export default function StasisApp({ Component, pageProps }: AppProps) {
   const [maintenance, setMaintenance] = useState<boolean>(false);

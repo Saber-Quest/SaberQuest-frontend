@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import BorderDropdown from "@comp/UI/Components/Profile/Settings/BorderSelection";
+import BorderDropdown from "@ui/Profile/Settings/BorderSelection";
 import { Border, SessionUser } from "@lib/types";
 import { borders } from "@lib/data/borders";
 import axios from "axios";
 import { useGlitch } from "react-powerglitch";
 import Header from "@comp/Meta/Title";
-import Logo from "public/Logo.svg";
 
 export default function ImgTest({
   session,
@@ -148,7 +147,7 @@ export default function ImgTest({
         title={`Settings-page`}
         link={`/`}
         contents={`Settings-page | Settings-page on ${process.env.PUBLIC_NAME}.`}
-        image={Logo}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
       {session && session.user && (
         <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">

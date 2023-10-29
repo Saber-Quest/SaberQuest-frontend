@@ -4,8 +4,7 @@ import axios from "axios";
 import Header from "@comp/Meta/Title";
 import { ItemList, Item, SessionUser } from "@lib/types";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
-import Rarities from "@comp/UI/Components/Shop/Rarities";
-import Logo from "public/Logo.svg";
+import Rarities from "@ui/Shop/Rarities";
 
 export default function StorePage({
   session,
@@ -148,7 +147,7 @@ export default function StorePage({
         title={`Leaderboard`}
         link={`${process.env.PUBLIC_URL}/shop`}
         contents={`Leaderboard | Leaderboard on ${process.env.PUBLIC_NAME}.`}
-        image={Logo}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
       <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
         <div className="LeaderboardContainer min-w-[1000px]">
@@ -202,7 +201,6 @@ export default function StorePage({
                                     className="relative py-3.5 pl-3 pr-4 sm:pr-6"
                                   >
                                     {userQP} QP
-                                    <span className="sr-only">Edit</span>
                                   </th>
                                 </tr>
                               </thead>

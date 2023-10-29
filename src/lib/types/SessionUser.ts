@@ -2,7 +2,7 @@ export interface SessionUser {
   id?: string;
   jwt: string;
   created_at: string;
-  user?: User;
+  user?: AdvancedUser;
 }
 
-import { User } from "./";
+import { AdvancedUser } from "./";

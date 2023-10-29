@@ -13,7 +13,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
   try {
     await limiter.check(res, ratelimit, "CACHE_TOKEN");
     try {
@@ -33,7 +32,9 @@ export default async function handler(
             itemId: itemId.id,
           })
           .then(() => {
-            return res.status(200).json({ message: "Item bought successfully" });
+            return res
+              .status(200)
+              .json({ message: "Item bought successfully" });
           })
           .catch((error) => {
             return res.status(400).json({ error: error.response.data.error });

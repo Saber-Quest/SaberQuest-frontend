@@ -1,5 +1,4 @@
 import Header from "@comp/Meta/Title";
-import Logo from "public/Logo.svg";
 
 export default function Maintenance() {
   return (
@@ -16,7 +15,7 @@ export default function Maintenance() {
         title={`Maintenance`}
         link={`/`}
         contents={`Maintenance is ongoing on ${process.env.PUBLIC_NAME}!`}
-        image={Logo}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
       <div className="h-full py-8 px-4 mx-auto max-w-screen-md text-center lg:py-16 lg:px-12">
         <svg

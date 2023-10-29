@@ -8,12 +8,14 @@ import { ChallengeData } from "./Challenges";
 import { LeaderboardData } from "./Leaderboard";
 import { SessionUser } from "./SessionUser";
 import { Item, ItemList } from "./Shop";
+import { ItemRecipes, AllowedRecipes } from "./ItemCrafting";
 import { User, UserInfo, Stats, Today } from "./User";
 import { Border } from "./Border";
 
 export type {
   Border,
   AdvancedUser,
+  AllowedRecipes,
   UserInfo,
   Stats,
   Today,
@@ -25,5 +27,6 @@ export type {
   SessionUser,
   Item,
   ItemList,
+  ItemRecipes,
   User,
 };

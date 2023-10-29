@@ -6,7 +6,6 @@ import axios from "axios";
 import Image from "next/image";
 import Header from "@comp/Meta/Title";
 import Link from "next/link";
-import Logo from "public/Logo.svg";
 
 export default function Profile() {
   const router = useRouter();
@@ -77,7 +76,7 @@ export default function Profile() {
         title={`Leaderboard`}
         link={`${process.env.PUBLIC_URL}/leaderboard/${currentPage}`}
         contents={`Leaderboard | Leaderboard on ${process.env.PUBLIC_NAME}.`}
-        image={Logo}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
       <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
         <div className="LeaderboardContainer">

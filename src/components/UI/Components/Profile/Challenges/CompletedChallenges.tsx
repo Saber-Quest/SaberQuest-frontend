@@ -158,37 +158,39 @@ export default function ChallengesPanel({
             <p className="text-center">No completed challenges</p>
           )}
         </ul>
-        <div className="ccNavigation">
-          <button
-            className={`Backward ${
-              currentPage > 1 ? "" : "cursor-not-allowed"
-            }`}
-            onClick={() => {
-              if (currentPage > 1) {
-                const previousPage = currentPage - 1;
-                setCurrentPage(previousPage);
-              }
-            }}
-          >
-            Back
-          </button>
+        {numberOfPages > 1 && (
+          <div className="ccNavigation">
+            <button
+              className={`Backward ${
+                currentPage > 1 ? "" : "cursor-not-allowed"
+              }`}
+              onClick={() => {
+                if (currentPage > 1) {
+                  const previousPage = currentPage - 1;
+                  setCurrentPage(previousPage);
+                }
+              }}
+            >
+              Back
+            </button>
 
-          <div className="PageNumber">{currentPage}</div>
+            <div className="PageNumber">{currentPage}</div>
 
-          <button
-            className={`Forward ${
-              currentPage < numberOfPages ? "" : "cursor-not-allowed"
-            }`}
-            onClick={() => {
-              if (currentPage < numberOfPages) {
-                const nextPage = currentPage + 1;
-                setCurrentPage(nextPage);
-              }
-            }}
-          >
-            Forward
-          </button>
-        </div>
+            <button
+              className={`Forward ${
+                currentPage < numberOfPages ? "" : "cursor-not-allowed"
+              }`}
+              onClick={() => {
+                if (currentPage < numberOfPages) {
+                  const nextPage = currentPage + 1;
+                  setCurrentPage(nextPage);
+                }
+              }}
+            >
+              Forward
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

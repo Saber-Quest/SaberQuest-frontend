@@ -8,7 +8,7 @@ export default function FourOFour() {
         title={`500`}
         contents={`500 - Internal server error`}
         link={`${process.env.PUBLIC_URL}`}
-        image={`${process.env.PUBLIC_URL}/Logo.svg`}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
       <div className="pt-20 overflow-visible">
         <div className="404Div transition-all">

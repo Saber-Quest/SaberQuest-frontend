@@ -6,7 +6,7 @@ import rateLimit from "@lib/api/ratelimit";
 
 const ratelimit: any = 10;
 const limiter = rateLimit({
-  interval: 60 * 1000,
+  interval: 10 * 1000,
   uniqueTokenPerInterval: 200,
 });
 

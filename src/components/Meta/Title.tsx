@@ -7,7 +7,7 @@ export default function Header({
   contents,
 }: {
   title: string;
-  image: string;
+  image: any;
   link: string;
   contents: string;
 }) {

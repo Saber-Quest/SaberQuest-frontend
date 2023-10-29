@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { decrypt } from "@lib/api/createSession";
 import rateLimit from "@lib/api/ratelimit";
+import { decrypt } from "@lib/api/createSession";
 
-const ratelimit: any = 2;
+const ratelimit: any = 5;
 const limiter = rateLimit({
   interval: 10 * 1000,
   uniqueTokenPerInterval: 200,
@@ -18,27 +18,31 @@ export default async function handler(
     try {
       if (req.method === "POST") {
         const {
-          t,
-        }: {
-          t: string;
-        } = req.body;
+          item1,
+          item2,
+          token,
+        }: { item1: string; item2: string; token: string } = req.body;
 
-        if (!t) {
-          return res.status(400).json({ error: "Missing valid token" });
+        if (!item1 || !item2) {
+          return res.status(400).json({ error: "Missing recipe-item" });
         }
-        const deToken = decrypt(t);
+        if (!token) {
+          return res.status(400).json({ error: "Missing token" });
+        }
+
+        const deToken = decrypt(token);
 
         await axios
-          .post(`${process.env.API_URL}/challenge/complete`, {
+          .post(`${process.env.API_URL}/craft`, {
+            used1: item1,
+            used2: item2,
             token: deToken,
           })
-          .then(() => {
-            return res
-              .status(200)
-              .json({ message: "Challenge completed. Well played!" });
+          .then((response) => {
+            return res.status(200).json({ success: true });
           })
           .catch((error) => {
-            return res.status(400).json({ error: "Challenge not completed." });
+            return res.status(400).json({ error: error.response.data.error });
           });
       } else {
         return res.status(400).json({ error: "Invalid request method" });

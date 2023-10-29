@@ -1,6 +1,6 @@
 import { readSession } from "@lib/api/createSession";
+import { AdvancedUser } from "@lib/types";
 import { SessionUser } from "@lib/types/SessionUser";
-import { User } from "@lib/types/User";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -20,7 +20,7 @@ export default async function handler(
         .get(`${process.env.API_URL}/profile/${authData.id}/advanced`)
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
-            const data: User = response.data;
+            const data: AdvancedUser = response.data;
             sessionData = {
               id: authData.id,
               jwt: authData.jwt,

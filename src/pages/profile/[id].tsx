@@ -1,21 +1,23 @@
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { Tab } from "@headlessui/react";
-import { useGlitch } from "react-powerglitch";
-import axios from "axios";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Tab } from "@headlessui/react";
+import axios from "axios";
+import { useGlitch } from "react-powerglitch";
 import Header from "@comp/Meta/Title";
 import { AdvancedUser, SessionUser } from "@lib/types";
-import InventoryPanel from "@comp/UI/Components/Profile/InventoryPanel";
-import ChallengesPanel from "@comp/UI/Components/Profile/CompletedChallenges";
+import InventoryPanel from "@ui/Profile/Inventory/InventoryPanel";
+import ChallengesPanel from "@ui/Profile/Challenges/CompletedChallenges";
+import CraftingPanel from "@ui/Profile/Crafting/CraftingPanel";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
     if (params && params.id) {
       const id = params.id;
-      const apiUrl = `${process.env.API_URL}/profile/${id}/advanced`;
 
       try {
+        const apiUrl = `${process.env.API_URL}/profile/${id}/advanced`;
         const response = await axios.get<AdvancedUser>(apiUrl);
 
         if (response.status === 302 || response.status === 200) {
@@ -54,12 +56,28 @@ export default function Profile({
   session,
   user,
   notFound,
+  setSession,
+  setMessage,
+  setType,
+  setShow,
 }: {
   session: SessionUser | null;
   user: AdvancedUser | null;
   notFound: boolean;
+  setSession: (session: SessionUser) => void;
+  setMessage: (message: string) => void;
+  setType: (type: string) => void;
+  setShow: (show: boolean) => void;
 }) {
   const router = useRouter();
+  const [userData, setUser] = useState<AdvancedUser | null>(user);
+
+  useEffect(() => {
+    if (!session || !session.user || !user) return;
+    if (session.user.userInfo.id === user.userInfo.id) {
+      setUser(session.user);
+    }
+  }, [user, session]);
 
   const glitch = useGlitch({
     playMode: "always",
@@ -104,21 +122,21 @@ export default function Profile({
           title={`User not found`}
           link={`${process.env.PUBLIC_URL}`}
           contents={`User was not found, please provide a valid user id.`}
-          image={`${process.env.PUBLIC_URL}/Logo.svg`}
+          image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
         />
         <div className="flex flex-col pt-[5rem] flex-wrap justify-center items-center">
           <h1 className="text-4xl font-bold">User not found</h1>
         </div>
       </>
     );
-  } else if (user) {
+  } else if (userData) {
     return (
       <>
         <Header
-          title={`${user.userInfo.username}'s Profile`}
-          link={`${process.env.PUBLIC_URL}/profile/${user.userInfo.id}`}
-          contents={`${user.userInfo.username}'s Profile | User-profile on ${process.env.PUBLIC_NAME}.`}
-          image={user.userInfo.images.avatar}
+          title={`${userData.userInfo.username}'s Profile`}
+          link={`${process.env.PUBLIC_URL}/profile/${userData.userInfo.id}`}
+          contents={`${userData.userInfo.username}'s Profile | User-profile on ${process.env.PUBLIC_NAME}.`}
+          image={userData.userInfo.images.avatar}
         />
         <div className="max-w-[100vw] 1920:max-w-[75vw] px-16 mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>
@@ -126,9 +144,9 @@ export default function Profile({
               <div
                 className={`userInfoVer h-[820px] rounded-lg`}
                 style={{
-                  backgroundImage: !user.userInfo.images.banner
+                  backgroundImage: !userData.userInfo.images.banner
                     ? `url(/assets/images/users/banners/ver/default.png)`
-                    : `url(/api/${user.userInfo.id}/ver)`, //THIS NEEDS TO BE CHANGED BEFORE DEPLOYMENT!!
+                    : `url(/api/${userData.userInfo.id}/ver)`, //THIS NEEDS TO BE CHANGED BEFORE DEPLOYMENT!!
                   backgroundSize: "cover",
                 }}
               >
@@ -136,14 +154,16 @@ export default function Profile({
                   <Image
                     priority={true}
                     ref={
-                      user.userInfo.images.border?.includes("glitch_border.gif")
+                      userData.userInfo.images.border?.includes(
+                        "glitch_border.gif"
+                      )
                         ? glitch.ref
                         : null
                     }
                     src={
-                      !user.userInfo.images.avatar
+                      !userData.userInfo.images.avatar
                         ? "/assets/images/PFPPlaceholder.png"
-                        : user.userInfo.images.avatar
+                        : userData.userInfo.images.avatar
                     }
                     alt="Profile Picture"
                     width={150}
@@ -151,9 +171,9 @@ export default function Profile({
                     unoptimized={true}
                     className="rounded-full relative drop-shadow-PFPShadow"
                   />
-                  {user.userInfo.images.border && (
+                  {userData.userInfo.images.border && (
                     <Image
-                      src={`/assets/images/users/borders/${user.userInfo.images.border}`}
+                      src={`/assets/images/users/borders/${userData.userInfo.images.border}`}
                       alt="Border Image"
                       className="absolute top-[-35px] z-10"
                       width={220}
@@ -165,24 +185,24 @@ export default function Profile({
                 <div
                   className={`rounded-lg w-[425px] flex flex-col items-center font-medium`}
                 >
-                  <p className="profileNameHeader max-w-[inherit] mt-8 p-5 text-center drop-shadow-textShadow">{`${user.userInfo.username}`}</p>
+                  <p className="profileNameHeader max-w-[inherit] mt-8 p-5 text-center drop-shadow-textShadow">{`${userData.userInfo.username}`}</p>
                   <div className="h-[5px] w-[305px] rounded-full bg-gradient-to-r from-sqyellow mb-5" />
                   <div className="flex flex-col items-center gap-[16px] drop-shadow-textShadow text-[24px]">
                     <p>
                       Rank:{" "}
                       <span
                         className={`${
-                          user.stats.rank === 1 ? "text-sqyellow" : ""
+                          userData.stats.rank === 1 ? "text-sqyellow" : ""
                         }`}
                       >
-                        #{user.stats.rank}
+                        #{userData.stats.rank}
                       </span>
                     </p>
                     <p>
-                      Challenges Completed: {user.stats.challengesCompleted}
+                      Challenges Completed: {userData.stats.challengesCompleted}
                     </p>
-                    <p>QP: {user.stats.qp}</p>
-                    <p>Account Value: {user.stats.value}</p>
+                    <p>QP: {userData.stats.qp}</p>
+                    <p>Account Value: {userData.stats.value}</p>
                   </div>
                 </div>
               </div>
@@ -190,9 +210,9 @@ export default function Profile({
                 <div
                   className="userInfoHor h-[150px] px-4 py-5 sm:px-6 rounded-lg w-full"
                   style={{
-                    backgroundImage: !user.userInfo.images.banner
+                    backgroundImage: !userData.userInfo.images.banner
                       ? `url(/assets/images/users/banners/hor/default.png)`
-                      : `url(/api/${user.userInfo.id}/hor)`,
+                      : `url(/api/${userData.userInfo.id}/hor)`,
                     backgroundSize: "cover",
                   }}
                 >
@@ -202,13 +222,13 @@ export default function Profile({
                     </p>
                     <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow my-5" />
                     <p className="text-center drop-shadow-textShadow">
-                      {user.userInfo.about
-                        ? user.userInfo.about
+                      {userData.userInfo.about
+                        ? userData.userInfo.about
                         : "This user has yet to write something!"}
                     </p>
                   </div>
                 </div>
-                <div className="mt-[17px] px-4 py-5 sm:px-6 rounded-lg bg-[#161616]">
+                <div className="mt-[17px] px-4 py-2 sm:px-6 rounded-lg bg-[#161616]">
                   <Tab.Group>
                     <div className="divide-y-[2px] divide-sqyellow min-w-[750px] max-w-[750px]">
                       <Tab.List className="flex min-w-full justify-center">
@@ -234,7 +254,7 @@ export default function Profile({
                         >
                           Completed Challenges
                         </Tab>
-                        {session?.id === user.userInfo.id ? (
+                        {session?.id === userData.userInfo.id ? (
                           <Tab
                             className={({ selected }: { selected: boolean }) =>
                               `${
@@ -248,15 +268,28 @@ export default function Profile({
                           </Tab>
                         ) : null}
                       </Tab.List>
-                      <Tab.Panels className="mt-10">
+                      <Tab.Panels className="my-4">
                         {/* Inventory */}
-                        <InventoryPanel inventory={user.inventory} />
+                        <InventoryPanel inventory={userData.inventory} />
                         {/* Completed Challenges */}
-                        <Tab.Panel className="mt-10">
-                          <ChallengesPanel challenges={user.challengeHistory} />
+                        <Tab.Panel className="my-4">
+                          <ChallengesPanel
+                            challenges={userData.challengeHistory}
+                          />
                         </Tab.Panel>
-                        {/* ?????? */}
-                        <Tab.Panel className="mt-10">Crafting here</Tab.Panel>
+                        {/* Crafting */}
+                        {session && (
+                          <Tab.Panel className="my-4">
+                            <CraftingPanel
+                              session={session}
+                              inventory={userData.inventory}
+                              setSession={setSession}
+                              setMessage={setMessage}
+                              setType={setType}
+                              setShow={setShow}
+                            />
+                          </Tab.Panel>
+                        )}
                       </Tab.Panels>
                     </div>
                   </Tab.Group>

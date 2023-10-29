@@ -20,7 +20,6 @@ export default function ChallengeComp({
   setType: (type: string) => void;
   setShow: (show: boolean) => void;
 }) {
-
   const [selectedDiff, setSelectedDiff] = useState<number>(0);
   const [showSel, setShowSel] = useState<boolean>(false);
   const [finished, setFinished] = useState<boolean>(false);
@@ -77,17 +76,19 @@ export default function ChallengeComp({
   };
 
   const handleFinish = async () => {
-    if (!session) return;
-    if (session.user?.today.completed) {
+    if (!session || !session.user) return;
+    if (session.user.today.completed) {
       setMessage(`You already completed a challenge today!`);
       setType("info");
       setShow(true);
       return;
     }
-
-    setMessage(`Processing... Please wait!\n\n If nothing happens within 20 seconds, please try again.\n\n Contact a developer if the problem persists.`);
-    setType("info");
-    setShow(true);
+    if (session.user.today.diff === 0) {
+      setMessage(`You have not selected a challenge!`);
+      setType("info");
+      setShow(true);
+      return;
+    }
 
     await axios
       .post(`${process.env.PUBLIC_URL}/api/profile/finishChallenge`, {
@@ -151,9 +152,10 @@ export default function ChallengeComp({
         />
       </div>
       {showSel && (
-        <div 
-        className="font-semibold text-[24px] hover:cursor-pointer rounded-2xl bg-[#0000003b] px-4 py-2" 
-        onClick={handleFinish}>
+        <div
+          className="font-semibold text-[24px] hover:cursor-pointer rounded-2xl bg-[#0000003b] px-4 py-2"
+          onClick={handleFinish}
+        >
           Complete Challenge
         </div>
       )}
