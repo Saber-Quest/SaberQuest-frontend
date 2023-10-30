@@ -10,19 +10,19 @@ export default function FourOFour() {
         link={`${process.env.PUBLIC_URL}`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="pt-20 overflow-visible">
-        <div className="404Div transition-all">
-          <main className="flex flex-1 mt-[4rem] flex-col items-center text-center">
-            <div className="text-center">
-              <h1 className="font-bold text-sqyellow text-9xl drop-shadow-logoShadow transition-all">
+      <div className="eOuterDiv">
+        <div className="eTransition">
+          <main className="eMain">
+            <div className="eCenterText">
+              <h1 className="eH1Header">
                 404
               </h1>
 
-              <p className="text-2xl font-bold tracking-tight text-sqyellow opacity-[40%] sm:text-4xl hover:drop-shadow-logoShadow transition-all">
+              <p className="ePClass">
                 Uh-oh!
               </p>
 
-              <p className="mt-4 text-white">We cant find that page.</p>
+              <p className="eSubPClass">We cant find that page.</p>
             </div>
           </main>
         </div>
