@@ -19,21 +19,21 @@ export default function NormalDiff({
   onSelectDiff: (diff: number) => void;
 }) {
   return (
-    <div className="chChallenges flex flex-col md:flex-row gap-12">
+    <div className="chChallenges mainDiffDiv">
       <div
         className={`${
           showSel ? "hover:cursor-pointer" : ""
-        } group/normal flex flex-col items-center rounded-xl p-5 hover:shadow-[0px_0px_3px_1px_#FFD941] transition-all duration-300 ease-in-out`}
+        } allHovers NormalHover`}
         onClick={() => onSelectDiff(1)}
       >
         <h1 className={`chTextHeader text-normalreq`}>Normal</h1>
         <div className={`chNormalDivider chDivider w-full`} />
-        <div className="max-w-[300px] text-center">{desc}</div>
-        <div className="pt-5 text-[24px] justify-center flex">
+        <div className="challengeDesc">{desc}</div>
+        <div className="challengeDescGoalDiv">
           {(type === cT.Map && (
             <>
               <span>
-                <b className="text-sqyellow font-semibold">
+                <b className="challengeDescGoal">
                   {challengeDatas.challenge[0]}
                 </b>{" "}
                 maps
@@ -43,7 +43,7 @@ export default function NormalDiff({
             (type === cT.FCN && (
               <>
                 <span>
-                  <b className="text-sqyellow font-semibold">
+                  <b className="challengeDescGoal">
                     {challengeDatas.challenge[0]}
                   </b>{" "}
                   notes
@@ -53,7 +53,7 @@ export default function NormalDiff({
             (type === cT.PN && (
               <>
                 <span>
-                  <b className="text-sqyellow font-semibold">
+                  <b className="challengeDescGoal">
                     {challengeDatas.challenge[0]}
                   </b>{" "}
                   notes
@@ -62,17 +62,17 @@ export default function NormalDiff({
             )) ||
             (type === cT.PP && (
               <>
-                <div className="flex flex-col">
+                <div className="flexCol">
                   <div>
                     ScoreSaber:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[0]}
                     </b>
                     pp
                   </div>
                   <div>
                     BeatLeader:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[1]}
                     </b>
                     pp
@@ -82,17 +82,17 @@ export default function NormalDiff({
             )) ||
             (type === cT.FCS && (
               <>
-                <div className="flex flex-col">
+                <div className="flexCol">
                   <div>
                     ScoreSaber:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[0]}
                     </b>
                     *
                   </div>
                   <div>
                     BeatLeader:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[1]}
                     </b>
                     *
@@ -102,24 +102,24 @@ export default function NormalDiff({
             )) ||
             (type === cT.XAS && (
               <>
-                <div className="flex flex-col">
+                <div className="flexCol">
                   <div>
                     ScoreSaber:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[0]}
                     </b>
                     *
                   </div>
                   <div>
                     BeatLeader:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[1]}
                     </b>
                     *
                   </div>
                   <div>
                     Acc:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[2]}
                     </b>
                     %
@@ -129,24 +129,24 @@ export default function NormalDiff({
             )) ||
             (type === cT.XAPP && (
               <>
-                <div className="flex flex-col">
+                <div className="flexCol">
                   <div>
                     ScoreSaber:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[0]}
                     </b>
                     pp
                   </div>
                   <div>
                     BeatLeader:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[1]}
                     </b>
                     pp
                   </div>
                   <div>
                     Acc:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[2]}
                     </b>
                     %
@@ -156,24 +156,24 @@ export default function NormalDiff({
             )) ||
             (type === cT.XAN && (
               <>
-                <div className="flex flex-col">
+                <div className="flexCol">
                   <div>
                     ScoreSaber:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[0]}
                     </b>{" "}
                     notes
                   </div>
                   <div>
                     BeatLeader:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[1]}
                     </b>
                     notes
                   </div>
                   <div>
                     Acc:{" "}
-                    <b className="text-sqyellow font-semibold">
+                    <b className="challengeDescGoal">
                       {challengeDatas.challenge[2]}
                     </b>
                     %
@@ -183,7 +183,7 @@ export default function NormalDiff({
             ))}
         </div>
         {selDiff == 1 && showSel && (
-          <div className="uppercase font-bold text-[24px] text-sqyellow drop-shadow-logoShadow flex flex-col items-center justify-center w-full mt-5">
+          <div className="flexCol challengeSelFin">
             {finished ? "Finished" : "Selected"}
           </div>
         )}
