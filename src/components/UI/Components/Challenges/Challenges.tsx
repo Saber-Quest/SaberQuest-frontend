@@ -121,8 +121,8 @@ export default function ChallengeComp({
   };
 
   return (
-    <div className="flex flex-col items-center gap-12">
-      <div className="chChallenges flex flex-col md:flex-row gap-12">
+    <div className="mainOuterChalDiv">
+      <div className="chChallenges flexCol md:flex-row gap-12">
         <NormalDiff
           challengeDatas={challengeDatas.difficulties.normal}
           desc={challengeDatas.description}
@@ -153,7 +153,7 @@ export default function ChallengeComp({
       </div>
       {showSel && (
         <div
-          className="font-semibold text-[24px] hover:cursor-pointer rounded-2xl bg-[#0000003b] px-4 py-2"
+          className="chalFinishBtn"
           onClick={handleFinish}
         >
           Complete Challenge
