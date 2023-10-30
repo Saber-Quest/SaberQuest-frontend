@@ -1,6 +1,7 @@
 import "@style/globals.css";
 import "@style/components/Navbar.css";
 import "@style/components/Footer.css";
+import "@style/components/Maintenance.css";
 import "@style/components/Pagination.css";
 import "@style/components/Profilemenu.css";
 import "@style/components/ProfileComps/CompletedChallenges.css";

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .mainMDiv {
+    @apply h-full max-w-screen-md;
+    @apply py-8 px-4 mx-auto;
+    @apply text-center;
+    @apply lg:py-16 lg:px-12;
+  }
+  .mSVG {
+    @apply mx-auto mb-4;
+    @apply w-10 h-10;
+    @apply text-sqyellow;
+    @apply drop-shadow-logoShadow;
+  }
+  .mH1Text {
+    @apply mb-4;
+    @apply text-4xl font-bold tracking-tight leading-none;
+    @apply lg:mb-6 md:text-5xl xl:text-6xl;
+  }
+  .mSubText {
+    @apply font-light text-gray-300;
+    @apply md:text-lg xl:text-xl;
+  }
+}
