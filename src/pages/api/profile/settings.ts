@@ -44,6 +44,10 @@ export default async function handler(
         }
         const deToken = decrypt(t);
 
+        if (bo.imageUrl === null) {
+          bo.imageUrl = "none";
+        }
+        
         await axios
           .put(`${process.env.API_URL}/update/border`, {
             border: bo.imageUrl,
