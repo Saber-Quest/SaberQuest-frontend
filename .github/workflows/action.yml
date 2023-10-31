@@ -38,6 +38,6 @@ jobs:
                   rm "saberquest.xyz/.env.example"
                   touch "saberquest.xyz/.env"
                   cd "dev.saberquest.xyz"
-                  cat ../secrets/.env.frontend >> "saberquest.xyz/.env"
+                  cat ../secrets/.env.frontend > .env
                   pm2 delete saberquest -s
                   pm2 start npm --name "saberquest" -- run prod
