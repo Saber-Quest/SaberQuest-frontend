@@ -32,6 +32,10 @@ module.exports = {
     config.experiments = { ...config.experiments, topLevelAwait: true };
     return config;
   },
+    i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
   env: {
     PUBLIC_URL: process.env.PUBLIC_URL,
     PUBLIC_NAME: process.env.PUBLIC_NAME,
