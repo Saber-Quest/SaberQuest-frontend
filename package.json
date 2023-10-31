@@ -6,11 +6,11 @@
   "identifier": "com.saberquest.web",
   "scripts": {
     "build": "next build",
-    "dev": "set PORT=3001 && prettier --write . && next dev ",
+    "dev": "set PORT=3000 && prettier --write . && next dev ",
     "format": "prettier --write .",
     "lint": "next lint",
-    "prod": "set PORT=3001 && prettier --write . && next build && next start",
-    "start": "set PORT=3001 && next start"
+    "prod": "set PORT=3000 && prettier --write . && next build && next start",
+    "start": "set PORT=3000 && next start"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
