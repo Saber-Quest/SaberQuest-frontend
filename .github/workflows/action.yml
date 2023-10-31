@@ -37,7 +37,7 @@ jobs:
                   cd "/var/www/"
                   rm "saberquest.xyz/.env.example"
                   touch "saberquest.xyz/.env"
+                  cd "dev.saberquest.xyz"
                   cat ../secrets/.env.frontend >> "saberquest.xyz/.env"
-                  cd "saberquest.xyz"
                   pm2 delete saberquest -s
                   pm2 start npm --name "saberquest" -- run prod
