@@ -20,7 +20,7 @@ jobs:
                 host: ${{ secrets.HOST }}
                 username: ${{ secrets.USERNAME }}
                 port: ${{ secrets.PORT }}
-                key: ${{ secrets.KEY }}
+                password: ${{ secrets.PASSWORD }}
                 rm: true
                 source: "."
                 target: "/var/www/saberquest.xyz"
@@ -31,7 +31,8 @@ jobs:
                 host: ${{ secrets.HOST }}
                 username: ${{ secrets.USERNAME }}
                 port: ${{ secrets.PORT }}
-                key: ${{ secrets.KEY }}
+                password: ${{ secrets.PASSWORD }}
+                script_stop: true
                 script: |
                   cd "/var/www/"
                   rm "saberquest.xyz/.env.example"
