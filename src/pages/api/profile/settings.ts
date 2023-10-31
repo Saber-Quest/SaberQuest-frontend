@@ -47,7 +47,7 @@ export default async function handler(
         if (bo.imageUrl === null) {
           bo.imageUrl = "none";
         }
-        
+
         await axios
           .put(`${process.env.API_URL}/update/border`, {
             border: bo.imageUrl,

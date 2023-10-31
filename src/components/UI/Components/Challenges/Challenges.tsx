@@ -99,24 +99,38 @@ export default function ChallengeComp({
           setMessage(`Challenge completed\nGood job!`);
           setType("success");
           setShow(true);
-          if (!session.user) return;
-          const updatedSession: SessionUser = {
-            ...session,
-            user: {
-              ...session.user,
-              today: {
-                ...session.user.today,
-                completed: true,
-              },
-            },
-          };
-          setSession(updatedSession);
+          updateUserSession();
         }
       })
       .catch((error) => {
         setMessage(error.response.data.error);
         setType("error");
         setShow(true);
+      });
+  };
+
+  const updateUserSession = async () => {
+    await axios.get(`${process.env.PUBLIC_URL}/api/profile/${session.id}`)
+      .then((response) => {
+        if (response.status === 302 || response.status === 200) {
+          if (!session.user) {
+            setMessage("An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes.");
+            setType("error");
+            setShow(true);
+            return;
+          }
+          const updatedSession: SessionUser = {
+            ...session,
+            user: {
+              ...session.user,
+              stats: response.data.stats,
+              today: response.data.today,
+              inventory: response.data.inventory,
+              challengeHistory: response.data.challengeHistory,
+            },
+          };
+          setSession(updatedSession);
+        }
       });
   };
 
@@ -152,10 +166,7 @@ export default function ChallengeComp({
         />
       </div>
       {showSel && (
-        <div
-          className="chalFinishBtn"
-          onClick={handleFinish}
-        >
+        <div className="chalFinishBtn" onClick={handleFinish}>
           Complete Challenge
         </div>
       )}

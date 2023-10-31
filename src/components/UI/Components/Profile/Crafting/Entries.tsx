@@ -138,7 +138,7 @@ export default function ItemEntry({
             <tbody>
               <tr>
                 <td
-                  colSpan={4}
+                  colSpan={5}
                   className="py-4 text-center text-white text-sm font-medium"
                 >
                   {" "}

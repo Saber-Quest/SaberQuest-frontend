@@ -1,8 +1,10 @@
 import React from "react";
+import { Animate, AnimateGroup } from "react-simple-animate";
 import Header from "@comp/Meta/Title";
 import { SessionUser } from "@lib/types";
 
 export default function Home({ session }: { session: SessionUser | null }) {
+
   return (
     <>
       <Header
@@ -61,7 +63,6 @@ export default function Home({ session }: { session: SessionUser | null }) {
             </div>
           </div>
         </div>
-
         <div className="fpBodyRight">
           <div className="fpChallengeText">
             <h1 className="fpTextHeader">
@@ -70,48 +71,56 @@ export default function Home({ session }: { session: SessionUser | null }) {
             <h2 className="fpTextSubheader">Get a play worth, minimum:</h2>
           </div>
           <div className="fpExampleChallenges">
-            <div className="fpExampleNormal">
-              <p className="fpReqHeader">Normal</p>
-              <div className="fpNormalDivider fpDivider" />
-              <div className="fpReqs">
-                <p className="fpReq">
-                  <span className="fpChallengeHighlight">180</span>pp on
-                  ScoreSaber
-                </p>
-                <p className="fpReq">
-                  <span className="fpChallengeHighlight">260</span>pp on
-                  BeatLeader
-                </p>
-              </div>
-            </div>
-            <div className="fpExampleHard">
-              <p className="fpReqHeader">Hard</p>
-              <div className="fpHardDivider fpDivider" />
-              <div className="fpReqs">
-                <p className="fpReq">
-                  <span className="fpChallengeHighlight">300</span>pp on
-                  ScoreSaber
-                </p>
-                <p className="fpReq">
-                  <span className="fpChallengeHighlight">400</span>pp on
-                  BeatLeader
-                </p>
-              </div>
-            </div>
-            <div className="fpExampleExpert">
-              <p className="fpReqHeader">Expert</p>
-              <div className="fpExpertDivider fpDivider" />
-              <div className="fpReqs">
-                <p className="fpReq">
-                  <span className="fpChallengeHighlight">430</span>pp on
-                  ScoreSaber
-                </p>
-                <p className="fpReq">
-                  <span className="fpChallengeHighlight">500</span>pp on
-                  BeatLeader
-                </p>
-              </div>
-            </div>
+            <AnimateGroup play>
+            <Animate start={{ opacity: 0, transform: "translateX(-100px)" }} end={{ opacity: 1, transform: "translateX(0px)"}} easeType="ease-in-out" sequenceIndex={0}>
+                <div className={`fpExampleNormal`}>
+                  <p className="fpReqHeader">Normal</p>
+                  <div className="fpNormalDivider fpDivider" />
+                  <div className="fpReqs">
+                    <p className="fpReq">
+                      <span className="fpChallengeHighlight">180</span>pp on
+                      ScoreSaber
+                    </p>
+                    <p className="fpReq">
+                      <span className="fpChallengeHighlight">260</span>pp on
+                      BeatLeader
+                    </p>
+                  </div>
+                </div>
+              </Animate>
+              <Animate start={{ opacity: 0, transform: "translateX(-100px)" }} end={{ opacity: 1, transform: "translateX(0px)"}} easeType="ease-in-out" sequenceIndex={1}>
+                <div className={`fpExampleHard`}>
+                  <p className="fpReqHeader">Hard</p>
+                  <div className="fpHardDivider fpDivider" />
+                  <div className="fpReqs">
+                    <p className="fpReq">
+                      <span className="fpChallengeHighlight">300</span>pp on
+                      ScoreSaber
+                    </p>
+                    <p className="fpReq">
+                      <span className="fpChallengeHighlight">400</span>pp on
+                      BeatLeader
+                    </p>
+                  </div>
+                </div>
+              </Animate>
+              <Animate start={{ opacity: 0, transform: "translateX(-100px)" }} end={{ opacity: 1, transform: "translateX(0px)"}} easeType="ease-in-out" sequenceIndex={2}>
+                <div className={`fpExampleExpert`}>
+                  <p className="fpReqHeader">Expert</p>
+                  <div className="fpExpertDivider fpDivider" />
+                  <div className="fpReqs">
+                    <p className="fpReq">
+                      <span className="fpChallengeHighlight">430</span>pp on
+                      ScoreSaber
+                    </p>
+                    <p className="fpReq">
+                      <span className="fpChallengeHighlight">500</span>pp on
+                      BeatLeader
+                    </p>
+                  </div>
+                </div>
+              </Animate>
+            </AnimateGroup>
           </div>
         </div>
       </div>
