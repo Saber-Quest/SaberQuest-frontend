@@ -39,5 +39,6 @@ jobs:
                   touch "saberquest.xyz/.env"
                   cd "dev.saberquest.xyz"
                   cat ../secrets/.env.frontend > .env
+                  yarn
                   pm2 delete saberquest -s
                   pm2 start npm --name "saberquest" -- run prod -s
