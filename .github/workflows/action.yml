@@ -37,7 +37,7 @@ jobs:
                   cd "/var/www/"
                   rm "saberquest.xyz/.env.example"
                   touch "saberquest.xyz/.env"
-                  cd "dev.saberquest.xyz"
+                  cd "saberquest.xyz"
                   cat ../secrets/.env.frontend > .env
                   yarn
                   pm2 delete saberquest -s
