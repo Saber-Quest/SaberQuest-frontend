@@ -8,7 +8,8 @@ import "@style/components/ProfileComps/CompletedChallenges.css";
 import "@style/components/ProfileComps/ExtendedChallengeInfo.css";
 import "@style/components/Challenges/Challenges.css";
 import "@style/components/Challenges/Diffs.css";
-import "@style/components/ErrorComps.css"
+import "@style/components/Shop/Rarities.css";
+import "@style/components/ErrorComps.css";
 import "@style/pages/Frontpage.css";
 import "@style/pages/Leaderboard.css";
 import "@style/pages/Profilepage.css";

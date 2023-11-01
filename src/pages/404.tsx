@@ -14,13 +14,9 @@ export default function FourOFour() {
         <div className="eTransition">
           <main className="eMain">
             <div className="eCenterText">
-              <h1 className="eH1Header">
-                404
-              </h1>
+              <h1 className="eH1Header">404</h1>
 
-              <p className="ePClass">
-                Uh-oh!
-              </p>
+              <p className="ePClass">Uh-oh!</p>
 
               <p className="eSubPClass">We cant find that page.</p>
             </div>

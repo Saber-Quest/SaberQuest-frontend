@@ -14,13 +14,9 @@ export default function FourOFour() {
         <div className="eTransition">
           <main className="flexCol eMain">
             <div className="eCenterText">
-              <h1 className="eH1Header">
-                500
-              </h1>
+              <h1 className="eH1Header">500</h1>
 
-              <p className="ePClass">
-                Internal server error!
-              </p>
+              <p className="ePClass">Internal server error!</p>
 
               <p className="eSubPClass">
                 We&apos;re working on a fix, don&apos;t worry!

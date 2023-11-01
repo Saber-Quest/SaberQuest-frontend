@@ -110,11 +110,14 @@ export default function ChallengeComp({
   };
 
   const updateUserSession = async () => {
-    await axios.get(`${process.env.PUBLIC_URL}/api/profile/${session.id}`)
+    await axios
+      .get(`${process.env.PUBLIC_URL}/api/profile/${session.id}`)
       .then((response) => {
         if (response.status === 302 || response.status === 200) {
           if (!session.user) {
-            setMessage("An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes.");
+            setMessage(
+              "An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes."
+            );
             setType("error");
             setShow(true);
             return;

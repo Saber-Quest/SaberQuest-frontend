@@ -4,7 +4,6 @@ import Header from "@comp/Meta/Title";
 import { SessionUser } from "@lib/types";
 
 export default function Home({ session }: { session: SessionUser | null }) {
-
   return (
     <>
       <Header
@@ -72,7 +71,12 @@ export default function Home({ session }: { session: SessionUser | null }) {
           </div>
           <div className="fpExampleChallenges">
             <AnimateGroup play>
-            <Animate start={{ opacity: 0, transform: "translateX(-100px)" }} end={{ opacity: 1, transform: "translateX(0px)"}} easeType="ease-in-out" sequenceIndex={0}>
+              <Animate
+                start={{ opacity: 0, transform: "translateX(-100px)" }}
+                end={{ opacity: 1, transform: "translateX(0px)" }}
+                easeType="ease-in-out"
+                sequenceIndex={0}
+              >
                 <div className={`fpExampleNormal`}>
                   <p className="fpReqHeader">Normal</p>
                   <div className="fpNormalDivider fpDivider" />
@@ -88,7 +92,12 @@ export default function Home({ session }: { session: SessionUser | null }) {
                   </div>
                 </div>
               </Animate>
-              <Animate start={{ opacity: 0, transform: "translateX(-100px)" }} end={{ opacity: 1, transform: "translateX(0px)"}} easeType="ease-in-out" sequenceIndex={1}>
+              <Animate
+                start={{ opacity: 0, transform: "translateX(-100px)" }}
+                end={{ opacity: 1, transform: "translateX(0px)" }}
+                easeType="ease-in-out"
+                sequenceIndex={1}
+              >
                 <div className={`fpExampleHard`}>
                   <p className="fpReqHeader">Hard</p>
                   <div className="fpHardDivider fpDivider" />
@@ -104,7 +113,12 @@ export default function Home({ session }: { session: SessionUser | null }) {
                   </div>
                 </div>
               </Animate>
-              <Animate start={{ opacity: 0, transform: "translateX(-100px)" }} end={{ opacity: 1, transform: "translateX(0px)"}} easeType="ease-in-out" sequenceIndex={2}>
+              <Animate
+                start={{ opacity: 0, transform: "translateX(-100px)" }}
+                end={{ opacity: 1, transform: "translateX(0px)" }}
+                easeType="ease-in-out"
+                sequenceIndex={2}
+              >
                 <div className={`fpExampleExpert`}>
                   <p className="fpReqHeader">Expert</p>
                   <div className="fpExpertDivider fpDivider" />

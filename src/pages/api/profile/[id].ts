@@ -25,9 +25,10 @@ export default async function handler(
           .get(`${process.env.API_URL}/profile/${id}/advanced`)
           .then((response) => {
             if (response.status === 302 || response.status === 200) {
-                const { data } = response;
-            return res.status(200).json(data);
-          }})
+              const { data } = response;
+              return res.status(200).json(data);
+            }
+          })
           .catch((error) => {
             return res.status(400).json({ error: "No information found." });
           });
