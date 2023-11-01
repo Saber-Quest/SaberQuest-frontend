@@ -76,6 +76,7 @@ export default function Home({ session }: { session: SessionUser | null }) {
                 end={{ opacity: 1, transform: "translateX(0px)" }}
                 easeType="ease-in-out"
                 sequenceIndex={0}
+                duration={0.75}
               >
                 <div className={`fpExampleNormal`}>
                   <p className="fpReqHeader">Normal</p>
@@ -97,6 +98,7 @@ export default function Home({ session }: { session: SessionUser | null }) {
                 end={{ opacity: 1, transform: "translateX(0px)" }}
                 easeType="ease-in-out"
                 sequenceIndex={1}
+                duration={0.75}
               >
                 <div className={`fpExampleHard`}>
                   <p className="fpReqHeader">Hard</p>
@@ -118,6 +120,7 @@ export default function Home({ session }: { session: SessionUser | null }) {
                 end={{ opacity: 1, transform: "translateX(0px)" }}
                 easeType="ease-in-out"
                 sequenceIndex={2}
+                duration={0.75}
               >
                 <div className={`fpExampleExpert`}>
                   <p className="fpReqHeader">Expert</p>

@@ -4,8 +4,9 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   InformationCircleIcon,
+  XMarkIcon,
+  ExclamationTriangleIcon
 } from "@heroicons/react/24/outline";
-import { XMarkIcon } from "@heroicons/react/20/solid";
 
 interface NotificationData {
   show: boolean;
@@ -41,59 +42,58 @@ export function Notification({
     <>
       <div
         aria-live="assertive"
-        className="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6 z-[10000]"
+        className="notifOuterDiv"
       >
-        <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
+        <div className="transfDiv">
           <Transition
             show={dataArray.show}
             as={Fragment}
-            enter="transform ease-out duration-300 transition"
-            enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
-            enterTo="translate-y-0 opacity-100 sm:translate-x-0"
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+            enter="transf enter"
+            enterFrom="transf enterFrom"
+            enterTo="transf enterTo"
+            leave="transf leave"
+            leaveFrom="transf leaveFrom"
+            leaveTo="transf leaveTo"
           >
-            <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-[#141414ef] shadow-lg ring-2 ring-sqyellow ring-opacity-5">
+            <div className="notifInnerDiv">
               <div className="p-4">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     {dataArray.type === "success" ? (
                       <CheckCircleIcon
-                        className="h-6 w-6 text-green-400"
+                        className="icon success"
                         aria-hidden="true"
                       />
                     ) : dataArray.type === "error" ? (
                       <XCircleIcon
-                        className="h-6 w-6 text-red-400"
+                        className="icon error"
                         aria-hidden="true"
                       />
                     ) : dataArray.type === "warning" ? (
-                      <InformationCircleIcon
-                        className="h-6 w-6 text-yellow-400"
+                      <ExclamationTriangleIcon
+                        className="icon warning"
                         aria-hidden="true"
                       />
                     ) : (
                       <InformationCircleIcon
-                        className="h-6 w-6 text-blue-400"
+                        className="icon info"
                         aria-hidden="true"
                       />
                     )}
                   </div>
-                  <div className="ml-3 w-0 flex-1 pt-0.5">
-                    <p className="text-sm font-medium text-white whitespace-pre-line">
+                  <div className="notifTextDiv">
+                    <p className="notifTextP">
                       {dataArray.message}
                     </p>
                   </div>
-                  <div className="ml-4 flex flex-shrink-0">
+                  <div className="notifCloseBtnDiv">
                     <button
                       type="button"
-                      className="inline-flex rounded-md bg-[#141414f6] text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="notifCloseBtn"
                       onClick={() => {
                         setShow(false);
                       }}
                     >
-                      <span className="sr-only">Close</span>
                       <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                     </button>
                   </div>
