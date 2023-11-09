@@ -3,9 +3,9 @@ import axios from "axios";
 import { decrypt } from "@lib/api/createSession";
 import rateLimit from "@lib/api/ratelimit";
 
-const ratelimit: any = 3;
+const ratelimit: any = 10;
 const limiter = rateLimit({
-  interval: 300 * 1000,
+  interval: 10 * 1000,
   uniqueTokenPerInterval: 200,
 });
 
@@ -34,21 +34,17 @@ export default async function handler(
         const deToken = decrypt(t);
 
         if (!u.match(/^[A-Za-z0-9_-]*$/)) {
-          return res
-            .status(400)
-            .json({
-              error:
-                "Invalid username.\n\nOnly A-Z, a-z, 0-9, _ and - is allowed",
-            });
+          return res.status(400).json({
+            error:
+              "Invalid username.\n\nOnly A-Z, a-z, 0-9, _ and - is allowed",
+          });
         }
 
         if (u.length > 20 || u.length < 3) {
-          return res
-            .status(400)
-            .json({
-              error:
-                "Invalid username length.\n\nMin: 3 characters\nMax: 20 characters",
-            });
+          return res.status(400).json({
+            error:
+              "Invalid username length.\n\nMin: 3 characters\nMax: 20 characters",
+          });
         }
 
         await axios

@@ -44,13 +44,9 @@ export default function Autocomplete({
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
             if (prevAuto) {
-              setMessage(
-                `You have **enabled** autocomplete!`
-              );
+              setMessage(`You have **enabled** autocomplete!`);
             } else {
-              setMessage(
-                `You have **disabled** autocomplete!`
-              );
+              setMessage(`You have **disabled** autocomplete!`);
             }
             setType("success");
             setShow(true);

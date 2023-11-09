@@ -3,9 +3,9 @@ import axios from "axios";
 import { decrypt } from "@lib/api/createSession";
 import rateLimit from "@lib/api/ratelimit";
 
-const ratelimit: any = 5;
+const ratelimit: any = 10;
 const limiter = rateLimit({
-  interval: 60 * 1000,
+  interval: 10 * 1000,
   uniqueTokenPerInterval: 200,
 });
 
@@ -38,12 +38,10 @@ export default async function handler(
             /^[\x00-\x7F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0250-\u036FA-Za-z0-9_-]*$/
           )
         ) {
-          return res
-            .status(400)
-            .json({
-              error:
-                "Invalid about.\n\nOnly A-Z, a-z, 0-9, nordic letters, _ and - is allowed",
-            });
+          return res.status(400).json({
+            error:
+              "Invalid about.\n\nOnly A-Z, a-z, 0-9, nordic letters, _ and - is allowed",
+          });
         }
 
         if (a.length > 200) {

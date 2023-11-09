@@ -150,13 +150,13 @@ export default function Profile() {
                               height={32}
                               unoptimized={true}
                               key={index}
-                              className="rounded-full relative drop-shadow-PFPShadow"
+                              className="LBPFP"
                             />
                             {user.userInfo.images.border && (
                               <Image
                                 src={`/assets/images/users/borders/${user.userInfo.images.border}`}
                                 alt="Border Image"
-                                className="absolute inset-0 object-cover scale-[145%] z-10"
+                                className="LBBorder"
                                 width={220}
                                 height={220}
                                 unoptimized={true}

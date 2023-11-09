@@ -3,7 +3,7 @@ import axios from "axios";
 import { decrypt } from "@lib/api/createSession";
 import rateLimit from "@lib/api/ratelimit";
 
-const ratelimit: any = 5;
+const ratelimit: any = 10;
 const limiter = rateLimit({
   interval: 10 * 1000,
   uniqueTokenPerInterval: 200,

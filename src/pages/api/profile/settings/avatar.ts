@@ -1,10 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import sharp, { Metadata } from "sharp";
+import isTransparent from "@lib/api/transparencyCheck";
 import { decrypt } from "@lib/api/createSession";
 import rateLimit from "@lib/api/ratelimit";
 
-const ratelimit: any = 3;
+const ratelimit: any = 5;
 const limiter = rateLimit({
   interval: 60 * 1000,
   uniqueTokenPerInterval: 200,
@@ -46,25 +47,31 @@ export default async function handler(
             )
           ).metadata();
         } catch (error) {
-          return res
-            .status(400)
-            .json({
-              error:
-                "Sharp could not read avatar data.\nTry a new image or contact a developer.",
-            });
+          return res.status(400).json({
+            error:
+              "Sharp could not read avatar data.\nTry a new image or contact a developer.",
+          });
         }
 
         if (img.format !== "png" && img.format !== "jpeg") {
-          return res
-            .status(400)
-            .json({
-              error:
-                "Invalid avatar file-format.\n\nPlease use PNG or JPG/JPEG",
-            });
+          return res.status(400).json({
+            error: "Invalid avatar file-format.\n\nPlease use PNG or JPG/JPEG",
+          });
         }
 
         if (img.width !== 512 || img.height !== 512) {
-          return res.status(400).json({ error: "Invalid avatar size" });
+          return res.status(400).json({ 
+              error:
+                "Invalid avatar dimension-size.\n\nAccepted dimensions: 512x512px"
+            });
+        }
+
+        const image = Buffer.from(av.replace(/^data:image\/(png|jpeg);base64,/, ""),"base64");
+
+        if (await isTransparent(image)) {
+          return res.status(400).json({
+            error: "Images under 65% transparency are not allowed.",
+          });
         }
 
         await axios

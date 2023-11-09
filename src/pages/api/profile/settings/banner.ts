@@ -1,10 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import sharp, { Metadata } from "sharp";
+import isTransparent from "@lib/api/transparencyCheck";
 import { decrypt } from "@lib/api/createSession";
 import rateLimit from "@lib/api/ratelimit";
 
-const ratelimit: any = 3;
+const ratelimit: any = 4;
 const limiter = rateLimit({
   interval: 60 * 1000,
   uniqueTokenPerInterval: 200,
@@ -51,41 +52,40 @@ export default async function handler(
             )
           ).metadata();
         } catch (error) {
-          return res
-            .status(400)
-            .json({
-              error:
-                "Sharp could not read banner data.\nTry a new image or contact a developer.",
-            });
+          return res.status(400).json({
+            error:
+              "Sharp could not read banner data.\nTry a new image or contact a developer.",
+          });
         }
 
         if (img.format !== "png" && img.format !== "jpeg") {
-          return res
-            .status(400)
-            .json({
-              error:
-                "Invalid banner file-format.\n\nPlease use PNG or JPG/JPEG",
-            });
+          return res.status(400).json({
+            error: "Invalid banner file-format.\n\nPlease use PNG or JPG/JPEG",
+          });
         }
 
         if (type === "hor") {
           if (img.width !== 800 || img.height !== 150) {
-            return res
-              .status(400)
-              .json({
-                error:
-                  "Invalid banner dimension-size.\n\nAccepted dimension: 800x150px",
-              });
+            return res.status(400).json({
+              error:
+                "Invalid banner dimension-size.\n\nAccepted dimensions: 800x150px",
+            });
           }
         } else if (type === "ver") {
           if (img.width !== 425 || img.height !== 820) {
-            return res
-              .status(400)
-              .json({
-                error:
-                  "Invalid banner dimension-size.\n\nAccepted dimension: 425x820px",
-              });
+            return res.status(400).json({
+              error:
+                "Invalid banner dimension-size.\n\nAccepted dimensions: 425x820px",
+            });
           }
+        }
+
+        const image = Buffer.from(ba.replace(/^data:image\/(png|jpeg);base64,/, ""),"base64");
+
+        if (await isTransparent(image)) {
+          return res.status(400).json({
+            error: "Images under 65% transparency are not allowed.",
+          });
         }
 
         await axios

@@ -4,7 +4,7 @@ import { decrypt } from "@lib/api/createSession";
 import { Border } from "@lib/types";
 import rateLimit from "@lib/api/ratelimit";
 
-const ratelimit: any = 5;
+const ratelimit: any = 10;
 const limiter = rateLimit({
   interval: 10 * 1000,
   uniqueTokenPerInterval: 200,

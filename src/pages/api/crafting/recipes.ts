@@ -45,9 +45,9 @@ export default async function handler(
             recipes = response.data;
           })
           .catch(() => {
-            return res
-              .status(400)
-              .json({ error: "Could not fetch recipe-table from the database." });
+            return res.status(400).json({
+              error: "Could not fetch recipe-table from the database.",
+            });
           });
 
         await axios
@@ -56,9 +56,9 @@ export default async function handler(
             knownItems = response.data;
           })
           .catch(() => {
-            return res
-              .status(400)
-              .json({ error: "Could not fetch items-table from the database." });
+            return res.status(400).json({
+              error: "Could not fetch items-table from the database.",
+            });
           });
 
         const transformedRecipes: ItemRecipes[] = recipes.map((recipe) => {
@@ -93,7 +93,6 @@ export default async function handler(
           const item2 = inventory.find((item) => item.id === item2_id);
 
           if (item1 && item2 && item1.amount >= 2 && item2.amount >= 2) {
-            
             const canCraft = Math.min(
               Math.floor(item1.amount / 2),
               Math.floor(item2.amount / 2)
