@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { SessionUser } from "@lib/types";
 import axios from "axios";
 
-export default function bannerVerUpload({
+export default function BannerVerUpload({
   session,
   setMessage,
   setType,
