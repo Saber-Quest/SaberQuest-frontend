@@ -142,7 +142,7 @@ export default function Profile({
           Items: ${userData.inventory.length}`}
           image={userData.userInfo.images.avatar}
         />
-        <div className="max-w-[100vw] 1920:max-w-[75vw] px-16 mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="max-w-[100vw] 1920:max-w-[75vw] mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>
             <div className="userDiv transition-all opacity-1 duration-500 flex flex-col lg:flex-row gap-5">
               <div
@@ -157,6 +157,7 @@ export default function Profile({
                 <div className="infoDiv relative overflow-visible flex justify-center w-full mt-[-70px]">
                   <Image
                     priority={true}
+                    loading="eager"
                     ref={
                       userData.userInfo.images.border?.includes(
                         "glitch_border.gif"
@@ -177,6 +178,8 @@ export default function Profile({
                   />
                   {userData.userInfo.images.border && (
                     <Image
+                      priority={true}
+                      loading="eager"
                       src={`/assets/images/users/borders/${userData.userInfo.images.border}`}
                       alt="Border Image"
                       className="absolute top-[-35px] z-10"
@@ -212,12 +215,12 @@ export default function Profile({
               </div>
               <div className="profileRightContainer w-full">
                 <div
-                  className="userInfoHor min-h-[150px] max-h-[200px] px-4 py-5 sm:px-6 rounded-lg w-full bg-origin-content"
+                  className="userInfoHor min-h-[150px] max-h-[200px] px-4 py-5 sm:px-6 rounded-lg w-full"
                   style={{
                     backgroundImage: !userData.userInfo.images.banner
                       ? `url(/assets/images/users/banners/hor/default.png)`
                       : `url(/api/${userData.userInfo.id}/hor)`,
-                    backgroundSize: "cover",
+                    backgroundSize: "inherit",
                   }}
                 >
                   <div className="flex flex-col items-center">

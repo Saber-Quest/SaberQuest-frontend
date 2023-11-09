@@ -49,7 +49,6 @@ export default function BorderDropdown({
         });
 
   const saveClick = async () => {
-    console.log(selectedBorder);
     if (selectedBorder.patreon && !session.user?.userInfo.patreon) {
       setMessage(
         `You're not allowed to use this border!\n Subscribe to the ${process.env.PUBLIC_NAME} Patreon to unlock it!`

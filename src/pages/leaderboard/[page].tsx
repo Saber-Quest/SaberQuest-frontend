@@ -101,7 +101,7 @@ export default function Profile() {
               <>
                 {Array.isArray(leaderboard) &&
                   leaderboard.map((user: User, index) => (
-                    <Link href={`/profile/${user.userInfo.id}`} key={index}>
+                    <Link href={`/profile/${user.userInfo.id}`} key={index} as={"image"}>
                       <div
                         className="LeaderboardEntry"
                         key={index}
@@ -133,6 +133,7 @@ export default function Profile() {
                           <div className="relative overflow-visible mr-5">
                             <Image
                               priority={true}
+                              loading="eager"
                               ref={
                                 user.userInfo.images.border?.includes(
                                   "glitch_border.gif"
@@ -154,6 +155,8 @@ export default function Profile() {
                             />
                             {user.userInfo.images.border && (
                               <Image
+                                loading="eager"
+                                priority={true}
                                 src={`/assets/images/users/borders/${user.userInfo.images.border}`}
                                 alt="Border Image"
                                 className="LBBorder"

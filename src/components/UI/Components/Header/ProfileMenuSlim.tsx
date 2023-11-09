@@ -84,6 +84,7 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
           <div className="relative overflow-visible">
             <Image
               priority={true}
+              loading="eager"
               ref={glitch.ref}
               src={
                 !userinfo.user?.userInfo.images.avatar

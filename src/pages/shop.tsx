@@ -97,7 +97,6 @@ export default function StorePage({
   };
 
   const onClickHandler = async (item: Item) => {
-    console.log(item);
     if (userQP < item.price) {
       setMessage(
         `You cannot afford "${item.name}".\n\n You're missing ${
@@ -107,7 +106,7 @@ export default function StorePage({
       setType("error");
       setShow(true);
     } else {
-      if (!session) return console.log("No JWT token found for the user!");
+      if (!session) return;
 
       await axios
         .post(`${process.env.PUBLIC_URL}/api/shop/buy`, {
