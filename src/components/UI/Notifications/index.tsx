@@ -1,12 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import {
   CheckCircleIcon,
   XCircleIcon,
   InformationCircleIcon,
   XMarkIcon,
-  ExclamationTriangleIcon
+  ExclamationTriangleIcon,
 } from "@heroicons/react/24/outline";
+import ReactMarkdown from 'react-markdown';
 
 interface NotificationData {
   show: boolean;
@@ -40,10 +41,7 @@ export function Notification({
 
   return (
     <>
-      <div
-        aria-live="assertive"
-        className="notifOuterDiv"
-      >
+      <div aria-live="assertive" className="notifOuterDiv">
         <div className="transfDiv">
           <Transition
             show={dataArray.show}
@@ -65,10 +63,7 @@ export function Notification({
                         aria-hidden="true"
                       />
                     ) : dataArray.type === "error" ? (
-                      <XCircleIcon
-                        className="icon error"
-                        aria-hidden="true"
-                      />
+                      <XCircleIcon className="icon error" aria-hidden="true" />
                     ) : dataArray.type === "warning" ? (
                       <ExclamationTriangleIcon
                         className="icon warning"
@@ -82,9 +77,9 @@ export function Notification({
                     )}
                   </div>
                   <div className="notifTextDiv">
-                    <p className="notifTextP">
-                      {dataArray.message}
-                    </p>
+                    <span className="notifTextP">
+                      <ReactMarkdown>{dataArray.message}</ReactMarkdown>
+                    </span>
                   </div>
                   <div className="notifCloseBtnDiv">
                     <button

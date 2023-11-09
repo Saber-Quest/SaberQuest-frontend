@@ -146,7 +146,7 @@ export default function Profile({
                 style={{
                   backgroundImage: !userData.userInfo.images.banner
                     ? `url(/assets/images/users/banners/ver/default.png)`
-                    : `url(/api/${userData.userInfo.id}/ver)`, //THIS NEEDS TO BE CHANGED BEFORE DEPLOYMENT!!
+                    : `url(/api/${userData.userInfo.id}/ver)`,
                   backgroundSize: "cover",
                 }}
               >

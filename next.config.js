@@ -32,7 +32,7 @@ module.exports = {
     config.experiments = { ...config.experiments, topLevelAwait: true };
     return config;
   },
-    i18n: {
+  i18n: {
     locales: ["en"],
     defaultLocale: "en",
   },
