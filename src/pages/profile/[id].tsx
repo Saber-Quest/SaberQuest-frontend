@@ -212,12 +212,12 @@ export default function Profile({
               </div>
               <div className="profileRightContainer w-full">
                 <div
-                  className="userInfoHor min-h-[150px] max-h-[200px] px-4 py-5 sm:px-6 rounded-lg w-full bg-origin-content"
+                  className="userInfoHor min-h-[150px] max-h-[200px] px-4 py-5 sm:px-6 rounded-lg w-full"
                   style={{
                     backgroundImage: !userData.userInfo.images.banner
                       ? `url(/assets/images/users/banners/hor/default.png)`
                       : `url(/api/${userData.userInfo.id}/hor)`,
-                    backgroundSize: "cover",
+                    backgroundSize: "inherit",
                   }}
                 >
                   <div className="flex flex-col items-center">
