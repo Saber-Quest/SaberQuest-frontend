@@ -142,7 +142,7 @@ export default function Profile({
           Items: ${userData.inventory.length}`}
           image={userData.userInfo.images.avatar}
         />
-        <div className="max-w-[100vw] 1920:max-w-[75vw] px-16 mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="max-w-[100vw] 1920:max-w-[75vw] mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>
             <div className="userDiv transition-all opacity-1 duration-500 flex flex-col lg:flex-row gap-5">
               <div
