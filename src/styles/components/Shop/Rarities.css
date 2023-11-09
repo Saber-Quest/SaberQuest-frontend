@@ -10,7 +10,7 @@
       @apply border-commonItem bg-commonItemfaint;
     }
     &.uncommon {
-      @apply border-uncommonItem bg-uncommonItem;
+      @apply border-uncommonItem bg-uncommonItemfaint;
     }
     &.rare {
       @apply border-rareItem bg-rareItemfaint;
