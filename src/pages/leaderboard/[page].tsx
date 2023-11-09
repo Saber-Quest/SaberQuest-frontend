@@ -101,7 +101,7 @@ export default function Profile() {
               <>
                 {Array.isArray(leaderboard) &&
                   leaderboard.map((user: User, index) => (
-                    <Link href={`/profile/${user.userInfo.id}`} key={index} as={"image"}>
+                    <Link href={`/profile/${user.userInfo.id}`} key={index}>
                       <div
                         className="LeaderboardEntry"
                         key={index}
