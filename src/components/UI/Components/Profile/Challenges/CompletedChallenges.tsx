@@ -20,7 +20,7 @@ export default function ChallengesPanel({
 }: {
   challenges: ChallengeHistoryItem[];
 }) {
-  const challengesPerPage = 3;
+  const challengesPerPage = 5;
   const [expandedIndex, setExpandedIndex] = useState(-1);
   const [numberOfPages] = useState<number>(
     Math.ceil(challenges.length / challengesPerPage)

@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
 import Image from "next/image";
+import About from "@comp/UI/Components/Profile/Settings/About";
 import AvatarUpload from "@ui/Profile/Settings/Avatar";
 import BannerHorUpload from "@ui/Profile/Settings/BannerHor";
 import BannerVerUpload from "@ui/Profile/Settings/BannerVer";
 import BorderDropdown from "@ui/Profile/Settings/BorderSelection";
 import Preference from "@ui/Profile/Settings/Preference";
+import Username from "@comp/UI/Components/Profile/Settings/Username";
 import { Border, SessionUser } from "@lib/types";
 import { borders } from "@lib/data/borders";
 import { useGlitch } from "react-powerglitch";
@@ -172,6 +174,20 @@ export default function ImgTest({
                         setType={setType}
                         setShow={setShow}
                       />
+                      <About
+                        session={session}
+                        setSession={setSession}
+                        setMessage={setMessage}
+                        setType={setType}
+                        setShow={setShow}
+                      />
+                      <Username
+                        session={session}
+                        setSession={setSession}
+                        setMessage={setMessage}
+                        setType={setType}
+                        setShow={setShow}
+                      />
                     </Tab.Panel>
 
                     <Tab.Panel className="my-4 focus:outline-none">
@@ -179,6 +195,7 @@ export default function ImgTest({
                         {session && session.user && selectedBorder && (
                           <>
                             <div className="infoDiv relative overflow-visible">
+                              <>
                               <Image
                                 ref={glitch.ref}
                                 src={session.user.userInfo.images.avatar}
@@ -188,6 +205,12 @@ export default function ImgTest({
                                 unoptimized={true}
                                 className="rounded-full relative drop-shadow-PFPShadow"
                               />
+                              {selectedBorder.name === "Glitched" ? (
+                                  glitch.startGlitch()
+                                ) : (
+                                  glitch.stopGlitch()
+                                )}
+                              </>
                               {selectedBorder.id === 0 ? (
                                 ""
                               ) : (

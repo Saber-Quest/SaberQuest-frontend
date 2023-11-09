@@ -5,7 +5,15 @@ import isTransparent from "@lib/api/transparencyCheck";
 import { decrypt } from "@lib/api/createSession";
 import rateLimit from "@lib/api/ratelimit";
 
-const ratelimit: any = 4;
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
+  },
+}
+
+const ratelimit: any = 10;
 const limiter = rateLimit({
   interval: 60 * 1000,
   uniqueTokenPerInterval: 200,
@@ -58,9 +66,16 @@ export default async function handler(
           });
         }
 
+        if (img && img.size && img.size > 10000000) {
+          return res.status(400).json({
+            error:
+              "Banner file-size is **too large**.\n\nPlease use an image under **10MB**",
+          });
+        }
+
         if (img.format !== "png" && img.format !== "jpeg") {
           return res.status(400).json({
-            error: "Invalid banner file-format.\n\nPlease use PNG or JPG/JPEG",
+            error: "Invalid banner file-format.\n\nPlease use **PNG** or **JPG/JPEG**",
           });
         }
 
@@ -68,14 +83,14 @@ export default async function handler(
           if (img.width !== 800 || img.height !== 150) {
             return res.status(400).json({
               error:
-                "Invalid banner dimension-size.\n\nAccepted dimensions: 800x150px",
+                "Invalid banner dimension-size.\n\nAccepted dimension: **800**x**150**px",
             });
           }
         } else if (type === "ver") {
           if (img.width !== 425 || img.height !== 820) {
             return res.status(400).json({
               error:
-                "Invalid banner dimension-size.\n\nAccepted dimensions: 425x820px",
+                "Invalid banner dimension-size.\n\nAccepted dimension: **425**x**820**px",
             });
           }
         }
@@ -84,7 +99,7 @@ export default async function handler(
 
         if (await isTransparent(image)) {
           return res.status(400).json({
-            error: "Images under 65% transparency are not allowed.",
+            error: "Images under **65%** transparency are not allowed.",
           });
         }
 
@@ -98,7 +113,7 @@ export default async function handler(
             return res.status(200).json({ message: "Banner updated!" });
           })
           .catch((error) => {
-            return res.status(400).json({ error: error.response.data.error });
+            return res.status(400).json({ error: 'Some error here' });
           });
       } else {
         return res.status(400).json({ error: "Invalid request method" });

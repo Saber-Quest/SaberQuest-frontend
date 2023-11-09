@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { SessionUser } from "@lib/types";
 import axios from "axios";
 
@@ -14,16 +15,29 @@ export default function AvatarUpload({
   setShow: (show: boolean) => void;
 }) {
   let avatarImage: string = "";
+  const [disable, setDisable] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (!session || !session.user?.userInfo) return;
+    if (session.user?.userInfo.patreon) {
+      setDisable(false);
+    }
+  }, [session]);
 
   const handleAvatar = async (e: any) => {
+    if (!session.user?.userInfo.patreon) {
+      setMessage("You must be a Patreon supporter to upload an avatar!");
+      setType("error");
+      setShow(true);
+      return;
+    }
     const file = e.target.files[0];
     const fileSize = file.size / 1024 / 1024;
 
-    if (fileSize > 5) {
+    if (fileSize > 10) {
       setMessage(`Avatar file-size is too large!`);
       setType("error");
       setShow(true);
-      e.target.value = "";
       return;
     }
 
@@ -31,7 +45,6 @@ export default function AvatarUpload({
       setMessage(`Avatar is not a PNG or JPG file!`);
       setType("error");
       setShow(true);
-      e.target.value = "";
       return;
     }
 
@@ -53,7 +66,6 @@ export default function AvatarUpload({
         setMessage(`Avatar is not 512x512px!`);
         setType("error");
         setShow(true);
-        e.target.value = "";
         return;
       }
 
@@ -62,6 +74,12 @@ export default function AvatarUpload({
   };
 
   const saveClick = async () => {
+    if (!session.user?.userInfo.patreon) {
+      setMessage("You must be a Patreon supporter to upload an avatar!");
+      setType("error");
+      setShow(true);
+      return;
+    }
     if (!avatarImage) {
       console.info("No avatar image selected!");
       return;
@@ -73,7 +91,7 @@ export default function AvatarUpload({
       })
       .then((response) => {
         if (response.status === 302 || response.status === 200) {
-          setMessage("Avatar updated!");
+          setMessage("Avatar updated!\n\nReload the website if you don't see it right away! :)");
           setType("success");
           setShow(true);
         }
@@ -82,10 +100,6 @@ export default function AvatarUpload({
         setMessage(error.response.data.error);
         setType("error");
         setShow(true);
-        const input = document.getElementById(
-          "avatarInput"
-        ) as HTMLInputElement;
-        input.value = "";
       });
   };
 
@@ -96,7 +110,7 @@ export default function AvatarUpload({
           className="block mb-2 text-sm font-medium text-white"
           htmlFor="avatarInput"
         >
-          Avatar - Upload file
+          Avatar - Upload file *
         </label>
         <div className="flex flex-row gap-0 h-[40px]">
           <input
@@ -106,17 +120,19 @@ export default function AvatarUpload({
             aria-describedby="avatarInputHelp"
             id="avatarInput"
             type="file"
+            disabled={disable}
           />
-          <div
+          <button type="button"
             onClick={saveClick}
-            className="flex flex-row items-center px-4 text-sm font-medium text-[#131313e5] bg-sqyellowfaint hover:bg-sqyellow rounded-r-lg hover:bg-sqyellowhover focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 hover:cursor-pointer"
+            className="flex flex-row items-center px-4 text-sm font-medium text-[#131313e5] bg-sqyellowfaint hover:bg-sqyellow rounded-r-lg hover:bg-sqyellowhover ring-0 smoothTran"
+            disabled={disable}
           >
             Save
-          </div>
+          </button>
         </div>
-        <p className="mt-1 text-sm text-gray-500" id="avatarInputHelp">
-          PNG or JPG (MIN/MAX. 512x512px, 5MB).
-        </p>
+        <div className="mt-1 text-sm text-gray-500" id="avatarInputHelp">
+          PNG or JPG (MIN/MAX. 512x512px, 10MB) - <a download={true} href="/assets/images/templates/bannerVer.png" className="hover:text-sqyellow underline">Template</a>
+        </div>
       </div>
     </>
   );

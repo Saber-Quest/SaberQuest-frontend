@@ -191,9 +191,8 @@ export default function Profile({
                     <p>
                       Rank:{" "}
                       <span
-                        className={`${
-                          userData.stats.rank === 1 ? "text-sqyellow" : ""
-                        }`}
+                        className={`${userData.stats.rank === 1 ? "text-sqyellow" : ""
+                          }`}
                       >
                         #{userData.stats.rank}
                       </span>
@@ -208,7 +207,7 @@ export default function Profile({
               </div>
               <div className="profileRightContainer w-full">
                 <div
-                  className="userInfoHor h-[150px] px-4 py-5 sm:px-6 rounded-lg w-full"
+                  className="userInfoHor min-h-[150px] max-h-[200px] px-4 py-5 sm:px-6 rounded-lg w-full bg-origin-content"
                   style={{
                     backgroundImage: !userData.userInfo.images.banner
                       ? `url(/assets/images/users/banners/hor/default.png)`
@@ -221,7 +220,7 @@ export default function Profile({
                       About
                     </p>
                     <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow my-5" />
-                    <p className="text-center drop-shadow-textShadow">
+                    <p className="text-center max-w-[900px] drop-shadow-textShadow break-all">
                       {userData.userInfo.about
                         ? userData.userInfo.about
                         : "This user has yet to write something!"}
@@ -234,10 +233,9 @@ export default function Profile({
                       <Tab.List className="flex min-w-full justify-center">
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${
-                              selected
-                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                : "border-transparent"
+                            `${selected
+                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                              : "border-transparent"
                             } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
@@ -245,10 +243,9 @@ export default function Profile({
                         </Tab>
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${
-                              selected
-                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                : "border-transparent"
+                            `${selected
+                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                              : "border-transparent"
                             } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
@@ -257,10 +254,9 @@ export default function Profile({
                         {session?.id === userData.userInfo.id ? (
                           <Tab
                             className={({ selected }: { selected: boolean }) =>
-                              `${
-                                selected
-                                  ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                  : "border-transparent"
+                              `${selected
+                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                                : "border-transparent"
                               } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                             }
                           >

@@ -23,6 +23,9 @@
   .flexCol {
     @apply flex flex-col;
   }
+  .smoothTran {
+    @apply transition-all duration-200 ease-in-out;
+  }
 }
 
 @layer components {

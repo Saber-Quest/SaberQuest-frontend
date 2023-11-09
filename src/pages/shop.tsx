@@ -165,9 +165,9 @@ export default function StorePage({
   return (
     <>
       <Header
-        title={`Leaderboard`}
+        title={`Shop`}
         link={`${process.env.PUBLIC_URL}/shop`}
-        contents={`Leaderboard | Leaderboard on ${process.env.PUBLIC_NAME}.`}
+        contents={`Shop | The shop on ${process.env.PUBLIC_NAME}.`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
       <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
