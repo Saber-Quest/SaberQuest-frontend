@@ -196,20 +196,18 @@ export default function ImgTest({
                           <>
                             <div className="infoDiv relative overflow-visible">
                               <>
-                              <Image
-                                ref={glitch.ref}
-                                src={session.user.userInfo.images.avatar}
-                                alt="Profile Picture"
-                                width={150}
-                                height={150}
-                                unoptimized={true}
-                                className="rounded-full relative drop-shadow-PFPShadow"
-                              />
-                              {selectedBorder.name === "Glitched" ? (
-                                  glitch.startGlitch()
-                                ) : (
-                                  glitch.stopGlitch()
-                                )}
+                                <Image
+                                  ref={glitch.ref}
+                                  src={session.user.userInfo.images.avatar}
+                                  alt="Profile Picture"
+                                  width={150}
+                                  height={150}
+                                  unoptimized={true}
+                                  className="rounded-full relative drop-shadow-PFPShadow"
+                                />
+                                {selectedBorder.name === "Glitched"
+                                  ? glitch.startGlitch()
+                                  : glitch.stopGlitch()}
                               </>
                               {selectedBorder.id === 0 ? (
                                 ""

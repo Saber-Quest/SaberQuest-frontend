@@ -8,10 +8,10 @@ import rateLimit from "@lib/api/ratelimit";
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: '10mb',
+      sizeLimit: "10mb",
     },
   },
-}
+};
 
 const ratelimit: any = 10;
 const limiter = rateLimit({
@@ -75,7 +75,8 @@ export default async function handler(
 
         if (img.format !== "png" && img.format !== "jpeg") {
           return res.status(400).json({
-            error: "Invalid banner file-format.\n\nPlease use **PNG** or **JPG/JPEG**",
+            error:
+              "Invalid banner file-format.\n\nPlease use **PNG** or **JPG/JPEG**",
           });
         }
 
@@ -95,7 +96,10 @@ export default async function handler(
           }
         }
 
-        const image = Buffer.from(ba.replace(/^data:image\/(png|jpeg);base64,/, ""),"base64");
+        const image = Buffer.from(
+          ba.replace(/^data:image\/(png|jpeg);base64,/, ""),
+          "base64"
+        );
 
         if (await isTransparent(image)) {
           return res.status(400).json({
@@ -113,7 +117,7 @@ export default async function handler(
             return res.status(200).json({ message: "Banner updated!" });
           })
           .catch((error) => {
-            return res.status(400).json({ error: 'Some error here' });
+            return res.status(400).json({ error: "Some error here" });
           });
       } else {
         return res.status(400).json({ error: "Invalid request method" });

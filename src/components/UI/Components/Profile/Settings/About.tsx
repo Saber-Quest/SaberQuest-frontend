@@ -16,7 +16,7 @@ export default function About({
   setType: (type: string) => void;
   setShow: (show: boolean) => void;
 }) {
-  const [placeholder, setPlaceholder] = useState<string>('');
+  const [placeholder, setPlaceholder] = useState<string>("");
 
   useEffect(() => {
     if (!session || !session.user?.userInfo) return;
@@ -32,9 +32,13 @@ export default function About({
       setType("error");
       setShow(true);
       return;
-    };
+    }
 
-    if (!about.value.match(/^[\x00-\x7F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0250-\u036FA-Za-z0-9_-]*$/)) {
+    if (
+      !about.value.match(
+        /^[\x00-\x7F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0250-\u036FA-Za-z0-9_-]*$/
+      )
+    ) {
       setMessage("About did not pass sanitization!");
       setType("error");
       setShow(true);
@@ -73,7 +77,10 @@ export default function About({
   };
 
   return (
-    <Switch.Group as="div" className="flex items-center justify-between p-5 bg-[#0000003d]">
+    <Switch.Group
+      as="div"
+      className="flex items-center justify-between p-5 bg-[#0000003d]"
+    >
       <div className="font-medium text-white">About</div>
       <div className="flex flex-row items-center">
         <div>

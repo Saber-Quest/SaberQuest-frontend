@@ -16,7 +16,7 @@ export default function Username({
   setType: (type: string) => void;
   setShow: (show: boolean) => void;
 }) {
-  const [placeholder, setPlaceholder] = useState<string>('');
+  const [placeholder, setPlaceholder] = useState<string>("");
   const [disable, setDisable] = useState<boolean>(true);
 
   useEffect(() => {
@@ -44,10 +44,12 @@ export default function Username({
       setType("error");
       setShow(true);
       return;
-    };
+    }
 
     if (!username.value.match(/^[A-Za-z0-9_-]*$/)) {
-      setMessage("Username must only contain letters, numbers, underscores, and dashes!");
+      setMessage(
+        "Username must only contain letters, numbers, underscores, and dashes!"
+      );
       setType("error");
       setShow(true);
       return;

@@ -18,6 +18,7 @@ export default function Header({
         <link rel="icon" href="/Logo.svg" />
       </Head>
       {/* Open Graph */}
+      <meta name="theme-color" content="#ffa600" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={contents} />
       <meta property="og:image" content={image} />

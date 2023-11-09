@@ -8,10 +8,10 @@ import rateLimit from "@lib/api/ratelimit";
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: '10mb',
+      sizeLimit: "10mb",
     },
   },
-}
+};
 
 const ratelimit: any = 5;
 const limiter = rateLimit({
@@ -70,18 +70,22 @@ export default async function handler(
 
         if (img.format !== "png" && img.format !== "jpeg") {
           return res.status(400).json({
-            error: "Invalid avatar file-format.\n\nPlease use **PNG** or **JPG/JPEG**",
+            error:
+              "Invalid avatar file-format.\n\nPlease use **PNG** or **JPG/JPEG**",
           });
         }
 
         if (img.width !== 512 || img.height !== 512) {
-          return res.status(400).json({ 
-              error:
-                "Invalid avatar dimension-size.\n\nAccepted dimensions: **512**x**512**px"
-            });
+          return res.status(400).json({
+            error:
+              "Invalid avatar dimension-size.\n\nAccepted dimensions: **512**x**512**px",
+          });
         }
 
-        const image = Buffer.from(av.replace(/^data:image\/(png|jpeg);base64,/, ""),"base64");
+        const image = Buffer.from(
+          av.replace(/^data:image\/(png|jpeg);base64,/, ""),
+          "base64"
+        );
 
         if (await isTransparent(image)) {
           return res.status(400).json({
@@ -95,7 +99,10 @@ export default async function handler(
             token: deToken,
           })
           .then(() => {
-            return res.status(200).json({ message: "Avatar updated!\n\nIf you don't see your avatar right away, reload the website." });
+            return res.status(200).json({
+              message:
+                "Avatar updated!\n\nIf you don't see your avatar right away, reload the website.",
+            });
           })
           .catch((error) => {
             return res.status(400).json({ error: error.response.data.error });

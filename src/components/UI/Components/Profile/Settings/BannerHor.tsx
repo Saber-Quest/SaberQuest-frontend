@@ -92,7 +92,9 @@ export default function BannerHorUpload({
       })
       .then((response) => {
         if (response.status === 302 || response.status === 200) {
-          setMessage("Horizontal banner updated!\n\nReload the website if you don't see it right away! :)");
+          setMessage(
+            "Horizontal banner updated!\n\nReload the website if you don't see it right away! :)"
+          );
           setType("success");
           setShow(true);
         }
@@ -123,7 +125,8 @@ export default function BannerHorUpload({
             type="file"
             disabled={disable}
           />
-          <button type="button"
+          <button
+            type="button"
             onClick={saveClick}
             className="flex flex-row items-center px-4 text-sm font-medium text-[#131313e5] bg-sqyellowfaint hover:bg-sqyellow rounded-r-lg hover:bg-sqyellowhover ring-0 smoothTran"
             disabled={disable}
@@ -132,7 +135,14 @@ export default function BannerHorUpload({
           </button>
         </div>
         <div className="mt-1 text-sm text-gray-500" id="bannerHorInputHelp">
-          PNG or JPG (MIN/MAX. 800x150px, 10MB) - <a download={true} href="/assets/images/templates/bannerVer.png" className="hover:text-sqyellow underline">Template</a>
+          PNG or JPG (MIN/MAX. 800x150px, 10MB) -{" "}
+          <a
+            download={true}
+            href="/assets/images/templates/bannerVer.png"
+            className="hover:text-sqyellow underline"
+          >
+            Template
+          </a>
         </div>
       </div>
     </>
