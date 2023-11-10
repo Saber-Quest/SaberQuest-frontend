@@ -87,8 +87,8 @@ export default function Username({
   };
 
   return (
-    <Switch.Group as="div" className="flex items-center justify-between p-5">
-      <div className="font-medium text-white">Username *</div>
+    <Switch.Group as="div" className={`${disable ? 'opacity-50':'opacity-100'} flex items-center justify-between p-5`}>
+      <div className="font-medium text-white" title="Patreon Feature">Username <span className="text-sm text-sqyellow mt-2">*</span></div>
       <div className="flex flex-row items-center">
         <div>
           <label htmlFor="username" className="sr-only">
@@ -102,7 +102,7 @@ export default function Username({
                 id="username"
                 maxLength={20}
                 minLength={3}
-                className="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-0 sm:text-sm sm:leading-6"
+                className={`${disable ? 'cursor-not-allowed':''} block w-full rounded-none rounded-l-md border-0 py-1.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-0 sm:text-sm sm:leading-6`}
                 placeholder={placeholder}
                 disabled={disable}
               />
@@ -110,7 +110,7 @@ export default function Username({
             <button
               type="button"
               onClick={saveUsername}
-              className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-[#131313e5] ring-0 bg-sqyellowfaint hover:bg-sqyellow smoothTran"
+              className={`${disable ? 'cursor-not-allowed':'hover:bg-sqyellow'} relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-[#131313e5] ring-0 bg-sqyellowfaint smoothTran`}
               disabled={disable}
             >
               Save

@@ -112,8 +112,9 @@ export default function BannerVerUpload({
         <label
           className="block mb-2 text-sm font-medium text-white"
           htmlFor="bannerVerInput"
+          title="Patreon Feature"
         >
-          Vertical banner - Upload file *
+          Vertical banner - Upload file <span className="text-sm text-sqyellow mt-2">*</span>
         </label>
         <div className="flex flex-row gap-0 h-[40px]">
           <input
