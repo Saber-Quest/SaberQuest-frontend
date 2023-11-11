@@ -17,7 +17,7 @@ function CommonRarity() {
     <>
       <div className="outerPill common">
         <div className="innerPill common" />
-        <span className="pillTexts">Common</span>
+        <span className="pillText">Common</span>
       </div>
     </>
   );
@@ -61,7 +61,7 @@ function LegendaryRarity() {
     <>
       <div className="outerPill legendary">
         <div className="innerPill legendary" />
-        <span className="w-full">Legendary</span>
+        <span className="pillText">Legendary</span>
       </div>
     </>
   );
