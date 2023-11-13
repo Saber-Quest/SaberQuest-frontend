@@ -190,6 +190,7 @@ export default function Profile() {
               if (currentPage > 1 && !loading) {
                 const previousPage = currentPage - 1;
                 router.push(`/leaderboard/${previousPage}`);
+                glitch.stopGlitch();
                 setCurrentPage(previousPage);
               }
             }}
@@ -207,6 +208,7 @@ export default function Profile() {
               if (userCount === 10 && !loading) {
                 const nextPage = currentPage + 1;
                 router.push(`/leaderboard/${nextPage}`);
+                glitch.stopGlitch();
                 setCurrentPage(nextPage);
               }
             }}

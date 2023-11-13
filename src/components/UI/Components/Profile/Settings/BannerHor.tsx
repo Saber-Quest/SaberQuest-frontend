@@ -130,7 +130,7 @@ export default function BannerHorUpload({
           <button
             type="button"
             onClick={saveClick}
-            className="flex flex-row items-center px-4 text-sm font-medium text-[#131313e5] bg-sqyellowfaint hover:bg-sqyellow rounded-r-lg hover:bg-sqyellowhover ring-0 smoothTran"
+            className="flex flex-row items-center px-4 text-sm font-medium text-[#131313e5] bg-sqyellow hover:bg-sqyellowfaint hover:text-white rounded-r-lg hover:bg-sqyellowhover ring-0 smoothTran"
             disabled={disable}
           >
             Save

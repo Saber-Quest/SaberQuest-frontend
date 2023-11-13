@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import rateLimit from "@lib/api/ratelimit";
-import { InventoryItem, Item, ItemRecipes } from "@lib/types";
-import { AllowedRecipes } from "@lib/types/ItemCrafting";
+import { InventoryItem, Item, ItemRecipes, AllowedRecipes } from "@lib/types";
 
 const ratelimit: any = 5;
 const limiter = rateLimit({
@@ -92,24 +91,44 @@ export default async function handler(
           const item1 = inventory.find((item) => item.id === item1_id);
           const item2 = inventory.find((item) => item.id === item2_id);
 
-          if (item1 && item2 && item1.amount >= 2 && item2.amount >= 2) {
-            const canCraft = Math.min(
-              Math.floor(item1.amount / 2),
-              Math.floor(item2.amount / 2),
-            );
+          if (item1 && item2) {
+            let canCraft: number = 0;
+            if (item1.id === item2.id) {
+              canCraft = Math.floor(item1.amount / 2);
+            } else {
+              canCraft = Math.min(item1.amount, item2.amount);
+            }
 
             const recipeWithCanCraft: AllowedRecipes = {
               item1: {
-                id: item1_id,
-                name: transformedRecipe.item1_name || "",
-                image: transformedRecipe.item1_image || "",
-                rarity: transformedRecipe.item1_rarity || "",
+                id: item1_id || item2_id,
+                name:
+                  transformedRecipe.item1_name ||
+                  transformedRecipe.item2_name ||
+                  "",
+                image:
+                  transformedRecipe.item1_image ||
+                  transformedRecipe.item2_image ||
+                  "",
+                rarity:
+                  transformedRecipe.item1_rarity ||
+                  transformedRecipe.item2_rarity ||
+                  "",
               },
               item2: {
-                id: item2_id,
-                name: transformedRecipe.item2_name || "",
-                image: transformedRecipe.item2_image || "",
-                rarity: transformedRecipe.item2_rarity || "",
+                id: item2_id || item1_id,
+                name:
+                  transformedRecipe.item2_name ||
+                  transformedRecipe.item1_name ||
+                  "",
+                image:
+                  transformedRecipe.item2_image ||
+                  transformedRecipe.item1_image ||
+                  "",
+                rarity:
+                  transformedRecipe.item2_rarity ||
+                  transformedRecipe.item1_rarity ||
+                  "",
               },
               crafted: {
                 id: transformedRecipe.crafted_id,
@@ -119,6 +138,7 @@ export default async function handler(
               },
               canCraft,
             };
+
             allowedRecipes.push(recipeWithCanCraft);
           }
         }

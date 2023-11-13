@@ -13,10 +13,6 @@ const NavigationLinks = [
     name: "Discord",
     link: process.env.PUBLIC_DISCORDLINK,
   },
-  {
-    name: process.env.PUBLIC_VERSION,
-    link: "#",
-  },
 ];
 
 function Footer() {
@@ -48,6 +44,9 @@ function Footer() {
               </Fragment>
             );
           })}
+          <span className="navLinkDivider">
+            | <span className="footerLinks">{process.env.PUBLIC_VERSION}</span>
+          </span>
         </div>
       </footer>
     </>

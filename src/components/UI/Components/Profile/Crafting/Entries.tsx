@@ -32,7 +32,7 @@ export default function ItemEntry({
     setNumberOfPages(calculatedNumberOfPages);
   }, [recipes]);
 
-  const handleCraft = (recipe: AllowedRecipes) => {
+  const handleCraft = async (recipe: AllowedRecipes) => {
     if (recipe.canCraft < 1) {
       setMessage("You don't have the required items to craft this item.");
       setType("error");
@@ -43,7 +43,7 @@ export default function ItemEntry({
 
     if (!antiSpam) {
       antiSpam = true;
-      axios
+      await axios
         .post(`${process.env.PUBLIC_URL}/api/crafting/craft`, {
           item1: recipe.item1.id,
           item2: recipe.item2.id,
@@ -74,9 +74,33 @@ export default function ItemEntry({
             });
 
             setRecipes([...recipes]);
-            setMessage(`You have crafted:\n\n ${recipe.crafted.name}!`);
-            setType("success");
-            setShow(true);
+
+            axios
+              .get(`${process.env.API_URL}/profile/${session.id}/inventory`)
+              .then((response) => {
+                if (response.status === 302 || response.status === 200) {
+                  console.log(response.data.inventory);
+                  setMessage(`You have crafted:\n\n ${recipe.crafted.name}!`);
+                  setType("success");
+                  setShow(true);
+                  if (!session.user) return;
+                  const updatedSession: SessionUser = {
+                    ...session,
+                    user: {
+                      ...session.user,
+                      inventory: response.data.inventory,
+                    },
+                  };
+                  setSession(updatedSession);
+                }
+              })
+              .catch((error) => {
+                console.error("An error occurred, contact a developer!");
+                console.error(error);
+                setMessage(error.response.data.error);
+                setType("error");
+                setShow(true);
+              });
             antiSpam = false;
           }
         })

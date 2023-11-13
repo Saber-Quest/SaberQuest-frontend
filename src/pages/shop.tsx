@@ -218,7 +218,7 @@ export default function StorePage({
                                   </th>
                                   <th
                                     scope="col"
-                                    className="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                                    className="relative py-3.5 pl-3 pr-4 sm:pr-6 text-sqyellow"
                                   >
                                     {userQP} QP
                                   </th>
@@ -267,7 +267,7 @@ export default function StorePage({
                                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                                       <div
                                         onClick={() => onClickHandler(item)}
-                                        className="text-[#ffd15269] hover:text-sqyellow transition-colors duration-200 hover:cursor-pointer"
+                                        className="text-sqyellow hover:text-[#ffd15269] underline transition-colors duration-200 hover:cursor-pointer"
                                       >
                                         Buy
                                       </div>

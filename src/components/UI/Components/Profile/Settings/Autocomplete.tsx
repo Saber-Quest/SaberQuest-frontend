@@ -76,7 +76,7 @@ export default function Autocomplete({
 
   return (
     <Switch.Group as="div" className="flex items-center justify-between p-5">
-      <div className="font-medium text-white">Autocomplete</div>
+      <div className="font-medium text-white">Autocomplete challenges</div>
       <div className="flex flex-row items-center">
         <Switch.Label as="span" className="mr-3 min-w-[82px]">
           <span className="font-medium text-white">

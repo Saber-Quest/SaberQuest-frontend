@@ -102,7 +102,7 @@ export default function About({
             <button
               type="button"
               onClick={saveAbout}
-              className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-[#131313e5] ring-0 bg-sqyellowfaint hover:bg-sqyellow smoothTran"
+              className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-[#131313e5] ring-0 hover:bg-sqyellowfaint hover:text-white bg-sqyellow smoothTran"
             >
               Save
             </button>

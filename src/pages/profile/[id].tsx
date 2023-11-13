@@ -139,8 +139,7 @@ export default function Profile({
           contents={`Rank: #${userData.stats.rank}
           Challenges Completed: ${userData.stats.challengesCompleted}
           QP: ${userData.stats.qp}
-          Account Value: ${userData.stats.value}
-          Items: ${userData.inventory.length}`}
+          Account Value: ${userData.stats.value}`}
           image={userData.userInfo.images.avatar}
         />
         <div className="max-w-[100vw] 1920:max-w-[75vw] mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
@@ -280,7 +279,7 @@ export default function Profile({
                       </Tab.List>
                       <Tab.Panels className="my-4">
                         {/* Inventory */}
-                        <InventoryPanel inventory={userData.inventory} />
+                        <InventoryPanel id={userData.userInfo.id} />
                         {/* Completed Challenges */}
                         <Tab.Panel className="my-4">
                           <ChallengesPanel

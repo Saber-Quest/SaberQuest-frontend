@@ -55,7 +55,7 @@ export default function Home({ session }: { session: SessionUser | null }) {
               <p className="fpManualText">
                 As to not over-request score-services, when you{" "}
                 <span className="fpBodyHighlight">complete a challenge</span>,
-                you need to go to your profile and click on the “
+                you need to go the “Challenges“-page and click on the “
                 <span className="fpBodyHighlight">Complete Challenge</span>
                 ”-button.
               </p>

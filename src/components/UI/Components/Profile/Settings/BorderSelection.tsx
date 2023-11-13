@@ -129,14 +129,15 @@ export default function BorderDropdown({
               <button
                 onClick={resetBorder}
                 type="button"
-                className="relative inline-flex items-center rounded-l-md bg-[#131313e5] px-3 py-2 text-sm font-semibold text-gray-400 focus:z-10 hover:text-sqyellow"
+                title="Revert border to last saved border"
+                className="relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold focus:z-10 text-[#131313e5] bg-sqyellow hover:bg-sqyellowfaint hover:text-white smoothTran"
               >
                 Reset
               </button>
               <button
                 type="button"
                 onClick={saveClick}
-                className="relative -ml-px inline-flex items-center rounded-r-md bg-[#131313e5] px-3 py-2 text-sm font-semibold text-gray-400 focus:z-10 hover:text-sqyellow"
+                className="relative -ml-px inline-flex items-center rounded-r-md px-3 py-2 text-sm font-semibold focus:z-10 text-[#131313e5] bg-sqyellow hover:bg-sqyellowfaint hover:text-white smoothTran"
               >
                 Save
               </button>

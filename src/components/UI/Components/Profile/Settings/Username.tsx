@@ -120,8 +120,10 @@ export default function Username({
               type="button"
               onClick={saveUsername}
               className={`${
-                disable ? "cursor-not-allowed" : "hover:bg-sqyellow"
-              } relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-[#131313e5] ring-0 bg-sqyellowfaint smoothTran`}
+                disable
+                  ? "cursor-not-allowed"
+                  : "hover:bg-sqyellowfaint hover:text-white"
+              } relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-[#131313e5] ring-0 bg-sqyellow smoothTran`}
               disabled={disable}
             >
               Save
