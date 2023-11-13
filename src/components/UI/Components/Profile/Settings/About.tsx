@@ -36,7 +36,7 @@ export default function About({
 
     if (
       !about.value.match(
-        /^[\x00-\x7F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0250-\u036FA-Za-z0-9_-]*$/
+        /^[\x00-\x7F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0250-\u036FA-Za-z0-9_-]*$/,
       )
     ) {
       setMessage("About did not pass sanitization!");

@@ -32,7 +32,7 @@ export default function Username({
   const saveUsername = async () => {
     if (!session.user?.userInfo.patreon) {
       setMessage(
-        `You're not allowed to change your username!\n Subscribe to the ${process.env.PUBLIC_NAME} Patreon to unlock it!`
+        `You're not allowed to change your username!\n Subscribe to the ${process.env.PUBLIC_NAME} Patreon to unlock it!`,
       );
       setType("error");
       setShow(true);
@@ -48,7 +48,7 @@ export default function Username({
 
     if (!username.value.match(/^[A-Za-z0-9_-]*$/)) {
       setMessage(
-        "Username must only contain letters, numbers, underscores, and dashes!"
+        "Username must only contain letters, numbers, underscores, and dashes!",
       );
       setType("error");
       setShow(true);

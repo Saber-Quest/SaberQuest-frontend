@@ -51,7 +51,7 @@ export default function BorderDropdown({
   const saveClick = async () => {
     if (selectedBorder.patreon && !session.user?.userInfo.patreon) {
       setMessage(
-        `You're not allowed to use this border!\n Subscribe to the ${process.env.PUBLIC_NAME} Patreon to unlock it!`
+        `You're not allowed to use this border!\n Subscribe to the ${process.env.PUBLIC_NAME} Patreon to unlock it!`,
       );
       setType("error");
       setShow(true);
@@ -152,7 +152,7 @@ export default function BorderDropdown({
                   className={({ active }) =>
                     classNames(
                       "relative cursor-default select-none py-2 pl-3 pr-9",
-                      active ? "bg-sqyellowfaint text-white" : "text-white"
+                      active ? "bg-sqyellowfaint text-white" : "text-white",
                     )
                   }
                 >
@@ -182,7 +182,7 @@ export default function BorderDropdown({
                         <span
                           className={classNames(
                             "ml-3 truncate",
-                            selected && "font-semibold"
+                            selected && "font-semibold",
                           )}
                         >
                           {border.name}{" "}
@@ -196,7 +196,7 @@ export default function BorderDropdown({
                         <span
                           className={classNames(
                             "absolute inset-y-0 right-0 flex items-center pr-4",
-                            active ? "text-white" : "text-sqyellow"
+                            active ? "text-white" : "text-sqyellow",
                           )}
                         >
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />

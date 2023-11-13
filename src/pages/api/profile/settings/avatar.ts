@@ -21,7 +21,7 @@ const limiter = rateLimit({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     await limiter.check(res, ratelimit, "CACHE_TOKEN");
@@ -51,8 +51,8 @@ export default async function handler(
           img = await sharp(
             Buffer.from(
               av.replace(/^data:image\/(png|jpeg);base64,/, ""),
-              "base64"
-            )
+              "base64",
+            ),
           ).metadata();
         } catch (error) {
           return res.status(400).json({
@@ -84,7 +84,7 @@ export default async function handler(
 
         const image = Buffer.from(
           av.replace(/^data:image\/(png|jpeg);base64,/, ""),
-          "base64"
+          "base64",
         );
 
         if (await isTransparent(image)) {

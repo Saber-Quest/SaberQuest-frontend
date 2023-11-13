@@ -92,7 +92,7 @@ export default function AvatarUpload({
       .then((response) => {
         if (response.status === 302 || response.status === 200) {
           setMessage(
-            "Avatar updated!\n\nReload the website if you don't see it right away! :)"
+            "Avatar updated!\n\nReload the website if you don't see it right away! :)",
           );
           setType("success");
           setShow(true);

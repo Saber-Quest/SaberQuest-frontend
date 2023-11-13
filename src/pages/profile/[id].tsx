@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
+import ReactMarkdown from "react-markdown";
 import axios from "axios";
 import { useGlitch } from "react-powerglitch";
 import Header from "@comp/Meta/Title";
@@ -160,7 +161,7 @@ export default function Profile({
                     loading="eager"
                     ref={
                       userData.userInfo.images.border?.includes(
-                        "glitch_border.gif"
+                        "glitch_border.gif",
                       )
                         ? glitch.ref
                         : null
@@ -228,11 +229,13 @@ export default function Profile({
                       About
                     </p>
                     <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow my-5" />
-                    <p className="text-center max-w-[900px] drop-shadow-textShadow break-all">
-                      {userData.userInfo.about
-                        ? userData.userInfo.about
-                        : "This user has yet to write something!"}
-                    </p>
+                    <span className="text-center max-w-[900px] drop-shadow-textShadow break-all">
+                      {userData.userInfo.about ? (
+                        <ReactMarkdown>{userData.userInfo.about}</ReactMarkdown>
+                      ) : (
+                        "This user has yet to write something!"
+                      )}
+                    </span>
                   </div>
                 </div>
                 <div className="mt-[17px] px-4 py-2 sm:px-6 rounded-lg bg-[#161616]">

@@ -93,7 +93,7 @@ export default function BannerVerUpload({
       .then((response) => {
         if (response.status === 302 || response.status === 200) {
           setMessage(
-            "Vertical banner updated!\n\nReload the website if you don't see it right away! :)"
+            "Vertical banner updated!\n\nReload the website if you don't see it right away! :)",
           );
           setType("success");
           setShow(true);

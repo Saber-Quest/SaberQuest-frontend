@@ -11,7 +11,7 @@ const limiter = rateLimit({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     await limiter.check(res, ratelimit, "CACHE_TOKEN");
@@ -35,7 +35,7 @@ export default async function handler(
 
         if (
           !a.match(
-            /^[\x00-\x7F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0250-\u036FA-Za-z0-9_-]*$/
+            /^[\x00-\x7F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0250-\u036FA-Za-z0-9_-]*$/,
           )
         ) {
           return res.status(400).json({

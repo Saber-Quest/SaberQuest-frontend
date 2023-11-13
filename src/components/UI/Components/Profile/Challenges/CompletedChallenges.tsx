@@ -23,14 +23,14 @@ export default function ChallengesPanel({
   const challengesPerPage = 5;
   const [expandedIndex, setExpandedIndex] = useState(-1);
   const [numberOfPages] = useState<number>(
-    Math.ceil(challenges.length / challengesPerPage)
+    Math.ceil(challenges.length / challengesPerPage),
   );
   const [currentPage, setCurrentPage] = useState<number>(1);
   const startChallengeIndex = (currentPage - 1) * challengesPerPage;
   const endChallengeIndex = startChallengeIndex + challengesPerPage;
   const challengesToShow = challenges.slice(
     startChallengeIndex,
-    endChallengeIndex
+    endChallengeIndex,
   );
 
   const toggleAccordion = (index: number) => {
@@ -118,14 +118,14 @@ export default function ChallengesPanel({
                                 cItems.rarity === iR.C
                                   ? "ring-commonItem"
                                   : cItems.rarity === iR.U
-                                  ? "ring-uncommonItem"
-                                  : cItems.rarity === iR.R
-                                  ? "ring-rareItem"
-                                  : cItems.rarity === iR.E
-                                  ? "ring-epicItem"
-                                  : cItems.rarity === iR.L
-                                  ? "ring-legendaryItem"
-                                  : "ring-sqyellow"
+                                    ? "ring-uncommonItem"
+                                    : cItems.rarity === iR.R
+                                      ? "ring-rareItem"
+                                      : cItems.rarity === iR.E
+                                        ? "ring-epicItem"
+                                        : cItems.rarity === iR.L
+                                          ? "ring-legendaryItem"
+                                          : "ring-sqyellow"
                               }`}
                               src={cItems.image}
                               alt={cItems.name}

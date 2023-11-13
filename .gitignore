@@ -39,7 +39,9 @@ next-env.d.ts
 
 .vercel
 
-
 public/assets/images/users/*
 .env
 .env.development
+package-lock.json
+yarn.lock
+settings.json

@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const authCookie = req.cookies.auth;
   let sessionData: SessionUser | null = null;
@@ -36,7 +36,7 @@ export default async function handler(
   } catch (error) {
     res.setHeader(
       "Set-Cookie",
-      "auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+      "auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT",
     );
     return res.status(500).json({ error: { message: "An error occurred" } });
   }

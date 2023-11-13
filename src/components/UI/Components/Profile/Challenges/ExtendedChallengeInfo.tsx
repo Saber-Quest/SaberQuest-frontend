@@ -113,14 +113,14 @@ export default function ExtendedChallengeInfo({
                 cItems.rarity === iR.C
                   ? "ring-commonItem bg-commonItemfaint"
                   : cItems.rarity === iR.U
-                  ? "ring-uncommonItem bg-uncommonItemfaint"
-                  : cItems.rarity === iR.R
-                  ? "ring-rareItem bg-rareItemfaint"
-                  : cItems.rarity === iR.E
-                  ? "ring-epicItem bg-epicItemfaint"
-                  : cItems.rarity === iR.L
-                  ? "ring-legendaryItem bg-legendaryItemfaint"
-                  : "ring-sqyellow bg-sqyellowfaint"
+                    ? "ring-uncommonItem bg-uncommonItemfaint"
+                    : cItems.rarity === iR.R
+                      ? "ring-rareItem bg-rareItemfaint"
+                      : cItems.rarity === iR.E
+                        ? "ring-epicItem bg-epicItemfaint"
+                        : cItems.rarity === iR.L
+                          ? "ring-legendaryItem bg-legendaryItemfaint"
+                          : "ring-sqyellow bg-sqyellowfaint"
               }`}
             >
               <Image

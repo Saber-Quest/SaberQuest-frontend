@@ -51,7 +51,7 @@ export default function Profile() {
         .get(
           `${
             process.env.API_URL
-          }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`
+          }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
         )
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
@@ -136,7 +136,7 @@ export default function Profile() {
                               loading="eager"
                               ref={
                                 user.userInfo.images.border?.includes(
-                                  "glitch_border.gif"
+                                  "glitch_border.gif",
                                 )
                                   ? glitch.ref
                                   : null

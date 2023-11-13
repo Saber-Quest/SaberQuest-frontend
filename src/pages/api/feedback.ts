@@ -10,7 +10,7 @@ const limiter = rateLimit({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     await limiter.check(res, ratelimit, "CACHE_TOKEN");
@@ -24,34 +24,32 @@ export default async function handler(
 
         await axios
           .post(`${process.env.DISCORD_WEBHOOK}`, {
-            "content": null,
-            "username": userinfo.username,
-            "avatar_url": userinfo.images.avatar,
-            "embeds": [
+            content: null,
+            username: userinfo.username,
+            avatar_url: userinfo.images.avatar,
+            embeds: [
               {
-                "title": "New feedback:",
-                "color": 16763987,
-                "fields": [
+                title: "New feedback:",
+                color: 16763987,
+                fields: [
                   {
-                    "name": "Type:",
-                    "value": type
+                    name: "Type:",
+                    value: type,
                   },
                   {
-                    "name": "Message:",
-                    "value": message
-                  }
+                    name: "Message:",
+                    value: message,
+                  },
                 ],
-                "footer": {
-                  "text": `By: ${userinfo.username}`
+                footer: {
+                  text: `By: ${userinfo.username}`,
                 },
-                "timestamp": new Date()
-              }
+                timestamp: new Date(),
+              },
             ],
           })
           .then(() => {
-            return res
-              .status(200)
-              .json({ message: "Feedback sent!" });
+            return res.status(200).json({ message: "Feedback sent!" });
           })
           .catch((error) => {
             return res.status(400).json({ error: error.response.data.error });

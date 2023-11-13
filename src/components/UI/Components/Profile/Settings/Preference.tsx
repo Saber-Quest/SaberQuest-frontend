@@ -52,7 +52,7 @@ export default function Preference({
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
             setMessage(
-              `You changed your platform preference!\n\nYou are now using ***${usedPlatformLong}*** as your main platform.`
+              `You changed your platform preference!\n\nYou are now using ***${usedPlatformLong}*** as your main platform.`,
             );
             setType("success");
             setShow(true);

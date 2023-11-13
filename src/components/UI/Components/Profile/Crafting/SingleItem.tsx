@@ -24,14 +24,14 @@ export default function SingleItem({
                 recipe.item1.rarity === iR.C
                   ? iR.C
                   : recipe.item1.rarity === iR.U
-                  ? iR.U
-                  : recipe.item1.rarity === iR.R
-                  ? iR.R
-                  : recipe.item1.rarity === iR.E
-                  ? iR.E
-                  : recipe.item1.rarity === iR.L
-                  ? iR.L
-                  : iR.C
+                    ? iR.U
+                    : recipe.item1.rarity === iR.R
+                      ? iR.R
+                      : recipe.item1.rarity === iR.E
+                        ? iR.E
+                        : recipe.item1.rarity === iR.L
+                          ? iR.L
+                          : iR.C
               }
               name={`${recipe.item1.name}`}
             />
@@ -42,14 +42,14 @@ export default function SingleItem({
                 recipe.item2.rarity === iR.C
                   ? iR.C
                   : recipe.item2.rarity === iR.U
-                  ? iR.U
-                  : recipe.item2.rarity === iR.R
-                  ? iR.R
-                  : recipe.item2.rarity === iR.E
-                  ? iR.E
-                  : recipe.item2.rarity === iR.L
-                  ? iR.L
-                  : iR.C
+                    ? iR.U
+                    : recipe.item2.rarity === iR.R
+                      ? iR.R
+                      : recipe.item2.rarity === iR.E
+                        ? iR.E
+                        : recipe.item2.rarity === iR.L
+                          ? iR.L
+                          : iR.C
               }
               name={`${recipe.item2.name}`}
             />
@@ -60,14 +60,14 @@ export default function SingleItem({
                 recipe.crafted.rarity === iR.C
                   ? iR.C
                   : recipe.crafted.rarity === iR.U
-                  ? iR.U
-                  : recipe.crafted.rarity === iR.R
-                  ? iR.R
-                  : recipe.crafted.rarity === iR.E
-                  ? iR.E
-                  : recipe.crafted.rarity === iR.L
-                  ? iR.L
-                  : iR.C
+                    ? iR.U
+                    : recipe.crafted.rarity === iR.R
+                      ? iR.R
+                      : recipe.crafted.rarity === iR.E
+                        ? iR.E
+                        : recipe.crafted.rarity === iR.L
+                          ? iR.L
+                          : iR.C
               }
               name={`${recipe.crafted.name}`}
             />

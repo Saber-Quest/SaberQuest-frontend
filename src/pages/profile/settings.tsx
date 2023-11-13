@@ -84,7 +84,7 @@ export default function ImgTest({
 
   const initialBorder = useCallback(() => {
     const border = borders.find(
-      (border) => border.imageUrl === session.user?.userInfo.images.border
+      (border) => border.imageUrl === session.user?.userInfo.images.border,
     );
     if (border !== null && border !== undefined) {
       setSelectedBorder(border);

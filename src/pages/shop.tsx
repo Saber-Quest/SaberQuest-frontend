@@ -87,7 +87,7 @@ export default function StorePage({
   const formatCountdownTime = (timeRemaining: any) => {
     const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
     const minutes = Math.floor(
-      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60),
     );
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
@@ -101,7 +101,7 @@ export default function StorePage({
       setMessage(
         `You cannot afford "${item.name}".\n\n You're missing ${
           item.price - userQP
-        } QP.`
+        } QP.`,
       );
       setType("error");
       setShow(true);
@@ -137,7 +137,7 @@ export default function StorePage({
         if (response.status === 302 || response.status === 200) {
           if (!session.user) {
             setMessage(
-              "An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes."
+              "An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes.",
             );
             setType("error");
             setShow(true);
@@ -250,14 +250,14 @@ export default function StorePage({
                                           item.rarity === iR.C
                                             ? iR.C
                                             : item.rarity === iR.U
-                                            ? iR.U
-                                            : item.rarity === iR.R
-                                            ? iR.R
-                                            : item.rarity === iR.E
-                                            ? iR.E
-                                            : item.rarity === iR.L
-                                            ? iR.L
-                                            : iR.C
+                                              ? iR.U
+                                              : item.rarity === iR.R
+                                                ? iR.R
+                                                : item.rarity === iR.E
+                                                  ? iR.E
+                                                  : item.rarity === iR.L
+                                                    ? iR.L
+                                                    : iR.C
                                         }
                                       />
                                     </td>

@@ -12,7 +12,7 @@ const limiter = rateLimit({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     await limiter.check(res, ratelimit, "CACHE_TOKEN");
@@ -65,7 +65,7 @@ export default async function handler(
           const item1 = knownItems.find((item) => item.id === recipe.item1_id);
           const item2 = knownItems.find((item) => item.id === recipe.item2_id);
           const crafted = knownItems.find(
-            (item) => item.id === recipe.crafted_id
+            (item) => item.id === recipe.crafted_id,
           );
 
           return {
@@ -95,7 +95,7 @@ export default async function handler(
           if (item1 && item2 && item1.amount >= 2 && item2.amount >= 2) {
             const canCraft = Math.min(
               Math.floor(item1.amount / 2),
-              Math.floor(item2.amount / 2)
+              Math.floor(item2.amount / 2),
             );
 
             const recipeWithCanCraft: AllowedRecipes = {
@@ -124,7 +124,7 @@ export default async function handler(
         }
 
         allowedRecipes = allowedRecipes.filter(
-          (recipe) => recipe.canCraft >= 1
+          (recipe) => recipe.canCraft >= 1,
         );
 
         return res.status(200).json({ allowedRecipes });

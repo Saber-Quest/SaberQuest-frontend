@@ -93,7 +93,7 @@ export default function BannerHorUpload({
       .then((response) => {
         if (response.status === 302 || response.status === 200) {
           setMessage(
-            "Horizontal banner updated!\n\nReload the website if you don't see it right away! :)"
+            "Horizontal banner updated!\n\nReload the website if you don't see it right away! :)",
           );
           setType("success");
           setShow(true);

@@ -36,7 +36,7 @@ export default function ChallengeComp({
     if (!session) return;
     if (session.user?.today.completed) {
       setMessage(
-        `You already completed a challenge today!\nYou can't change your difficulty anymore.`
+        `You already completed a challenge today!\nYou can't change your difficulty anymore.`,
       );
       setType("info");
       setShow(true);
@@ -116,7 +116,7 @@ export default function ChallengeComp({
         if (response.status === 302 || response.status === 200) {
           if (!session.user) {
             setMessage(
-              "An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes."
+              "An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes.",
             );
             setType("error");
             setShow(true);

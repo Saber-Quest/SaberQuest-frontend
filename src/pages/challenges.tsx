@@ -76,7 +76,7 @@ export default function Challenges({
   const formatCountdownTime = (timeRemaining: any) => {
     const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
     const minutes = Math.floor(
-      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60),
     );
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
