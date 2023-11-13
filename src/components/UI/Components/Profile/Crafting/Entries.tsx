@@ -88,7 +88,7 @@ export default function ItemEntry({
                     ...session,
                     user: {
                       ...session.user,
-                      inventory: response.data.inventory,
+                      inventory: response.data,
                     },
                   };
                   setSession(updatedSession);
