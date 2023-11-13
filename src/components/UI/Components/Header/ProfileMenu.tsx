@@ -14,6 +14,10 @@ const profileMenu = [
     name: "Settings",
     href: "/profile/settings",
   },
+  {
+    name: "Feedback",
+    href: "/feedback",
+  },
 ];
 
 export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {

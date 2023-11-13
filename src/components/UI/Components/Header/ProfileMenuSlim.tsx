@@ -15,6 +15,10 @@ const profileMenu = [
     href: "/profile/settings",
   },
   {
+    name: "Feedback",
+    href: "/feedback",
+  },
+  {
     name: "Log out",
     href: "#",
   },

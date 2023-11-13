@@ -17,7 +17,8 @@ export async function middleware(request: NextRequest) {
     if (
       request.nextUrl.pathname === "/profile" ||
       request.nextUrl.pathname === "/profile/settings" ||
-      request.nextUrl.pathname === "/shop"
+      request.nextUrl.pathname === "/shop" ||
+      request.nextUrl.pathname === "/feedback"
     ) {
       const url = request.nextUrl.clone();
       url.pathname = "/";

@@ -44,5 +44,6 @@ module.exports = {
     PUBLIC_API: process.env.PUBLIC_API,
     PUBLIC_DISCORDLINK: process.env.PUBLIC_DISCORDLINK,
     API_URL: process.env.API_URL,
+    DISCORD_WEBHOOK: process.env.DISCORD_WEBHOOK,
   },
 };

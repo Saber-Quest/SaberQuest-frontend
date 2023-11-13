@@ -114,7 +114,8 @@ export default function BannerHorUpload({
           htmlFor="bannerHorInput"
           title="Patreon Feature"
         >
-          Horizontal banner - Upload file <span className="text-sm text-sqyellow mt-2">*</span>
+          Horizontal banner - Upload file{" "}
+          <span className="text-sm text-sqyellow mt-2">*</span>
         </label>
         <div className="flex flex-row gap-0 h-[40px]">
           <input

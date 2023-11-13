@@ -107,7 +107,7 @@ export default function Challenges({
               challenges !== null &&
               !loading && (
                 <>
-                  <h1 className="chpH1Text">
+                  <h1 className="chpH1Text md:chTextHeader text-[28px]">
                     <span>
                       Current <span className="text-sqyellow">Challenges</span>
                     </span>{" "}

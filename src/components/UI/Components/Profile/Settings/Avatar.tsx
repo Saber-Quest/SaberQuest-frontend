@@ -113,7 +113,8 @@ export default function AvatarUpload({
           htmlFor="avatarInput"
           title="Patreon Feature"
         >
-          Avatar - Upload file <span className="text-sm text-sqyellow mt-2">*</span>
+          Avatar - Upload file{" "}
+          <span className="text-sm text-sqyellow mt-2">*</span>
         </label>
         <div className="flex flex-row gap-0 h-[40px]">
           <input
@@ -138,7 +139,7 @@ export default function AvatarUpload({
           PNG or JPG (MIN/MAX. 512x512px, 10MB) -{" "}
           <a
             download={true}
-            href="/assets/images/templates/bannerVer.png"
+            href="/assets/images/templates/avatar.png"
             className="hover:text-sqyellow underline"
           >
             Template

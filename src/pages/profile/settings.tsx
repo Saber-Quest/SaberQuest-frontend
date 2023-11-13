@@ -120,7 +120,12 @@ export default function ImgTest({
           <div className="LeaderboardList">
             <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] transition-all duration-75 mb-5 flex flex-col flex-start">
               <span className="text-sqyellow">Settings</span>
-              <span className="text-sm text-white font-bold mt-2" title="Patreon Feature">Patreon features <span className="text-sqyellow">*</span></span>
+              <span
+                className="text-sm text-white font-bold mt-2"
+                title="Patreon Feature"
+              >
+                Patreon features <span className="text-sqyellow">*</span>
+              </span>
             </h1>
             <div className="px-4 sm:px-6 lg:px-8">
               <Tab.Group>
@@ -128,9 +133,10 @@ export default function ImgTest({
                   <Tab.List className="flex min-w-full justify-center">
                     <Tab
                       className={({ selected }: { selected: boolean }) =>
-                        `${selected
-                          ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                          : "border-transparent"
+                        `${
+                          selected
+                            ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                            : "border-transparent"
                         } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
                       }
                     >
@@ -140,10 +146,15 @@ export default function ImgTest({
                       disabled={disabled}
                       title={`Patreon Feature`}
                       className={({ selected }: { selected: boolean }) =>
-                        `${selected
-                          ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                          : "border-transparent"
-                        } ${disabled ? 'cursor-not-allowed' : 'hover:text-sqyellow'} py-2 px-4 w-full border-b focus:outline-none`
+                        `${
+                          selected
+                            ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                            : "border-transparent"
+                        } ${
+                          disabled
+                            ? "cursor-not-allowed"
+                            : "hover:text-sqyellow"
+                        } py-2 px-4 w-full border-b focus:outline-none`
                       }
                     >
                       Avatar-Border <span className="text-sqyellow">*</span>
@@ -152,10 +163,15 @@ export default function ImgTest({
                       disabled={disabled}
                       title={`Patreon Feature`}
                       className={({ selected }: { selected: boolean }) =>
-                        `${selected
-                          ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                          : "border-transparent"
-                        } ${disabled ? 'cursor-not-allowed' : 'hover:text-sqyellow'} py-2 px-4 w-full border-b focus:outline-none`
+                        `${
+                          selected
+                            ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                            : "border-transparent"
+                        } ${
+                          disabled
+                            ? "cursor-not-allowed"
+                            : "hover:text-sqyellow"
+                        } py-2 px-4 w-full border-b focus:outline-none`
                       }
                     >
                       Images <span className="text-sqyellow">*</span>
