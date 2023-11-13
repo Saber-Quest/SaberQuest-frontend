@@ -172,6 +172,8 @@ export default function BorderDropdown({
                           ""
                         ) : (
                           <Image
+                            priority={true}
+                            loading="eager"
                             src={`/assets/images/users/borders/${border.imageUrl}`}
                             alt={border.name}
                             className="h-6 w-6 flex-shrink-0 rounded-full"

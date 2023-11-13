@@ -97,6 +97,8 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
             />
             {userinfo.user?.userInfo.images.border && (
               <Image
+                priority={true}
+                loading="eager"
                 src={`/assets/images/users/borders/${userinfo.user?.userInfo.images.border}`}
                 alt="Border Image"
                 className="absolute inset-0 object-cover scale-[145%] z-10"

@@ -233,6 +233,8 @@ export default function ImgTest({
                                     ""
                                   ) : (
                                     <Image
+                                      priority={true}
+                                      loading="eager"
                                       src={`/assets/images/users/borders/${selectedBorder.imageUrl}`}
                                       alt={selectedBorder.name}
                                       className="absolute inset-0 object-cover scale-[145%] transition-all duration-200 ease-linear"
