@@ -59,24 +59,30 @@ export default function StasisApp({ Component, pageProps }: AppProps) {
         <Maintenance />
       ) : (
         <>
-          <Header session={session} sessionCheck={sessionChecked} />
-          <Component
-            {...pageProps}
-            session={session}
-            sessionCheck={sessionChecked}
-            setSession={setSession}
-            setMessage={setMessage}
-            setType={setType}
-            setShow={setShow}
-          />
-          <Notification
-            dataArray={{ show, message, type, timer }}
-            setMessage={setMessage}
-            setType={setType}
-            setShow={setShow}
-            setTimer={setTimer}
-          />
-          <Footer />
+          <div>
+            <Header session={session} sessionCheck={sessionChecked} />
+          </div>
+          <div>
+            <Component
+              {...pageProps}
+              session={session}
+              sessionCheck={sessionChecked}
+              setSession={setSession}
+              setMessage={setMessage}
+              setType={setType}
+              setShow={setShow}
+            />
+            <Notification
+              dataArray={{ show, message, type, timer }}
+              setMessage={setMessage}
+              setType={setType}
+              setShow={setShow}
+              setTimer={setTimer}
+            />
+          </div>
+          <div className="mt-20">
+            <Footer />
+          </div>
         </>
       )}
     </>

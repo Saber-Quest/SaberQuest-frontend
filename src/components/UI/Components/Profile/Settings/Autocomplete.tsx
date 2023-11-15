@@ -90,7 +90,6 @@ export default function Autocomplete({
             autocomplete ? "bg-green-400" : "bg-red-400"
           } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out`}
         >
-          <span className="sr-only">Use setting</span>
           <span
             className={`${
               autocomplete ? "translate-x-5" : "translate-x-0"

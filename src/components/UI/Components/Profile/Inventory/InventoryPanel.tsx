@@ -57,14 +57,14 @@ export default function InventoryPanel({ id }: { id: string }) {
                       item.rarity === iR.C
                         ? "border-commonItem hover:bg-commonItemfaint"
                         : item.rarity === iR.U
-                          ? "border-uncommonItem hover:bg-uncommonItemfaint"
-                          : item.rarity === iR.R
-                            ? "border-rareItem hover:bg-rareItemfaint"
-                            : item.rarity === iR.E
-                              ? "border-epicItem hover:bg-epicItemfaint"
-                              : item.rarity === iR.L
-                                ? "border-legendaryItem hover:bg-legendaryItemfaint"
-                                : "border-sqyellow hover:bg-sqyellowfaint"
+                        ? "border-uncommonItem hover:bg-uncommonItemfaint"
+                        : item.rarity === iR.R
+                        ? "border-rareItem hover:bg-rareItemfaint"
+                        : item.rarity === iR.E
+                        ? "border-epicItem hover:bg-epicItemfaint"
+                        : item.rarity === iR.L
+                        ? "border-legendaryItem hover:bg-legendaryItemfaint"
+                        : "border-sqyellow hover:bg-sqyellowfaint"
                     } flex flex-col items-center rounded-3xl p-2 border-2 border-opacity-30 drop-shadow-PFPShadow hover:border-opacity-70 transition-all duration-150 ease-in-out`}
                   >
                     <Image

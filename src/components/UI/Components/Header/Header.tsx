@@ -121,7 +121,6 @@ export default function NavBar({
                 null}
               <div className="flex flex-row-reverse items-end lg:hidden w-full">
                 <Disclosure.Button className="navButtonDark">
-                  <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
@@ -185,7 +184,6 @@ export default function NavBar({
                       null}
                   </div>
                   <Disclosure.Button className="navButtonDark">
-                    <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                     ) : (

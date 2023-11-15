@@ -85,7 +85,12 @@ export default function Preference({
       as="div"
       className="flex items-center justify-between bg-[#0000003d] p-5"
     >
-      <div className="font-medium text-white" title="What platform SaberQuest should check for challenge-completion">Platform-preference</div>
+      <div
+        className="font-medium text-white"
+        title="What platform SaberQuest should check for challenge-completion"
+      >
+        Platform-preference
+      </div>
       <div className="flex flex-row items-center">
         <Switch.Label as="span" className="mr-3 min-w-[82px]">
           <span className="font-medium text-white">

@@ -30,9 +30,6 @@
 
 @layer components {
   #__next {
-    @apply flex flex-col items-center justify-start;
-    @apply min-h-screen;
-    @apply pb-[15%];
-    @apply transition-colors duration-75;
+    @apply h-full;
   }
 }

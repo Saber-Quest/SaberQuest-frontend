@@ -98,9 +98,6 @@ export default function Username({
       </div>
       <div className="flex flex-row items-center">
         <div>
-          <label htmlFor="username" className="sr-only">
-            Username
-          </label>
           <div className="flex rounded-md shadow-sm">
             <div className="relative flex flex-grow items-stretch focus-within:z-10">
               <input

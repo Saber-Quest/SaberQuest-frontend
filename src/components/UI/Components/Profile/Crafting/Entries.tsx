@@ -79,7 +79,6 @@ export default function ItemEntry({
               .get(`${process.env.API_URL}/profile/${session.id}/inventory`)
               .then((response) => {
                 if (response.status === 302 || response.status === 200) {
-                  console.log(response.data.inventory);
                   setMessage(`You have crafted:\n\n ${recipe.crafted.name}!`);
                   setType("success");
                   setShow(true);

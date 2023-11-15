@@ -84,9 +84,6 @@ export default function About({
       <div className="font-medium text-white">About</div>
       <div className="flex flex-row items-center">
         <div>
-          <label htmlFor="about" className="sr-only">
-            About
-          </label>
           <div className="flex rounded-md shadow-sm">
             <div className="relative flex flex-grow items-stretch focus-within:z-10">
               <textarea
