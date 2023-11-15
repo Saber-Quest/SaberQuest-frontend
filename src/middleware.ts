@@ -5,6 +5,8 @@ import { SessionUser } from "@lib/types";
 export async function middleware(request: NextRequest) {
   const response = await NextResponse.next();
 
+  const admin = false;
+
   let authCookie = request.cookies.get("auth");
   let authData: SessionUser | null = null;
   if (authCookie) {
@@ -12,23 +14,30 @@ export async function middleware(request: NextRequest) {
   }
 
   // Authed Section
-  if (authData == null) {
+  if (authData === null) {
     response.cookies.set("auth", "", { expires: new Date(0) });
     if (
       request.nextUrl.pathname === "/profile" ||
       request.nextUrl.pathname === "/profile/settings" ||
       request.nextUrl.pathname === "/shop" ||
-      request.nextUrl.pathname === "/feedback"
+      request.nextUrl.pathname === "/feedback" ||
+      request.nextUrl.pathname.startsWith("/admin")
     ) {
       const url = request.nextUrl.clone();
       url.pathname = "/";
       return NextResponse.redirect(url);
     }
   }
-  if (authData != null) {
+  if (authData !== null) {
     if (request.nextUrl.pathname === "/profile") {
       const url = request.nextUrl.clone();
       url.pathname = `/profile/${authData.id}`;
+      return NextResponse.redirect(url);
+
+    }
+    if (!admin && request.nextUrl.pathname.startsWith("/admin")) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/";
       return NextResponse.redirect(url);
     }
   }
