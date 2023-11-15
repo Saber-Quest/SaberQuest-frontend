@@ -142,11 +142,11 @@ export default function Profile({
           Account Value: ${userData.stats.value}`}
           image={userData.userInfo.images.avatar}
         />
-        <div className="max-w-[100vw] 1920:max-w-[75vw] mt-32 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="max-w-[100vw] 1920:max-w-[75vw] mt-32 flex justify-center content-center drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>
             <div className="userDiv transition-all opacity-1 duration-500 flex flex-col lg:flex-row gap-5">
               <div
-                className={`userInfoVer h-[820px] rounded-lg`}
+                className={`userInfoVer h-[820px] min-w-[400px] rounded-lg`}
                 style={{
                   backgroundImage: !userData.userInfo.images.banner
                     ? `url(/assets/images/users/banners/ver/default.png)`
@@ -190,7 +190,7 @@ export default function Profile({
                   )}
                 </div>
                 <div
-                  className={`rounded-lg w-[425px] flex flex-col items-center font-medium`}
+                  className={`rounded-lg flex flex-col items-center font-medium`}
                 >
                   <p className="profileNameHeader max-w-[inherit] mt-8 p-5 text-center drop-shadow-textShadow">{`${userData.userInfo.username}`}</p>
                   <div className="h-[5px] w-[305px] rounded-full bg-gradient-to-r from-sqyellow mb-5" />
@@ -213,7 +213,7 @@ export default function Profile({
                   </div>
                 </div>
               </div>
-              <div className="profileRightContainer w-full">
+              <div className="profileRightContainer max-w-[80px] min-w-[800px]">
                 <div
                   className="userInfoHor min-h-[150px] max-h-[200px] px-4 py-5 sm:px-6 rounded-lg w-full"
                   style={{
@@ -239,7 +239,7 @@ export default function Profile({
                 </div>
                 <div className="mt-[17px] px-4 py-2 sm:px-6 rounded-lg bg-[#161616]">
                   <Tab.Group>
-                    <div className="divide-y-[2px] divide-sqyellow min-w-[750px] max-w-[750px]">
+                    <div className="divide-y-[2px] divide-sqyellow">
                       <Tab.List className="flex min-w-full justify-center">
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
