@@ -80,7 +80,7 @@ export default function StasisApp({ Component, pageProps }: AppProps) {
               setTimer={setTimer}
             />
           </div>
-          <div className="mt-20">
+          <div className="w-full fixed bottom-0">
             <Footer />
           </div>
         </>

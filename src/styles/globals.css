@@ -30,6 +30,6 @@
 
 @layer components {
   #__next {
-    @apply h-full;
+    @apply h-screen;
   }
 }
