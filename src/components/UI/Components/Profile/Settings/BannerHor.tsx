@@ -140,7 +140,7 @@ export default function BannerHorUpload({
           PNG or JPG (MIN/MAX. 800x150px, 10MB) -{" "}
           <a
             download={true}
-            href="/assets/images/templates/bannerVer.png"
+            href="/assets/images/templates/bannerHor.png"
             className="hover:text-sqyellow underline"
           >
             Template
