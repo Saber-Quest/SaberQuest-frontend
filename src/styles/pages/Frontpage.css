@@ -5,7 +5,8 @@
 @layer base {
   /* Overall tags */
   .fpBody {
-    @apply flex gap-[10px] justify-center flex-row mt-[30px] xl:mt-[70px] transition-all duration-100 ease-in;
+    @apply flex gap-[10px] justify-center flex-wrap sm:flex-col mt-[20px] xl:mt-[70px] transition-all duration-100 ease-in;
+    @apply flex-row px-4;
   }
   .fpTextHeader {
     @apply font-semibold;
@@ -26,7 +27,7 @@
   }
   /* Left Body */
   .fpBodyLeft {
-    @apply w-[45%];
+    @apply xl:w-[45%];
   }
   .fpBodyText {
     @apply mt-10;
@@ -63,7 +64,7 @@
 
   /* Right Body */
   .fpBodyRight {
-    @apply w-[30%];
+    @apply xl:w-[30%];
   }
 
   .fpChallengeText {
