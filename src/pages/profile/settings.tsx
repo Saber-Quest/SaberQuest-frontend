@@ -147,7 +147,7 @@ export default function ImgTest({
         title={`Settings-page`}
         link={`/`}
         contents={`Settings-page | Settings-page on ${process.env.PUBLIC_NAME}.`}
-        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
+        image={`/assets/images/Logo.png`}
       />
       {session && session.user && (
         <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">

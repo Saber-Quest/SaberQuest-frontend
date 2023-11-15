@@ -58,7 +58,7 @@ export default function NavBar({
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/" key="NavLink" className="navLogoContainer">
                   <Image
-                    src={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
+                    src={`/assets/images/Logo.png`}
                     className="navLogo"
                     alt="SaberQuest logo"
                     width={96}

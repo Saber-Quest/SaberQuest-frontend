@@ -8,7 +8,7 @@ export default function FourOFour() {
         title={`404`}
         contents={`404 - Page not found`}
         link={`${process.env.PUBLIC_URL}`}
-        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
+        image={`/assets/images/Logo.png`}
       />
       <div className="pt-20 overflow-visible">
         <div className="404Div transition-all">

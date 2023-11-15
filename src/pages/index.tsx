@@ -9,7 +9,7 @@ export default function Home({ session }: { session: SessionUser | null }) {
         title={`Frontpage`}
         link={`${process.env.PUBLIC_URL}/`}
         contents={`Frontpage | The Frontpage of ${process.env.PUBLIC_NAME}.`}
-        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
+        image={`/assets/images/Logo.png`}
       />
       <div className="fpBody">
         <div className="fpBodyLeft">

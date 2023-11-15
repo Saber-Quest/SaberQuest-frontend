@@ -122,7 +122,7 @@ export default function Profile({
           title={`User not found`}
           link={`${process.env.PUBLIC_URL}`}
           contents={`User was not found, please provide a valid user id.`}
-          image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
+          image={`/assets/images/Logo.png`}
         />
         <div className="flex flex-col pt-[5rem] flex-wrap justify-center items-center">
           <h1 className="text-4xl font-bold">User not found</h1>
