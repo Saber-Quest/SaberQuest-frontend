@@ -1,11 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
+import { Tab } from "@headlessui/react";
 import Image from "next/image";
+import About from "@comp/UI/Components/Profile/Settings/About";
+import AvatarUpload from "@ui/Profile/Settings/Avatar";
+import BannerHorUpload from "@ui/Profile/Settings/BannerHor";
+import BannerVerUpload from "@ui/Profile/Settings/BannerVer";
 import BorderDropdown from "@ui/Profile/Settings/BorderSelection";
+import Preference from "@ui/Profile/Settings/Preference";
+import Username from "@comp/UI/Components/Profile/Settings/Username";
 import { Border, SessionUser } from "@lib/types";
 import { borders } from "@lib/data/borders";
-import axios from "axios";
 import { useGlitch } from "react-powerglitch";
 import Header from "@comp/Meta/Title";
+import Autocomplete from "@comp/UI/Components/Profile/Settings/Autocomplete";
 
 export default function ImgTest({
   session,
@@ -28,7 +35,16 @@ export default function ImgTest({
     patreon: false,
     hasGlitchEffect: false,
   });
+  const [intialBorder, setInitialBorder] = useState<Border>({
+    id: 0,
+    name: "",
+    imageUrl: "",
+    type: "",
+    patreon: false,
+    hasGlitchEffect: false,
+  });
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState<boolean>(true);
 
   const glitch = useGlitch({
     playMode: "always",
@@ -68,10 +84,11 @@ export default function ImgTest({
 
   const initialBorder = useCallback(() => {
     const border = borders.find(
-      (border) => border.imageUrl === session.user?.userInfo.images.border
+      (border) => border.imageUrl === session.user?.userInfo.images.border,
     );
     if (border !== null && border !== undefined) {
       setSelectedBorder(border);
+      setInitialBorder(border);
       if (border.name === "Glitched") {
         glitch.startGlitch();
       } else {
@@ -85,61 +102,10 @@ export default function ImgTest({
     if (!session) return;
     initialBorder();
     setLoaded(true);
-  }, [loaded, session, initialBorder]);
-
-  const saveClick = async () => {
-    console.log(selectedBorder);
-    if (selectedBorder.patreon && !session.user?.userInfo.patreon) {
-      setMessage(
-        `You're not allowed to use this border!\n Subscribe to the ${process.env.PUBLIC_NAME} Patreon to unlock it!`
-      );
-      setType("error");
-      setShow(true);
-      return;
+    if (session.user?.userInfo.patreon) {
+      setDisabled(false);
     }
-
-    await axios
-      .put(`${process.env.PUBLIC_URL}/api/profile/settings`, {
-        a: "",
-        av: "",
-        ba: "",
-        bo: selectedBorder,
-        p: "",
-        u: "",
-        t: session.jwt,
-      })
-      .then((response) => {
-        if (response.status === 302 || response.status === 200) {
-          if (selectedBorder.name === "None") {
-            setMessage(`You removed your border!`);
-          } else {
-            setMessage(`You applied ${selectedBorder.name}.`);
-          }
-          setType("success");
-          setShow(true);
-          if (!session.user) return;
-          const updatedSession: SessionUser = {
-            ...session,
-            user: {
-              ...session.user,
-              userInfo: {
-                ...session.user.userInfo,
-                images: {
-                  ...session.user.userInfo.images,
-                  border: selectedBorder.imageUrl,
-                },
-              },
-            },
-          };
-          setSession(updatedSession);
-        }
-      })
-      .catch((error) => {
-        setMessage(error.response.data.error);
-        setType("error");
-        setShow(true);
-      });
-  };
+  }, [loaded, session, initialBorder]);
 
   return (
     <>
@@ -149,65 +115,186 @@ export default function ImgTest({
         contents={`Settings-page | Settings-page on ${process.env.PUBLIC_NAME}.`}
         image={`/assets/images/Logo.png`}
       />
-      {session && session.user && (
-        <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
-          <div className="LeaderboardContainer min-w-[1000px]">
-            <div className="LeaderboardList">
-              <div className="mt-20 px-10 flex flex-col gap-20 items-center">
-                {selectedBorder && (
-                  <>
-                    <div className="infoDiv relative overflow-visible">
-                      <Image
-                        ref={glitch.ref}
-                        src={session.user.userInfo.images.avatar}
-                        alt="Profile Picture"
-                        width={150}
-                        height={150}
-                        unoptimized={true}
-                        className="rounded-full relative drop-shadow-PFPShadow"
+      <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="LeaderboardContainer min-w-[1000px]">
+          <div className="LeaderboardList">
+            <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] transition-all duration-75 mb-5 flex flex-col flex-start">
+              <span className="text-sqyellow">Settings</span>
+              <span
+                className="text-sm text-white font-bold mt-2"
+                title="Patreon Feature"
+              >
+                Patreon features <span className="text-sqyellow">*</span>
+              </span>
+            </h1>
+            <div className="px-4 sm:px-6 lg:px-8">
+              <Tab.Group>
+                <div className="divide-y-[2px] divide-sqyellow">
+                  <Tab.List className="flex min-w-full justify-center">
+                    <Tab
+                      className={({ selected }: { selected: boolean }) =>
+                        `${
+                          selected
+                            ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                            : "border-transparent"
+                        } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
+                      }
+                    >
+                      User-settings
+                    </Tab>
+                    <Tab
+                      disabled={disabled}
+                      title={`Patreon Feature`}
+                      className={({ selected }: { selected: boolean }) =>
+                        `${
+                          selected
+                            ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                            : "border-transparent"
+                        } ${
+                          disabled
+                            ? "cursor-not-allowed"
+                            : "hover:text-sqyellow"
+                        } py-2 px-4 w-full border-b focus:outline-none`
+                      }
+                    >
+                      Avatar-Border <span className="text-sqyellow">*</span>
+                    </Tab>
+                    <Tab
+                      disabled={disabled}
+                      title={`Patreon Feature`}
+                      className={({ selected }: { selected: boolean }) =>
+                        `${
+                          selected
+                            ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                            : "border-transparent"
+                        } ${
+                          disabled
+                            ? "cursor-not-allowed"
+                            : "hover:text-sqyellow"
+                        } py-2 px-4 w-full border-b focus:outline-none`
+                      }
+                    >
+                      Images <span className="text-sqyellow">*</span>
+                    </Tab>
+                  </Tab.List>
+                  <Tab.Panels className="my-4 focus:outline-none">
+                    <Tab.Panel>
+                      <Preference
+                        session={session}
+                        setSession={setSession}
+                        setMessage={setMessage}
+                        setType={setType}
+                        setShow={setShow}
                       />
-                      {selectedBorder.id === 0 ? (
-                        ""
-                      ) : (
-                        <Image
-                          src={`/assets/images/users/borders/${selectedBorder.imageUrl}`}
-                          alt={selectedBorder.name}
-                          className="absolute inset-0 object-cover scale-[145%] transition-all duration-200 ease-linear"
-                          width={220}
-                          height={220}
-                          unoptimized={true}
-                        />
-                      )}
-                    </div>
-                  </>
-                )}
-                <div className="flex items-center gap-5">
-                  <BorderDropdown
-                    borderSelected={selectedBorder}
-                    onSelectBorder={handleSelectBorder}
-                  />
-                  <span className="isolate inline-flex rounded-md shadow-sm relative top-[16px]">
-                    <button
-                      onClick={initialBorder}
-                      type="button"
-                      className="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-                    >
-                      Reset
-                    </button>
-                    <button
-                      type="button"
-                      onClick={saveClick}
-                      className="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-                    >
-                      Save
-                    </button>
-                  </span>
+                      <Autocomplete
+                        session={session}
+                        setSession={setSession}
+                        setMessage={setMessage}
+                        setType={setType}
+                        setShow={setShow}
+                      />
+                      <About
+                        session={session}
+                        setSession={setSession}
+                        setMessage={setMessage}
+                        setType={setType}
+                        setShow={setShow}
+                      />
+                      <Username
+                        session={session}
+                        setSession={setSession}
+                        setMessage={setMessage}
+                        setType={setType}
+                        setShow={setShow}
+                      />
+                    </Tab.Panel>
+                    {!disabled && (
+                      <>
+                        <Tab.Panel className="my-4 focus:outline-none">
+                          <div className="mt-10 px-10 flex flex-col gap-10 items-center">
+                            {session && session.user && selectedBorder && (
+                              <>
+                                <div className="infoDiv relative overflow-visible">
+                                  <>
+                                    <Image
+                                      ref={glitch.ref}
+                                      src={session.user.userInfo.images.avatar}
+                                      alt="Profile Picture"
+                                      width={150}
+                                      height={150}
+                                      unoptimized={true}
+                                      className="rounded-full relative drop-shadow-PFPShadow"
+                                    />
+                                    {selectedBorder.name === "Glitched"
+                                      ? glitch.startGlitch()
+                                      : glitch.stopGlitch()}
+                                  </>
+                                  {selectedBorder.id === 0 ? (
+                                    ""
+                                  ) : (
+                                    <Image
+                                      priority={true}
+                                      loading="eager"
+                                      src={`/assets/images/users/borders/${selectedBorder.imageUrl}`}
+                                      alt={selectedBorder.name}
+                                      className="absolute inset-0 object-cover scale-[145%] transition-all duration-200 ease-linear"
+                                      width={220}
+                                      height={220}
+                                      unoptimized={true}
+                                    />
+                                  )}
+                                </div>
+                              </>
+                            )}
+                            <div className="flex items-center gap-5">
+                              <BorderDropdown
+                                session={session}
+                                initialBorder={intialBorder}
+                                borderSelected={selectedBorder}
+                                onSelectBorder={handleSelectBorder}
+                                setSession={setSession}
+                                setMessage={setMessage}
+                                setType={setType}
+                                setShow={setShow}
+                              />
+                            </div>
+                          </div>
+                        </Tab.Panel>
+
+                        <Tab.Panel className="my-4 focus:outline-none">
+                          <div className="mt-5 px-10 flex flex-col gap-10">
+                            <AvatarUpload
+                              session={session}
+                              setSession={setSession}
+                              setMessage={setMessage}
+                              setType={setType}
+                              setShow={setShow}
+                            />
+                            <BannerHorUpload
+                              session={session}
+                              setSession={setSession}
+                              setMessage={setMessage}
+                              setType={setType}
+                              setShow={setShow}
+                            />
+                            <BannerVerUpload
+                              session={session}
+                              setSession={setSession}
+                              setMessage={setMessage}
+                              setType={setType}
+                              setShow={setShow}
+                            />
+                          </div>
+                        </Tab.Panel>
+                      </>
+                    )}
+                  </Tab.Panels>
                 </div>
-              </div>
+              </Tab.Group>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

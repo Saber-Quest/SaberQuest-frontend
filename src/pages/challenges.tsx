@@ -76,7 +76,7 @@ export default function Challenges({
   const formatCountdownTime = (timeRemaining: any) => {
     const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
     const minutes = Math.floor(
-      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60),
     );
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
@@ -92,31 +92,31 @@ export default function Challenges({
         contents={`Daily Challenges | Current challenges on ${process.env.PUBLIC_NAME}.`}
         image={`/assets/images/Logo.png`}
       />
-      <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
-        <div className="LeaderboardContainer min-w-[1000px]">
-          <div className="LeaderboardList">
+      <div className="flexCol chpOuterDiv">
+        <div className="chpInnerDiv min-w-[1000px]">
+          <div className="mt-2">
             {loading ? (
-              <div className="flex flex-col items-center justify-center w-full h-full">
+              <div className="flexCol chpHoldingDiv">
                 <div className="w-16 h-16 mb-2">Loading....</div>
               </div>
             ) : error ? (
-              <div className="flex flex-col items-center justify-center w-full h-full">
+              <div className="flexCol chpHoldingDiv">
                 <div className="w-[120px] h-16 mb-2">No data found.</div>
               </div>
             ) : (
               challenges !== null &&
               !loading && (
                 <>
-                  <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] transition-all duration-75 mb-5 flex justify-between">
+                  <h1 className="chpH1Text md:chTextHeader text-[28px]">
                     <span>
                       Current <span className="text-sqyellow">Challenges</span>
                     </span>{" "}
                     {formatCountdownTime(countdownTime)}
                   </h1>
-                  <div className="px-4 sm:px-6 lg:px-8">
-                    <div className="mt-8 flex flex-col">
-                      <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                  <div className="chpCCompOuterDiv">
+                    <div className="mt-8 flexCol">
+                      <div className="chpCComp2ndDiv">
+                        <div className="chpCCompChildDiv">
                           <ChallengeComp
                             challengeDatas={challenges}
                             session={session}

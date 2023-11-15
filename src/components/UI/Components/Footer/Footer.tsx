@@ -13,24 +13,17 @@ const NavigationLinks = [
     name: "Discord",
     link: process.env.PUBLIC_DISCORDLINK,
   },
-  {
-    name: process.env.PUBLIC_VERSION,
-    link: "#",
-  },
 ];
 
 function Footer() {
   return (
     <>
-      <footer className="footer">
-        <div className="leftFooter">
-          <p className="footerText">
-            © {new Date().getFullYear()} Saber
-            <span className="footerQuest">Quest</span>, Licensed under Apache
-            2.0
-          </p>
-        </div>
-        <div className="rightNav">
+      <footer className="footer select-none">
+        <p className="footerText mb-4 text-base text-center sm:mb-0">
+          © {new Date().getFullYear()} Saber
+          <span className="footerQuest">Quest</span>, Licensed under Apache 2.0
+        </p>
+        <div className="flex justify-center items-center flex-row">
           {NavigationLinks.map((link, index) => {
             return (
               <Fragment key={index}>
@@ -48,6 +41,12 @@ function Footer() {
               </Fragment>
             );
           })}
+          <span className="navLinkDivider">
+            |{" "}
+            <span className="footerLinks cursor-default">
+              {process.env.PUBLIC_VERSION}
+            </span>
+          </span>
         </div>
       </footer>
     </>

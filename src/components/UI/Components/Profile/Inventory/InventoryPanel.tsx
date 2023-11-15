@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
+import axios from "axios";
 import Image from "next/image";
 import { InventoryItem } from "@lib/types";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
 
-export default function InventoryPanel({
-  inventory,
-}: {
-  inventory: InventoryItem[];
-}) {
+export default function InventoryPanel({ id }: { id: string }) {
+  const [inventory, setInventory] = useState<InventoryItem[]>([]);
   const rarityOrder = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
 
   const newInventory = inventory.filter((item) => item.amount > 0);
@@ -24,8 +22,23 @@ export default function InventoryPanel({
   const itemsToShow = sortedInventory.slice(startItemsIndex, endItemsIndex);
 
   useEffect(() => {
+    GetInventory(id);
+  }, [id]);
+
+  const GetInventory = async (id: string) => {
+    await axios
+      .get(`${process.env.API_URL}/profile/${id}/inventory`)
+      .then((response) => {
+        if (response.status === 302 || response.status === 200) {
+          setInventory(response.data);
+        }
+      })
+      .catch((error) => {});
+  };
+
+  useEffect(() => {
     const calculatedNumberOfPages = Math.ceil(
-      sortedInventory.length / itemsPerPage
+      sortedInventory.length / itemsPerPage,
     );
     setNumberOfPages(calculatedNumberOfPages);
   }, [sortedInventory]);

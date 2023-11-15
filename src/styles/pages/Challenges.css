@@ -4,51 +4,48 @@
 
 @layer base {
   /* Overall tags */
-  .chBody {
-    @apply flex gap-[10px] justify-center flex-row mt-[30px] xl:mt-[70px] transition-all duration-100 ease-in;
-  }
+  /* Copy to SHOP-page.css*/
   .chTextHeader {
     @apply font-semibold;
     @apply text-[40px] text-white;
   }
-  .chTextSubheader {
-    @apply mt-5;
-    @apply font-light;
+  .chpOuterDiv {
+    @apply px-16 pt-10 mt-14;
+    @apply items-center justify-center;
+    @apply drop-shadow-navBarShadow;
+    @apply select-none;
+    @apply transition-all duration-100 ease-in-out;
+  }
+  .chpInnerDiv {
+    @apply mx-auto max-w-[1280px];
+    @apply bg-gradient-to-t from-[#26262600] via-[#2626263a] to-[#2626267e];
+    @apply rounded-2xl p-4;
+  }
+  .chpHoldingDiv {
+    @apply items-center justify-center w-full h-full;
+  }
+  .chpH1Text {
+    @apply px-4 mb-5;
+    @apply sm:px-6 lg:px-8 md:chTextHeader;
+    @apply transition-all duration-75;
     @apply text-[28px];
+    @apply flex justify-between;
   }
-  .chHeaderHighlight {
-    @apply text-sqyellow;
-    @apply font-bold;
+  .chpCCompOuterDiv {
+    @apply px-4 sm:px-6 lg:px-8;
   }
-  .chBodyHighlight {
-    @apply text-sqyellow;
-    @apply font-semibold;
+  .chpCComp2ndDiv {
+    @apply -my-2 -mx-4;
+    @apply sm:-mx-6 lg:-mx-8;
+    @apply overflow-x-auto;
   }
+  .chpCCompChildDiv {
+    @apply py-2;
+    @apply md:px-6 lg:px-8;
+    @apply inline-block min-w-full align-middle;
+  }
+
   /* Right Body */
-
-  .chChallengeText {
-    @apply mt-10;
-    @apply flex flex-col items-center;
-  }
-
-  .chChallengeHighlight {
-    @apply text-sqyellow;
-    @apply font-semibold;
-  }
-
-  .chExampleChallenges {
-    @apply flex flex-col gap-5;
-    @apply px-[17%] py-8;
-  }
-
-  .chReqHeader {
-    @apply text-[28px];
-  }
-
-  .chReqs {
-    @apply flex flex-col items-center;
-    @apply text-[24px];
-  }
 
   .chDivider {
     @apply my-3;

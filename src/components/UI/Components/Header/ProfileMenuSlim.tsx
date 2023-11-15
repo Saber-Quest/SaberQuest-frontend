@@ -15,6 +15,10 @@ const profileMenu = [
     href: "/profile/settings",
   },
   {
+    name: "Feedback",
+    href: "/feedback",
+  },
+  {
     name: "Log out",
     href: "#",
   },
@@ -84,6 +88,7 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
           <div className="relative overflow-visible">
             <Image
               priority={true}
+              loading="eager"
               ref={glitch.ref}
               src={
                 !userinfo.user?.userInfo.images.avatar
@@ -98,6 +103,8 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
             />
             {userinfo.user?.userInfo.images.border && (
               <Image
+                priority={true}
+                loading="eager"
                 src={`/assets/images/users/borders/${userinfo.user?.userInfo.images.border}`}
                 alt="Border Image"
                 className="absolute inset-0 object-cover scale-[145%] z-10"

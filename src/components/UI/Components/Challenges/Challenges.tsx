@@ -36,7 +36,7 @@ export default function ChallengeComp({
     if (!session) return;
     if (session.user?.today.completed) {
       setMessage(
-        `You already completed a challenge today!\nYou can't change your difficulty anymore.`
+        `You already completed a challenge today!\nYou can't change your difficulty anymore.`,
       );
       setType("info");
       setShow(true);
@@ -99,18 +99,7 @@ export default function ChallengeComp({
           setMessage(`Challenge completed\nGood job!`);
           setType("success");
           setShow(true);
-          if (!session.user) return;
-          const updatedSession: SessionUser = {
-            ...session,
-            user: {
-              ...session.user,
-              today: {
-                ...session.user.today,
-                completed: true,
-              },
-            },
-          };
-          setSession(updatedSession);
+          updateUserSession();
         }
       })
       .catch((error) => {
@@ -120,9 +109,37 @@ export default function ChallengeComp({
       });
   };
 
+  const updateUserSession = async () => {
+    await axios
+      .get(`${process.env.PUBLIC_URL}/api/profile/${session.id}`)
+      .then((response) => {
+        if (response.status === 302 || response.status === 200) {
+          if (!session.user) {
+            setMessage(
+              "An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes.",
+            );
+            setType("error");
+            setShow(true);
+            return;
+          }
+          const updatedSession: SessionUser = {
+            ...session,
+            user: {
+              ...session.user,
+              stats: response.data.stats,
+              today: response.data.today,
+              inventory: response.data.inventory,
+              challengeHistory: response.data.challengeHistory,
+            },
+          };
+          setSession(updatedSession);
+        }
+      });
+  };
+
   return (
-    <div className="flex flex-col items-center gap-12">
-      <div className="chChallenges flex flex-col md:flex-row gap-12">
+    <div className="mainOuterChalDiv">
+      <div className="chChallenges flexCol md:flex-row gap-12">
         <NormalDiff
           challengeDatas={challengeDatas.difficulties.normal}
           desc={challengeDatas.description}
@@ -152,10 +169,7 @@ export default function ChallengeComp({
         />
       </div>
       {showSel && (
-        <div
-          className="font-semibold text-[24px] hover:cursor-pointer rounded-2xl bg-[#0000003b] px-4 py-2"
-          onClick={handleFinish}
-        >
+        <div className="chalFinishBtn" onClick={handleFinish}>
           Complete Challenge
         </div>
       )}

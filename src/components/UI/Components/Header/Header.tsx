@@ -66,6 +66,7 @@ export default function NavBar({
                   />
                   <p className="Saber">Saber</p>
                   <span className="Quest">Quest</span>
+                  <span className="relative font-extrabold text-red-600 top-[-20px] left-[-15px] overflow-visible w-2 max-w-2">BETA</span>
                 </Link>
               </div>
               <div className="hidden lg:ml-6 lg:flex w-full">
@@ -121,7 +122,6 @@ export default function NavBar({
                 null}
               <div className="flex flex-row-reverse items-end lg:hidden w-full">
                 <Disclosure.Button className="navButtonDark">
-                  <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
@@ -185,7 +185,6 @@ export default function NavBar({
                       null}
                   </div>
                   <Disclosure.Button className="navButtonDark">
-                    <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                     ) : (

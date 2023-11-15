@@ -12,7 +12,7 @@ const limiter = rateLimit({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     await limiter.check(res, ratelimit, "CACHE_TOKEN");
@@ -43,6 +43,10 @@ export default async function handler(
           return res.status(400).json({ error: "Missing a valid border" });
         }
         const deToken = decrypt(t);
+
+        if (bo.imageUrl === null) {
+          bo.imageUrl = "none";
+        }
 
         await axios
           .put(`${process.env.API_URL}/update/border`, {

@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .eOuterDiv {
+    @apply pt-20 overflow-visible;
+  }
+  .eTransition {
+    @apply transition-all;
+  }
+  .eMain {
+    @apply flex-1;
+    @apply mt-[4rem];
+    @apply items-center text-center;
+  }
+  .eCenterText {
+    @apply text-center;
+  }
+  .eH1Header {
+    @apply drop-shadow-logoShadow transition-all;
+    @apply font-bold text-sqyellow text-9xl;
+  }
+  .ePClass {
+    @apply sm:text-4xl hover:drop-shadow-logoShadow transition-all;
+    @apply text-2xl font-bold text-sqyellow;
+    @apply opacity-[70%];
+    @apply tracking-tight;
+  }
+  .eSubPClass {
+    @apply mt-4 text-white;
+  }
+}

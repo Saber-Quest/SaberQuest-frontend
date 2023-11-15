@@ -12,6 +12,15 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      animation: {
+        "slide-in": "slide-in 1s ease-out",
+      },
+      keyframes: {
+        "slide-in": {
+          "0%": { opacity: 0, transform: "translateX(-25%)" },
+          "100%": { opacity: 1, transform: "translateX(0)" },
+        },
+      },
       colors: {
         sky: colors.sky,
         teal: colors.teal,

@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function getPlayerBanner(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     const { id } = req.query as unknown as { id: string };
@@ -22,7 +22,7 @@ export default async function getPlayerBanner(
 
     const response = await axios.get(
       `${process.env.API_URL}/profile/${id}/banner?style=${type}`,
-      { responseType: "arraybuffer" }
+      { responseType: "arraybuffer" },
     );
 
     if (response.status !== 200) {

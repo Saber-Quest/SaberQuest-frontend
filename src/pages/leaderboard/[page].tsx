@@ -51,7 +51,7 @@ export default function Profile() {
         .get(
           `${
             process.env.API_URL
-          }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`
+          }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
         )
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
@@ -133,9 +133,10 @@ export default function Profile() {
                           <div className="relative overflow-visible mr-5">
                             <Image
                               priority={true}
+                              loading="eager"
                               ref={
                                 user.userInfo.images.border?.includes(
-                                  "glitch_border.gif"
+                                  "glitch_border.gif",
                                 )
                                   ? glitch.ref
                                   : null
@@ -150,13 +151,15 @@ export default function Profile() {
                               height={32}
                               unoptimized={true}
                               key={index}
-                              className="rounded-full relative drop-shadow-PFPShadow"
+                              className="LBPFP"
                             />
                             {user.userInfo.images.border && (
                               <Image
+                                loading="eager"
+                                priority={true}
                                 src={`/assets/images/users/borders/${user.userInfo.images.border}`}
                                 alt="Border Image"
-                                className="absolute inset-0 object-cover scale-[145%] z-10"
+                                className="LBBorder"
                                 width={220}
                                 height={220}
                                 unoptimized={true}
@@ -187,6 +190,7 @@ export default function Profile() {
               if (currentPage > 1 && !loading) {
                 const previousPage = currentPage - 1;
                 router.push(`/leaderboard/${previousPage}`);
+                glitch.stopGlitch();
                 setCurrentPage(previousPage);
               }
             }}
@@ -204,6 +208,7 @@ export default function Profile() {
               if (userCount === 10 && !loading) {
                 const nextPage = currentPage + 1;
                 router.push(`/leaderboard/${nextPage}`);
+                glitch.stopGlitch();
                 setCurrentPage(nextPage);
               }
             }}

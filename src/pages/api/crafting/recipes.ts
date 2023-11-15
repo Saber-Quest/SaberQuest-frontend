@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import rateLimit from "@lib/api/ratelimit";
-import { InventoryItem, Item, ItemRecipes } from "@lib/types";
-import { AllowedRecipes } from "@lib/types/ItemCrafting";
+import { InventoryItem, Item, ItemRecipes, AllowedRecipes } from "@lib/types";
 
 const ratelimit: any = 5;
 const limiter = rateLimit({
@@ -12,7 +11,7 @@ const limiter = rateLimit({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     await limiter.check(res, ratelimit, "CACHE_TOKEN");
@@ -45,9 +44,9 @@ export default async function handler(
             recipes = response.data;
           })
           .catch(() => {
-            return res
-              .status(400)
-              .json({ error: "Could not fetch recipe-table from database." });
+            return res.status(400).json({
+              error: "Could not fetch recipe-table from the database.",
+            });
           });
 
         await axios
@@ -56,16 +55,16 @@ export default async function handler(
             knownItems = response.data;
           })
           .catch(() => {
-            return res
-              .status(400)
-              .json({ error: "Could not fetch items-table from database." });
+            return res.status(400).json({
+              error: "Could not fetch items-table from the database.",
+            });
           });
 
         const transformedRecipes: ItemRecipes[] = recipes.map((recipe) => {
           const item1 = knownItems.find((item) => item.id === recipe.item1_id);
           const item2 = knownItems.find((item) => item.id === recipe.item2_id);
           const crafted = knownItems.find(
-            (item) => item.id === recipe.crafted_id
+            (item) => item.id === recipe.crafted_id,
           );
 
           return {
@@ -93,23 +92,43 @@ export default async function handler(
           const item2 = inventory.find((item) => item.id === item2_id);
 
           if (item1 && item2) {
-            const canCraft = Math.min(
-              Math.floor(item1.amount),
-              Math.floor(item2.amount)
-            );
+            let canCraft: number = 0;
+            if (item1.id === item2.id) {
+              canCraft = Math.floor(item1.amount / 2);
+            } else {
+              canCraft = Math.min(item1.amount, item2.amount);
+            }
 
             const recipeWithCanCraft: AllowedRecipes = {
               item1: {
-                id: item1_id,
-                name: transformedRecipe.item1_name || "",
-                image: transformedRecipe.item1_image || "",
-                rarity: transformedRecipe.item1_rarity || "",
+                id: item1_id || item2_id,
+                name:
+                  transformedRecipe.item1_name ||
+                  transformedRecipe.item2_name ||
+                  "",
+                image:
+                  transformedRecipe.item1_image ||
+                  transformedRecipe.item2_image ||
+                  "",
+                rarity:
+                  transformedRecipe.item1_rarity ||
+                  transformedRecipe.item2_rarity ||
+                  "",
               },
               item2: {
-                id: item2_id,
-                name: transformedRecipe.item2_name || "",
-                image: transformedRecipe.item2_image || "",
-                rarity: transformedRecipe.item2_rarity || "",
+                id: item2_id || item1_id,
+                name:
+                  transformedRecipe.item2_name ||
+                  transformedRecipe.item1_name ||
+                  "",
+                image:
+                  transformedRecipe.item2_image ||
+                  transformedRecipe.item1_image ||
+                  "",
+                rarity:
+                  transformedRecipe.item2_rarity ||
+                  transformedRecipe.item1_rarity ||
+                  "",
               },
               crafted: {
                 id: transformedRecipe.crafted_id,
@@ -119,12 +138,13 @@ export default async function handler(
               },
               canCraft,
             };
+
             allowedRecipes.push(recipeWithCanCraft);
           }
         }
 
         allowedRecipes = allowedRecipes.filter(
-          (recipe) => recipe.canCraft >= 1
+          (recipe) => recipe.canCraft >= 1,
         );
 
         return res.status(200).json({ allowedRecipes });
