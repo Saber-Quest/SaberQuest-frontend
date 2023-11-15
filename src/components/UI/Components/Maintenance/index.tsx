@@ -15,7 +15,7 @@ export default function Maintenance() {
         title={`Maintenance`}
         link={`/`}
         contents={`Maintenance is ongoing on ${process.env.PUBLIC_NAME}!`}
-        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
+        image={`/assets/images/Logo.png`}
       />
       <div className="mainMDiv">
         <svg

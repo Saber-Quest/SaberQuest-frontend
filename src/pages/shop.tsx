@@ -87,7 +87,7 @@ export default function StorePage({
   const formatCountdownTime = (timeRemaining: any) => {
     const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
     const minutes = Math.floor(
-      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60),
+      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
     );
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
@@ -97,17 +97,17 @@ export default function StorePage({
   };
 
   const onClickHandler = async (item: Item) => {
+    console.log(item);
     if (userQP < item.price) {
       setMessage(
         `You cannot afford "${item.name}".\n\n You're missing ${
           item.price - userQP
-        } QP.`,
+        } QP.`
       );
       setType("error");
       setShow(true);
     } else {
-      if (!session) return;
-
+      if (!session) return console.log("No JWT token found for the user!");
       await axios
         .post(`${process.env.PUBLIC_URL}/api/shop/buy`, {
           token: session.jwt,
@@ -119,7 +119,18 @@ export default function StorePage({
             setType("success");
             setShow(true);
             setUserQP(userQP - item.price);
-            updateSession();
+            if (!session.user) return;
+            const updatedSession: SessionUser = {
+              ...session,
+              user: {
+                ...session.user,
+                stats: {
+                  ...session?.user?.stats,
+                  qp: userQP - item.price,
+                },
+              },
+            };
+            setSession(updatedSession);
           }
         })
         .catch((error) => {
@@ -130,44 +141,13 @@ export default function StorePage({
     }
   };
 
-  const updateSession = async () => {
-    await axios
-      .get(`${process.env.PUBLIC_URL}/api/profile/${session.id}`)
-      .then((response) => {
-        if (response.status === 302 || response.status === 200) {
-          if (!session.user) {
-            setMessage(
-              "An error occured while updating your profile on the frontend.\n\nPlease reload website to reflect changes.",
-            );
-            setType("error");
-            setShow(true);
-            return;
-          }
-          const updatedSession: SessionUser = {
-            ...session,
-            user: {
-              ...session.user,
-              stats: response.data.stats,
-              inventory: response.data.inventory,
-            },
-          };
-          setSession(updatedSession);
-        }
-      })
-      .catch((error) => {
-        setMessage(error.response.data.error);
-        setType("error");
-        setShow(true);
-      });
-  };
-
   return (
     <>
       <Header
-        title={`Shop`}
+        title={`Leaderboard`}
         link={`${process.env.PUBLIC_URL}/shop`}
-        contents={`Shop | The shop on ${process.env.PUBLIC_NAME}.`}
-        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
+        contents={`Leaderboard | Leaderboard on ${process.env.PUBLIC_NAME}.`}
+        image={`/assets/images/Logo.png`}
       />
       <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
         <div className="LeaderboardContainer min-w-[1000px]">
@@ -218,7 +198,7 @@ export default function StorePage({
                                   </th>
                                   <th
                                     scope="col"
-                                    className="relative py-3.5 pl-3 pr-4 sm:pr-6 text-sqyellow"
+                                    className="relative py-3.5 pl-3 pr-4 sm:pr-6"
                                   >
                                     {userQP} QP
                                   </th>
@@ -267,7 +247,7 @@ export default function StorePage({
                                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                                       <div
                                         onClick={() => onClickHandler(item)}
-                                        className="text-sqyellow hover:text-[#ffd15269] underline transition-colors duration-200 hover:cursor-pointer"
+                                        className="text-[#ffd15269] hover:text-sqyellow transition-colors duration-200 hover:cursor-pointer"
                                       >
                                         Buy
                                       </div>
