@@ -113,9 +113,9 @@ export default function ImgTest({
         title={`Settings-page`}
         link={`/`}
         contents={`Settings-page | Settings-page on ${process.env.PUBLIC_NAME}.`}
-        image={`/assets/images/Logo.png`}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="flex flex-col items-center justify-center px-16 pt-10 mt-14 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+      <div className="allDiv flex flex-col items-center justify-center drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
         <div className="LeaderboardContainer min-w-[1000px]">
           <div className="LeaderboardList">
             <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] transition-all duration-75 mb-5 flex flex-col flex-start">

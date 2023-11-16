@@ -8,9 +8,9 @@ export default function FourOFour() {
         title={`404`}
         contents={`404 - Page not found`}
         link={`${process.env.PUBLIC_URL}`}
-        image={`/assets/images/Logo.png`}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="eOuterDiv">
+      <div className="allDiv eOuterDiv">
         <div className="eTransition">
           <main className="eMain">
             <div className="eCenterText">

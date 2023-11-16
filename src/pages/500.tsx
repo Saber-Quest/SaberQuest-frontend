@@ -8,9 +8,9 @@ export default function FourOFour() {
         title={`500`}
         contents={`500 - Internal server error`}
         link={`${process.env.PUBLIC_URL}`}
-        image={`/assets/images/Logo.png`}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="eOuterDiv">
+      <div className="allDiv eOuterDiv">
         <div className="eTransition">
           <main className="flexCol eMain">
             <div className="eCenterText">

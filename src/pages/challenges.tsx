@@ -90,9 +90,9 @@ export default function Challenges({
         title={`Daily challenges`}
         link={`${process.env.PUBLIC_URL}/challenges`}
         contents={`Daily Challenges | Current challenges on ${process.env.PUBLIC_NAME}.`}
-        image={`/assets/images/Logo.png`}
+        image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="flexCol chpOuterDiv">
+      <div className="allDiv flexCol chpOuterDiv">
         <div className="chpInnerDiv min-w-[1000px]">
           <div className="mt-2">
             {loading ? (

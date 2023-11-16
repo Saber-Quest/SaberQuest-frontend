@@ -14,6 +14,9 @@
     @apply bg-cover;
     @apply bg-[url('/assets/images/BackgroundImage.png')];
   }
+  .allDiv {
+    @apply relative top-[-5%];
+  }
   .easyFade {
     @apply bg-gradient-to-l from-easyreq to-[#ffffff];
   }

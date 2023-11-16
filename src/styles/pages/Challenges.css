@@ -10,7 +10,7 @@
     @apply text-[40px] text-white;
   }
   .chpOuterDiv {
-    @apply px-16 pt-10 mt-14;
+    @apply px-16 pt-10;
     @apply items-center justify-center;
     @apply drop-shadow-navBarShadow;
     @apply select-none;

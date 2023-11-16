@@ -30,6 +30,7 @@
 
 @layer components {
   #__next {
+    @apply flex flex-col justify-between;
     @apply h-screen;
   }
 }

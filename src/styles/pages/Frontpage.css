@@ -5,7 +5,7 @@
 @layer base {
   /* Overall tags */
   .fpBody {
-    @apply flex gap-[10px] justify-center flex-wrap sm:flex-col mt-[20px] xl:mt-[70px] transition-all duration-100 ease-in;
+    @apply flex gap-[10px] justify-center flex-wrap sm:flex-col transition-all duration-100 ease-in;
     @apply flex-row px-4;
   }
   .fpTextHeader {

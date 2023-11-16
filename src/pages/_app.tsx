@@ -1,4 +1,5 @@
 import "@style/globals.css";
+import "@style/index.css";
 import "@style/components/Navbar.css";
 import "@style/components/Footer.css";
 import "@style/components/Maintenance.css";
@@ -59,30 +60,24 @@ export default function StasisApp({ Component, pageProps }: AppProps) {
         <Maintenance />
       ) : (
         <>
-          <div>
-            <Header session={session} sessionCheck={sessionChecked} />
-          </div>
-          <div>
-            <Component
-              {...pageProps}
-              session={session}
-              sessionCheck={sessionChecked}
-              setSession={setSession}
-              setMessage={setMessage}
-              setType={setType}
-              setShow={setShow}
-            />
-            <Notification
-              dataArray={{ show, message, type, timer }}
-              setMessage={setMessage}
-              setType={setType}
-              setShow={setShow}
-              setTimer={setTimer}
-            />
-          </div>
-          <div className="w-full fixed bottom-0">
-            <Footer />
-          </div>
+          <Header session={session} sessionCheck={sessionChecked} />
+          <Component
+            {...pageProps}
+            session={session}
+            sessionCheck={sessionChecked}
+            setSession={setSession}
+            setMessage={setMessage}
+            setType={setType}
+            setShow={setShow}
+          />
+          <Notification
+            dataArray={{ show, message, type, timer }}
+            setMessage={setMessage}
+            setType={setType}
+            setShow={setShow}
+            setTimer={setTimer}
+          />
+          <Footer />
         </>
       )}
     </>

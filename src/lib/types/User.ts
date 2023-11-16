@@ -4,12 +4,14 @@ export interface UserInfo {
   about: string;
   images: {
     avatar: string;
-    banner: string;
+    banner: boolean;
     border: string | null;
   };
   preference: string;
   patreon: boolean;
   autoComplete: boolean;
+  admin: boolean;
+  banned: boolean;
 }
 
 export interface Stats {

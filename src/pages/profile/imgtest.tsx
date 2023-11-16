@@ -31,7 +31,7 @@ export default function ImgTest() {
 
   return (
     <>
-      <div className="mt-20 px-10 flex flex-col gap-20 items-center">
+      <div className="allDiv px-10 flex flex-col gap-20 items-center">
         <div className="flex flex-row gap-20 px-10">
           <div className="infoDiv relative overflow-visible">
             <Image

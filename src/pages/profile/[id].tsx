@@ -123,7 +123,7 @@ export default function Profile({
           title={`User not found`}
           link={`${process.env.PUBLIC_URL}`}
           contents={`User was not found, please provide a valid user id.`}
-          image={`/assets/images/Logo.png`}
+          image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
         />
         <div className="flex flex-col pt-[5rem] flex-wrap justify-center items-center">
           <h1 className="text-4xl font-bold">User not found</h1>
@@ -142,7 +142,7 @@ export default function Profile({
           Account Value: ${userData.stats.value}`}
           image={userData.userInfo.images.avatar}
         />
-        <div className="max-w-[100vw] 1920:max-w-[75vw] mt-32 flex justify-center content-center drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="allDiv mt-32 flex justify-center content-center drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
           <>
             <div className="userDiv transition-all opacity-1 duration-500 flex flex-col lg:flex-row gap-5">
               <div
