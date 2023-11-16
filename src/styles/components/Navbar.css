@@ -6,7 +6,7 @@
   .topNav {
     @apply select-none;
     @apply flex items-center;
-    @apply h-24 w-full;
+    @apply min-h-[96px] w-full;
     @apply bg-[#2626264d] drop-shadow-navBarShadow;
     @apply transition-all duration-150;
   }

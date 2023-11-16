@@ -81,6 +81,37 @@ export default function NavBar({
                   return null;
                 })}
               </div>
+              <div className="flex flex-row gap-2 h-[42px] mx-5 items-center">
+                <a
+                  href={`${process.env.PUBLIC_DISCORDLINK}`}
+                  title="Our Discord"
+                  className="h-[42px] rounded-lg bg-none hover:bg-sqyellowfaint p-2 aspect-square flex justify-center items-center transition-all duration-100 ease-in-out"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Image
+                    src={"/assets/images/DiscordLogo.svg"}
+                    alt={"Discord Server"}
+                    width={36}
+                    height={36}
+                  />
+                </a>
+                <a
+                  href={`https://www.patreon.com/SaberQuest`}
+                  title="Our Patreon"
+                  className="h-[42px] rounded-lg bg-none hover:bg-sqyellowfaint p-2 aspect-square flex justify-center items-center transition-all duration-100 ease-in-out"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Image
+                    src={"/assets/images/PatreonWhite.svg"}
+                    alt={"Our Patreon"}
+                    width={36}
+                    height={36}
+                  />
+                </a>
+                <span className=" w-[2px] rounded-full h-[30px] bg-sqyellowfaint" />
+              </div>
               {(!loading && (
                 <div className="hidden lg:flex">
                   <div className="rightNav">
@@ -91,6 +122,7 @@ export default function NavBar({
                             href={`/api/auth/steam`}
                             rel="noopener"
                             className="loginLinkSteam"
+                            title="Login with Steam"
                           >
                             <Image
                               src="/assets/images/SteamLogo.svg"
@@ -104,10 +136,11 @@ export default function NavBar({
                             href={`/api/auth/beatleader`}
                             rel="noopener"
                             className="loginLinkBL"
+                            title="Login with BeatLeader"
                           >
                             <Image
                               src="/assets/images/BeatLeaderLogo.png"
-                              className="h-[40px] w-[50px]"
+                              className="w-[50px] aspect-square"
                               alt="BeatleaderLoginButton"
                               width={50}
                               height={50}
@@ -176,10 +209,10 @@ export default function NavBar({
                             </div>
                           </>
                         )) || (
-                          <>
-                            {session && <ProfileMenuSlim userinfo={session} />}{" "}
-                          </>
-                        )}
+                            <>
+                              {session && <ProfileMenuSlim userinfo={session} />}{" "}
+                            </>
+                          )}
                       </div>
                     )) ||
                       null}
