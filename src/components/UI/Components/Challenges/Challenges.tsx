@@ -139,7 +139,7 @@ export default function ChallengeComp({
 
   return (
     <div className="mainOuterChalDiv">
-      <div className="chChallenges flexCol md:flex-row gap-12">
+      <div className="chChallenges flexCol lg:flex-row gap-12 px-5">
         <NormalDiff
           challengeDatas={challengeDatas.difficulties.normal}
           desc={challengeDatas.description}

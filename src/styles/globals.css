@@ -26,11 +26,15 @@
   .smoothTran {
     @apply transition-all duration-200 ease-in-out;
   }
+  
+  .allDiv {
+    @apply relative top-0 1920:top-[-5%];
+  }
 }
 
 @layer components {
   #__next {
     @apply flex flex-col justify-between;
-    @apply h-screen;
+    @apply h-screen w-screen;
   }
 }

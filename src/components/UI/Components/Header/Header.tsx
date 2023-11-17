@@ -81,7 +81,7 @@ export default function NavBar({
                   return null;
                 })}
               </div>
-              <div className="flex flex-row gap-2 h-[42px] mx-5 items-center">
+              <div className="hidden lg:flex flex-row gap-2 h-[42px] mx-5 items-center">
                 <a
                   href={`${process.env.PUBLIC_DISCORDLINK}`}
                   title="Our Discord"

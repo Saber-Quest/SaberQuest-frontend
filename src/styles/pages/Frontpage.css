@@ -5,17 +5,16 @@
 @layer base {
   /* Overall tags */
   .fpBody {
-    @apply flex gap-[10px] justify-center flex-wrap sm:flex-col transition-all duration-100 ease-in;
-    @apply flex-row px-4;
+    @apply mx-auto mb-12 max-w-[90rem] px-8 lg:px-6 lg:flex-row lg:text-[32px] flex-col flex gap-6;
   }
   .fpTextHeader {
     @apply font-semibold;
-    @apply text-[40px] text-white;
+    @apply text-[26px] lg:text-[40px] text-white;
   }
   .fpTextSubheader {
     @apply mt-5;
     @apply font-light;
-    @apply text-[28px];
+    @apply text-[20px] lg:text-[30px];
   }
   .fpHeaderHighlight {
     @apply text-sqyellow;
@@ -26,47 +25,40 @@
     @apply font-semibold;
   }
   /* Left Body */
-  .fpBodyLeft {
-    @apply xl:w-[45%];
-  }
   .fpBodyText {
     @apply mt-10;
     @apply font-normal;
-    @apply text-[30px] text-white;
+    @apply text-[20px] lg:text-[30px] text-white;
   }
   .fpCompletionText {
-    @apply mt-20;
+    @apply mt-14;
   }
   .fpCompletionMethods {
-    @apply divide-x-2 divide-sqyellow flex justify-center;
+    @apply divide-y-2 sm:divide-x-2 sm:divide-y-0 gap-4 divide-sqyellow flex flex-col sm:flex-row justify-center;
     @apply mt-5;
   }
   .fpMods {
-    @apply flex items-end flex-col pr-4;
-    @apply w-auto max-w-[50%];
+    @apply flex flex-col pl-4;
+    @apply w-auto sm:max-w-[50%];
   }
   .fpModsHeader {
-    @apply text-[32px];
+    @apply text-[20px] md:text-[26px] lg:text-[32px] mb-2 md:mb-0 text-start sm:text-end;
   }
   .fpModsText {
-    @apply text-[20px];
+    @apply text-[14px] md:text-[16px] lg:text-[18px] text-start sm:text-end;
   }
   .fpManual {
-    @apply flex pl-4 flex-col;
-    @apply w-auto max-w-[50%];
+    @apply pl-4 pt-4 sm:pt-0;
+    @apply w-auto sm:max-w-[50%];
   }
   .fpManualHeader {
-    @apply text-[32px];
+    @apply text-[20px] md:text-[26px] lg:text-[32px] mb-2 md:mb-0;
   }
   .fpManualText {
-    @apply text-[18px];
+    @apply text-[14px] md:text-[16px] lg:text-[18px];
   }
 
   /* Right Body */
-  .fpBodyRight {
-    @apply xl:w-[30%];
-  }
-
   .fpChallengeText {
     @apply mt-10;
     @apply flex flex-col items-center;
@@ -78,27 +70,22 @@
   }
 
   .fpExampleChallenges {
-    @apply flex flex-col gap-5;
-    @apply px-[17%] py-8;
+    @apply px-8 lg:px-0 flex flex-col gap-5;
   }
 
   .fpReqHeader {
-    @apply text-[28px];
+    @apply text-[16px] md:text-[22px] lg:text-[28px];
   }
 
   .fpReqs {
     @apply flex flex-col items-center;
-    @apply text-[24px];
+    @apply text-[14px] md:text-[18px] lg:text-[24px];
   }
 
   .fpDivider {
     @apply my-3;
   }
 
-  .fpEasyDivider {
-    @apply h-[5px] rounded-full;
-    @apply bg-gradient-to-r from-easyreq;
-  }
   .fpNormalDivider {
     @apply h-[5px] rounded-full;
     @apply bg-gradient-to-r from-normalreq;

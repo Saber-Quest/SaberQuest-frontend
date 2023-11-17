@@ -12,12 +12,12 @@
   .chpOuterDiv {
     @apply px-16 pt-10;
     @apply items-center justify-center;
-    @apply drop-shadow-navBarShadow;
+    @apply lg:drop-shadow-navBarShadow;
     @apply select-none;
     @apply transition-all duration-100 ease-in-out;
   }
   .chpInnerDiv {
-    @apply mx-auto max-w-[1280px];
+    @apply mx-auto;
     @apply bg-gradient-to-t from-[#26262600] via-[#2626263a] to-[#2626267e];
     @apply rounded-2xl p-4;
   }
@@ -26,10 +26,10 @@
   }
   .chpH1Text {
     @apply px-4 mb-5;
-    @apply sm:px-6 lg:px-8 md:chTextHeader;
+    @apply sm:px-6 lg:px-8 lg:chTextHeader;
     @apply transition-all duration-75;
     @apply text-[28px];
-    @apply flex justify-between;
+    @apply flex flex-col lg:flex-row lg:justify-between;
   }
   .chpCCompOuterDiv {
     @apply px-4 sm:px-6 lg:px-8;

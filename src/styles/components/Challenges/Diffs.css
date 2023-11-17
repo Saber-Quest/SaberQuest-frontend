@@ -4,7 +4,7 @@
 
 @layer base {
   .mainDiffDiv {
-    @apply flex flex-col md:flex-row gap-12;
+    @apply flex flex-col lg:flex-row gap-12;
   }
   .allHovers {
     @apply flex flex-col items-center rounded-xl p-5 transition-all duration-300 ease-in-out;
@@ -22,7 +22,7 @@
     @apply max-w-[300px] text-center;
   }
   .challengeDescGoalDiv {
-    @apply pt-5 text-[24px] justify-center flex;
+    @apply pt-5 text-[18px] lg:text-[24px] whitespace-nowrap justify-center flex;
   }
   .challengeDescGoal {
     @apply text-sqyellow font-semibold;

@@ -12,8 +12,8 @@ export default function Home({ session }: { session: SessionUser | null }) {
         contents={`Frontpage | The Frontpage of ${process.env.PUBLIC_NAME}.`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="allDiv fpBody">
-        <div className="fpBodyLeft">
+      <div className="fpBody">
+        <div className="fpleftSide">
           <div className="fpBodyText">
             <h1 className="fpTextHeader">
               Welcome to Saber<span className="fpHeaderHighlight">Quest</span>!
@@ -35,8 +35,8 @@ export default function Home({ session }: { session: SessionUser | null }) {
           </div>
           <div className="fpCompletionText">
             <p className="fpBodyText">
-              When you pick a challenge, you have{" "}
-              <span className="fpBodyHighlight">2 ways of finishing</span> them.
+              You can complete challenges in{" "}
+              <span className="fpBodyHighlight">2 ways</span>.
             </p>
           </div>
           <div className="fpCompletionMethods">
@@ -62,14 +62,14 @@ export default function Home({ session }: { session: SessionUser | null }) {
             </div>
           </div>
         </div>
-        <div className="fpBodyRight">
-          <div className="fpChallengeText">
-            <h1 className="fpTextHeader">
+        <div className="rightSide">
+          <div className="fpChallengeText mb-2">
+            <h1 className="fpTextHeader whitespace-nowrap">
               Example <span className="fpHeaderHighlight">Challenges</span>!
             </h1>
             <h2 className="fpTextSubheader">Get a play worth, minimum:</h2>
           </div>
-          <div className="fpExampleChallenges">
+          <div className="fpExampleChallenges flex flex-col gap-5">
             <AnimateGroup play>
               <Animate
                 start={{ opacity: 0, transform: "translateX(-100px)" }}
