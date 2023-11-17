@@ -49,9 +49,8 @@ export default function Profile() {
       setCurrentPage(navPage);
       axios
         .get(
-          `${
-            process.env.API_URL
-          }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
+          `${process.env.API_URL
+          }/leaderboard?page=${navPage}&limit=11&_=${new Date().getTime()}`,
         )
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
@@ -100,7 +99,7 @@ export default function Profile() {
             ) : (
               <>
                 {Array.isArray(leaderboard) &&
-                  leaderboard.map((user: User, index) => (
+                  leaderboard.slice(0, 10).map((user: User, index) => (
                     <Link href={`/profile/${user.userInfo.id}`} key={index}>
                       <div
                         className="LeaderboardEntry"
@@ -183,9 +182,8 @@ export default function Profile() {
         </div>
         <div className="Navigation">
           <button
-            className={`Backward ${
-              currentPage > 1 ? "" : "cursor-not-allowed"
-            }`}
+            className={`Backward ${currentPage > 1 ? "" : "cursor-not-allowed"
+              }`}
             onClick={() => {
               if (currentPage > 1 && !loading) {
                 const previousPage = currentPage - 1;
@@ -201,11 +199,10 @@ export default function Profile() {
           <div className="PageNumber">{currentPage}</div>
 
           <button
-            className={`Forward ${
-              userCount === 10 && !loading ? "" : "cursor-not-allowed"
-            }`}
+            className={`Forward ${userCount === 11 && !loading ? "" : "cursor-not-allowed"
+              }`}
             onClick={() => {
-              if (userCount === 10 && !loading) {
+              if (userCount === 11 && !loading) {
                 const nextPage = currentPage + 1;
                 router.push(`/leaderboard/${nextPage}`);
                 glitch.stopGlitch();
