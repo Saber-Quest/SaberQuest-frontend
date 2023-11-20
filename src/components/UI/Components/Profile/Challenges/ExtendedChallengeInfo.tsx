@@ -88,13 +88,11 @@ export default function ExtendedChallengeInfo({
           (item.challenge.type === cT.XAN && (
             <>
               <b className="text-sqyellow">
-                {item.challenge.preference === "ss"
-                  ? item.challenge.difficulty.challenge[0]
-                  : item.challenge.difficulty.challenge[1]}
+                {item.challenge.difficulty.challenge[0]}
               </b>
-              pp,{" "}
+              notes,{" "}
               <b className="text-sqyellow">
-                {item.challenge.difficulty.challenge[2]}
+                {item.challenge.difficulty.challenge[1]}
               </b>
               % acc
             </>

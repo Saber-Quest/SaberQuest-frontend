@@ -158,23 +158,15 @@ export default function HardDiff({
               <>
                 <div className="flexCol">
                   <div>
-                    ScoreSaber:{" "}
+                    Notes:{" "}
                     <b className="challengeDescGoal">
                       {challengeDatas.challenge[0]}
-                    </b>{" "}
-                    notes
-                  </div>
-                  <div>
-                    BeatLeader:{" "}
-                    <b className="challengeDescGoal">
-                      {challengeDatas.challenge[1]}
                     </b>
-                    notes
                   </div>
                   <div>
                     Acc:{" "}
                     <b className="challengeDescGoal">
-                      {challengeDatas.challenge[2]}
+                      {challengeDatas.challenge[1]}
                     </b>
                     %
                   </div>
