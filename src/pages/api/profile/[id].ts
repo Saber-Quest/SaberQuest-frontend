@@ -30,7 +30,7 @@ export default async function handler(
             }
           })
           .catch((error) => {
-            return res.status(400).json({ error: "No information found." });
+            return res.status(400).json({ error: error.response.data.error });
           });
       } else {
         return res.status(400).json({ error: "Invalid request method" });

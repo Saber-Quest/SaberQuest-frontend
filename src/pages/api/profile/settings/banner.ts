@@ -117,7 +117,7 @@ export default async function handler(
             return res.status(200).json({ message: "Banner updated!" });
           })
           .catch((error) => {
-            return res.status(400).json({ error: "Some error here" });
+            return res.status(400).json({ error: error.response.data.error });
           });
       } else {
         return res.status(400).json({ error: "Invalid request method" });

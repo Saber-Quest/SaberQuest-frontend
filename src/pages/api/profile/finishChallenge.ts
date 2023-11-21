@@ -38,7 +38,7 @@ export default async function handler(
               .json({ message: "Challenge completed. Well played!" });
           })
           .catch((error) => {
-            return res.status(400).json({ error: "Challenge not completed." });
+            return res.status(400).json({ error: error.response.data.error });
           });
       } else {
         return res.status(400).json({ error: "Invalid request method" });
