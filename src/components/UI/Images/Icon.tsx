@@ -18,7 +18,7 @@ export default function Icon({
         alt="Icon"
         width={w}
         height={h}
-        className={`w-[${(w*4)}px] h-[${(h*4)}px] iconStyle`}
+        className={`w-[${w * 4}px] h-[${h * 4}px] iconStyle`}
       />
     </>
   );

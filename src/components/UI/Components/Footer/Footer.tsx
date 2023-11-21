@@ -4,7 +4,7 @@ import { Fragment } from "react";
 const NavigationLinks = [
   {
     name: "About",
-    link: '/about',
+    link: "/about",
   },
   {
     name: "API",
@@ -32,7 +32,7 @@ function Footer() {
           {NavigationLinks.map((link, index) => {
             return (
               <Fragment key={index}>
-                {link.link === '/about' ? (
+                {link.link === "/about" ? (
                   <Link href={link.link} className="footerLinks">
                     {link.name}
                   </Link>

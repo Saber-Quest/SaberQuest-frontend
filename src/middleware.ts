@@ -33,7 +33,6 @@ export async function middleware(request: NextRequest) {
       const url = request.nextUrl.clone();
       url.pathname = `/profile/${authData.id}`;
       return NextResponse.redirect(url);
-
     }
     if (!admin && request.nextUrl.pathname.startsWith("/admin")) {
       const url = request.nextUrl.clone();

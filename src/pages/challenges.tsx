@@ -94,31 +94,30 @@ export default function Challenges({
       />
       <div className="mx-auto mt-5 mb-12 max-w-[90rem]">
         <div className="chpInnerDiv p-4">
-            {challenges !== null &&
-              !loading && (
-                <>
-                  <h1 className="chpH1Text lg:chTextHeader">
-                    <span>
-                      Current <span className="text-sqyellow">Challenges</span>
-                    </span>{" "}
-                    {formatCountdownTime(countdownTime)}
-                  </h1>
-                  <div className="chpCCompOuterDiv">
-                    <div className="mt-8 flexCol">
-                        <div className="chpCCompChildDiv">
-                          <ChallengeComp
-                            challengeDatas={challenges}
-                            session={session}
-                            setSession={setSession}
-                            setMessage={setMessage}
-                            setType={setType}
-                            setShow={setShow}
-                          />
-                        </div>
-                    </div>
+          {challenges !== null && !loading && (
+            <>
+              <h1 className="chpH1Text lg:chTextHeader">
+                <span>
+                  Current <span className="text-sqyellow">Challenges</span>
+                </span>{" "}
+                {formatCountdownTime(countdownTime)}
+              </h1>
+              <div className="chpCCompOuterDiv">
+                <div className="mt-8 flexCol">
+                  <div className="chpCCompChildDiv">
+                    <ChallengeComp
+                      challengeDatas={challenges}
+                      session={session}
+                      setSession={setSession}
+                      setMessage={setMessage}
+                      setType={setType}
+                      setShow={setShow}
+                    />
                   </div>
-                </>
-            )}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

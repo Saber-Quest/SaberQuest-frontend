@@ -250,14 +250,14 @@ export default function StorePage({
                                           item.rarity === iR.C
                                             ? iR.C
                                             : item.rarity === iR.U
-                                            ? iR.U
-                                            : item.rarity === iR.R
-                                            ? iR.R
-                                            : item.rarity === iR.E
-                                            ? iR.E
-                                            : item.rarity === iR.L
-                                            ? iR.L
-                                            : iR.C
+                                              ? iR.U
+                                              : item.rarity === iR.R
+                                                ? iR.R
+                                                : item.rarity === iR.E
+                                                  ? iR.E
+                                                  : item.rarity === iR.L
+                                                    ? iR.L
+                                                    : iR.C
                                         }
                                       />
                                     </td>

@@ -66,7 +66,9 @@ export default function NavBar({
                   />
                   <p className="Saber">Saber</p>
                   <span className="Quest">Quest</span>
-                  <span className="relative font-extrabold text-red-600 top-[-20px] left-[-15px] overflow-visible w-2 max-w-2">BETA</span>
+                  <span className="relative font-extrabold text-red-600 top-[-20px] left-[-15px] overflow-visible w-2 max-w-2">
+                    BETA
+                  </span>
                 </Link>
               </div>
               <div className="hidden lg:ml-6 lg:flex w-full">
@@ -209,10 +211,10 @@ export default function NavBar({
                             </div>
                           </>
                         )) || (
-                            <>
-                              {session && <ProfileMenuSlim userinfo={session} />}{" "}
-                            </>
-                          )}
+                          <>
+                            {session && <ProfileMenuSlim userinfo={session} />}{" "}
+                          </>
+                        )}
                       </div>
                     )) ||
                       null}

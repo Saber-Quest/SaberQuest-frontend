@@ -29,7 +29,7 @@
   .smoothTran {
     @apply transition-all duration-200 ease-in-out;
   }
-  
+
   .allDiv {
     @apply relative top-0 1920:top-[-5%];
   }

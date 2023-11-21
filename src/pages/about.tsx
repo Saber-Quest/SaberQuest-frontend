@@ -43,86 +43,89 @@ export default function About() {
               Object.values(team).map((teamCategory: TeamMember[], index) => {
                 if (teamCategory.length > 0) {
                   return (
-                    <Animate play
-                    key={index}
-                    start={{ opacity: 0, transform: "translateX(-100px)" }}
-                    end={{ opacity: 1, transform: "translateX(0px)" }}
-                    easeType="ease-in-out"
-                    sequenceIndex={index}
-                    duration={(0.2*index)}
-                  >
-                    <div>
-                      <DividerCenter text={Object.keys(team)[index]} />
-                      <div className="aboutTeamBoxInner">
-                        {teamCategory.map((member: TeamMember, memberIndex) => (
-                          <div key={memberIndex}>
-                            <Link href={`/profile/${member.SQID}`}>
-                              <Image
-                                className="aboutPFP"
-                                width={100}
-                                height={100}
-                                src={`${process.env.API_URL}/profile/${member.SQID}/avatar`}
-                                alt={`${member.Name} Profilepicture`}
-                              />
-                              <h3 className="aboutName">{member.Name}</h3>
-                              <p className="aboutInfo">{member.Info}</p>
-                            </Link>
-                            <ul role="list" className="aboutPlatforms">
-                              {member.Discord && (
-                                <li>
-                                  <Icon
-                                    path="DiscordLogo.svg"
-                                    open={`https://discordapp.com/users/${member.Discord}`}
-                                    h={5}
-                                    w={5}
+                    <Animate
+                      play
+                      key={index}
+                      start={{ opacity: 0, transform: "translateX(-100px)" }}
+                      end={{ opacity: 1, transform: "translateX(0px)" }}
+                      easeType="ease-in-out"
+                      sequenceIndex={index}
+                      duration={0.2 * index}
+                    >
+                      <div>
+                        <DividerCenter text={Object.keys(team)[index]} />
+                        <div className="aboutTeamBoxInner">
+                          {teamCategory.map(
+                            (member: TeamMember, memberIndex) => (
+                              <div key={memberIndex}>
+                                <Link href={`/profile/${member.SQID}`}>
+                                  <Image
+                                    className="aboutPFP"
+                                    width={100}
+                                    height={100}
+                                    src={`${process.env.API_URL}/profile/${member.SQID}/avatar`}
+                                    alt={`${member.Name} Profilepicture`}
                                   />
-                                </li>
-                              )}
-                              {member.GitHub && (
-                                <li>
-                                  <Icon
-                                    path="GitHubLogo.svg"
-                                    open={`https://github.com/${member.GitHub}`}
-                                    h={5}
-                                    w={5}
-                                  />
-                                </li>
-                              )}
-                              {member.Twitch && (
-                                <li>
-                                  <Icon
-                                    path="TwitchLogo.svg"
-                                    open={`https://twitch.tv/${member.Twitch}`}
-                                    h={5}
-                                    w={5}
-                                  />
-                                </li>
-                              )}
-                              {member.Twitter && (
-                                <li>
-                                  <Icon
-                                    path="TwitterLogo.svg"
-                                    open={`https://twitter.com/${member.Twitter}`}
-                                    h={5}
-                                    w={5}
-                                  />
-                                </li>
-                              )}
-                              {member.YouTube && (
-                                <li>
-                                  <Icon
-                                    path="YouTubeLogo.svg"
-                                    open={`${member.YouTube}`}
-                                    h={5}
-                                    w={5}
-                                  />
-                                </li>
-                              )}
-                            </ul>
-                          </div>
-                        ))}
+                                  <h3 className="aboutName">{member.Name}</h3>
+                                  <p className="aboutInfo">{member.Info}</p>
+                                </Link>
+                                <ul role="list" className="aboutPlatforms">
+                                  {member.Discord && (
+                                    <li>
+                                      <Icon
+                                        path="DiscordLogo.svg"
+                                        open={`https://discordapp.com/users/${member.Discord}`}
+                                        h={5}
+                                        w={5}
+                                      />
+                                    </li>
+                                  )}
+                                  {member.GitHub && (
+                                    <li>
+                                      <Icon
+                                        path="GitHubLogo.svg"
+                                        open={`https://github.com/${member.GitHub}`}
+                                        h={5}
+                                        w={5}
+                                      />
+                                    </li>
+                                  )}
+                                  {member.Twitch && (
+                                    <li>
+                                      <Icon
+                                        path="TwitchLogo.svg"
+                                        open={`https://twitch.tv/${member.Twitch}`}
+                                        h={5}
+                                        w={5}
+                                      />
+                                    </li>
+                                  )}
+                                  {member.Twitter && (
+                                    <li>
+                                      <Icon
+                                        path="TwitterLogo.svg"
+                                        open={`https://twitter.com/${member.Twitter}`}
+                                        h={5}
+                                        w={5}
+                                      />
+                                    </li>
+                                  )}
+                                  {member.YouTube && (
+                                    <li>
+                                      <Icon
+                                        path="YouTubeLogo.svg"
+                                        open={`${member.YouTube}`}
+                                        h={5}
+                                        w={5}
+                                      />
+                                    </li>
+                                  )}
+                                </ul>
+                              </div>
+                            ),
+                          )}
+                        </div>
                       </div>
-                    </div>
                     </Animate>
                   );
                 }
