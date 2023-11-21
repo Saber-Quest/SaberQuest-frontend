@@ -67,7 +67,6 @@ export default function Profile() {
       setNavLock(true);
       const { page } = router.query;
       const navPage = parseInt(page as string);
-      setLeaderboard(undefined);
       axios
         .get(
           `${
@@ -131,9 +130,11 @@ export default function Profile() {
                       end={{ opacity: 1, transform: "translateX(0px)" }}
                       easeType="ease-in-out"
                       duration={0.25 + index / 15}
-                      onComplete={() =>
-                        index === leaderboard.length - 1 && setNavLock(false)
-                      }
+                      onComplete={() => {
+                        if (index === leaderboard.length - 1) {
+                          setNavLock(false);
+                        }
+                      }}
                     >
                       <Link href={`/profile/${user.userInfo.id}`}>
                         <div
@@ -228,8 +229,9 @@ export default function Profile() {
                   if (currentPage > 1 && !loading && !navLock) {
                     const previousPage = currentPage - 1;
                     router.push(`/leaderboard/${previousPage}`);
-                    setLoading(true);
+                    setLeaderboard(undefined);
                     setCurrentPage(previousPage);
+                    setLoading(true);
                   }
                 }}
               >
@@ -250,8 +252,9 @@ export default function Profile() {
                   if (currentPage !== totalPages && !loading && !navLock) {
                     const nextPage = currentPage + 1;
                     router.push(`/leaderboard/${nextPage}`);
-                    setLoading(true);
+                    setLeaderboard(undefined);
                     setCurrentPage(nextPage);
+                    setLoading(true);
                   }
                 }}
               >
