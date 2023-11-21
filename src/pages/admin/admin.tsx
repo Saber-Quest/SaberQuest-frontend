@@ -88,9 +88,7 @@ export default function Admin() {
                 {action.title}
               </Link>
             </h3>
-            <span className="mt-2 text-sm text-white">
-              {action.description}
-            </span>
+            <span className="mt-2 text-sm text-white">{action.description}</span>
           </div>
           <span
             className="pointer-events-none absolute right-6 top-6"
