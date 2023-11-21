@@ -1,9 +1,8 @@
 import React from "react";
 import { Animate, AnimateGroup } from "react-simple-animate";
 import Header from "@comp/Meta/Title";
-import { SessionUser } from "@lib/types";
 
-export default function Home({ session }: { session: SessionUser | null }) {
+export default function Home() {
   return (
     <>
       <Header

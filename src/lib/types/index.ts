@@ -4,18 +4,19 @@ import {
   InventoryItem,
   ChallengeItem,
 } from "./AdvancedUser";
+import { Border } from "./Border";
 import { ChallengeData } from "./Challenges";
 import { LeaderboardData } from "./Leaderboard";
 import { SessionUser } from "./SessionUser";
 import { Item, ItemList } from "./Shop";
 import { ItemRecipes, AllowedRecipes } from "./ItemCrafting";
+import { Team, TeamMember } from "./Team";
 import { User, UserInfo, Stats, Today } from "./User";
-import { Border } from "./Border";
 
 export type {
-  Border,
   AdvancedUser,
   AllowedRecipes,
+  Border,
   UserInfo,
   Stats,
   Today,
@@ -28,5 +29,7 @@ export type {
   Item,
   ItemList,
   ItemRecipes,
+  Team,
+  TeamMember,
   User,
 };

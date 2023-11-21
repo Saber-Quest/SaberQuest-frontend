@@ -16,8 +16,11 @@
     @apply font-poppins text-white;
     @apply bg-auto;
     @apply bg-[url('/assets/images/BackgroundImage.png')];
+    @apply bg-[#1b1b1b];
+    @apply bg-no-repeat;
     @apply backdrop-filter backdrop-blur-[5px];
     @apply transition-all duration-500;
+    @apply overflow-x-hidden;
   }
 
   .flexCol {

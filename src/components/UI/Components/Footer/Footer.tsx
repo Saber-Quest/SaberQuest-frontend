@@ -1,6 +1,11 @@
+import Link from "next/link";
 import { Fragment } from "react";
 
 const NavigationLinks = [
+  {
+    name: "About",
+    link: '/about',
+  },
   {
     name: "API",
     link: process.env.PUBLIC_API,
@@ -27,14 +32,20 @@ function Footer() {
           {NavigationLinks.map((link, index) => {
             return (
               <Fragment key={index}>
-                <a
-                  href={link.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="footerLinks"
-                >
-                  {link.name}
-                </a>
+                {link.link === '/about' ? (
+                  <Link href={link.link} className="footerLinks">
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    href={link.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footerLinks"
+                  >
+                    {link.name}
+                  </a>
+                )}
                 {index !== NavigationLinks.length - 1 && (
                   <span className="navLinkDivider">|</span>
                 )}

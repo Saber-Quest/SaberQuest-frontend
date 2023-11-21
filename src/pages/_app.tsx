@@ -12,6 +12,8 @@ import "@style/components/Challenges/Diffs.css";
 import "@style/components/Notifications/Notifications.css";
 import "@style/components/Shop/Rarities.css";
 import "@style/components/ErrorComps.css";
+import "@style/components/Images/Icons.css";
+import "@style/pages/About.css";
 import "@style/pages/Frontpage.css";
 import "@style/pages/Leaderboard.css";
 import "@style/pages/Profilepage.css";
