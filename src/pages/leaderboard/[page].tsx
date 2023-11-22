@@ -2,11 +2,26 @@ import { LeaderboardData, User } from "@lib/types";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useGlitch } from "react-powerglitch";
-import { Animate } from "react-simple-animate";
+import { Reveal } from "react-awesome-reveal";
+import { keyframes } from "@emotion/react";
 import axios from "axios";
 import Image from "next/image";
 import Header from "@comp/Meta/Title";
 import Link from "next/link";
+
+const customAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+    ease-in-out: cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+    ease-in-out: cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+`;
 
 export default function Profile() {
   const router = useRouter();
@@ -67,6 +82,7 @@ export default function Profile() {
       setNavLock(true);
       const { page } = router.query;
       const navPage = parseInt(page as string);
+
       axios
         .get(
           `${
@@ -78,6 +94,7 @@ export default function Profile() {
             if (response.data.leaderboard.length > 0) {
               setLeaderboard(response.data.leaderboard);
               setCurrentPage(navPage);
+              setNavLock(false);
             } else {
               setError(true);
             }
@@ -110,7 +127,7 @@ export default function Profile() {
             </div>
             <div className="LBHeaderText LBS text-[16px]">Total Score</div>
           </div>
-          <div className="border-y-[1px] border-sqyellowfaint">
+          <div className="border-y-[1px] border-sqyellowfaint overflow-hidden">
             {error ? (
               <div className="flex flex-col items-center justify-center w-full h-full">
                 <div className="w-16 h-16 my-2">No data found.</div>
@@ -121,22 +138,10 @@ export default function Profile() {
               </div>
             ) : (
               <>
-                {Array.isArray(leaderboard) &&
-                  leaderboard.map((user: User, index: number) => (
-                    <Animate
-                      key={user.userInfo.id}
-                      play={!loading}
-                      start={{ opacity: 0, transform: "translateX(-100px)" }}
-                      end={{ opacity: 1, transform: "translateX(0px)" }}
-                      easeType="ease-in-out"
-                      duration={0.25 + index / 15}
-                      onComplete={() => {
-                        if (index === leaderboard.length - 1) {
-                          setNavLock(false);
-                        }
-                      }}
-                    >
-                      <Link href={`/profile/${user.userInfo.id}`}>
+                <Reveal keyframes={customAnimation} cascade>
+                  {Array.isArray(leaderboard) &&
+                    leaderboard.map((user: User, index: number) => (
+                      <Link key={index} href={`/profile/${user.userInfo.id}`}>
                         <div
                           className={`LeaderboardEntry ${
                             (index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"
@@ -185,7 +190,6 @@ export default function Profile() {
                                 alt="Profile Picture"
                                 width={32}
                                 height={32}
-                                unoptimized={true}
                                 key={index}
                                 className="LBPFP"
                               />
@@ -212,8 +216,8 @@ export default function Profile() {
                           </div>
                         </div>
                       </Link>
-                    </Animate>
-                  ))}
+                    ))}
+                </Reveal>
               </>
             )}
           </div>

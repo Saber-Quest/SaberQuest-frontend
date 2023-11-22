@@ -118,14 +118,14 @@ export default function ChallengesPanel({
                                 cItems.rarity === iR.C
                                   ? "ring-commonItem"
                                   : cItems.rarity === iR.U
-                                    ? "ring-uncommonItem"
-                                    : cItems.rarity === iR.R
-                                      ? "ring-rareItem"
-                                      : cItems.rarity === iR.E
-                                        ? "ring-epicItem"
-                                        : cItems.rarity === iR.L
-                                          ? "ring-legendaryItem"
-                                          : "ring-sqyellow"
+                                  ? "ring-uncommonItem"
+                                  : cItems.rarity === iR.R
+                                  ? "ring-rareItem"
+                                  : cItems.rarity === iR.E
+                                  ? "ring-epicItem"
+                                  : cItems.rarity === iR.L
+                                  ? "ring-legendaryItem"
+                                  : "ring-sqyellow"
                               }`}
                               src={cItems.image}
                               alt={cItems.name}
