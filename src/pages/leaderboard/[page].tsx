@@ -25,6 +25,7 @@ const customAnimation = keyframes`
 
 export default function Profile() {
   const router = useRouter();
+  const dummy = new Array(10).fill(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [navLock, setNavLock] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -85,7 +86,8 @@ export default function Profile() {
 
       axios
         .get(
-          `${process.env.API_URL}/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
+          `${process.env.API_URL
+          }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
         )
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
@@ -126,13 +128,31 @@ export default function Profile() {
             <div className="LBHeaderText LBS text-[16px]">Total Score</div>
           </div>
           <div className="border-y-[1px] border-sqyellowfaint overflow-hidden">
-            {error ? (
+            {loading ? (
+              <>
+                {dummy.map((dummy, index) => (
+                  <div key={index} className={`opacity-25 LeaderboardEntry border-b border-[#0000003d] animate-[pulse_1s_ease-in-out_infinite]`}>
+                    <div className="LBEntryText LBR">
+                      <span className="w-5 h-2.5 bg-gray-200 rounded-full me-3" />
+                    </div>
+                    <div className="LBEntryText LBU">
+                      <div className="relative overflow-visible mr-5">
+                        <div className="w-8 h-8 bg-gray-200 rounded-full me-3" />
+                      </div>
+                      <span className="w-[120px] h-2.5 bg-gray-200 rounded-full"></span>
+                    </div>
+                    <div className="LBEntryText LBC">
+                      <span className="w-5 h-2.5 bg-gray-200 rounded-full me-3" />
+                    </div>
+                    <div className="LBEntryText LBS">
+                      <span className="w-5 h-2.5 bg-gray-200 rounded-full me-3" />
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : error ? (
               <div className="flex flex-col items-center justify-center w-full h-full">
                 <div className="w-16 h-16 my-2">No data found.</div>
-              </div>
-            ) : loading ? (
-              <div className="flex flex-col items-center justify-center w-full h-full">
-                <div className="w-16 h-16 my-2">Loading...</div>
               </div>
             ) : (
               <>
@@ -141,9 +161,8 @@ export default function Profile() {
                     leaderboard.map((user: User, index: number) => (
                       <Link key={index} href={`/profile/${user.userInfo.id}`}>
                         <div
-                          className={`LeaderboardEntry ${
-                            (index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"
-                          } border-b border-[#0000003d]`}
+                          className={`LeaderboardEntry ${(index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"
+                            } border-b border-[#0000003d]`}
                           style={{
                             backgroundImage: !user.userInfo.images.banner
                               ? ``
@@ -222,18 +241,17 @@ export default function Profile() {
           <div className="w-full flex flex-row justify-evenly rounded-b-2xl overflow-hidden">
             <div className="bg-[#00000033] w-full flex items-center justify-center h-12">
               <button
-                className={`${
-                  currentPage > 1 && !loading && !navLock
-                    ? ""
-                    : "cursor-not-allowed"
-                } w-full h-full`}
+                className={`${currentPage > 1 && !loading && !navLock
+                  ? ""
+                  : "cursor-not-allowed"
+                  } w-full h-full`}
                 onClick={() => {
                   if (currentPage > 1 && !loading && !navLock) {
                     const previousPage = currentPage - 1;
                     router.push(`/leaderboard/${previousPage}`);
+                    setLoading(true);
                     setLeaderboard(undefined);
                     setCurrentPage(previousPage);
-                    setLoading(true);
                   }
                 }}
               >
@@ -245,18 +263,17 @@ export default function Profile() {
             </div>
             <div className="bg-[#00000033] w-full flex items-center justify-center h-12">
               <button
-                className={`${
-                  currentPage !== totalPages && !loading && !navLock
-                    ? ""
-                    : "cursor-not-allowed"
-                } w-full h-full`}
+                className={`${currentPage !== totalPages && !loading && !navLock
+                  ? ""
+                  : "cursor-not-allowed"
+                  } w-full h-full`}
                 onClick={() => {
                   if (currentPage !== totalPages && !loading && !navLock) {
                     const nextPage = currentPage + 1;
                     router.push(`/leaderboard/${nextPage}`);
+                    setLoading(true);
                     setLeaderboard(undefined);
                     setCurrentPage(nextPage);
-                    setLoading(true);
                   }
                 }}
               >
