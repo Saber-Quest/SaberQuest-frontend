@@ -85,9 +85,7 @@ export default function Profile() {
 
       axios
         .get(
-          `${
-            process.env.API_URL
-          }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
+          `${process.env.API_URL}/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
         )
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
