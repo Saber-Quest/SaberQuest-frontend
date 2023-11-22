@@ -8,10 +8,6 @@ import Image from "next/image";
 import Header from "@comp/Meta/Title";
 import Link from "next/link";
 
-//Create a function that returns a truly random number between 1 and 10000 for when the application is running in build mode.
-//This is used to prevent the API from caching the data.
-//This is also used to prevent the API from caching the data.
-
 function randomInteger() {
   const randomizer = Math.floor(
     Math.random() * new Date().getTime() + (10000 - 1 + 1) + 1,
