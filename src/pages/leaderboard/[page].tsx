@@ -136,7 +136,7 @@ export default function Profile() {
               </div>
             ) : (
               <>
-                <Reveal keyframes={customAnimation} cascade>
+                <Reveal keyframes={customAnimation} duration={225} cascade>
                   {Array.isArray(leaderboard) &&
                     leaderboard.map((user: User, index: number) => (
                       <Link key={index} href={`/profile/${user.userInfo.id}`}>
