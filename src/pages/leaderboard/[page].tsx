@@ -8,6 +8,17 @@ import Image from "next/image";
 import Header from "@comp/Meta/Title";
 import Link from "next/link";
 
+//Create a function that returns a truly random number between 1 and 10000 for when the application is running in build mode.
+//This is used to prevent the API from caching the data.
+//This is also used to prevent the API from caching the data.
+
+function randomInteger() {
+  const randomizer = Math.floor(
+    Math.random() * new Date().getTime() + (10000 - 1 + 1) + 1,
+  );
+  return randomizer;
+}
+
 export default function Profile() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
@@ -67,11 +78,11 @@ export default function Profile() {
       setNavLock(true);
       const { page } = router.query;
       const navPage = parseInt(page as string);
+      const random = randomInteger();
+      console.log(random);
       axios
         .get(
-          `${
-            process.env.API_URL
-          }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
+          `${process.env.API_URL}/leaderboard?page=${navPage}&limit=10&_=${random}`,
         )
         .then((response) => {
           if (response.status === 302 || response.status === 200) {
