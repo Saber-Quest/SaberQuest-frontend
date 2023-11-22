@@ -75,7 +75,6 @@ export default function Profile() {
       const { page } = router.query;
       const navPage = parseInt(page as string);
       const random = randomInteger();
-      console.log(random);
       axios
         .get(
           `${process.env.API_URL}/leaderboard?page=${navPage}&limit=10&_=${random}`,
