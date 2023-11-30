@@ -74,8 +74,8 @@ export default function About() {
                   <div className="mx-auto max-w-2xl text-base leading-7 text-white">
                     <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">A little bit about us!</h1>
                     <p className="mt-6 text-xl leading-8">
-                      SaberQuest aims to add a bit of <span className="fpBodyHighlight">fun</span> back into playing Beat Saber. Whether you're a <span className="text-normalreq font-semibold">casual</span> player,
-                      or a <span className="text-expertreq font-semibold">competitive</span> player, we're trying to create a fun experience for <span className="fpBodyHighlight underline italic">everyone</span>.
+                      SaberQuest aims to add a bit of <span className="fpBodyHighlight">fun</span> back into playing Beat Saber. Whether you&apos;re a <span className="text-normalreq font-semibold">casual</span> player,
+                      or a <span className="text-expertreq font-semibold">competitive</span> player, we&apos;re trying to create a fun experience for <span className="fpBodyHighlight underline italic">everyone</span>.
                     </p>
                     <div className="mt-10 max-w-2xl">
                       <p>
@@ -137,10 +137,10 @@ export default function About() {
                         <li className="flex gap-x-3">
                           <InformationCircleIcon className="mt-1 h-5 w-5 flex-none text-blue-400" aria-hidden="true" />
                           <span>
-                            <strong className="font-semibold text-sqyellow">Complete the challenge!</strong> And fourth! When you've met the requirement(s),
+                            <strong className="font-semibold text-sqyellow">Complete the challenge!</strong> And fourth! When you&apos;ve met the requirement(s),
                             you can go back to the <Link href="/challenges" className="fpBodyHighlight underline">challenges</Link>-page,
-                            and click the "<span className="fpBodyHighlight">Complete Challenge</span>"-button. If you've met the requirement, a notification will congratulate you,
-                            and you'll receive a small amount of <span className="fpBodyHighlight">QP</span> and one or more <span className="fpBodyHighlight">items</span>! <span className="text-sqyellow text-[12px]">('Autocomplete challenges' enabled in your <Link href="/profile/settings" className="fpBodyHighlight underline">profile</Link>-settings, will automatically complete challenges for you, given you meet the requirement(s))</span>
+                            and click the &quot;<span className="fpBodyHighlight">Complete Challenge</span>&quot;-button. If you&apos;ve met the requirement, a notification will congratulate you,
+                            and you&apos;ll receive a small amount of <span className="fpBodyHighlight">QP</span> and one or more <span className="fpBodyHighlight">items</span>! <span className="text-sqyellow text-[12px]">(&quot;Autocomplete challenges&quot; enabled in your <Link href="/profile/settings" className="fpBodyHighlight underline">profile</Link>-settings, will automatically complete challenges for you, given you meet the requirement(s))</span>
                           </span>
                         </li>
                       </ul>
