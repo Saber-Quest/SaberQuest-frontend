@@ -26,6 +26,7 @@ module.exports = {
       },
       boxShadow: {
         navHoverShadow: "0 18px 15px -15px #FFD073aa",
+        aboutHoverShadow: "0 18px 15px -8px #FFD073aa",
       },
       boxShadowColor: {
         normalreq: "#FFD941",

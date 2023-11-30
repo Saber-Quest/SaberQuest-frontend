@@ -46,7 +46,7 @@
   .navButton {
     @apply text-lg text-white font-light pt-1;
     @apply flex items-center justify-center;
-    @apply min-w-[210px] h-[100px];
+    @apply min-w-[160px] min-h-[100px] md:h-full;
     @apply border-b-4 border-[#ffd07300];
     @apply hover:border-[#FFD073] hover:bg-navHover hover:shadow-navHoverShadow;
     @apply transition-all duration-300;

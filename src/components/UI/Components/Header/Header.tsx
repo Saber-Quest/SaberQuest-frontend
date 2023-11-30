@@ -54,7 +54,7 @@ export default function NavBar({
       <Disclosure as="nav" className="topNav z-10 relative">
         {({ open }) => (
           <>
-            <div className="flex items-center w-full h-16">
+            <div className="flex items-center w-full h-[100px]">
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/" key="NavLink" className="navLogoContainer">
                   <Image
@@ -71,7 +71,7 @@ export default function NavBar({
                   </span>
                 </Link>
               </div>
-              <div className="hidden lg:ml-6 lg:flex w-full">
+              <div className="hidden h-full lg:ml-6 lg:flex w-full">
                 {NavigationLinks.map((item, index) => {
                   if (!item.needLogin || loggedIn) {
                     return (
@@ -167,7 +167,7 @@ export default function NavBar({
             </div>
 
             <Disclosure.Panel className="lg:hidden flex absolute w-[100%] bg-[#1d1d1d] flex-col transition-all duration-500 z-40 top-[-8px]">
-              <div className="pt-2 pb-3 space-y-1 sticky">
+              <div className="pt-2 space-y-1 sticky">
                 {NavigationLinks.map((item) => (
                   <Link href={item.link} key={item.name} className="navButton">
                     {item.name}
