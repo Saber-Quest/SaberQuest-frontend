@@ -118,7 +118,7 @@ export default function Profile() {
         contents={`See the rankings of all players!`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="allDiv flex flex-col items-center justify-center xl:px-16 pt-10 drop-shadow-navBarShadow select-none transition-all duration-300 ease-in-out">
+      <div className="allDiv flex flex-col items-center justify-center px-0 xl:px-16 py-10 drop-shadow-navBarShadow select-none transition-all duration-300 ease-in-out">
         <div className="LeaderboardContainer">
           <div className="LeaderboardHeader">
             <div className="LBHeaderText LBR">Rank</div>
@@ -243,7 +243,7 @@ export default function Profile() {
               </>
             )}
           </div>
-          <div className="w-full flex flex-row justify-evenly rounded-b-2xl overflow-hidden">
+          <div className="w-full flex flex-row justify-evenly rounded-none xl:rounded-b-2xl overflow-hidden">
             <div className="bg-[#00000033] w-full flex items-center justify-center h-12">
               <button
                 className={`${

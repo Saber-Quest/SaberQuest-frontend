@@ -12,7 +12,7 @@
   .footerText {
     @apply pl-4;
     @apply self-center;
-    @apply font-light text-white text-lg;
+    @apply font-light text-white text-sm lg:text-lg;
   }
 
   .footerQuest {
@@ -20,7 +20,7 @@
   }
 
   .footerLinks {
-    @apply text-sqyellow text-base font-medium transition-all duration-300 ease-in-out;
+    @apply text-sqyellow text-xs lg:text-base font-medium transition-all duration-300 ease-in-out;
     @apply hover:drop-shadow-logoShadow;
     @apply inline-flex justify-center p-2 cursor-pointer;
   }
