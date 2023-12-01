@@ -75,7 +75,11 @@ export default function NavBar({
                 {NavigationLinks.map((item, index) => {
                   if (!item.needLogin || loggedIn) {
                     return (
-                      <Link href={item.link} key={index} className="navButton">
+                      <Link
+                        href={item.link}
+                        key={index}
+                        className="navButton text-base xl:text-lg min-w-[120px] xl:min-w-[150px]"
+                      >
                         {item.name}
                       </Link>
                     );

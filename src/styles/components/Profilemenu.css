@@ -13,7 +13,7 @@
     @apply relative flex items-center justify-end z-10 w-fit gap-4;
     @apply mb-1 pl-5;
     @apply rounded-full;
-    @apply text-lg font-light;
+    @apply text-base lg:text-lg font-light;
     @apply z-10 w-full bg-opacity-5;
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-0;
   }
