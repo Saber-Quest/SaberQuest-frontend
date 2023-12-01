@@ -6,8 +6,8 @@ import { Reveal } from "react-awesome-reveal";
 import { keyframes } from "@emotion/react";
 import axios from "axios";
 import Image from "next/image";
-import Header from "@comp/Meta/Title";
 import Link from "next/link";
+import Header from "@comp/Meta/Title";
 
 const customAnimation = keyframes`
   from {
@@ -86,7 +86,8 @@ export default function Profile() {
 
       axios
         .get(
-          `${process.env.API_URL
+          `${
+            process.env.API_URL
           }/leaderboard?page=${navPage}&limit=10&_=${new Date().getTime()}`,
         )
         .then((response) => {
@@ -117,21 +118,22 @@ export default function Profile() {
         contents={`See the rankings of all players!`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="allDiv flex flex-col items-center justify-center px-16 pt-10 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+      <div className="allDiv flex flex-col items-center justify-center xl:px-16 pt-10 drop-shadow-navBarShadow select-none transition-all duration-300 ease-in-out">
         <div className="LeaderboardContainer">
           <div className="LeaderboardHeader">
-            <div className="LBHeaderText LBR text-[16px]">Rank</div>
-            <div className="LBHeaderText LBU text-[16px]">User</div>
-            <div className="LBHeaderText LBC text-[16px]">
-              Challenges Completed
-            </div>
-            <div className="LBHeaderText LBS text-[16px]">Total Score</div>
+            <div className="LBHeaderText LBR">Rank</div>
+            <div className="LBHeaderText LBU">User</div>
+            <div className="LBHeaderText LBC">Challenges Completed</div>
+            <div className="LBHeaderText LBS">Total Score</div>
           </div>
           <div className="border-y-[1px] border-sqyellowfaint overflow-hidden">
             {loading ? (
               <>
                 {dummy.map((dummy, index) => (
-                  <div key={index} className={`opacity-25 LeaderboardEntry border-b border-[#0000003d] animate-[pulse_1s_ease-in-out_infinite]`}>
+                  <div
+                    key={index}
+                    className={`opacity-25 LeaderboardEntry border-b border-[#0000003d] animate-[pulse_1s_ease-in-out_infinite]`}
+                  >
                     <div className="LBEntryText LBR">
                       <span className="w-5 h-2.5 bg-gray-200 rounded-full me-3" />
                     </div>
@@ -161,8 +163,9 @@ export default function Profile() {
                     leaderboard.map((user: User, index: number) => (
                       <Link key={index} href={`/profile/${user.userInfo.id}`}>
                         <div
-                          className={`LeaderboardEntry ${(index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"
-                            } border-b border-[#0000003d]`}
+                          className={`LeaderboardEntry ${
+                            (index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"
+                          } border-b border-[#0000003d]`}
                           style={{
                             backgroundImage: !user.userInfo.images.banner
                               ? ``
@@ -223,7 +226,9 @@ export default function Profile() {
                                 />
                               )}
                             </div>
-                            {user.userInfo.username}
+                            <span className="max-w-[135px] lg:max-w-[300px] truncate">
+                              {user.userInfo.username}
+                            </span>
                           </div>
                           <div className="LBEntryText LBC">
                             {user.stats.challengesCompleted}
@@ -241,10 +246,11 @@ export default function Profile() {
           <div className="w-full flex flex-row justify-evenly rounded-b-2xl overflow-hidden">
             <div className="bg-[#00000033] w-full flex items-center justify-center h-12">
               <button
-                className={`${currentPage > 1 && !loading && !navLock
-                  ? ""
-                  : "cursor-not-allowed"
-                  } w-full h-full`}
+                className={`${
+                  currentPage > 1 && !loading && !navLock
+                    ? ""
+                    : "cursor-not-allowed"
+                } w-full h-full`}
                 onClick={() => {
                   if (currentPage > 1 && !loading && !navLock) {
                     const previousPage = currentPage - 1;
@@ -263,10 +269,11 @@ export default function Profile() {
             </div>
             <div className="bg-[#00000033] w-full flex items-center justify-center h-12">
               <button
-                className={`${currentPage !== totalPages && !loading && !navLock
-                  ? ""
-                  : "cursor-not-allowed"
-                  } w-full h-full`}
+                className={`${
+                  currentPage !== totalPages && !loading && !navLock
+                    ? ""
+                    : "cursor-not-allowed"
+                } w-full h-full`}
                 onClick={() => {
                   if (currentPage !== totalPages && !loading && !navLock) {
                     const nextPage = currentPage + 1;

@@ -1,5 +1,9 @@
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect } from "react";
+import {
+  Cog6ToothIcon,
+  InboxArrowDownIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { SessionUser } from "@lib/types";
@@ -7,29 +11,26 @@ import { useGlitch } from "react-powerglitch";
 
 const profileMenu = [
   {
-    name: "Profile",
-    href: "/profile",
-  },
-  {
     name: "Settings",
     href: "/profile/settings",
+    icon: Cog6ToothIcon,
+    color: "text-sqyellowfaint",
   },
   {
     name: "Feedback",
     href: "/feedback",
+    icon: InboxArrowDownIcon,
+    color: "text-sqyellowfaint",
   },
   {
     name: "Log out",
-    href: "#",
+    href: "/api/auth/logout",
+    icon: ArrowRightOnRectangleIcon,
+    color: "text-sqyellow",
   },
 ];
 
 export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
-  const usernameLength = userinfo.user?.userInfo.username.length || 0;
-  const calculatedWidth = `${usernameLength * 8 + 190}px`; // Adjust the multiplication factor and base width as needed
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   useEffect(() => {
     if (userinfo.user?.userInfo.images.border === "gif/glitch_border.gif") {
       glitch.startGlitch();
@@ -37,14 +38,6 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
       glitch.stopGlitch();
     }
   });
-
-  const handleButtonMouseEnter = () => {
-    setIsMenuOpen(true);
-  };
-
-  const handleMenuMouseLeave = () => {
-    setIsMenuOpen(false);
-  };
 
   const glitch = useGlitch({
     playMode: "always",
@@ -75,31 +68,23 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
 
   return (
     <>
-      <Menu as="div" className="profileMenu">
-        <Menu.Button
-          className={`navProfile w-fit`}
-          onMouseEnter={handleButtonMouseEnter}
-          onMouseLeave={handleMenuMouseLeave}
-          style={{
-            width: calculatedWidth,
-          }}
-        >
-          <p className="ml-4 mr-2 rtl">{userinfo.user?.userInfo.username}</p>
-          <div className="relative overflow-visible">
+      <div className="flex flew-row gap-6 items-center">
+        <div className="relative overflow-visible w-16 h-16">
+          <Link href="/profile">
             <Image
               priority={true}
               loading="eager"
               ref={glitch.ref}
               src={
                 !userinfo.user?.userInfo.images.avatar
-                  ? "/assets/images/PFPPlaceholder.png" // Replace with the desired local image path
+                  ? "/assets/images/PFPPlaceholder.png"
                   : userinfo.user.userInfo.images.avatar
               }
               alt="Profile Picture"
               width={66}
               height={66}
               unoptimized={true}
-              className="profilePic rounded-full relative drop-shadow-PFPShadow"
+              className="rounded-full relative drop-shadow-PFPShadow"
             />
             {userinfo.user?.userInfo.images.border && (
               <Image
@@ -113,58 +98,27 @@ export default function ProfileMenu({ userinfo }: { userinfo: SessionUser }) {
                 unoptimized={true}
               />
             )}
-          </div>
-        </Menu.Button>
-        <Transition
-          show={isMenuOpen}
-          as={Fragment}
-          enter="transition ease-in-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in-out duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
-        >
-          <Menu.Items
-            onMouseEnter={handleButtonMouseEnter}
-            onMouseLeave={handleMenuMouseLeave}
-            style={{
-              width: calculatedWidth,
-            }}
-            className={`navMenu ${isMenuOpen ? "visible" : "invisible"}`}
-          >
-            <div className="navMenuDiv">
-              <div className="navMenuPButton" />
-              {profileMenu.map((item) => (
-                <Menu.Item key={item.name}>
-                  {({ active }: { active: any }) => (
-                    <Link
-                      href={item.href}
-                      className={`${
-                        active ? "bg-navButtonActive" : "bg-navButtonBG"
-                      } menuButton bg-opacity-25`}
-                    >
-                      <div className="flex items-center">
-                        {item.name == "Log out" && (
-                          <Image
-                            src="/assets/images/Logout.svg"
-                            className="mr-1 w-[20px] h-[20px]"
-                            aria-hidden="true"
-                            alt="icon"
-                            height={20}
-                            width={20}
-                          />
-                        )}
-                        <span>{item.name}</span>
-                      </div>
-                    </Link>
-                  )}
-                </Menu.Item>
-              ))}
-            </div>
-          </Menu.Items>
-        </Transition>
-      </Menu>
+          </Link>
+        </div>
+        <span className="bg-sqyellow h-[24px] w-[2px] rounded-full" />
+        <div className="flex flex-row gap-6">
+          {profileMenu.map((item) => (
+            <>
+              <Link
+                key={item.name}
+                title={item.name}
+                href={item.href}
+                className={`menuButton bg-opacity-25`}
+              >
+                <item.icon
+                  className={`flex items-center h-6 w-6 ${item.color} hover:text-sqyellow`}
+                  aria-hidden="true"
+                />
+              </Link>
+            </>
+          ))}
+        </div>
+      </div>
     </>
   );
 }

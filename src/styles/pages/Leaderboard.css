@@ -23,25 +23,26 @@
   .LBHeaderText {
     @apply text-white;
     @apply font-normal;
-    @apply text-[20px];
+    @apply text-sm xl:text-[16px];
   }
   .LBEntryText {
     @apply text-white;
     @apply font-normal;
-    @apply text-[16px];
+    @apply text-sm xl:text-[16px];
   }
   .LBR {
     @apply flex content-center justify-center items-center;
-    @apply w-[100px];
+    @apply w-[50px] pl-2 xl:pl-0 xl:w-[100px];
   }
   .LBU {
     @apply flex content-center justify-start items-center;
-    @apply pl-6;
-    @apply min-w-[500px];
+    @apply pl-3;
+    @apply min-w-[200px] xl:min-w-[500px];
   }
   .LBC {
-    @apply flex content-center justify-center items-center;
-    @apply w-[300px];
+    @apply md:content-center md:justify-center md:items-center;
+    @apply hidden md:flex;
+    @apply max-w-[150px] md:max-w-[300px] truncate;
   }
   .LBS {
     @apply flex content-center justify-center items-center;

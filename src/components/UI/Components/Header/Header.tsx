@@ -64,8 +64,8 @@ export default function NavBar({
                     width={96}
                     height={96}
                   />
-                  <p className="Saber">Saber</p>
-                  <span className="Quest">Quest</span>
+                  <p className="Saber smoothTran">Saber</p>
+                  <span className="Quest smoothTran">Quest</span>
                   <span className="relative font-extrabold text-red-600 top-[-20px] left-[-15px] overflow-visible w-2 max-w-2">
                     BETA
                   </span>
@@ -83,7 +83,7 @@ export default function NavBar({
                   return null;
                 })}
               </div>
-              <div className="hidden lg:flex flex-row gap-2 h-[42px] mx-5 items-center">
+              <div className="hidden xl:flex flex-row gap-2 h-[42px] mx-5 items-center">
                 <a
                   href={`${process.env.PUBLIC_DISCORDLINK}`}
                   title="Our Discord"

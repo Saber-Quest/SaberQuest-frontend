@@ -5,8 +5,8 @@
 @layer base {
   .footer {
     @apply bg-black bg-opacity-70 xl:bg-opacity-0 w-screen;
-    @apply flex flex-wrap justify-center;
-    @apply shadow p-2 pt-4 md:justify-between antialiased;
+    @apply flex flex-wrap flex-col justify-center;
+    @apply shadow p-2 pt-4 lg:justify-between lg:flex-row antialiased;
   }
 
   .footerText {

@@ -27,11 +27,11 @@
   }
 
   .Saber {
-    @apply text-white font-normal text-[32px];
+    @apply text-white font-normal text-lg xl:text-[32px];
   }
 
   .Quest {
-    @apply text-sqyellow font-medium text-[32px];
+    @apply text-sqyellow font-medium text-lg xl:text-[32px];
   }
 
   .combNav {
