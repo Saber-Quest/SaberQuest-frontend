@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ChallengeData, SessionUser } from "@lib/types";
-import NormalDiff from "./Diffs/Normal";
-import HardDiff from "./Diffs/Hard";
-import ExpertDiff from "./Diffs/Expert";
+import { NormalDiff, HardDiff, ExpertDiff } from "./Diffs";
 
 export default function ChallengeComp({
   challengeDatas,

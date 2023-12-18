@@ -5,7 +5,7 @@ import {
   ChallengeItem,
 } from "./AdvancedUser";
 import { Border } from "./Border";
-import { ChallengeData } from "./Challenges";
+import { ChallengeData, Challenges } from "./Challenges";
 import { LeaderboardData } from "./Leaderboard";
 import { SessionUser } from "./SessionUser";
 import { Item, ItemList } from "./Shop";
@@ -24,6 +24,7 @@ export type {
   InventoryItem,
   ChallengeItem,
   ChallengeData,
+  Challenges,
   LeaderboardData,
   SessionUser,
   Item,

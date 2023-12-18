@@ -8,13 +8,15 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/20/solid";
 import { Animate } from "react-simple-animate";
-import { Team, TeamMember } from "@lib/types";
+import { ChallengeData, Team, TeamMember } from "@lib/types";
 import DividerCenter from "@ui/Dividers/DividerCenter";
 import Icon from "@comp/UI/Images/Icon";
 import Header from "@comp/Meta/Title";
+import AboutChallenges from "@comp/UI/Components/Challenges/AboutChallenges";
 
 export default function About() {
   const [team, setTeam] = useState<Team | null>(null);
+  const [challenges, setChallenges] = useState<ChallengeData[]>([]);
   const [activeTab, setActiveTab] = useState<Number>(0);
 
   useEffect(() => {
@@ -24,6 +26,15 @@ export default function About() {
       )
       .then((response) => {
         setTeam(response.data.Team);
+      })
+      .catch((error) => {
+        console.error("An error occurred, contact a developer!");
+        console.error(error);
+      });
+    axios
+      .get(`${process.env.API_URL}/challenge/all`)
+      .then((response) => {
+        setChallenges(response.data.challenges);
       })
       .catch((error) => {
         console.error("An error occurred, contact a developer!");
@@ -64,6 +75,16 @@ export default function About() {
               onClick={() => handleTabClick(1)}
             >
               Contributors
+            </Tab>
+            <span className="min-h-[30px] min-w-[2px] bg-sqyellow rounded-full" />
+            <Tab
+              className={`outline-none py-2 px-4 min-h-[30px] items-center border-b-2 border-[#ffd07300] hover:border-[#FFD073] hover:bg-navHover hover:shadow-aboutHoverShadow transition-all duration-300 ${
+                activeTab === 2 &&
+                "border-[#FFD073] shadow-aboutHoverShadow bg-navHover"
+              }`}
+              onClick={() => handleTabClick(2)}
+            >
+              Challenges
             </Tab>
           </Tab.List>
 
@@ -411,6 +432,59 @@ export default function About() {
                               </Animate>
                             );
                           }
+                        },
+                      )}
+                  </div>
+                </div>
+              </Tab.Panel>
+            </Animate>
+            <Animate
+              play={activeTab === 2}
+              duration={0.2}
+              start={{ transform: "translate(-100px, 0)", opacity: 0 }}
+              end={{ transform: "translate(0, 0)", opacity: 1 }}
+              easeType="cubic-bezier(0.445, 0.05, 0.55, 0.95)"
+            >
+              <Tab.Panel className="outline-none">
+                <div className="aboutMain">
+                  <div className="aboutChallengeHeaders mb-16">
+                    <h1 className="text-2xl font-bold tracking-tight text-sqyellow">
+                      Available challenges
+                    </h1>
+                    <h2 className="text-xl font-semibold tracking-tight text-white">
+                      These challenges are cycled randomly every day
+                    </h2>
+                  </div>
+                  <div className="aboutTeamBox">
+                    {challenges &&
+                      Object.values(challenges).map(
+                        (challenges: ChallengeData, index) => {
+                          return (
+                            <Animate
+                              play
+                              key={index}
+                              start={{
+                                opacity: 0,
+                                transform: "translateX(-100px)",
+                              }}
+                              end={{
+                                opacity: 1,
+                                transform: "translateX(0px)",
+                              }}
+                              easeType="ease-in-out"
+                              sequenceIndex={index}
+                              duration={0.2 * index}
+                            >
+                              <div>
+                                <DividerCenter text={challenges.name} />
+                                <div className="flex flex-col hd:flex-row justify-center select-none">
+                                  <AboutChallenges
+                                    challengeDatas={challenges}
+                                  />
+                                </div>
+                              </div>
+                            </Animate>
+                          );
                         },
                       )}
                   </div>

@@ -17,3 +17,7 @@ export interface ChallengeData {
   image: null | string;
   reset_time: number;
 }
+
+export interface Challenges {
+  challenges: ChallengeData[];
+}

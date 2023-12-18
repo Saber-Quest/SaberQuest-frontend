@@ -5,16 +5,16 @@
 @layer base {
   /* Overall tags */
   .fpBody {
-    @apply mx-auto mb-12 max-w-[90rem] px-8 lg:px-6 lg:flex-row lg:text-[32px] flex-col flex gap-6;
+    @apply mx-auto mb-12 max-w-[90rem] px-8 lg:px-6 lg:flex-row hd:text-[32px] flex-col flex gap-8;
   }
   .fpTextHeader {
     @apply font-semibold;
-    @apply text-[26px] lg:text-[40px] text-white;
+    @apply text-[18px] sm:text-[24px] hd:text-[40px] text-white;
   }
   .fpTextSubheader {
     @apply mt-5;
     @apply font-light;
-    @apply text-[20px] lg:text-[30px];
+    @apply text-[16px] sm:text-[18px] hd:text-[28px];
   }
   .fpHeaderHighlight {
     @apply text-sqyellow;
@@ -28,7 +28,7 @@
   .fpBodyText {
     @apply mt-10;
     @apply font-normal;
-    @apply text-[20px] lg:text-[30px] text-white;
+    @apply text-[18px] hd:text-[28px] text-white;
   }
   .fpCompletionText {
     @apply mt-14;
@@ -42,20 +42,20 @@
     @apply w-auto sm:max-w-[50%];
   }
   .fpModsHeader {
-    @apply text-[20px] md:text-[26px] lg:text-[32px] mb-2 md:mb-0 text-start sm:text-end;
+    @apply text-[18px] sm:text-[20px] hd:text-[28px] mb-2 md:mb-0 text-start sm:text-end;
   }
   .fpModsText {
-    @apply text-[14px] md:text-[16px] lg:text-[18px] text-start sm:text-end;
+    @apply text-[14px] sm:text-[16px] hd:text-[18px] text-start sm:text-end;
   }
   .fpManual {
     @apply pl-4 pt-4 sm:pt-0;
     @apply w-auto sm:max-w-[50%];
   }
   .fpManualHeader {
-    @apply text-[20px] md:text-[26px] lg:text-[32px] mb-2 md:mb-0;
+    @apply text-[18px] sm:text-[20px] hd:text-[28px] mb-2 md:mb-0;
   }
   .fpManualText {
-    @apply text-[14px] md:text-[16px] lg:text-[18px];
+    @apply text-[14px] sm:text-[16px] hd:text-[18px];
   }
 
   /* Right Body */
@@ -74,12 +74,12 @@
   }
 
   .fpReqHeader {
-    @apply text-[16px] md:text-[22px] lg:text-[28px];
+    @apply text-[16px] md:text-[22px] hd:text-[28px];
   }
 
   .fpReqs {
     @apply flex flex-col items-center;
-    @apply text-[14px] md:text-[18px] lg:text-[24px];
+    @apply text-[14px] md:text-[18px] hd:text-[24px];
   }
 
   .fpDivider {
