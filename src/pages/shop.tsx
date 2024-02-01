@@ -6,6 +6,8 @@ import { ItemList, Item, SessionUser } from "@lib/types";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
 import Rarities from "@ui/Shop/Rarities";
 
+// I added this comment so I can restart the service :D
+
 export default function StorePage({
   session,
   sessionCheck,
