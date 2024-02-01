@@ -48,5 +48,5 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  return response; // Return the response after handling everything
+  return response; // Return the response after handling everything.
 }
