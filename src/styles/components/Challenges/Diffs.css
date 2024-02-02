@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .mainDiffDiv {
+    @apply flex flex-col lg:flex-row gap-12;
+  }
+  .allHovers {
+    @apply flex flex-col items-center rounded-xl p-5 transition-all duration-300 ease-in-out;
+  }
+  .NormalHover {
+    @apply hover:shadow-[0px_0px_3px_1px_#46a2df];
+  }
+  .HardHover {
+    @apply hover:shadow-[0px_0px_3px_1px_#E93B3B];
+  }
+  .ExpertHover {
+    @apply hover:shadow-[0px_0px_3px_1px_#B74BF5];
+  }
+  .challengeDesc {
+    @apply max-w-[300px] text-center;
+  }
+  .challengeDescGoalDiv {
+    @apply pt-5 text-[18px] lg:text-[24px] whitespace-nowrap justify-center flex;
+  }
+  .challengeDescGoal {
+    @apply text-sqyellow font-semibold;
+  }
+  .challengeSelFin {
+    @apply uppercase font-bold text-[24px] text-sqyellow drop-shadow-logoShadow items-center justify-center w-full mt-5;
+  }
+}

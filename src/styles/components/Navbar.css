@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .topNav {
+    @apply select-none;
+    @apply flex items-center;
+    @apply min-h-[96px] w-full;
+    @apply bg-[#2626264d] drop-shadow-navBarShadow;
+    @apply transition-all duration-150;
+  }
+
+  .leftNav {
+    @apply mr-10 min-w-fit;
+  }
+
+  .navLogoContainer {
+    @apply flex items-center;
+    @apply ml-8 h-24;
+  }
+
+  .navLogo {
+    @apply mr-5 h-12 w-12;
+    @apply hover:drop-shadow-logoShadow;
+    @apply transition-all duration-300;
+  }
+
+  .Saber {
+    @apply text-white font-normal text-lg xl:text-[32px];
+  }
+
+  .Quest {
+    @apply text-sqyellow font-medium text-lg xl:text-[32px];
+  }
+
+  .combNav {
+    @apply w-full;
+    @apply flex flex-row items-center justify-between;
+  }
+
+  .centerNav {
+    @apply flex w-fit;
+  }
+
+  .navButton {
+    @apply text-lg text-white font-light pt-1;
+    @apply flex items-center justify-center;
+    @apply min-w-[160px] min-h-[100px] md:h-full;
+    @apply border-b-4 border-[#ffd07300];
+    @apply hover:border-[#FFD073] hover:bg-navHover hover:shadow-navHoverShadow;
+    @apply transition-all duration-300;
+  }
+  .navButtonDark {
+    @apply dark:text-white dark:hover:bg-gray-700 mr-4;
+  }
+
+  .rightNav {
+    @apply mr-[25px];
+    @apply min-w-[90px];
+  }
+
+  .loginButtons {
+    @apply flex items-center gap-[25px] max-h-[50px];
+  }
+
+  .steamNav {
+    @apply h-[36px] w-[36px] invert;
+  }
+
+  .beatLeaderNav {
+    @apply min-h-[50px] max-h-[50px] w-[50px];
+  }
+}

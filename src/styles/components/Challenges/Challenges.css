@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .mainOuterChalDiv {
+    @apply flex flex-col items-center gap-12;
+  }
+  .chalFinishBtn {
+    @apply font-semibold text-[24px];
+    @apply px-4 py-2;
+    @apply rounded-2xl;
+    @apply hover:cursor-pointer;
+    @apply bg-[#0000003b];
+  }
+}

@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .ccExInfoDev {
+    @apply mx-6 pt-2 pb-3 text-sm border-t border-sqyellowfaint;
+  }
+  .ccExItemDiv {
+    @apply flex flex-row gap-2;
+  }
+  .ccExItem {
+    @apply mt-2 px-2 items-center w-fit flex flex-row gap-2 rounded-full ring-2;
+  }
+}

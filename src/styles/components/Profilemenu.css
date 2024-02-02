@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .profileMenu {
+    @apply relative inline-block text-left;
+  }
+  .profilePic {
+    @apply h-[66px] w-[66px] rounded-full;
+  }
+  .navProfile {
+    @apply relative flex items-center justify-end z-10 w-fit gap-4;
+    @apply mb-1 pl-5;
+    @apply rounded-full;
+    @apply text-base lg:text-lg font-light;
+    @apply z-10 w-full bg-opacity-5;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-0;
+  }
+  .navMenu {
+    @apply absolute top-[-5px] right-[-5px] w-56 origin-top-right divide-y z-[1];
+    @apply divide-gray-100 bg-[#2b2a2a] bg-opacity-50;
+    @apply ring-1 ring-black ring-opacity-0 focus:outline-none;
+    @apply rounded-[35px];
+  }
+  .navMenuDiv {
+    @apply px-1 py-1 flex flex-col gap-1;
+  }
+  .navMenuPButton {
+    @apply h-[68px] mt-0 mr-[-1px] w-full rounded-full;
+    @apply bg-opacity-50 bg-navButtonBG;
+  }
+  .menuButton {
+    @apply flex w-full justify-center items-center py-2;
+    @apply h-16;
+    @apply rounded-full;
+    @apply text-lg font-light;
+    @apply transition-all duration-75 ease-in-out;
+  }
+}

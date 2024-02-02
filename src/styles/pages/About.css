@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .aboutMain {
+    @apply mx-auto max-w-7xl px-6 text-center lg:px-8 w-screen;
+  }
+  .aboutHeader {
+    @apply mx-auto max-w-7xl px-6 mt-6 lg:px-8;
+  }
+  .aboutHeaderh2 {
+    @apply text-3xl font-bold tracking-tight text-sqyellow sm:text-4xl;
+  }
+  .aboutTeamBox {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .aboutTeamBoxInner {
+    @apply flex flex-row flex-wrap gap-10 mb-10 justify-center;
+  }
+  .aboutPFP {
+    @apply mx-auto rounded-full drop-shadow-AboutShadow mb-1;
+  }
+  .aboutName {
+    @apply mt-6 text-base font-semibold leading-7 tracking-tight text-white;
+  }
+  .aboutInfo {
+    @apply text-sm leading-6 text-white;
+  }
+  .aboutPlatforms {
+    @apply mt-3 flex justify-center gap-x-4;
+  }
+}

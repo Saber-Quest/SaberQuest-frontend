@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Overall tags */
+  /* Copy to SHOP-page.css*/
+  .chTextHeader {
+    @apply font-semibold;
+    @apply text-[40px] text-white;
+  }
+  .chpOuterDiv {
+    @apply px-16 pt-10;
+    @apply items-center justify-center;
+    @apply lg:drop-shadow-navBarShadow;
+    @apply select-none;
+    @apply transition-all duration-100 ease-in-out;
+  }
+  .chpInnerDiv {
+    @apply mx-auto;
+    @apply bg-gradient-to-t from-[#26262600] via-[#2626263a] to-[#2626267e];
+    @apply rounded-2xl p-4;
+  }
+  .chpHoldingDiv {
+    @apply items-center justify-center w-full h-full;
+  }
+  .chpH1Text {
+    @apply px-4 mb-5;
+    @apply sm:px-6 lg:px-8 lg:chTextHeader;
+    @apply transition-all duration-75;
+    @apply text-[28px];
+    @apply flex flex-col lg:flex-row lg:justify-between;
+  }
+  .chpCCompOuterDiv {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  .chpCComp2ndDiv {
+    @apply -my-2 -mx-4;
+    @apply sm:-mx-6 lg:-mx-8;
+    @apply overflow-x-auto;
+  }
+  .chpCCompChildDiv {
+    @apply py-2;
+    @apply md:px-6 lg:px-8;
+    @apply inline-block min-w-full align-middle;
+  }
+
+  /* Right Body */
+
+  .chDivider {
+    @apply my-3;
+  }
+  .chNormalDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-normalreq;
+  }
+  .chHardDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-hardreq;
+  }
+  .chExpertDivider {
+    @apply h-[5px] rounded-full;
+    @apply bg-gradient-to-r from-expertreq;
+  }
+}
