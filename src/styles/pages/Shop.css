@@ -17,7 +17,7 @@
 
     .ShopEntry {
         @apply flex items-center;
-        @apply py-2 pl-4 xl:pl-0;
+        @apply py-5 pl-4 xl:pl-0;
     }
 
     .ShopHeaderText {
