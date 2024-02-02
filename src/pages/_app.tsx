@@ -18,6 +18,7 @@ import "@style/pages/Frontpage.css";
 import "@style/pages/Leaderboard.css";
 import "@style/pages/Profilepage.css";
 import "@style/pages/Challenges.css";
+import "@style/pages/Shop.css";
 
 import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";

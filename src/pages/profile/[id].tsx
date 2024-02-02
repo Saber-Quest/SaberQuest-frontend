@@ -10,7 +10,6 @@ import Header from "@comp/Meta/Title";
 import { AdvancedUser, SessionUser } from "@lib/types";
 import InventoryPanel from "@ui/Profile/Inventory/InventoryPanel";
 import ChallengesPanel from "@ui/Profile/Challenges/CompletedChallenges";
-import CraftingPanel from "@ui/Profile/Crafting/CraftingPanel";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
@@ -139,7 +138,8 @@ export default function Profile({
           contents={`Rank: #${userData.stats.rank}
           Challenges Completed: ${userData.stats.challengesCompleted}
           QP: ${userData.stats.qp}
-          Account Value: ${userData.stats.value}`}
+          Account Value: ${userData.stats.value}
+          Items: ${userData.inventory.length}`}
           image={userData.userInfo.images.avatar}
         />
         <div className="allDiv mt-32 flex justify-center content-center drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
@@ -263,19 +263,6 @@ export default function Profile({
                         >
                           Completed Challenges
                         </Tab>
-                        {session?.id === userData.userInfo.id ? (
-                          <Tab
-                            className={({ selected }: { selected: boolean }) =>
-                              `${
-                                selected
-                                  ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                  : "border-transparent"
-                              } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
-                            }
-                          >
-                            Crafting
-                          </Tab>
-                        ) : null}
                       </Tab.List>
                       <Tab.Panels className="my-4">
                         {/* Inventory */}
@@ -286,19 +273,6 @@ export default function Profile({
                             challenges={userData.challengeHistory}
                           />
                         </Tab.Panel>
-                        {/* Crafting */}
-                        {session && (
-                          <Tab.Panel className="my-4">
-                            <CraftingPanel
-                              session={session}
-                              inventory={userData.inventory}
-                              setSession={setSession}
-                              setMessage={setMessage}
-                              setType={setType}
-                              setShow={setShow}
-                            />
-                          </Tab.Panel>
-                        )}
                       </Tab.Panels>
                     </div>
                   </Tab.Group>

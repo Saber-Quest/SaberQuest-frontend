@@ -10,8 +10,8 @@
   }
 
   .footerText {
-    @apply pl-4;
     @apply self-center;
+    @apply pl-0 max-w-xs lg:pl-4 lg:max-w-none;
     @apply font-light text-white text-sm lg:text-lg;
   }
 

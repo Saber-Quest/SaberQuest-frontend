@@ -11,6 +11,10 @@ const profileMenu = [
     href: "/profile",
   },
   {
+    name: "Crafting",
+    href: "/profile/crafting",
+  },
+  {
     name: "Settings",
     href: "/profile/settings",
   },

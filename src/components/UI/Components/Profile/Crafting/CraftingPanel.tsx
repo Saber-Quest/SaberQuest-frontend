@@ -34,7 +34,7 @@ export default function CraftingPanel({
         console.error("An error occurred, contact a developer!");
         console.error(error);
       });
-  }, [session.id]);
+  }, [session]);
 
   return (
     <>

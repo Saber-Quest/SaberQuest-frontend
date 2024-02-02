@@ -19,6 +19,7 @@ export async function middleware(request: NextRequest) {
     if (
       request.nextUrl.pathname === "/profile" ||
       request.nextUrl.pathname === "/profile/settings" ||
+      request.nextUrl.pathname === "/profile/crafting" ||
       request.nextUrl.pathname === "/shop" ||
       request.nextUrl.pathname === "/feedback" ||
       request.nextUrl.pathname.startsWith("/admin")
@@ -48,5 +49,5 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  return response; // Return the response after handling everything.
+  return response; // Return the response after handling everything
 }

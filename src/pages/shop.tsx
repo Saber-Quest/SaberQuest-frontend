@@ -6,7 +6,8 @@ import { ItemList, Item, SessionUser } from "@lib/types";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
 import Rarities from "@ui/Shop/Rarities";
 
-// I added this comment so I can restart the service :D
+// I added this comment so I can restart the service :D 
+// We'll keep it for memory's sake! ^v^
 
 export default function StorePage({
   session,
@@ -171,9 +172,21 @@ export default function StorePage({
         contents={`Shop | The shop on ${process.env.PUBLIC_NAME}.`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="allDiv flex flex-col items-center justify-center px-16 pt-10 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
-        <div className="LeaderboardContainer min-w-[1000px]">
-          <div className="LeaderboardList">
+      <div className="allDiv flex flex-col items-center justify-center px-0 xl:px-16 py-10 drop-shadow-navBarShadow select-none transition-all duration-300 ease-in-out">
+        <div className="ShopContainer">
+          <h1 className="chpH1Text lg:chTextHeader p-4">
+            <span>
+              Current <span className="text-sqyellow">Shop</span>
+            </span>{" "}
+            {formatCountdownTime(countdownTime)}
+          </h1>
+          <div className="ShopHeader">
+            <div className="ShopHeaderText SHI font-semibold">Item</div>
+            <div className="ShopHeaderText SHR font-semibold">Rarity</div>
+            <div className="ShopHeaderText SHP font-semibold">Price</div>
+            <div className="ShopHeaderText SHB font-bold text-sqyellow">{userQP} QP</div>
+          </div>
+          <div className="border-t-[1px] border-sqyellow overflow-hidden">
             {loading ? (
               <div className="flex flex-col items-center justify-center w-full h-full">
                 <div className="w-16 h-16 mb-2">Loading....</div>
@@ -186,106 +199,52 @@ export default function StorePage({
               shopItems !== null &&
               !loading && (
                 <>
-                  <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] transition-all duration-75 mb-5 flex justify-between">
-                    <span>
-                      Current <span className="text-sqyellow">Shop</span>
-                    </span>{" "}
-                    {formatCountdownTime(countdownTime)}
-                  </h1>
-                  <div className="px-4 sm:px-6 lg:px-8">
-                    <div className="mt-8 flex flex-col">
-                      <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                          <div className="overflow-hidden shadow md:rounded-lg">
-                            <table className="min-w-full divide-y divide-sqyellow">
-                              <thead className="bg-[#0000003b]">
-                                <tr>
-                                  <th
-                                    scope="col"
-                                    className="py-3.5 pl-1 pr-3 text-left text-sm font-semibold sm:pl-6"
-                                  >
-                                    Item
-                                  </th>
-                                  <th
-                                    scope="col"
-                                    className="px-3 py-3.5 text-center text-sm font-semibold"
-                                  >
-                                    Rarity
-                                  </th>
-                                  <th
-                                    scope="col"
-                                    className="px-3 py-3.5 text-center text-sm font-semibold"
-                                  >
-                                    Price
-                                  </th>
-                                  <th
-                                    scope="col"
-                                    className="relative py-3.5 pl-3 pr-4 sm:pr-6 text-sqyellow"
-                                  >
-                                    {userQP} QP
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {shopItems.items.map((item, index) => (
-                                  <tr
-                                    key={index}
-                                    className={
-                                      (index + 1) % 2 === 0
-                                        ? undefined
-                                        : "bg-[#0000003d]"
-                                    }
-                                  >
-                                    <td className="flex items-center gap-[15px] whitespace-nowrap py-4 pl-1 pr-3 text-sm font-medium text-white sm:pl-6">
-                                      <Image
-                                        className="w-auto h-auto"
-                                        src={item.image}
-                                        alt={item.name}
-                                        width={32}
-                                        height={32}
-                                      />
-                                      {item.name}
-                                    </td>
-                                    <td className="w-[15%] whitespace-nowrap px-3 py-4 text-sm text-center text-white">
-                                      <Rarities
-                                        rarity={
-                                          item.rarity === iR.C
-                                            ? iR.C
-                                            : item.rarity === iR.U
-                                            ? iR.U
-                                            : item.rarity === iR.R
-                                            ? iR.R
-                                            : item.rarity === iR.E
-                                            ? iR.E
-                                            : item.rarity === iR.L
-                                            ? iR.L
-                                            : iR.C
-                                        }
-                                      />
-                                    </td>
-                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-center font-bold text-sqyellow">
-                                      {item.price} QP
-                                    </td>
-                                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                                      <div
-                                        onClick={() => onClickHandler(item)}
-                                        className="text-sqyellow hover:text-[#ffd15269] underline transition-colors duration-200 hover:cursor-pointer"
-                                      >
-                                        Buy
-                                      </div>
-                                    </td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
+                  {shopItems.items.map((item, index) => (
+                    <div key={index}>
+                      <div key={index} className={`ShopEntry ${index === shopItems.items.length - 1 ? 'rounded-b-lg border-b-0' : ''} ${(index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"} border-b border-[#0000003d]`}>
+                        <div className="ShopEntryText SHI text-sm font-medium">
+                          <Image
+                            className="w-auto h-auto"
+                            src={item.image}
+                            alt={item.name}
+                            width={32}
+                            height={32}
+                          />
+                          {item.name}
+                        </div>
+                        <div className="ShopEntryText SHR text-center">
+                            <Rarities
+                              rarity={
+                                item.rarity === iR.C
+                                  ? iR.C
+                                  : item.rarity === iR.U
+                                    ? iR.U
+                                    : item.rarity === iR.R
+                                      ? iR.R
+                                      : item.rarity === iR.E
+                                        ? iR.E
+                                        : item.rarity === iR.L
+                                          ? iR.L
+                                          : iR.C
+                              }
+                            />
+                        </div>
+                        <div className="ShopEntryText SHP text-sm text-center font-bold text-sqyellow">
+                          {item.price} QP
+                        </div>
+                        <div className="ShopEntryText SHB text-sm font-medium">
+                          <div
+                            onClick={() => onClickHandler(item)}
+                            className="text-sqyellow hover:text-[#ffd15269] underline transition-colors duration-200 hover:cursor-pointer"
+                          >
+                            Buy
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </>
-              )
-            )}
+              ))}
           </div>
         </div>
       </div>
