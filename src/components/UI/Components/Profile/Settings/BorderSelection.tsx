@@ -145,7 +145,7 @@ export default function BorderDropdown({
           </div>
 
           {filteredBorders.length > 0 && (
-            <Combobox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-[#131313e5] py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute z-10 mb-1 bottom-[40px] max-h-56 w-full overflow-auto rounded-md bg-[#131313e5] py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {filteredBorders.map((border: Border) => (
                 <Combobox.Option
                   key={border.id}

@@ -115,10 +115,10 @@ export default function ImgTest({
         contents={`Settings-page | Settings-page on ${process.env.PUBLIC_NAME}.`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="allDiv flex flex-col items-center justify-center drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
-        <div className="LeaderboardContainer min-w-[1000px]">
+      <div className="allDiv flex flex-col items-center justify-center px-0 xl:px-16 py-10 drop-shadow-navBarShadow select-none transition-all duration-300 ease-in-out">
+        <div className="LeaderboardContainer lg:min-w-[1000px]">
           <div className="LeaderboardList">
-            <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] transition-all duration-75 mb-5 flex flex-col flex-start">
+            <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] mb-5 transition-all duration-75 flex flex-col flex-start">
               <span className="text-sqyellow">Settings</span>
               <span
                 className="text-sm text-white font-bold mt-2"
@@ -127,7 +127,7 @@ export default function ImgTest({
                 Patreon features <span className="text-sqyellow">*</span>
               </span>
             </h1>
-            <div className="px-4 sm:px-6 lg:px-8">
+            <div className="isolate px-4 sm:px-6 lg:px-8">
               <Tab.Group>
                 <div className="divide-y-[2px] divide-sqyellow">
                   <Tab.List className="flex min-w-full justify-center">
@@ -154,7 +154,7 @@ export default function ImgTest({
                           disabled
                             ? "cursor-not-allowed"
                             : "hover:text-sqyellow"
-                        } py-2 px-4 w-full border-b focus:outline-none`
+                        } py-2 px-4 w-full border-b focus:outline-none whitespace-nowrap`
                       }
                     >
                       Avatar-Border <span className="text-sqyellow">*</span>

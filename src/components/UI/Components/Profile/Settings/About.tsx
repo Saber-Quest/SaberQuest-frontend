@@ -92,7 +92,7 @@ export default function About({
                 name="about"
                 id="about"
                 maxLength={200}
-                className="block w-[400px] rounded-none rounded-l-md border-0 py-1.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-0 sm:text-sm sm:leading-6"
+                className="block w-[250px] md:w-[400px] rounded-none rounded-l-md border-0 py-1.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-0 text-sm lg:text-md leading-6 smoothTran"
                 placeholder={placeholder}
               />
             </div>

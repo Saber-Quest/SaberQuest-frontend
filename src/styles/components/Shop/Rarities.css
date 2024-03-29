@@ -4,7 +4,7 @@
 
 @layer base {
   .outerPill {
-    @apply flex items-center w-[120px];
+    @apply flex items-center w-[20px] md:w-[120px];
     @apply border-2 rounded-full;
     &.common {
       @apply border-commonItem bg-commonItemfaint;
@@ -23,7 +23,7 @@
     }
   }
   .innerPill {
-    @apply min-h-[12px] min-w-[12px] my-[2px] ml-1.5 -mr-1;
+    @apply min-h-[12px] min-w-[12px] my-[2px] mx-[2px] md:mx-[0px] md:ml-1.5 md:-mr-1;
     @apply rounded-full;
     &.common {
       @apply bg-commonItem;
@@ -42,6 +42,7 @@
     }
   }
   .pillText {
+    @apply hidden md:block;
     @apply w-full;
   }
 }

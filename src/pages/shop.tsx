@@ -6,7 +6,7 @@ import { ItemList, Item, SessionUser } from "@lib/types";
 import { ItemRarity as iR } from "@lib/enums/ItemRarity";
 import Rarities from "@ui/Shop/Rarities";
 
-// I added this comment so I can restart the service :D 
+// I added this comment so I can restart the service :D
 // We'll keep it for memory's sake! ^v^
 
 export default function StorePage({
@@ -102,8 +102,7 @@ export default function StorePage({
   const onClickHandler = async (item: Item) => {
     if (userQP < item.price) {
       setMessage(
-        `You cannot afford "${item.name}".\n\n You're missing ${
-          item.price - userQP
+        `You cannot afford "${item.name}".\n\n You're missing ${item.price - userQP
         } QP.`,
       );
       setType("error");
@@ -169,7 +168,7 @@ export default function StorePage({
       <Header
         title={`Shop`}
         link={`${process.env.PUBLIC_URL}/shop`}
-        contents={`Shop | The shop on ${process.env.PUBLIC_NAME}.`}
+        contents={`The shop on ${process.env.PUBLIC_NAME}.`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
       <div className="allDiv flex flex-col items-center justify-center px-0 xl:px-16 py-10 drop-shadow-navBarShadow select-none transition-all duration-300 ease-in-out">
@@ -182,9 +181,11 @@ export default function StorePage({
           </h1>
           <div className="ShopHeader">
             <div className="ShopHeaderText SHI font-semibold">Item</div>
-            <div className="ShopHeaderText SHR font-semibold">Rarity</div>
+            <div className="ShopHeaderText font-semibold"><span className="SHR hidden md:block">Rarity</span></div>
             <div className="ShopHeaderText SHP font-semibold">Price</div>
-            <div className="ShopHeaderText SHB font-bold text-sqyellow">{userQP} QP</div>
+            <div className="ShopHeaderText SHB font-bold text-sqyellow">
+              {userQP} QP
+            </div>
           </div>
           <div className="border-t-[1px] border-sqyellow overflow-hidden">
             {loading ? (
@@ -200,51 +201,57 @@ export default function StorePage({
               !loading && (
                 <>
                   {shopItems.items.map((item, index) => (
-                    <div key={index}>
-                      <div key={index} className={`ShopEntry ${index === shopItems.items.length - 1 ? 'rounded-b-lg border-b-0' : ''} ${(index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"} border-b border-[#0000003d]`}>
-                        <div className="ShopEntryText SHI text-sm font-medium">
-                          <Image
-                            className="w-auto h-auto"
-                            src={item.image}
-                            alt={item.name}
-                            width={32}
-                            height={32}
-                          />
-                          {item.name}
-                        </div>
-                        <div className="ShopEntryText SHR text-center">
-                            <Rarities
-                              rarity={
-                                item.rarity === iR.C
-                                  ? iR.C
-                                  : item.rarity === iR.U
-                                    ? iR.U
-                                    : item.rarity === iR.R
-                                      ? iR.R
-                                      : item.rarity === iR.E
-                                        ? iR.E
-                                        : item.rarity === iR.L
-                                          ? iR.L
-                                          : iR.C
-                              }
-                            />
-                        </div>
-                        <div className="ShopEntryText SHP text-sm text-center font-bold text-sqyellow">
-                          {item.price} QP
-                        </div>
-                        <div className="ShopEntryText SHB text-sm font-medium">
-                          <div
-                            onClick={() => onClickHandler(item)}
-                            className="text-sqyellow hover:text-[#ffd15269] underline transition-colors duration-200 hover:cursor-pointer"
-                          >
-                            Buy
-                          </div>
+                    <div
+                      key={index}
+                      className={`ShopEntry ${index === shopItems.items.length - 1
+                          ? "rounded-b-lg border-b-0"
+                          : ""
+                        } ${(index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"
+                        } border-b border-[#0000003d]`}
+                    >
+                      <div className="ShopEntryText SHI text-sm font-medium">
+                        <Image
+                          className="w-auto h-auto"
+                          src={item.image}
+                          alt={item.name}
+                          width={32}
+                          height={32}
+                        />
+                        {item.name}
+                      </div>
+                      <div className="ShopEntryText SHR">
+                        <Rarities
+                          rarity={
+                            item.rarity === iR.C
+                              ? iR.C
+                              : item.rarity === iR.U
+                                ? iR.U
+                                : item.rarity === iR.R
+                                  ? iR.R
+                                  : item.rarity === iR.E
+                                    ? iR.E
+                                    : item.rarity === iR.L
+                                      ? iR.L
+                                      : iR.C
+                          }
+                        />
+                      </div>
+                      <div className="ShopEntryText SHP text-sm text-center font-bold text-sqyellow">
+                        {item.price} QP
+                      </div>
+                      <div className="ShopEntryText SHB text-sm font-medium">
+                        <div
+                          onClick={() => onClickHandler(item)}
+                          className="text-sqyellow hover:text-[#ffd15269] underline transition-colors duration-200 hover:cursor-pointer"
+                        >
+                          Buy
                         </div>
                       </div>
                     </div>
                   ))}
                 </>
-              ))}
+              )
+            )}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import axios from "axios";
@@ -8,7 +8,7 @@ import { SessionUser } from "@lib/types";
 const team = [
   { id: 1, name: "General" },
   { id: 2, name: "Frontend" },
-  { id: 3, name: "Backend" },
+  { id: 3, name: "Backend/API" },
 ];
 
 function classNames(...classes: string[]) {
@@ -66,8 +66,8 @@ export default function StorePage({
         contents={`Provide feedback to the Dev-team.`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="allDiv flex flex-col items-center justify-center px-16 pt-10 drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
-        <div className="LeaderboardContainer min-w-[1000px]">
+      <div className="allDiv flex flex-col items-center justify-center px-0 xl:px-16 py-10 drop-shadow-navBarShadow select-none transition-all duration-300 ease-in-out">
+        <div className="LeaderboardContainer lg:min-w-[1000px]">
           <div className="LeaderboardList">
             <h1 className="px-4 sm:px-6 lg:px-8 md:chTextHeader text-[28px] mb-5">
               <span className="text-sqyellow">Feedback</span>

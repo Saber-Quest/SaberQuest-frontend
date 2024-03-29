@@ -54,41 +54,32 @@ export default function About() {
         contents={`About ${process.env.PUBLIC_NAME}.`}
         image={`${process.env.PUBLIC_URL}/assets/images/Logo.png`}
       />
-      <div className="my-11">
+      <div className="aboutWrapper">
         <Tab.Group manual>
-          <Tab.List className="flex gap-5 justify-center">
+          <Tab.List className="aboutTabMain">
             <Tab
-              className={`outline-none py-2 px-4 min-h-[30px] items-center border-b-2 border-[#ffd07300] hover:border-[#FFD073] hover:bg-navHover hover:shadow-aboutHoverShadow transition-all duration-300 ${
-                activeTab === 0 &&
-                "border-[#FFD073] shadow-aboutHoverShadow bg-navHover"
-              }`}
+              className={`aboutSubTab ${ activeTab === 0 && "aboutSubTabAdd"}`}
               onClick={() => handleTabClick(0)}
             >
               About
             </Tab>
             <span className="min-h-[30px] min-w-[2px] bg-sqyellow rounded-full" />
             <Tab
-              className={`outline-none py-2 px-4 min-h-[30px] items-center border-b-2 border-[#ffd07300] hover:border-[#FFD073] hover:bg-navHover hover:shadow-aboutHoverShadow transition-all duration-300 ${
-                activeTab === 1 &&
-                "border-[#FFD073] shadow-aboutHoverShadow bg-navHover"
-              }`}
+              className={`aboutSubTab ${ activeTab === 1 && "aboutSubTabAdd"}`}
               onClick={() => handleTabClick(1)}
             >
               Contributors
             </Tab>
             <span className="min-h-[30px] min-w-[2px] bg-sqyellow rounded-full" />
             <Tab
-              className={`outline-none py-2 px-4 min-h-[30px] items-center border-b-2 border-[#ffd07300] hover:border-[#FFD073] hover:bg-navHover hover:shadow-aboutHoverShadow transition-all duration-300 ${
-                activeTab === 2 &&
-                "border-[#FFD073] shadow-aboutHoverShadow bg-navHover"
-              }`}
+              className={`aboutSubTab ${activeTab === 2 && "aboutSubTabAdd"}`}
               onClick={() => handleTabClick(2)}
             >
               Challenges
             </Tab>
           </Tab.List>
 
-          <Tab.Panels className="mt-12 outline-none">
+          <Tab.Panels className="aboutTabPanels">
             <Animate
               play={activeTab === 0}
               duration={0.2}
@@ -97,13 +88,13 @@ export default function About() {
               easeType="cubic-bezier(0.445, 0.05, 0.55, 0.95)"
             >
               <Tab.Panel className="outline-none">
-                <div className="mx-auto max-w-7xl px-6 mb-11 lg:px-8">
+                <div className="aboutTabPanelDivPrimary">
                   <DividerCenter text={"What is 'SaberQuest'?"} />
-                  <div className="mx-auto max-w-2xl text-base leading-7 text-white">
-                    <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+                  <div className="aboutTabPanelDivSecondary">
+                    <h1 className="aboutH1">
                       A little bit about us!
                     </h1>
-                    <p className="mt-6 text-xl leading-8">
+                    <p className="aboutP">
                       SaberQuest aims to add a bit of{" "}
                       <span className="fpBodyHighlight">fun</span> back into
                       playing Beat Saber. Whether you&apos;re a{" "}
@@ -120,28 +111,28 @@ export default function About() {
                       </span>
                       .
                     </p>
-                    <div className="mt-10 max-w-2xl">
+                    <div className="aboutDivSecondaryInside">
                       <p>
                         What can <span className="fpBodyHighlight">We</span>{" "}
                         offer?
                       </p>
                       <ul
                         role="list"
-                        className="mt-8 max-w-xl space-y-8 text-white"
+                        className="aboutUL"
                       >
-                        <li className="flex gap-x-3">
+                        <li className="aboutFlexGap">
                           <CheckCircleIcon
-                            className="mt-1 h-5 w-5 flex-none text-green-300"
+                            className="aboutGreenIcon"
                             aria-hidden="true"
                           />
                           <span>
-                            <strong className="font-semibold text-sqyellow">
+                            <strong className="aboutBoldYellow">
                               Challenges
                             </strong>
                             ! This is our first main feature, and the core of
                             SaberQuest. Challenges are a fun way to compete with
                             your friends and other players.{" "}
-                            <span className="text-sqyellow text-[12px]">
+                            <span className="aboutYellow12PX">
                               (
                               <Link
                                 href="/challenges"
@@ -153,20 +144,20 @@ export default function About() {
                             </span>
                           </span>
                         </li>
-                        <li className="flex gap-x-3">
+                        <li className="aboutFlexGap">
                           <CheckCircleIcon
-                            className="mt-1 h-5 w-5 flex-none text-green-300"
+                            className="aboutGreenIcon"
                             aria-hidden="true"
                           />
                           <span>
-                            <strong className="font-semibold text-sqyellow">
+                            <strong className="aboutBoldYellow">
                               Crafting
                             </strong>
                             ! Our second main feature, and the feature that adds
                             a fun twist to challenges. Crafting allows you to
                             craft with items won from challenges, or bought from
                             the shop.{" "}
-                            <span className="text-sqyellow text-[12px]">
+                            <span className="aboutYellow12PX">
                               (
                               <Link
                                 href="/profile/crafting"
@@ -185,19 +176,19 @@ export default function About() {
                             </span>
                           </span>
                         </li>
-                        <li className="flex gap-x-3">
+                        <li className="aboutFlexGap">
                           <CheckCircleIcon
-                            className="mt-1 h-5 w-5 flex-none text-green-300"
+                            className="aboutGreenIcon"
                             aria-hidden="true"
                           />
                           <span>
-                            <strong className="font-semibold text-sqyellow">
+                            <strong className="aboutBoldYellow">
                               A Leaderboard
                             </strong>
                             . Of course we have a leaderboard, as we want you to
                             be able to track and compete with others. The
                             leaderboard is global, and is updated automatically.{" "}
-                            <span className="text-sqyellow text-[12px]">
+                            <span className="aboutYellow12PX">
                               (
                               <Link
                                 href="/leaderboard"
@@ -212,7 +203,7 @@ export default function About() {
                       </ul>
                     </div>
                     <div className="mt-16 max-w-2xl">
-                      <h2 className="text-2xl font-bold tracking-tight text-white">
+                      <h2 className="aboutTightWhite">
                         So, how does it work?
                       </h2>
                       <p className="mt-6">It is very simple!</p>
@@ -220,28 +211,28 @@ export default function About() {
                     <div className="mt-10 max-w-2xl">
                       <ul
                         role="list"
-                        className="mt-8 max-w-xl space-y-8 text-white"
+                        className="aboutMTWhite"
                       >
-                        <li className="flex gap-x-3">
+                        <li className="aboutFlexGap">
                           <InformationCircleIcon
-                            className="mt-1 h-5 w-5 flex-none text-blue-400"
+                            className="aboutBlueIcon"
                             aria-hidden="true"
                           />
                           <span>
-                            <strong className="font-semibold text-sqyellow">
+                            <strong className="aboutBoldYellow">
                               Create a user/Login!
                             </strong>{" "}
                             First of all, you need to either signup or login to
                             a current profile.
                           </span>
                         </li>
-                        <li className="flex gap-x-3">
+                        <li className="aboutFlexGap">
                           <InformationCircleIcon
-                            className="mt-1 h-5 w-5 flex-none text-blue-400"
+                            className="aboutBlueIcon"
                             aria-hidden="true"
                           />
                           <span>
-                            <strong className="font-semibold text-sqyellow">
+                            <strong className="aboutBoldYellow">
                               Pick a challenge!
                             </strong>{" "}
                             Second, go to the{" "}
@@ -254,26 +245,26 @@ export default function About() {
                             -page, and pick a difficulty you want to complete.
                           </span>
                         </li>
-                        <li className="flex gap-x-3">
+                        <li className="aboutFlexGap">
                           <InformationCircleIcon
-                            className="mt-1 h-5 w-5 flex-none text-blue-400"
+                            className="aboutBlueIcon"
                             aria-hidden="true"
                           />
                           <span>
-                            <strong className="font-semibold text-sqyellow">
+                            <strong className="aboutBoldYellow">
                               Play the game!
                             </strong>{" "}
                             Third, you simply play the game and try to meet the
                             requirement for your selected difficulty.
                           </span>
                         </li>
-                        <li className="flex gap-x-3">
+                        <li className="aboutFlexGap">
                           <InformationCircleIcon
-                            className="mt-1 h-5 w-5 flex-none text-blue-400"
+                            className="aboutBlueIcon"
                             aria-hidden="true"
                           />
                           <span>
-                            <strong className="font-semibold text-sqyellow">
+                            <strong className="aboutBoldYellow">
                               Complete the challenge!
                             </strong>{" "}
                             And fourth! When you&apos;ve met the requirement(s),
@@ -294,7 +285,7 @@ export default function About() {
                             <span className="fpBodyHighlight">QP</span> and one
                             or more{" "}
                             <span className="fpBodyHighlight">items</span>!{" "}
-                            <span className="text-sqyellow text-[12px]">
+                            <span className="aboutYellow12PX">
                               (&quot;Autocomplete challenges&quot; enabled in
                               your{" "}
                               <Link
@@ -448,10 +439,10 @@ export default function About() {
               <Tab.Panel className="outline-none">
                 <div className="aboutMain">
                   <div className="aboutChallengeHeaders mb-16">
-                    <h1 className="text-2xl font-bold tracking-tight text-sqyellow">
+                    <h1 className="aboutTightYellow">
                       Available challenges
                     </h1>
-                    <h2 className="text-xl font-semibold tracking-tight text-white">
+                    <h2 className="aboutTightWhite2">
                       These challenges are cycled randomly every day
                     </h2>
                   </div>
@@ -477,7 +468,7 @@ export default function About() {
                             >
                               <div>
                                 <DividerCenter text={challenges.name} />
-                                <div className="flex flex-col hd:flex-row justify-center select-none">
+                                <div className="aboutTeamDiv">
                                   <AboutChallenges
                                     challengeDatas={challenges}
                                   />
