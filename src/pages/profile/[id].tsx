@@ -142,11 +142,10 @@ export default function Profile({
           Items: ${userData.inventory.length}`}
           image={userData.userInfo.images.avatar}
         />
-        <div className="allDiv mt-32 flex justify-center content-center drop-shadow-navBarShadow select-none transition-all duration-100 ease-in-out">
+        <div className="allDiv mt-32 mb-10 flex justify-center content-center drop-shadow-navBarShadow select-none w-full smoothTran">
           <>
-            <div className="userDiv transition-all opacity-1 duration-500 flex flex-col lg:flex-row gap-5">
-              <div
-                className={`userInfoVer h-[820px] min-w-[400px] rounded-lg`}
+            <div className="userDiv transition-all opacity-1 duration-500 flex flex-col w-fit md:flex-row gap-5">
+              <div className={`userInfoVer px-2 h-fit pb-10 xl:mb-0 xl:h-[820px] xl:min-w-[400px] rounded-lg`}
                 style={{
                   backgroundImage: !userData.userInfo.images.banner
                     ? `url(/assets/images/users/banners/ver/default.png)`
@@ -154,7 +153,7 @@ export default function Profile({
                   backgroundSize: "cover",
                 }}
               >
-                <div className="infoDiv relative overflow-visible flex justify-center w-full mt-[-70px]">
+                <div className="infoDiv relative overflow-visible flex justify-center mt-[-70px]">
                   <Image
                     priority={true}
                     loading="eager"
@@ -194,13 +193,12 @@ export default function Profile({
                 >
                   <p className="profileNameHeader max-w-[inherit] mt-8 p-5 text-center drop-shadow-textShadow">{`${userData.userInfo.username}`}</p>
                   <div className="h-[5px] w-[305px] rounded-full bg-gradient-to-r from-sqyellow mb-5" />
-                  <div className="flex flex-col items-center gap-[16px] drop-shadow-textShadow text-[24px]">
+                  <div className="flex flex-col items-center gap-[16px] drop-shadow-textShadow text-[18px] lg:text-[24px]">
                     <p>
                       Rank:{" "}
                       <span
-                        className={`${
-                          userData.stats.rank === 1 ? "text-sqyellow" : ""
-                        }`}
+                        className={`${userData.stats.rank === 1 ? "text-sqyellow" : ""
+                          }`}
                       >
                         #{userData.stats.rank}
                       </span>
@@ -213,9 +211,9 @@ export default function Profile({
                   </div>
                 </div>
               </div>
-              <div className="profileRightContainer max-w-[80px] min-w-[800px]">
+              <div className="profileRightContainer max-w-[800px] xl:min-w-[800px]">
                 <div
-                  className="userInfoHor min-h-[150px] max-h-[200px] px-4 py-5 sm:px-6 rounded-lg w-full"
+                  className="userInfoHor min-h-[150px] max-h-[200px] px-4 py-4 sm:px-6 rounded-lg w-full"
                   style={{
                     backgroundImage: !userData.userInfo.images.banner
                       ? `url(/assets/images/users/banners/hor/default.png)`
@@ -224,11 +222,11 @@ export default function Profile({
                   }}
                 >
                   <div className="flex flex-col items-center">
-                    <p className="text-[24px] font-medium text-center drop-shadow-textShadow">
+                    <p className="text-[18px] lg:text-[24px] font-medium text-center drop-shadow-textShadow">
                       About
                     </p>
-                    <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow my-5" />
-                    <span className="text-center max-w-[900px] drop-shadow-textShadow break-all">
+                    <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow my-[10px]" />
+                    <span className="text-[12px] md:text-[14px] lg:text-[16px] text-center max-w-[400px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[900px] drop-shadow-textShadow whitespace-break-spaces break-words smoothTran">
                       {userData.userInfo.about ? (
                         <ReactMarkdown>{userData.userInfo.about}</ReactMarkdown>
                       ) : (
@@ -237,41 +235,37 @@ export default function Profile({
                     </span>
                   </div>
                 </div>
-                <div className="mt-[17px] px-4 py-2 sm:px-6 rounded-lg bg-[#161616]">
+                <div className="flex justify-center mt-[17px] w-full max-w-[360px] md:max-w-none py-2 px-4 rounded-lg bg-[#161616]">
                   <Tab.Group>
                     <div className="divide-y-[2px] divide-sqyellow">
-                      <Tab.List className="flex min-w-full justify-center">
+                      <Tab.List className="flex justify-center">
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${
-                              selected
-                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                : "border-transparent"
-                            } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
+                            `${selected
+                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                              : "border-transparent"
+                            } py-2 px-3 text-[12px] md:text-[16px] hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
                           Inventory
                         </Tab>
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${
-                              selected
-                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                                : "border-transparent"
-                            } py-2 px-4 w-full hover:text-sqyellow border-b focus:outline-none`
+                            `${selected
+                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                              : "border-transparent"
+                            } py-2 px-3 text-[12px] md:text-[16px] hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
                           Completed Challenges
                         </Tab>
                       </Tab.List>
-                      <Tab.Panels className="my-4">
+                      <Tab.Panels className="my-4 focus:outline-none">
                         {/* Inventory */}
                         <InventoryPanel id={userData.userInfo.id} />
                         {/* Completed Challenges */}
                         <Tab.Panel className="my-4">
-                          <ChallengesPanel
-                            challenges={userData.challengeHistory}
-                          />
+                          <ChallengesPanel challenges={userData.challengeHistory} />
                         </Tab.Panel>
                       </Tab.Panels>
                     </div>

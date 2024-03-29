@@ -72,7 +72,7 @@
   }
 
   .ccMiniItemsDiv {
-    @apply mt-4 flex-shrink-0 sm:mt-0 sm:ml-5;
+    @apply hidden mt-4 md:block flex-shrink-0 sm:mt-0 sm:ml-5;
   }
   .ccMiniItemsRow {
     @apply flex -space-x-1 overflow-visible;
@@ -88,7 +88,6 @@
   }
   .ccNavigation {
     @apply pt-5;
-    @apply flex flex-row justify-center gap-5;
-    @apply w-full;
+    @apply flex flex-row justify-center gap-2 md:gap-5;
   }
 }

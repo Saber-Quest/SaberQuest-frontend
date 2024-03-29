@@ -45,15 +45,15 @@ export default function InventoryPanel({ id }: { id: string }) {
 
   return (
     <>
-      <Tab.Panel className="mt-4">
-        <div className="flex flex-col items-center">
+      <Tab.Panel className="mt-4 focus:outline-none">
+        <div className="flex flex-col items-center smoothTran">
           <div className="flex flex-wrap justify-center gap-5">
             {itemsToShow.length > 0 ? (
               itemsToShow.map((item, index) => {
                 return (
                   <div
                     key={index}
-                    className={`bg-[#00000000] ${
+                    className={`bg-[#00000000] max-w-[156px] ${
                       item.rarity === iR.C
                         ? "border-commonItem hover:bg-commonItemfaint"
                         : item.rarity === iR.U

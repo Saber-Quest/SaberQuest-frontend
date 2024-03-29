@@ -42,7 +42,7 @@ export default function ChallengesPanel({
   };
   return (
     <>
-      <div className="ccMainDiv">
+      <div className="ccMainDiv smoothTran">
         <ul role="list" className="ccListDivider">
           {challengesToShow.length > 0 ? (
             challengesToShow.map((item, index) => (
@@ -91,7 +91,8 @@ export default function ChallengesPanel({
                                   width={16}
                                   height={16}
                                 />{" "}
-                                BeatLeader
+                                <span className="hidden md:block">BeatLeader</span>
+                                <span className="md:hidden">BL</span>
                               </span>
                             ))}
                         </div>
@@ -109,7 +110,7 @@ export default function ChallengesPanel({
                           </div>
                         </div>
                       </div>
-                      <div className="ccMiniItemsDiv">
+                      <div className="ccMiniItemsDiv md:block">
                         <div className="ccMiniItemsRow">
                           {item.items.map((cItems, cIndex) => (
                             <Image
