@@ -102,8 +102,7 @@ export default function StorePage({
   const onClickHandler = async (item: Item) => {
     if (userQP < item.price) {
       setMessage(
-        `You cannot afford "${item.name}".\n\n You're missing ${item.price - userQP
-        } QP.`,
+        `You cannot afford "${item.name}".\n\n You're missing ${item.price - userQP} QP.`,
       );
       setType("error");
       setShow(true);
@@ -181,7 +180,9 @@ export default function StorePage({
           </h1>
           <div className="ShopHeader">
             <div className="ShopHeaderText SHI font-semibold">Item</div>
-            <div className="ShopHeaderText font-semibold"><span className="SHR hidden md:block">Rarity</span></div>
+            <div className="ShopHeaderText font-semibold">
+              <span className="SHR hidden md:block">Rarity</span>
+            </div>
             <div className="ShopHeaderText SHP font-semibold">Price</div>
             <div className="ShopHeaderText SHB font-bold text-sqyellow">
               {userQP} QP
@@ -203,11 +204,13 @@ export default function StorePage({
                   {shopItems.items.map((item, index) => (
                     <div
                       key={index}
-                      className={`ShopEntry ${index === shopItems.items.length - 1
+                      className={`ShopEntry ${
+                        index === shopItems.items.length - 1
                           ? "rounded-b-lg border-b-0"
                           : ""
-                        } ${(index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"
-                        } border-b border-[#0000003d]`}
+                      } ${
+                        (index + 1) % 2 === 0 ? undefined : "bg-[#0000003d]"
+                      } border-b border-[#0000003d]`}
                     >
                       <div className="ShopEntryText SHI text-sm font-medium">
                         <Image
@@ -225,14 +228,14 @@ export default function StorePage({
                             item.rarity === iR.C
                               ? iR.C
                               : item.rarity === iR.U
-                                ? iR.U
-                                : item.rarity === iR.R
-                                  ? iR.R
-                                  : item.rarity === iR.E
-                                    ? iR.E
-                                    : item.rarity === iR.L
-                                      ? iR.L
-                                      : iR.C
+                              ? iR.U
+                              : item.rarity === iR.R
+                              ? iR.R
+                              : item.rarity === iR.E
+                              ? iR.E
+                              : item.rarity === iR.L
+                              ? iR.L
+                              : iR.C
                           }
                         />
                       </div>

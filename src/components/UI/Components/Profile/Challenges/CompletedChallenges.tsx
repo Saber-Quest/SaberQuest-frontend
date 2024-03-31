@@ -42,7 +42,7 @@ export default function ChallengesPanel({
   };
   return (
     <>
-      <div className="ccMainDiv smoothTran">
+      <div className="ccMainDiv min-w-[368px] max-w-[368px] md:min-w-[464px] md:max-w-[464px] lg:min-w-[560px] lg:max-w-[560px] xl:min-w-[710px] xl:max-w-[710px] smoothTran">
         <ul role="list" className="ccListDivider">
           {challengesToShow.length > 0 ? (
             challengesToShow.map((item, index) => (
@@ -70,29 +70,38 @@ export default function ChallengesPanel({
                                 {item.challenge.difficulty.name}
                               </span>
                             ))}
-                          {(item.challenge.preference === cP.SS && (
-                            <span className="ccSSColor">
+                          {(item.challenge.preference === cP.BL && (
+                            <span className="ccSSColor md:min-w-[116px]">
                               <Image
                                 src="/assets/images/ScoreSaberLogo.svg"
                                 alt="BeatLeader"
-                                className="mr-[4px]"
+                                className="mr-[4px] hidden md:block"
                                 width={16}
                                 height={16}
                               />{" "}
-                              ScoreSaber
+                              <span className="hidden md:block">
+                                ScoreSaber
+                              </span>
+                              <span className="md:hidden">
+                                SS
+                              </span>
                             </span>
                           )) ||
-                            (item.challenge.preference === cP.BL && (
-                              <span className="ccBLColor">
+                            (item.challenge.preference === cP.SS && (
+                              <span className="ccBLColor md:min-w-[115px]">
                                 <Image
                                   src="/assets/images/BeatLeaderLogo.png"
                                   alt="BeatLeader"
-                                  className="mr-[4px]"
+                                  className="mr-[4px] hidden md:block"
                                   width={16}
                                   height={16}
                                 />{" "}
-                                <span className="hidden md:block">BeatLeader</span>
-                                <span className="md:hidden">BL</span>
+                                <span className="hidden md:block">
+                                  BeatLeader
+                                </span>
+                                <span className="md:hidden">
+                                  BL
+                                </span>
                               </span>
                             ))}
                         </div>
@@ -110,7 +119,7 @@ export default function ChallengesPanel({
                           </div>
                         </div>
                       </div>
-                      <div className="ccMiniItemsDiv md:block">
+                      <div className="ccMiniItemsDiv">
                         <div className="ccMiniItemsRow">
                           {item.items.map((cItems, cIndex) => (
                             <Image

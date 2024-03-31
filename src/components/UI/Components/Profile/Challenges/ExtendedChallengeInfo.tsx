@@ -107,7 +107,7 @@ export default function ExtendedChallengeInfo({
           {item.items.map((cItems: any, cIndex: number) => (
             <div
               key={`IndexDiv-${cIndex}`} // Add a unique key to the outer div
-              className={`ccExItem ${
+              className={`ccExItem text-[12px] ${
                 cItems.rarity === iR.C
                   ? "ring-commonItem bg-commonItemfaint"
                   : cItems.rarity === iR.U

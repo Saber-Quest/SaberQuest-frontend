@@ -72,7 +72,7 @@
   }
 
   .ccMiniItemsDiv {
-    @apply hidden mt-4 md:block flex-shrink-0 sm:mt-0 sm:ml-5;
+    @apply hidden mt-4 lg:block flex-shrink-0 sm:mt-0 sm:ml-5;
   }
   .ccMiniItemsRow {
     @apply flex -space-x-1 overflow-visible;

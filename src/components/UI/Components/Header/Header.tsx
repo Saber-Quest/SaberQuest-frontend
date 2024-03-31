@@ -172,7 +172,7 @@ export default function NavBar({
 
             <Disclosure.Panel className="lg:hidden flex absolute w-[100%] bg-[#1d1d1d] flex-col transition-all duration-500 z-40 top-[-8px]">
               <div className="pt-2 space-y-1 sticky">
-              {NavigationLinks.map((item, index) => {
+                {NavigationLinks.map((item, index) => {
                   if (!item.needLogin || loggedIn) {
                     return (
                       <Link

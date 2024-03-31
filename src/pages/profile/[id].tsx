@@ -239,7 +239,7 @@ export default function Profile({
                 </div>
                 <div className="flex justify-center mt-[17px] w-full md:max-w-none py-2 px-4 rounded-lg bg-[#161616]">
                   <Tab.Group>
-                    <div className="divide-y-[2px] divide-sqyellow">
+                    <div className="divide-y-[2px] divide-sqyellow max-w-[360px] md:max-w-none">
                       <Tab.List className="flex justify-center">
                         <Tab
                           className={({ selected }: { selected: boolean }) =>

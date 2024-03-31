@@ -58,14 +58,14 @@ export default function About() {
         <Tab.Group manual>
           <Tab.List className="aboutTabMain">
             <Tab
-              className={`aboutSubTab ${ activeTab === 0 && "aboutSubTabAdd"}`}
+              className={`aboutSubTab ${activeTab === 0 && "aboutSubTabAdd"}`}
               onClick={() => handleTabClick(0)}
             >
               About
             </Tab>
             <span className="min-h-[30px] min-w-[2px] bg-sqyellow rounded-full" />
             <Tab
-              className={`aboutSubTab ${ activeTab === 1 && "aboutSubTabAdd"}`}
+              className={`aboutSubTab ${activeTab === 1 && "aboutSubTabAdd"}`}
               onClick={() => handleTabClick(1)}
             >
               Contributors
@@ -91,9 +91,7 @@ export default function About() {
                 <div className="aboutTabPanelDivPrimary">
                   <DividerCenter text={"What is 'SaberQuest'?"} />
                   <div className="aboutTabPanelDivSecondary">
-                    <h1 className="aboutH1">
-                      A little bit about us!
-                    </h1>
+                    <h1 className="aboutH1">A little bit about us!</h1>
                     <p className="aboutP">
                       SaberQuest aims to add a bit of{" "}
                       <span className="fpBodyHighlight">fun</span> back into
@@ -116,10 +114,7 @@ export default function About() {
                         What can <span className="fpBodyHighlight">We</span>{" "}
                         offer?
                       </p>
-                      <ul
-                        role="list"
-                        className="aboutUL"
-                      >
+                      <ul role="list" className="aboutUL">
                         <li className="aboutFlexGap">
                           <CheckCircleIcon
                             className="aboutGreenIcon"
@@ -203,16 +198,11 @@ export default function About() {
                       </ul>
                     </div>
                     <div className="mt-16 max-w-2xl">
-                      <h2 className="aboutTightWhite">
-                        So, how does it work?
-                      </h2>
+                      <h2 className="aboutTightWhite">So, how does it work?</h2>
                       <p className="mt-6">It is very simple!</p>
                     </div>
                     <div className="mt-10 max-w-2xl">
-                      <ul
-                        role="list"
-                        className="aboutMTWhite"
-                      >
+                      <ul role="list" className="aboutMTWhite">
                         <li className="aboutFlexGap">
                           <InformationCircleIcon
                             className="aboutBlueIcon"
@@ -439,9 +429,7 @@ export default function About() {
               <Tab.Panel className="outline-none">
                 <div className="aboutMain">
                   <div className="aboutChallengeHeaders mb-16">
-                    <h1 className="aboutTightYellow">
-                      Available challenges
-                    </h1>
+                    <h1 className="aboutTightYellow">Available challenges</h1>
                     <h2 className="aboutTightWhite2">
                       These challenges are cycled randomly every day
                     </h2>
