@@ -145,7 +145,8 @@ export default function Profile({
         <div className="allDiv mt-32 mb-10 flex justify-center content-center drop-shadow-navBarShadow select-none w-full smoothTran">
           <>
             <div className="userDiv transition-all opacity-1 duration-500 flex flex-col w-fit md:flex-row gap-5">
-              <div className={`userInfoVer px-2 h-fit pb-10 xl:mb-0 xl:h-[820px] xl:min-w-[400px] rounded-lg`}
+              <div
+                className={`userInfoVer px-2 h-fit pb-10 xl:mb-0 xl:h-[820px] xl:min-w-[400px] rounded-lg`}
                 style={{
                   backgroundImage: !userData.userInfo.images.banner
                     ? `url(/assets/images/users/banners/ver/default.png)`
@@ -197,8 +198,9 @@ export default function Profile({
                     <p>
                       Rank:{" "}
                       <span
-                        className={`${userData.stats.rank === 1 ? "text-sqyellow" : ""
-                          }`}
+                        className={`${
+                          userData.stats.rank === 1 ? "text-sqyellow" : ""
+                        }`}
                       >
                         #{userData.stats.rank}
                       </span>
@@ -226,7 +228,7 @@ export default function Profile({
                       About
                     </p>
                     <div className="h-[5px] w-full rounded-full bg-gradient-to-r from-sqyellow my-[10px]" />
-                    <span className="text-[12px] md:text-[14px] lg:text-[16px] text-center max-w-[400px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[900px] drop-shadow-textShadow whitespace-break-spaces break-words smoothTran">
+                    <span className="text-[12px] lg:text-[14px] text-center max-w-[360px] lg:max-w-[700px] xl:max-w-[900px] drop-shadow-textShadow whitespace-break-spaces break-words smoothTran">
                       {userData.userInfo.about ? (
                         <ReactMarkdown>{userData.userInfo.about}</ReactMarkdown>
                       ) : (
@@ -235,15 +237,16 @@ export default function Profile({
                     </span>
                   </div>
                 </div>
-                <div className="flex justify-center mt-[17px] w-full max-w-[360px] md:max-w-none py-2 px-4 rounded-lg bg-[#161616]">
+                <div className="flex justify-center mt-[17px] w-full md:max-w-none py-2 px-4 rounded-lg bg-[#161616]">
                   <Tab.Group>
                     <div className="divide-y-[2px] divide-sqyellow">
                       <Tab.List className="flex justify-center">
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${selected
-                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                              : "border-transparent"
+                            `${
+                              selected
+                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                                : "border-transparent"
                             } py-2 px-3 text-[12px] md:text-[16px] hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
@@ -251,9 +254,10 @@ export default function Profile({
                         </Tab>
                         <Tab
                           className={({ selected }: { selected: boolean }) =>
-                            `${selected
-                              ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
-                              : "border-transparent"
+                            `${
+                              selected
+                                ? "border-sqyellow text-sqyellow drop-shadow-navBarShadow"
+                                : "border-transparent"
                             } py-2 px-3 text-[12px] md:text-[16px] hover:text-sqyellow border-b focus:outline-none`
                           }
                         >
@@ -265,7 +269,9 @@ export default function Profile({
                         <InventoryPanel id={userData.userInfo.id} />
                         {/* Completed Challenges */}
                         <Tab.Panel className="my-4">
-                          <ChallengesPanel challenges={userData.challengeHistory} />
+                          <ChallengesPanel
+                            challenges={userData.challengeHistory}
+                          />
                         </Tab.Panel>
                       </Tab.Panels>
                     </div>
