@@ -9,8 +9,8 @@
     "dev": "set PORT=3000 && prettier --write . && next dev ",
     "format": "prettier --write .",
     "lint": "next lint",
-    "prod": "set PORT=3000 && prettier --write . && next build && next start",
-    "start": "set PORT=3000 && next start"
+    "prod": "set PORT=3001 && prettier --write . && next build && next start",
+    "start": "set PORT=3001 && next start"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
