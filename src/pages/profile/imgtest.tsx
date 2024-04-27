@@ -35,7 +35,7 @@ export default function ImgTest() {
         <div className="flex flex-row gap-20 px-10">
           <div className="infoDiv relative overflow-visible">
             <Image
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}
@@ -53,7 +53,7 @@ export default function ImgTest() {
           </div>
           <div className="infoDiv relative overflow-visible">
             <Image
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}
@@ -72,7 +72,7 @@ export default function ImgTest() {
           <div className="infoDiv relative overflow-visible">
             <Image
               ref={glitch.ref}
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}
@@ -92,7 +92,7 @@ export default function ImgTest() {
         <div className="flex flex-row gap-20">
           <div className="infoDiv relative overflow-visible">
             <Image
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}
@@ -110,7 +110,7 @@ export default function ImgTest() {
           </div>
           <div className="infoDiv relative overflow-visible">
             <Image
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}
@@ -128,7 +128,7 @@ export default function ImgTest() {
           </div>
           <div className="infoDiv relative overflow-visible">
             <Image
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}
@@ -146,7 +146,7 @@ export default function ImgTest() {
           </div>
           <div className="infoDiv relative overflow-visible">
             <Image
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}
@@ -166,7 +166,7 @@ export default function ImgTest() {
         <div className="flex flex-row gap-20">
           <div className="infoDiv relative overflow-visible">
             <Image
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}
@@ -184,7 +184,7 @@ export default function ImgTest() {
           </div>
           <div className="infoDiv relative overflow-visible">
             <Image
-              src={`https://dev.saberquest.xyz/profile/76561198343533017/avatar`}
+              src={`https://api.saberquest.xyz/profile/76561198343533017/avatar`}
               alt="Profile Picture"
               width={150}
               height={150}

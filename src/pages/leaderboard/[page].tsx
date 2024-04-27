@@ -205,7 +205,7 @@ export default function Profile() {
                                 src={
                                   !user.userInfo.images.avatar
                                     ? "/assets/images/PFPPlaceholder.png"
-                                    : user.userInfo.images.avatar
+                                    : `${process.env.API_URL}/profile/${user.userInfo.id}/avatar`
                                 }
                                 alt="Profile Picture"
                                 width={32}

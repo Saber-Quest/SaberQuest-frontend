@@ -140,7 +140,7 @@ export default function Profile({
           QP: ${userData.stats.qp}
           Account Value: ${userData.stats.value}
           Items: ${userData.inventory.length}`}
-          image={userData.userInfo.images.avatar}
+          image={`${process.env.API_URL}/profile/${userData.userInfo.id}/avatar`}
         />
         <div className="allDiv mt-32 mb-10 flex justify-center content-center drop-shadow-navBarShadow select-none w-full smoothTran">
           <>
@@ -168,7 +168,7 @@ export default function Profile({
                     src={
                       !userData.userInfo.images.avatar
                         ? "/assets/images/PFPPlaceholder.png"
-                        : userData.userInfo.images.avatar
+                        : `${process.env.API_URL}/profile/${userData.userInfo.id}/avatar`
                     }
                     alt="Profile Picture"
                     width={150}
