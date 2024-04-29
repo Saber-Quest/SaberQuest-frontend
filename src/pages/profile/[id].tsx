@@ -269,9 +269,7 @@ export default function Profile({
                         <InventoryPanel id={userData.userInfo.id} />
                         {/* Completed Challenges */}
                         <Tab.Panel className="my-4">
-                          <ChallengesPanel
-                            challenges={userData.challengeHistory}
-                          />
+                          <ChallengesPanel id={userData.userInfo.id} completed={userData.stats.challengesCompleted} />
                         </Tab.Panel>
                       </Tab.Panels>
                     </div>

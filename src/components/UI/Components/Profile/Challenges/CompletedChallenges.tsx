@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import TimeAgo from "react-timeago";
+import axios from "axios";
 import { ChallengeHistoryItem } from "@lib/types";
 import {
   ChallengeDiff as cD,
@@ -11,27 +13,33 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@heroicons/react/20/solid";
-import ExtendedChallengeInfo from "./ExtendedChallengeInfo";
+import ExtendedChallengeInfo from "@comp/UI/Components/Profile/Challenges/ExtendedChallengeInfo";
 import { dateConvert } from "@lib/utils/dateConvert";
-import TimeAgo from "react-timeago";
 
-export default function ChallengesPanel({
-  challenges,
-}: {
-  challenges: ChallengeHistoryItem[];
-}) {
-  const challengesPerPage = 5;
-  const [expandedIndex, setExpandedIndex] = useState(-1);
-  const [numberOfPages] = useState<number>(
-    Math.ceil(challenges.length / challengesPerPage),
-  );
+export default function ChallengesPanel({ id, completed }: { id: string, completed: number | 0 }) {
+  const [challenges, setChallenges] = useState<ChallengeHistoryItem[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const startChallengeIndex = (currentPage - 1) * challengesPerPage;
-  const endChallengeIndex = startChallengeIndex + challengesPerPage;
-  const challengesToShow = challenges.slice(
-    startChallengeIndex,
-    endChallengeIndex,
-  );
+  const [expandedIndex, setExpandedIndex] = useState(-1);
+
+  const challengesPerPage = 5;
+  const [numberOfPages, setPages] = useState<number>(Math.ceil(completed / challengesPerPage));
+
+  useEffect(() => {
+    axios
+      .get(`/api/profile/${id}/challenges/${currentPage}`)
+      .then((response) => {
+        if (response.status === 302 || response.status === 200) {
+          if (response.data !== null) {
+            setChallenges(response.data);
+
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred, contact a developer!");
+        console.error(error);
+      });
+  }, [id, currentPage]);
 
   const toggleAccordion = (index: number) => {
     if (expandedIndex === index) {
@@ -40,12 +48,13 @@ export default function ChallengesPanel({
       setExpandedIndex(index);
     }
   };
+
   return (
     <>
       <div className="ccMainDiv min-w-[368px] max-w-[368px] md:min-w-[464px] md:max-w-[464px] lg:min-w-[560px] lg:max-w-[560px] xl:min-w-[710px] xl:max-w-[710px] smoothTran">
         <ul role="list" className="ccListDivider">
-          {challengesToShow.length > 0 ? (
-            challengesToShow.map((item, index) => (
+          {challenges.length > 0 ? (
+            challenges.map((item, index) => (
               <li key={index} onClick={() => toggleAccordion(index)}>
                 <div className="ccChallengeFullInfo">
                   <div className="ccChallengeMiniInfo">
@@ -82,9 +91,7 @@ export default function ChallengesPanel({
                               <span className="hidden md:block">
                                 ScoreSaber
                               </span>
-                              <span className="md:hidden">
-                                SS
-                              </span>
+                              <span className="md:hidden">SS</span>
                             </span>
                           )) ||
                             (item.challenge.preference === cP.SS && (
@@ -99,9 +106,7 @@ export default function ChallengesPanel({
                                 <span className="hidden md:block">
                                   BeatLeader
                                 </span>
-                                <span className="md:hidden">
-                                  BL
-                                </span>
+                                <span className="md:hidden">BL</span>
                               </span>
                             ))}
                         </div>
