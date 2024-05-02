@@ -79,7 +79,7 @@ export default function ChallengesPanel({ id, completed }: { id: string, complet
                                 {item.challenge.difficulty.name}
                               </span>
                             ))}
-                          {(item.challenge.preference === cP.BL && (
+                          {(item.challenge.preference === cP.SS && (
                             <span className="ccSSColor md:min-w-[116px]">
                               <Image
                                 src="/assets/images/ScoreSaberLogo.svg"
@@ -94,7 +94,7 @@ export default function ChallengesPanel({ id, completed }: { id: string, complet
                               <span className="md:hidden">SS</span>
                             </span>
                           )) ||
-                            (item.challenge.preference === cP.SS && (
+                            (item.challenge.preference === cP.BL && (
                               <span className="ccBLColor md:min-w-[115px]">
                                 <Image
                                   src="/assets/images/BeatLeaderLogo.png"
