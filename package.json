@@ -6,11 +6,11 @@
   "identifier": "com.saberquest.web",
   "scripts": {
     "build": "next build",
-    "dev": "set PORT=3000 && prettier --write . && next dev ",
+    "dev": "yarn format && next dev -p 3005",
     "format": "prettier --write .",
     "lint": "next lint",
-    "prod": "prettier --write . && next build && next start -p 3001",
-    "start": "next start -p 3001"
+    "prod": "yarn build && yarn start",
+    "start": "next start -p 3005"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -24,7 +24,7 @@
     "flowbite": "^1.5.5",
     "flowbite-react": "^0.3.7",
     "lru-cache": "^7.14.1",
-    "next": "latest",
+    "next": "14.0.3",
     "next-themes": "^0.2.1",
     "prettier": "^2.8.1",
     "react": "18.2.0",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@tailwindcss/forms": "^0.5.7",
-    "@types/node": "^20.9.0",
+    "@types/node": "^20.14.11",
     "@types/react": "^18.2.37",
     "eslint": "8.53.0",
     "eslint-config-next": "14.0.2",
