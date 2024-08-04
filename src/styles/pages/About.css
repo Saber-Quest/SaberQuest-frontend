@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .aboutWrapper {
+    @apply my-11;
+  }
+  .aboutTabMain {
+    @apply flex gap-[0.7rem] justify-center;
+  }
+  .aboutSubTab {
+    @apply outline-none py-2 px-4 min-h-[30px] min-w-[132px] max-w-[132px] items-center border-b-2 border-[#ffd07300] hover:border-[#FFD073] hover:bg-navHover hover:shadow-aboutHoverShadow transition-all duration-300;
+  }
+  .aboutSubTabAdd {
+    @apply border-[#FFD073] border-b-2 shadow-aboutHoverShadow bg-navHover;
+  }
+  .aboutTabPanels {
+    @apply mt-12 outline-none;
+  }
+  .aboutTabPanelDivPrimary {
+    @apply mx-auto max-w-7xl px-6 mb-11 lg:px-8;
+  }
+  .aboutTabPanelDivSecondary {
+    @apply mx-auto max-w-2xl text-base leading-7 text-white;
+  }
+  .aboutH1 {
+    @apply mt-2 text-3xl font-bold tracking-tight sm:text-4xl;
+  }
+  .aboutP {
+    @apply mt-6 text-xl leading-8;
+  }
+  .aboutDivSecondaryInside {
+    @apply mt-10 max-w-2xl;
+  }
+  .aboutUL {
+    @apply mt-8 max-w-xl space-y-8 text-white;
+  }
+  .aboutFlexGap {
+    @apply flex gap-x-3;
+  }
+  .aboutGreenIcon {
+    @apply mt-1 h-5 w-5 flex-none text-green-300;
+  }
+  .aboutBlueIcon {
+    @apply mt-1 h-5 w-5 flex-none text-blue-400;
+  }
+  .aboutBoldYellow {
+    @apply font-semibold text-sqyellow;
+  }
+  .aboutYellow12PX {
+    @apply text-sqyellow text-[12px];
+  }
+  .aboutTightWhite {
+    @apply text-2xl font-bold tracking-tight text-white;
+  }
+  .aboutTightWhite2 {
+    @apply text-xl font-semibold tracking-tight text-white;
+  }
+  .aboutTightYellow {
+    @apply text-2xl font-bold tracking-tight text-sqyellow;
+  }
+  .aboutMTWhite {
+    @apply mt-8 max-w-xl space-y-8 text-white;
+  }
+  .aboutMain {
+    @apply mx-auto max-w-7xl px-6 text-center lg:px-8 w-screen;
+  }
+  .aboutHeader {
+    @apply mx-auto max-w-7xl px-6 mt-6 lg:px-8;
+  }
+  .aboutHeaderh2 {
+    @apply text-3xl font-bold tracking-tight text-sqyellow sm:text-4xl;
+  }
+  .aboutTeamBox {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .aboutTeamBoxInner {
+    @apply flex flex-row flex-wrap gap-10 mb-10 justify-center;
+  }
+  .aboutPFP {
+    @apply mx-auto rounded-full drop-shadow-AboutShadow mb-1;
+  }
+  .aboutName {
+    @apply mt-6 text-base font-semibold leading-7 tracking-tight text-white;
+  }
+  .aboutInfo {
+    @apply text-sm leading-6 text-white;
+  }
+  .aboutPlatforms {
+    @apply mt-3 flex justify-center gap-x-4;
+  }
+  .aboutTeamDiv {
+    @apply flex flex-col hd:flex-row justify-center select-none;
+  }
+}

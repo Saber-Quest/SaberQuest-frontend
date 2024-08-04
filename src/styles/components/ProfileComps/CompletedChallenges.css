@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .ccMainDiv {
+    @apply overflow-hidden rounded-md;
+  }
+  .ccListDivider {
+    @apply divide-y divide-sqyellowfaint;
+  }
+  .ccChallengeFullInfo {
+    @apply hover:cursor-pointer hover:bg-sqyellowfaint;
+    @apply transition-all ease-in-out duration-300;
+  }
+  .ccChallengeMiniInfo {
+    @apply flex items-center;
+    @apply px-4 py-4 sm:px-6;
+  }
+  .ccChallengeMiniInfoFull {
+    @apply min-w-0 flex-1 flex items-center justify-between;
+  }
+  .ccChallengeMiniInfoLeft {
+    @apply whitespace-nowrap overflow-ellipsis;
+  }
+  .ccMiniCard {
+    @apply flex text-sm;
+  }
+  .ccMiniChalName {
+    @apply truncate font-medium text-sqyellow;
+  }
+  .ccBLColor {
+    @apply bg-blColorfaint;
+    @apply ml-2 px-2;
+    @apply outline outline-1 outline-blColor;
+    @apply rounded-full;
+    @apply flex flex-row items-center;
+  }
+  .ccSSColor {
+    @apply bg-ssColorfaint;
+    @apply ml-2 px-2;
+    @apply outline outline-1 outline-ssColor;
+    @apply rounded-full;
+    @apply flex flex-row items-center;
+  }
+  .ccNChalDiff {
+    @apply text-normalreq font-semibold;
+    @apply ml-2 px-2;
+    @apply outline outline-1 outline-normalreq;
+    @apply rounded-full bg-normalreqfaint;
+  }
+  .ccHChalDiff {
+    @apply text-hardreq font-semibold;
+    @apply ml-2 px-2;
+    @apply outline outline-1 outline-hardreq;
+    @apply rounded-full bg-hardreqfaint;
+  }
+  .ccExChalDiff {
+    @apply text-expertreq font-semibold;
+    @apply ml-2 px-2;
+    @apply outline outline-1 outline-expertreq;
+    @apply rounded-full bg-expertreqfaint;
+  }
+  .ccMiniCalDiv {
+    @apply mt-2 flex;
+  }
+  .ccMiniCalInfo {
+    @apply flex items-center text-sm text-white;
+  }
+  .ccCalIcon {
+    @apply mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400;
+  }
+
+  .ccMiniItemsDiv {
+    @apply hidden mt-4 lg:block flex-shrink-0 sm:mt-0 sm:ml-5;
+  }
+  .ccMiniItemsRow {
+    @apply flex -space-x-1 overflow-visible;
+  }
+  .ccMiniItemsRing {
+    @apply inline-block rounded-full ring-2 bg-[#303030];
+  }
+  .ccChevronDiv {
+    @apply ml-5 flex-shrink-0;
+  }
+  .ccChevronButton {
+    @apply h-5 w-5 text-gray-400 focus:outline-none;
+  }
+  .ccNavigation {
+    @apply pt-5;
+    @apply flex flex-row justify-center gap-2 md:gap-5;
+  }
+}

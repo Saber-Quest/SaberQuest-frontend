@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .ShopContainer {
+    @apply mx-auto w-full xl:max-w-[920px];
+    @apply bg-gradient-to-t from-[#26262600] via-[#2626263a] to-[#2626267e];
+    @apply rounded-none xl:rounded-2xl p-0 xl:p-4;
+  }
+
+  .ShopHeader {
+    @apply flex items-center;
+    @apply bg-[#0000003b] xl:rounded-t-lg;
+    @apply py-4 pl-4 xl:pl-0;
+  }
+
+  .ShopEntry {
+    @apply flex items-center;
+    @apply py-5 pl-4 xl:pl-0;
+  }
+
+  .ShopHeaderText {
+    @apply text-white;
+    @apply font-normal;
+    @apply text-sm xl:text-[16px];
+  }
+
+  .ShopEntryText {
+    @apply text-white;
+    @apply font-normal;
+    @apply text-sm xl:text-[16px];
+  }
+
+  .SHI {
+    @apply pl-4 flex gap-5 content-center items-center;
+    @apply w-full;
+  }
+
+  .SHR {
+    @apply md:flex justify-center content-center md:min-w-[120px] whitespace-nowrap text-sm text-center text-white;
+    @apply w-[0px] relative md:static left-[30px];
+  }
+
+  .SHP {
+    @apply ml-[30px] md:ml-[0px] flex content-center justify-center items-center;
+    @apply w-full;
+  }
+
+  .SHB {
+    @apply flex content-center justify-center items-center;
+    @apply w-full;
+  }
+}

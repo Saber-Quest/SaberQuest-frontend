@@ -1,0 +1,11 @@
+.next/
+.vercel/
+.vs/
+.public/
+.github/
+node_modules/
+package-lock.json
+yarn.lock
+package.json
+README.md
+TODO.md

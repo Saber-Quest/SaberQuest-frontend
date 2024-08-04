@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .outerPill {
+    @apply flex items-center w-[20px] md:w-[120px];
+    @apply border-2 rounded-full;
+    &.common {
+      @apply border-commonItem bg-commonItemfaint;
+    }
+    &.uncommon {
+      @apply border-uncommonItem bg-uncommonItemfaint;
+    }
+    &.rare {
+      @apply border-rareItem bg-rareItemfaint;
+    }
+    &.epic {
+      @apply border-epicItem bg-epicItemfaint;
+    }
+    &.legendary {
+      @apply border-legendaryItem bg-legendaryItemfaint;
+    }
+  }
+  .innerPill {
+    @apply min-h-[12px] min-w-[12px] my-[2px] mx-[2px] md:mx-[0px] md:ml-1.5 md:-mr-1;
+    @apply rounded-full;
+    &.common {
+      @apply bg-commonItem;
+    }
+    &.uncommon {
+      @apply bg-uncommonItem;
+    }
+    &.rare {
+      @apply bg-rareItem;
+    }
+    &.epic {
+      @apply bg-epicItem;
+    }
+    &.legendary {
+      @apply bg-legendaryItem;
+    }
+  }
+  .pillText {
+    @apply hidden md:block;
+    @apply w-full;
+  }
+}

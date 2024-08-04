@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev/rewrite_reactnextjs
+  pull_request:
+    branches:
+      - dev/rewrite_reactnextjs
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Copy over the files
+              uses: appleboy/scp-action@98930d398ce425af0148ea8a0e3295cd04fe2b7a
+              with:
+                host: ${{ secrets.HOST }}
+                username: ${{ secrets.USERNAME }}
+                port: ${{ secrets.PORT }}
+                password: ${{ secrets.PASSWORD }}
+                rm: true
+                source: "."
+                target: "/var/www/saberquest.xyz"
+
+            - name: Building the server
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                host: ${{ secrets.HOST }}
+                username: ${{ secrets.USERNAME }}
+                port: ${{ secrets.PORT }}
+                password: ${{ secrets.PASSWORD }}
+                script_stop: true
+                script: |
+                  cd "/var/www/"
+                  rm "saberquest.xyz/.env.example"
+                  touch "saberquest.xyz/.env"
+                  cd "saberquest.xyz"
+                  cat ../secrets/.env.frontend > .env
+                  yarn
+                  pm2 delete saberquest -s
+                  pm2 start npm --name "saberquest" -- run prod -s

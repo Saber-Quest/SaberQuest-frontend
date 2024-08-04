@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .Navigation {
+    @apply pt-5;
+    @apply flex flex-row justify-evenly;
+    @apply w-[420px];
+  }
+  .Forward {
+    @apply h-[50px] w-[140px];
+    @apply bg-[#00000033];
+    @apply flex items-center justify-center;
+    @apply rounded-2xl;
+  }
+  .Backward {
+    @apply h-[50px] w-[140px];
+    @apply bg-[#00000033];
+    @apply flex items-center justify-center;
+    @apply rounded-2xl;
+  }
+  .PageNumber {
+    @apply h-[50px] w-[72px];
+    @apply bg-[#00000033];
+    @apply flex items-center justify-center;
+    @apply rounded-2xl;
+  }
+}
