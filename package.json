@@ -6,11 +6,11 @@
   "identifier": "com.saberquest.web",
   "scripts": {
     "build": "next build",
-    "dev": "yarn format && next dev -p 3005",
+    "dev": "yarn format && next dev -p 3000",
     "format": "prettier --write .",
     "lint": "next lint",
     "prod": "yarn build && yarn start",
-    "start": "next start -p 3005"
+    "start": "next start -p 3001"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
